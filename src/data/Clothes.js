@@ -277,7 +277,7 @@ export const Clothes = [
       {
         img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783530159/WhatsApp_Image_2026-07-05_at_10.24.31_AM_3_hu08sz.jpg",
       },
-      // { بينك
+      // { بينك   تتتتتتتتت
       //   img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783530160/WhatsApp_Image_2026-07-05_at_10.24.31_AM_1_cerr5j.jpg",
       // },
       {
