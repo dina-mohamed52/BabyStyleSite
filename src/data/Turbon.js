@@ -29,8 +29,8 @@ export const BandanaTurbonData = [
     image:
       "https://res.cloudinary.com/dxenvgjv5/image/upload/v1784373193/WhatsApp_Image_2026-07-18_at_3.46.47_AM_fdyotb.jpg",
     sizes: [
-      { size: "0-2", age: "من زيرو لسنتين" },
-      { size: "2-4", age: "من 2 ل4 سنين" },
+      { size: "0-1", age: "من زيرو لسنة" },
+      { size: "1-3", age: "من سنه ل 3 سنين" },
     ],
   },
   {
@@ -74,8 +74,8 @@ export const BandanaTurbonData = [
     image:
       "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777392066/WhatsApp_Image_2026-04-28_at_4.04.54_AM_2_hcl2u1.jpg",
     sizes: [
-      { size: "0-2", age: "من زيرو لسنتين" },
-      { size: "2-4", age: "من 2 ل4 سنين" },
+      { size: "0-1", age: "من زيرو لسنة" },
+      { size: "1-3", age: "من سنه ل 3 سنين" },
     ],
   },
 
