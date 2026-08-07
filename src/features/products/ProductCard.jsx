@@ -34,6 +34,7 @@ function ProductCard({ product, onPreview, onClick }) {
       كافيه: "#8B5E3C",
       بني: "#8B4513",
       بندقي: "#D2B48C",
+        "بيبي بلو": "#87CEEB",
       default: "#E5E7EB",
     };
 

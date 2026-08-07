@@ -352,6 +352,7 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
       نبيتي: "#800020",
       زيتي: "#556B2F",
       تركواز: "#40E0D0",
+      "بيبي بلو": "#87CEEB",
       default: "#CCCCCC",
     };
     return colorMap[colorName] || colorMap.default;
