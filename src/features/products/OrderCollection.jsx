@@ -280,7 +280,7 @@ function OrderCollection({ selectedOffer, scrollToOffers }) {
     const colorMap = {
       أبيض: "#FFFFFF", أسود: "#000000", رمادي: "#808080", روز: "#FFC0CB",
       بينك: "#FF69B4", كحلي: "#000080", بيج: "#F5F5DC", لبني: "#FDF5E6",
-      أحمر: "#FF0000", كافيه: "#6F4E37", أصفر: "#FFFF00", موف: "#E0B0FF",
+      أحمر: "#FF0000", كافيه: "#6F4E37", أصفر: "#FFFF00", موف: "#E0B0FF",  "بيبي بلو": "#87CEEB",
       default: "#CCCCCC",
     };
     return colorMap[colorName] || colorMap.default;
