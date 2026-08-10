@@ -23,6 +23,7 @@ import { Select, Drawer } from "antd";
 import { useCart } from "../cart/CartContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useCartActions } from "../cart/AddAndBuyTOCart";
 
 // Mobile Dropdown Component - Same as Half but with Clothes theme
 function MobileSelect({
@@ -39,7 +40,7 @@ function MobileSelect({
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredOptions = options.filter((opt) =>
-    opt.label.toLowerCase().includes(searchTerm.toLowerCase())
+    opt.label.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const selectedOption = options.find((opt) => opt.value === value);
@@ -47,7 +48,10 @@ function MobileSelect({
   return (
     <>
       <div className="space-y-2">
-        <label className="flex items-center gap-2 text-sm font-medium text-gray-700" style={{ fontFamily: "'Cairo', sans-serif" }}>
+        <label
+          className="flex items-center gap-2 text-sm font-medium text-gray-700"
+          style={{ fontFamily: "'Cairo', sans-serif" }}
+        >
           {Icon && <Icon className="w-4 h-4 text-amber-500" />}
           {label}
         </label>
@@ -61,8 +65,12 @@ function MobileSelect({
             ${value ? "border-amber-300 ring-1 ring-amber-200" : "border-gray-200"}
           `}
         >
-          <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${open ? "rotate-180" : ""}`} />
-          <span className={`text-sm ${value ? "text-gray-800 font-medium" : "text-gray-400"}`}>
+          <ChevronDown
+            className={`w-5 h-5 text-gray-400 transition-transform ${open ? "rotate-180" : ""}`}
+          />
+          <span
+            className={`text-sm ${value ? "text-gray-800 font-medium" : "text-gray-400"}`}
+          >
             {selectedOption?.label || placeholder}
           </span>
         </button>
@@ -81,7 +89,10 @@ function MobileSelect({
       >
         <div className="sticky top-0 z-10 bg-white border-b border-gray-100 p-4">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-bold text-gray-800" style={{ fontFamily: "'Baloo Bhaijaan 2', 'Cairo', sans-serif" }}>
+            <h3
+              className="text-lg font-bold text-gray-800"
+              style={{ fontFamily: "'Baloo Bhaijaan 2', 'Cairo', sans-serif" }}
+            >
               {label}
             </h3>
             <button
@@ -114,18 +125,26 @@ function MobileSelect({
                   ${value === option.value ? "bg-amber-50" : "hover:bg-gray-50"}
                 `}
               >
-                {renderOption ? renderOption(option) : (
+                {renderOption ? (
+                  renderOption(option)
+                ) : (
                   <div className="flex items-center gap-3">
                     {option.color && (
                       <div
                         className="w-6 h-6 rounded-full shadow-inner"
                         style={{
                           backgroundColor: option.color,
-                          border: option.color === "#FFFFFF" ? "1px solid #E5E7EB" : "none",
+                          border:
+                            option.color === "#FFFFFF"
+                              ? "1px solid #E5E7EB"
+                              : "none",
                         }}
                       />
                     )}
-                    <span className="text-sm text-gray-800" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                    <span
+                      className="text-sm text-gray-800"
+                      style={{ fontFamily: "'Cairo', sans-serif" }}
+                    >
                       {option.label}
                     </span>
                   </div>
@@ -165,10 +184,18 @@ function SuccessModal({ visible, onClose, message, onContinue, onCheckout }) {
             <div className="w-16 h-16 mx-auto bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center mb-4">
               <CheckCircle className="w-8 h-8 text-green-500" />
             </div>
-            <h3 className="text-xl font-bold text-gray-800 mb-2" style={{ fontFamily: "'Baloo Bhaijaan 2', 'Cairo', sans-serif" }}>
+            <h3
+              className="text-xl font-bold text-gray-800 mb-2"
+              style={{ fontFamily: "'Baloo Bhaijaan 2', 'Cairo', sans-serif" }}
+            >
               🎉 تم بنجاح!
             </h3>
-            <p className="text-gray-500 text-sm mb-6" style={{ fontFamily: "'Cairo', sans-serif" }}>{message}</p>
+            <p
+              className="text-gray-500 text-sm mb-6"
+              style={{ fontFamily: "'Cairo', sans-serif" }}
+            >
+              {message}
+            </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={onContinue}
@@ -217,7 +244,10 @@ function ClothesOrderCollection({
   const [pendingNavigation, setPendingNavigation] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
-  const { addToCart } = useCart();
+  const { cartItems, addToCart } = useCart();
+
+ 
+
   const navigate = useNavigate();
 
   // Check if mobile
@@ -231,31 +261,31 @@ function ClothesOrderCollection({
   }, []);
 
   // Get products based on active tab
-const getFilteredProducts = () => {
-  if (activeTab === "shirts") {
-    return Clothes.filter((p) => p.category === "top");
-  }
+  const getFilteredProducts = () => {
+    if (activeTab === "shirts") {
+      return Clothes.filter((p) => p.category === "top");
+    }
 
-  if (activeTab === "legging") {
-    return Clothes.filter((p) => p.category === "legging");
-  }
+    if (activeTab === "legging") {
+      return Clothes.filter((p) => p.category === "legging");
+    }
 
-  if (activeTab === "short") {
-    return Clothes.filter((p) => p.category === "short");
-  }
+    if (activeTab === "short") {
+      return Clothes.filter((p) => p.category === "short");
+    }
 
-  if (activeTab === "top") {
-    return Clothes.filter((p) => p.category === "top");
-  }
+    if (activeTab === "top") {
+      return Clothes.filter((p) => p.category === "top");
+    }
 
-  return Clothes;
-};
+    return Clothes;
+  };
 
   const products = useMemo(
     () => getFilteredProducts(),
-    [activeTab, selectedOffer]
+    [activeTab, selectedOffer],
   );
-  
+
   const [pieces, setPieces] = useState(() =>
     Array.from({ length: count }, (_, i) => ({
       id: i + 1,
@@ -264,7 +294,7 @@ const getFilteredProducts = () => {
           ? products.find((p) => p.name === defaultProductName)?.id || null
           : null,
       color: "",
-    }))
+    })),
   );
 
   // Update pieces when count or tab changes
@@ -277,7 +307,7 @@ const getFilteredProducts = () => {
             ? products.find((p) => p.name === defaultProductName)?.id || null
             : null,
         color: "",
-      }))
+      })),
     );
     setSelectedSizes({});
     setCompletedCards({});
@@ -296,7 +326,11 @@ const getFilteredProducts = () => {
     pieces.forEach((piece) => {
       const product = getProductById(piece.productId);
       // For clothes, we need product, color, and size
-      completed[piece.id] = !!(piece.productId && piece.color && selectedSizes[piece.id]);
+      completed[piece.id] = !!(
+        piece.productId &&
+        piece.color &&
+        selectedSizes[piece.id]
+      );
     });
     setCompletedCards(completed);
   }, [pieces, selectedSizes]);
@@ -313,7 +347,6 @@ const getFilteredProducts = () => {
 
   const handleGoToOffers = () => {
     if (scrollToOffers) {
-     
       setTimeout(() => {
         scrollToOffers();
       }, 100);
@@ -367,7 +400,7 @@ const getFilteredProducts = () => {
 
   const handleProductChange = (id, productId) => {
     setPieces((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, productId, color: "" } : p))
+      prev.map((p) => (p.id === id ? { ...p, productId, color: "" } : p)),
     );
     setSelectedSizes((prev) => {
       const newSizes = { ...prev };
@@ -400,6 +433,7 @@ const getFilteredProducts = () => {
   const prepareCartItem = () => {
     const orderWithDetails = pieces.map((piece) => {
       const product = getProductById(piece.productId);
+
       return {
         id: piece.id,
         productId: piece.productId,
@@ -411,7 +445,9 @@ const getFilteredProducts = () => {
     });
 
     return {
-      id: `clothes-offer-${selectedOffer?.id}-${Date.now()}`,
+      id: `clothes-offer-${selectedOffer?.id}-${pieces
+        .map((p) => `${p.productId}-${p.color}-${selectedSizes[p.id]}`)
+        .join("_")}`,
       name: selectedOffer?.name,
       nameEn: `Clothes Offer: ${selectedOffer?.name}`,
       price: selectedOffer?.price,
@@ -426,10 +462,18 @@ const getFilteredProducts = () => {
       image: orderWithDetails[0]?.image || "",
     };
   };
-
   const isFormValid = pieces.every((piece) => {
     return !!(piece.productId && piece.color && selectedSizes[piece.id]);
   });
+
+
+ const { handleAddOnly, handleBuyNow } = useCartActions({
+   
+    prepareCartItem,
+    isFormValid,
+  });
+
+
 
   const handleAddToCart = async (shouldNavigate = false) => {
     if (!isFormValid) {
@@ -457,7 +501,7 @@ const getFilteredProducts = () => {
           position: "bottom-center",
           autoClose: 3000,
           icon: false,
-        }
+        },
       );
 
       onOrderConfirmed?.();
@@ -485,25 +529,32 @@ const getFilteredProducts = () => {
     }
   };
 
-  const handleAddOnly = (e) => {
-    e.preventDefault();
-    handleAddToCart(false);
-  };
+  // const handleAddOnly = (e) => {
+  //   e.preventDefault();
+  //   handleAddToCart(false);
+  // };
 
-  const handleBuyNow = (e) => {
-    e.preventDefault();
+  // const handleBuyNow = (e) => {
+  //   e.preventDefault();
 
-    if (!isFormValid) {
-      toast.error("⚠️ يرجى إكمال جميع البيانات أولاً", {
-        position: "bottom-center",
-        autoClose: 3000,
-      });
-      return;
-    }
+  //   if (!isFormValid) {
+  //     toast.error("⚠️ يرجى إكمال جميع البيانات أولاً", {
+  //       position: "bottom-center",
+  //       autoClose: 3000,
+  //     });
+  //     return;
+  //   }
 
-    navigate("/checkout");
-  };
+  //   const cartItem = prepareCartItem();
 
+  //   const productExists = cartItems.some((item) => item.id === cartItem.id);
+
+  //   if (!productExists) {
+  //     addToCart(cartItem);
+  //   }
+
+  //   navigate("/checkout");
+  // };
   const handleContinueShopping = () => {
     setShowSuccessModal(false);
     setPendingNavigation(false);
@@ -539,10 +590,16 @@ const getFilteredProducts = () => {
           <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-amber-100 to-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Package className="w-8 h-8 md:w-10 md:h-10 text-amber-300" />
           </div>
-          <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-1" style={{ fontFamily: "'Baloo Bhaijaan 2', 'Cairo', sans-serif" }}>
+          <h3
+            className="text-lg md:text-xl font-semibold text-gray-800 mb-1"
+            style={{ fontFamily: "'Baloo Bhaijaan 2', 'Cairo', sans-serif" }}
+          >
             اختار عرضك
           </h3>
-          <p className="text-gray-400 text-xs md:text-sm" style={{ fontFamily: "'Cairo', sans-serif" }}>
+          <p
+            className="text-gray-400 text-xs md:text-sm"
+            style={{ fontFamily: "'Cairo', sans-serif" }}
+          >
             برجاء اختيار عرض مناسب من الأعلى
           </p>
         </motion.div>
@@ -562,7 +619,10 @@ const getFilteredProducts = () => {
   }
 
   return (
-    <div ref={containerRef} className="py-6 md:py-12 px-3 md:px-4 max-w-7xl mx-auto">
+    <div
+      ref={containerRef}
+      className="py-6 md:py-12 px-3 md:px-4 max-w-7xl mx-auto"
+    >
       {/* Hero Header - Clothes Theme */}
       <div className="text-center mb-8 md:mb-12">
         <motion.div
@@ -572,26 +632,43 @@ const getFilteredProducts = () => {
           className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-400 to-orange-400 text-white px-3 md:px-4 py-1 rounded-full mb-4 shadow-lg shadow-amber-200"
         >
           <Sparkles className="w-3 h-3" />
-          <span className="text-[11px] md:text-xs font-medium" style={{ fontFamily: "'Cairo', sans-serif" }}>
+          <span
+            className="text-[11px] md:text-xs font-medium"
+            style={{ fontFamily: "'Cairo', sans-serif" }}
+          >
             تخصيص طلبك
           </span>
         </motion.div>
 
-        <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-2 px-2" style={{ fontFamily: "'Baloo Bhaijaan 2', 'Cairo', sans-serif" }}>
+        <h2
+          className="text-2xl md:text-4xl font-bold text-gray-800 mb-2 px-2"
+          style={{ fontFamily: "'Baloo Bhaijaan 2', 'Cairo', sans-serif" }}
+        >
           اختاري تفاصيل{" "}
           <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
             قطعتك
           </span>
         </h2>
-        <p className="text-gray-400 text-xs md:text-sm px-4" style={{ fontFamily: "'Cairo', sans-serif" }}>
+        <p
+          className="text-gray-400 text-xs md:text-sm px-4"
+          style={{ fontFamily: "'Cairo', sans-serif" }}
+        >
           قم بتخصيص كل قطعة بالمنتج واللون والمقاس المناسب
         </p>
 
         {/* Premium Progress Bar */}
         <div className="max-w-md mx-auto mt-6 md:mt-8 px-4">
           <div className="flex justify-between text-xs md:text-sm mb-2">
-            <span className="text-gray-500" style={{ fontFamily: "'Cairo', sans-serif" }}>تقدم الطلب</span>
-            <span className="font-bold text-amber-500" style={{ fontFamily: "'Cairo', sans-serif" }}>
+            <span
+              className="text-gray-500"
+              style={{ fontFamily: "'Cairo', sans-serif" }}
+            >
+              تقدم الطلب
+            </span>
+            <span
+              className="font-bold text-amber-500"
+              style={{ fontFamily: "'Cairo', sans-serif" }}
+            >
               {completedCount}/{pieces.length}
             </span>
           </div>
@@ -627,7 +704,10 @@ const getFilteredProducts = () => {
           >
             <div className="inline-flex items-center gap-2 bg-amber-50 px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-amber-100">
               <Lock className="w-3 h-3 md:w-3.5 md:h-3.5 text-amber-500" />
-              <span className="text-xs md:text-sm text-amber-600" style={{ fontFamily: "'Cairo', sans-serif" }}>
+              <span
+                className="text-xs md:text-sm text-amber-600"
+                style={{ fontFamily: "'Cairo', sans-serif" }}
+              >
                 المنتج محدد:{" "}
                 <span className="font-semibold">{defaultProductName}</span>
               </span>
@@ -648,7 +728,12 @@ const getFilteredProducts = () => {
           const productOptions = products.map((p) => ({
             value: p.id,
             label: p.name,
-            icon: p.category === "shirts" ? "Shirt" : p.category === "legging" ? "Package" : "Layers",
+            icon:
+              p.category === "shirts"
+                ? "Shirt"
+                : p.category === "legging"
+                  ? "Package"
+                  : "Layers",
           }));
 
           const colorOptions = colors.map((c) => ({
@@ -704,8 +789,19 @@ const getFilteredProducts = () => {
                         )}
                       </div>
                       <div>
-                        <p className="text-[10px] md:text-xs text-gray-400" style={{ fontFamily: "'Cairo', sans-serif" }}>القطعة</p>
-                        <p className="text-base md:text-lg font-bold text-gray-800" style={{ fontFamily: "'Baloo Bhaijaan 2', 'Cairo', sans-serif" }}>
+                        <p
+                          className="text-[10px] md:text-xs text-gray-400"
+                          style={{ fontFamily: "'Cairo', sans-serif" }}
+                        >
+                          القطعة
+                        </p>
+                        <p
+                          className="text-base md:text-lg font-bold text-gray-800"
+                          style={{
+                            fontFamily:
+                              "'Baloo Bhaijaan 2', 'Cairo', sans-serif",
+                          }}
+                        >
                           #{piece.id}
                         </p>
                       </div>
@@ -720,7 +816,10 @@ const getFilteredProducts = () => {
                         ) : (
                           <Layers className="w-3 h-3 text-gray-400" />
                         )}
-                        <span className="text-[10px] md:text-xs text-gray-500" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                        <span
+                          className="text-[10px] md:text-xs text-gray-500"
+                          style={{ fontFamily: "'Cairo', sans-serif" }}
+                        >
                           {product.name.split(" ").slice(0, 2).join(" ")}
                         </span>
                       </div>
@@ -751,7 +850,10 @@ const getFilteredProducts = () => {
                             )}
                           </div>
                           <div className="flex-1 text-right">
-                            <p className="font-medium text-gray-800 text-sm" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                            <p
+                              className="font-medium text-gray-800 text-sm"
+                              style={{ fontFamily: "'Cairo', sans-serif" }}
+                            >
                               {option.label}
                             </p>
                           </div>
@@ -760,7 +862,10 @@ const getFilteredProducts = () => {
                     />
                   ) : (
                     <div className="space-y-2">
-                      <label className="flex items-center gap-2 text-sm font-medium text-gray-700" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                      <label
+                        className="flex items-center gap-2 text-sm font-medium text-gray-700"
+                        style={{ fontFamily: "'Cairo', sans-serif" }}
+                      >
                         <ShoppingBag className="w-4 h-4 text-amber-500" />
                         اختر المنتج
                       </label>
@@ -787,7 +892,10 @@ const getFilteredProducts = () => {
                                 )}
                               </div>
                               <div>
-                                <p className="font-medium text-gray-800 text-sm" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                                <p
+                                  className="font-medium text-gray-800 text-sm"
+                                  style={{ fontFamily: "'Cairo', sans-serif" }}
+                                >
                                   {p.name}
                                 </p>
                               </div>
@@ -815,10 +923,16 @@ const getFilteredProducts = () => {
                               className="w-6 h-6 rounded-full shadow-inner"
                               style={{
                                 backgroundColor: option.color,
-                                border: option.color === "#FFFFFF" ? "1px solid #E5E7EB" : "none",
+                                border:
+                                  option.color === "#FFFFFF"
+                                    ? "1px solid #E5E7EB"
+                                    : "none",
                               }}
                             />
-                            <span className="text-sm text-gray-800" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                            <span
+                              className="text-sm text-gray-800"
+                              style={{ fontFamily: "'Cairo', sans-serif" }}
+                            >
                               {option.label}
                             </span>
                           </div>
@@ -826,7 +940,10 @@ const getFilteredProducts = () => {
                       />
                     ) : (
                       <div className="space-y-2">
-                        <label className="flex items-center gap-2 text-sm font-medium text-gray-700" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                        <label
+                          className="flex items-center gap-2 text-sm font-medium text-gray-700"
+                          style={{ fontFamily: "'Cairo', sans-serif" }}
+                        >
                           <Palette className="w-4 h-4 text-amber-500" />
                           اللون
                         </label>
@@ -847,10 +964,17 @@ const getFilteredProducts = () => {
                                   className="w-5 h-5 rounded-full shadow-inner"
                                   style={{
                                     backgroundColor: getColorCode(c),
-                                    border: c === "أبيض" ? "1px solid #E5E7EB" : "none",
+                                    border:
+                                      c === "أبيض"
+                                        ? "1px solid #E5E7EB"
+                                        : "none",
                                   }}
                                 />
-                                <span style={{ fontFamily: "'Cairo', sans-serif" }}>{c}</span>
+                                <span
+                                  style={{ fontFamily: "'Cairo', sans-serif" }}
+                                >
+                                  {c}
+                                </span>
                               </div>
                             </Select.Option>
                           ))}
@@ -870,10 +994,16 @@ const getFilteredProducts = () => {
                         disabled={!piece.productId || !piece.color}
                         renderOption={(option) => (
                           <div className="flex items-center justify-between w-full">
-                            <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                            <span
+                              className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full"
+                              style={{ fontFamily: "'Cairo', sans-serif" }}
+                            >
                               {option.age}
                             </span>
-                            <span className="font-medium text-gray-800" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                            <span
+                              className="font-medium text-gray-800"
+                              style={{ fontFamily: "'Cairo', sans-serif" }}
+                            >
                               {option.size}
                             </span>
                           </div>
@@ -881,7 +1011,10 @@ const getFilteredProducts = () => {
                       />
                     ) : (
                       <div className="space-y-2">
-                        <label className="flex items-center gap-2 text-sm font-medium text-gray-700" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                        <label
+                          className="flex items-center gap-2 text-sm font-medium text-gray-700"
+                          style={{ fontFamily: "'Cairo', sans-serif" }}
+                        >
                           <Ruler className="w-4 h-4 text-amber-500" />
                           المقاس
                         </label>
@@ -898,10 +1031,16 @@ const getFilteredProducts = () => {
                           {sizes.map((s) => (
                             <Select.Option key={s.size} value={s.size}>
                               <div className="flex items-center justify-between">
-                                <span className="font-medium text-gray-800" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                                <span
+                                  className="font-medium text-gray-800"
+                                  style={{ fontFamily: "'Cairo', sans-serif" }}
+                                >
                                   {s.size}
                                 </span>
-                                <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                                <span
+                                  className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full"
+                                  style={{ fontFamily: "'Cairo', sans-serif" }}
+                                >
                                   {s.age}
                                 </span>
                               </div>
@@ -936,12 +1075,18 @@ const getFilteredProducts = () => {
                       <div
                         className={`w-1.5 h-1.5 rounded-full ${isCompleted ? "bg-green-500" : "bg-gray-300"}`}
                       />
-                      <span className="text-[10px] md:text-xs text-gray-500" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                      <span
+                        className="text-[10px] md:text-xs text-gray-500"
+                        style={{ fontFamily: "'Cairo', sans-serif" }}
+                      >
                         {isCompleted ? "مكتملة ✓" : "في انتظار التحديد"}
                       </span>
                     </div>
                     {isCompleted && (
-                      <span className="text-[10px] md:text-xs text-amber-500 font-medium" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                      <span
+                        className="text-[10px] md:text-xs text-amber-500 font-medium"
+                        style={{ fontFamily: "'Cairo', sans-serif" }}
+                      >
                         جاهز للإضافة
                       </span>
                     )}
@@ -963,11 +1108,15 @@ const getFilteredProducts = () => {
         <div className="flex flex-wrap justify-center gap-3 md:gap-4 text-[10px] md:text-xs text-gray-400">
           <div className="flex items-center gap-1">
             <div className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
-            <span style={{ fontFamily: "'Cairo', sans-serif" }}>🛒 إضافة للسلة: احفظ العرض وارجع للتسوق</span>
+            <span style={{ fontFamily: "'Cairo', sans-serif" }}>
+              🛒 إضافة للسلة: احفظ العرض وارجع للتسوق
+            </span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-1.5 h-1.5 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" />
-            <span style={{ fontFamily: "'Cairo', sans-serif" }}>💳 شراء الآن: اذهب مباشرة لإتمام الطلب</span>
+            <span style={{ fontFamily: "'Cairo', sans-serif" }}>
+              💳 شراء الآن: اذهب مباشرة لإتمام الطلب
+            </span>
           </div>
         </div>
 

@@ -15,10 +15,32 @@ export function CartProvider({ children }) {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const addToCart = (item) => {
-    setCartItems((prev) => [...prev, item]);
-  };
+ const addToCart = (item) => {
+  setCartItems((prev) => {
+    const existingItem = prev.find(
+      (cartItem) => cartItem.id === item.id
+    );
 
+    if (existingItem) {
+      return prev.map((cartItem) =>
+        cartItem.id === item.id
+          ? {
+              ...cartItem,
+              quantity: (cartItem.quantity || 1) + 1,
+            }
+          : cartItem
+      );
+    }
+
+    return [
+      ...prev,
+      {
+        ...item,
+        quantity: 1,
+      },
+    ];
+  });
+};
   const removeItem = (id) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };

@@ -14,7 +14,6 @@ function Clothes() {
 
   const { category } = useParams();
 
-
   const scrollToOrderCollection = () => {
     if (orderCollectionRef.current) {
       orderCollectionRef.current.scrollIntoView({ 
@@ -24,7 +23,6 @@ function Clothes() {
     }
   };
 
-  // دالة للتمرير إلى قسم العروض
   const scrollToOffers = () => {
     if (offersRef.current) {
       offersRef.current.scrollIntoView({ 
@@ -34,7 +32,6 @@ function Clothes() {
     }
   };
 
-  // 👈 دالة جديدة للتمرير إلى Product List
   const scrollToProductList = () => {
     if (productListRef.current) {
       productListRef.current.scrollIntoView({ 
@@ -46,25 +43,23 @@ function Clothes() {
 
   return (
     <div> 
-      {/* 👈 تمرير دالة التمرير إلى CHeadSection */}
       <CHeadSection scrollToProductList={scrollToProductList} category={category} />
       
       <ClothesCountdownTimer />
       
-      {/* 👈 إضافة ref لقسم المنتجات */}
       <div ref={productListRef}>
         <CProductList category={category} />
       </div>
       
-      {/* قسم العروض */}
+      {/* ✅ تمرير الكاتيجوري إلى ClothesOffers لتصفية العروض */}
       <div ref={offersRef}>
         <ClothesOffers
           setSelectedOffer={setSelectedOffer}
           scrollToOrderCollection={scrollToOrderCollection}
+          category={category} // ✅ إضافة الكاتيجوري
         />
       </div>
 
-      {/* Order Collection Section */}
       <div ref={orderCollectionRef}>
         <ClothesOrderCollection 
           selectedOffer={selectedOffer}
