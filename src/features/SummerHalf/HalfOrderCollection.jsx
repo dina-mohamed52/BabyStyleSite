@@ -22,6 +22,7 @@ import { Select, Drawer, Spin } from "antd";
 import { useCart } from "../cart/CartContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useCartActions } from "../cart/AddAndBuyTOCart";
 
 // Mobile Dropdown Component
 function MobileSelect({
@@ -484,25 +485,12 @@ function HalfOrderCollection({
     }
   };
 
-  const handleAddOnly = (e) => {
-    e.preventDefault();
-    handleAddToCart(false);
-  };
-
-  const handleBuyNow = (e) => {
-  e.preventDefault();
-
-  if (!isFormValid) {
-    toast.error("⚠️ يرجى إكمال جميع البيانات أولاً", {
-      position: "bottom-center",
-      autoClose: 3000,
+  const { handleAddOnly, handleBuyNow } = useCartActions({
+     
+      prepareCartItem,
+      isFormValid,
     });
-    return;
-  }
-
-  navigate("/checkout");
-};
-
+  
   const handleContinueShopping = () => {
     setShowSuccessModal(false);
     setPendingNavigation(false);

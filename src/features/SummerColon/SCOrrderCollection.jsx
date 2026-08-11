@@ -22,6 +22,7 @@ import { Select, Drawer, Spin } from "antd";
 import { useCart } from "../cart/CartContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useCartActions } from "../cart/AddAndBuyTOCart";
 
 // Mobile Dropdown Component
 function MobileSelect({
@@ -487,26 +488,12 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
     }
   };
 
-  // إضافة للسلة فقط (يكمل تسوق)
-  const handleAddOnly = (e) => {
-    e.preventDefault();
-    handleAddToCart(false);
-  };
-
-  // شراء الآن (يضيف للسلة ويذهب للدفع)
-const handleBuyNow = (e) => {
-  e.preventDefault();
-
-  if (!isFormValid) {
-    toast.error("⚠️ يرجى إكمال جميع البيانات أولاً", {
-      position: "bottom-center",
-      autoClose: 3000,
-    });
-    return;
-  }
-
-  navigate("/checkout");
-};
+ const { handleAddOnly, handleBuyNow } = useCartActions({
+    
+     prepareCartItem,
+     isFormValid,
+   });
+ 
   // متابعة التسوق بعد الإضافة
   const handleContinueShopping = () => {
     setShowSuccessModal(false);

@@ -5,31 +5,17 @@ import { ClothesOffersData } from "./ClothesOfferesData";
 function ClothesOffers({ 
   setSelectedOffer, 
   scrollToOrderCollection,
-  filterByTabType = null,
-  filterByProductType = null,
-  hideTabs = false
+  category = null // ✅ إضافة category
 }) {
-  const [activeTab, setActiveTab] = useState(filterByTabType || "top");
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
+  // ✅ تصفية العروض بناءً على الكاتيجوري
   const filteredOffers = ClothesOffersData.filter(offer => {
-    if (filterByProductType) {
-      return offer.type === filterByProductType;
-    }
-    // if (activeTab === "all") return true;
-    if (activeTab === "legging") return offer.tabType === "legging";
-    if (activeTab === "short") return offer.tabType === "short";
-    if (activeTab === "top") return offer.tabType === "top";
-    if (activeTab === "popular") return offer.popular === true;
-    return true;
+    if (!category) return true; // إذا لم يوجد كاتيجوري، اعرض الكل
+    
+    // ✅ تطابق الكاتيجوري مع tabType
+    return offer.tabType === category;
   });
-
-  // const tabs = [
-  //   { id: "all", label: "الكل", icon: <ShoppingBag className="w-4 h-4" /> },
-  //   { id: "legging", label: "ليجن ريب", icon: <Package className="w-4 h-4" /> },
-  //   { id: "short", label: "شورت", icon: <Shirt className="w-4 h-4" /> },
-  //   { id: "top", label: "توب", icon: <Sparkles className="w-4 h-4" /> },
-  // ];
 
   const getOfferIcon = (type) => {
     switch(type) {
@@ -79,9 +65,15 @@ function ClothesOffers({
     }
   };
 
-  // If no offers match the filter
+  // ✅ عرض رسالة إذا لم توجد عروض للكاتيجوري
   if (filteredOffers.length === 0) {
-    return null;
+    return (
+      <div dir="rtl" style={{ padding: "40px 0", textAlign: "center" }}>
+        <p style={{ color: "#8A6E86", fontSize: "16px" }}>
+          لا توجد عروض متاحة لهذه الفئة حالياً
+        </p>
+      </div>
+    );
   }
 
   return (
@@ -94,29 +86,18 @@ function ClothesOffers({
         overflow: "hidden"
       }}
     >
-      {/* Background Decorations - Matching Hero */}
+      {/* Styles and Background Decorations... */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Cairo:wght@400;500;600;700&display=swap');
 
         .offers-display-font { font-family: 'Baloo Bhaijaan 2', 'Cairo', sans-serif; }
         .offers-body-font { font-family: 'Cairo', sans-serif; }
 
-        @keyframes offersFloat {
-          0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
-          50% { transform: translateY(-12px) rotate(var(--r, 0deg)); }
-        }
-
-        @keyframes offersPulse {
-          0%, 100% { transform: scale(1); opacity: 0.4; }
-          50% { transform: scale(1.6); opacity: 1; }
-        }
-
         @keyframes offersSlideUp {
           from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
         }
 
-        .offers-float { animation: offersFloat 5s ease-in-out infinite; }
         .offers-slide-up { animation: offersSlideUp 0.8s cubic-bezier(.22,1,.36,1) both; }
         .offers-card {
           transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), box-shadow 0.4s ease;
@@ -127,64 +108,11 @@ function ClothesOffers({
           box-shadow: 0 28px 50px -18px rgba(59,31,56,0.25) !important;
         }
 
-        /* Tab Styles */
-        .offers-tab {
-          transition: all 0.3s ease;
-          position: relative;
-        }
-        .offers-tab::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 0;
-          height: 3px;
-          background: linear-gradient(135deg, #FBCB5C, #F5A623);
-          border-radius: 10px;
-          transition: width 0.3s ease;
-        }
-        .offers-tab.active::after {
-          width: 60%;
-        }
-
-        /* CTA Button */
-        .offers-cta {
-          background: linear-gradient(135deg, #3B1F38 0%, #6B2D5E 50%, #3B1F38 100%);
-          background-size: 200% 200%;
-          transition: all 0.3s ease;
-          position: relative;
-          overflow: hidden;
-        }
-        .offers-cta:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 16px 36px -12px rgba(59,31,56,0.4);
-          background-position: 100% 100%;
-        }
-        .offers-cta:active { transform: scale(0.95); }
-
-        /* Mobile Responsive */
         @media (max-width: 640px) {
           .offers-grid {
             grid-template-columns: 1fr !important;
             gap: 16px !important;
             padding: 0 12px !important;
-          }
-          .offers-tabs-wrapper {
-            overflow-x: auto !important;
-            padding: 0 12px 8px !important;
-            gap: 4px !important;
-            -webkit-overflow-scrolling: touch;
-          }
-          .offers-tabs-wrapper::-webkit-scrollbar { height: 2px; }
-          .offers-tabs-wrapper::-webkit-scrollbar-thumb { 
-            background: #F6A6C1; 
-            border-radius: 10px; 
-          }
-          .offers-tab {
-            padding: 8px 14px !important;
-            font-size: 13px !important;
-            white-space: nowrap;
           }
           .offers-header h2 {
             font-size: 24px !important;
@@ -206,17 +134,9 @@ function ClothesOffers({
             grid-template-columns: repeat(2, 1fr) !important;
           }
         }
-
-        @media (prefers-reduced-motion: reduce) {
-          .offers-float, .offers-slide-up, .offers-card,
-          .offers-cta, .offers-tab { 
-            animation: none !important; 
-            transition: none !important; 
-          }
-        }
       `}</style>
 
-      {/* Background Blobs - Matching Hero */}
+      {/* Background Blobs */}
       <div
         style={{
           position: "absolute",
@@ -245,24 +165,9 @@ function ClothesOffers({
           zIndex: 0,
         }}
       />
-      <div
-        style={{
-          position: "absolute",
-          width: "min(200px, 30vw)",
-          height: "min(200px, 30vw)",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, #FBCB5C, transparent 70%)",
-          filter: "blur(80px)",
-          opacity: 0.08,
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          zIndex: 0,
-        }}
-      />
 
       <div className="w-full max-w-7xl mx-auto px-4 relative z-10">
-        {/* Header - Matching Hero Style */}
+        {/* Header */}
         <div className="text-center mb-12 offers-header">
           <div 
             className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-4 offers-slide-up"
@@ -278,40 +183,18 @@ function ClothesOffers({
             <span className="offers-body-font">عروض الحزم</span>
           </div>
           <h2 className="offers-display-font text-3xl md:text-4xl font-bold" style={{ color: "#3B1F38" }}>
-            اختاري الكمية المناسبة لكِ
+            {category === "top" && "اختاري توبات صيفية"}
+            {category === "legging" && "اختاري ليجينز مريحة"}
+            {category === "short" && "اختاري شورتات عصرية"}
+            {!category && "اختاري الكمية المناسبة لكِ"}
           </h2>
           <p className="offers-body-font text-gray-500 mt-2 text-sm max-w-md mx-auto" style={{ color: "#5B4458" }}>
-            كلما زادت الكمية، زاد التوفير! استفيدي من عروضنا المميزة
+            {category === "top" && "تصاميم أنيقة تناسب بناتك الصغار في كل المناسبات"}
+            {category === "legging" && "مريحة وأنيقة، مثالية للعب والحركة اليومية"}
+            {category === "short" && "تصاميم عصرية تناسب أيام الصيف الحارة"}
+            {!category && "كلما زادت الكمية، زاد التوفير! استفيدي من عروضنا المميزة"}
           </p>
         </div>
-
-        {/* Tabs - Clean & Modern - Hide if needed */}
-        {/* {!hideTabs && ( */}
-          {/* // <div className="flex justify-center gap-1 bg-white/60 backdrop-blur-sm p-1.5 rounded-full max-w-2xl mx-auto mb-12 offers-tabs-wrapper border border-white/50 shadow-sm"> */}
-            {/* {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`
-                  offers-tab offers-body-font
-                  flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap
-                  transition-all duration-300
-                  ${activeTab === tab.id
-                    ? "active text-gray-900 shadow-lg shadow-gray-200/30"
-                    : "text-gray-500 hover:text-gray-700"
-                  }
-                `}
-                style={{
-                  background: activeTab === tab.id ? "white" : "transparent",
-                  color: activeTab === tab.id ? "#3B1F38" : "#8A6E86",
-                }}
-              >
-                {tab.icon}
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        )} */}
 
         {/* Offers Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 offers-grid">
@@ -395,9 +278,26 @@ function ClothesOffers({
                     </div>
                   )}
 
-                  {/* CTA Button - Hero Style */}
+                  {/* CTA Button */}
                   <button 
                     className="offers-cta w-full py-3.5 rounded-2xl text-white font-medium offers-body-font flex items-center justify-center gap-2"
+                    style={{
+                      background: "linear-gradient(135deg, #3B1F38 0%, #6B2D5E 50%, #3B1F38 100%)",
+                      backgroundSize: "200% 200%",
+                      transition: "all 0.3s ease",
+                      border: "none",
+                      cursor: "pointer"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundPosition = "100% 100%";
+                      e.currentTarget.style.transform = "translateY(-3px)";
+                      e.currentTarget.style.boxShadow = "0 16px 36px -12px rgba(59,31,56,0.4)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundPosition = "0% 0%";
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
                     onClick={(e) => {
                       e.stopPropagation();
                       handleSelect(offer);
@@ -411,17 +311,6 @@ function ClothesOffers({
             );
           })}
         </div>
-
-        {/* Empty State */}
-        {filteredOffers.length === 0 && (
-          <div className="text-center py-16">
-            <div className="inline-block p-6 bg-white/50 backdrop-blur-sm rounded-full mb-4 border border-white/50">
-              <Package className="w-12 h-12" style={{ color: "#C9BBEE" }} />
-            </div>
-            <h3 className="offers-body-font text-xl font-bold" style={{ color: "#3B1F38" }}>لا توجد عروض</h3>
-            <p className="offers-body-font text-sm" style={{ color: "#8A6E86" }}>جرب اختيار فئة أخرى</p>
-          </div>
-        )}
       </div>
     </div>
   );

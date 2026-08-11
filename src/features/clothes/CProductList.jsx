@@ -89,7 +89,7 @@ function CProductList() {
             {/* Tabs - Now with overflow handling for single line */}
             <div className="w-full bg-white/60 backdrop-blur-sm rounded-2xl p-2 shadow-sm border border-white/50">
               <div className="flex justify-center gap-2 overflow-x-auto hide-scrollbar">
-                {categories.map((tab) => {
+                {/* {categories.map((tab) => {
                   const isActive = activeTab === tab.id;
                   return (
                     <button
@@ -110,7 +110,7 @@ function CProductList() {
                       )}
                     </button>
                   );
-                })}
+                })} */}
               </div>
             </div>
 

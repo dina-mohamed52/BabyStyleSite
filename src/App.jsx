@@ -13,8 +13,7 @@ import ProductDetails from "./ui/ProductDetails";
 import WhatsAppButton from "./ui/WhatsAppButton";
 import CheckoutPage from "./pages/CheckoutPage";
 import Clothes from "./pages/Clothes";
-
-
+import ClothesHomePage from "./features/clothes/ClothesHomePage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -25,25 +24,21 @@ function App() {
         <ToastContainer />
         <Routes>
           <Route path="/" element={<AppLayOut />}>
-
             <Route index element={<MainPage />} />
             <Route path="/WinterCollection" element={<Home />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
-           
+            <Route path="/product/:id" element={<ProductDetails />} />
+
             <Route path="/Turbon" element={<Turbon />} />
             <Route path="/Offers" element={<Offers />} />
             <Route path="/SummerHalfColon" element={<SummerHalfColon />} />
             <Route path="/SummerColon" element={<SummerColon />} />
             <Route path="/Checkout" element={<CheckoutPage />} />
-           <Route path="/clothes/:category?" element={<Clothes />} />
-
-
-            {/* <Route path="/orderCollection" element={<OrderCollection/>}/> */}
+            <Route path="/clothes" element={<ClothesHomePage />} />
+            <Route path="/clothes/:category" element={<Clothes />} />
+          
           </Route>
         </Routes>
-         <WhatsAppButton
-        message="مرحبا، عايز أطلب منتجات من الموقع"
-      />
+        <WhatsAppButton message="مرحبا، عايز أطلب منتجات من الموقع" />
       </QueryClientProvider>
     </>
   );
