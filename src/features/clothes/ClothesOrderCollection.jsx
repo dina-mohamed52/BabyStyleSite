@@ -374,7 +374,7 @@ function ClothesOrderCollection({
       اصفر: "#FBCB5C",
       اخضر: "#98D8C8",
       نعناعي: "#A7F0D9",
-      سماوي: "#87CEEB",
+     "بيبي بلو": "#87CEEB",
       كحلي: "#1E2F4F",
       نيلي: "#4B6A8B",
       كافيه: "#8B5E3C",
