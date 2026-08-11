@@ -260,25 +260,55 @@ function ProductDetails() {
     },
   ];
 
-  // 👈 تحديد نوع المنتج لعرض العروض المناسبة
+  // ✅ تحديد نوع المنتج لعرض العروض المناسبة - مع دعم التوب
   const getProductTypeForOffers = () => {
-
-  // لو المنتج ليجن ريب
-  if (product.category === "legging" && product.name?.includes("ريب")) {
-    return "legging-rib";
-  }
-  // لو المنتج ليجن اوباك
-  if (product.category === "legging" && product.name?.includes(" أوباك" ||"اوباك")) {
-    return "legging-opak";
-  }
-
+    // إذا لم يكن المنتج من نوع Clothes، نرجع null
+    if (!isClothesProduct) return null;
+    
+    // ✅ دعم التوب
     if (product.category === "top") return "top";
-    if (product.category === "legging") return "legging";
-    if (product.category === "short") return "short";
+    
+    // دعم الليجينز
+    if (product.category === "legging") {
+      // لو المنتج ليجن ريب
+      if (product.name?.includes("ريب")) {
+        return "legging-rib";
+      }
+      // لو المنتج ليجن اوباك
+      if (product.name?.includes("أوباك") || product.name?.includes("اوباك")) {
+        return "legging-opak";
+      }
+      return "legging";
+    }
+    
+    // دعم الشورتات
+    if (product.category === "short" || product.category === "colon") {
+      return "short";
+    }
+    
+    // إذا لم نجد category، نبحث في name
+    if (product.name?.includes("توب") || product.name?.includes("تيشيرت")) {
+      return "top";
+    }
+    if (product.name?.includes("ليجن") || product.name?.includes("بنطلون")) {
+      if (product.name?.includes("ريب")) return "legging-rib";
+      if (product.name?.includes("أوباك") || product.name?.includes("اوباك")) return "legging-opak";
+      return "legging";
+    }
+    if (product.name?.includes("شورت")) {
+      return "short";
+    }
+    
     return null;
   };
 
   const productTypeForOffers = getProductTypeForOffers();
+
+  // ✅ للتصحيح - طباعة النوع في الكونسول
+  console.log("Product:", product.name);
+  console.log("Category:", product.category);
+  console.log("Product Type For Offers:", productTypeForOffers);
+  console.log("Is Clothes Product:", isClothesProduct);
 
   return (
     <div className="min-h-screen bg-white" dir="rtl">
@@ -375,7 +405,8 @@ function ProductDetails() {
                   <span className="bg-pink-50 text-pink-600 text-xs px-3 py-1 rounded-full font-medium">
                     {product.category === "top" ? "توب" : 
                      product.category === "legging" ? "ليجن" : 
-                     product.category === "colon" ? "شورت" : product.category}
+                     product.category === "colon" ? "شورت" : 
+                     product.category === "short" ? "شورت" : product.category}
                   </span>
                 )}
                 {product.season && (
@@ -591,12 +622,14 @@ function ProductDetails() {
       {/* ✅ قسم العروض - حسب نوع المنتج */}
       <div ref={offersRef} className="scroll-mt-20">
         {isClothesProduct && productTypeForOffers ? (
-          // 👈 عرض عروض الملابس (توب، ليجن، شورت)
           <ClothesOffers
-            filterByTabType={productTypeForOffers}
-             filterByProductType={productTypeForOffers}
+            category={
+              productTypeForOffers === "legging-rib" || productTypeForOffers === "legging-opak" 
+                ? "legging" 
+                : productTypeForOffers
+            }
+            productType={productTypeForOffers}
             setSelectedOffer={handleOfferSelect}
-            hideTabs={true}
             scrollToOrderCollection={() =>
               orderCollectionRef.current?.scrollIntoView({
                 behavior: "smooth",
@@ -605,7 +638,6 @@ function ProductDetails() {
             }
           />
         ) : isTurbonProduct ? (
-          // عرض عروض التربون
           <TurbonOffers
             filterByTabType={product.tabType || "turbon"}
             filterByProductType={product.type === "turbon" ? "turbon" : product.type || null}
@@ -619,7 +651,6 @@ function ProductDetails() {
             }
           />
         ) : (
-          // عرض عروض الهاف
           <HalfOffers
             filterByTabType={product.tabType || "half"}
             filterByProductType={product.type || null}
@@ -639,7 +670,6 @@ function ProductDetails() {
       <div ref={orderCollectionRef} className="mt-12 scroll-mt-20">
         {selectedOfferForOrder && (
           isClothesProduct ? (
-            // 👈 عرض تجميع طلب الملابس
             <ClothesOrderCollection
               selectedOffer={selectedOfferForOrder}
               disableProductSelection={true}

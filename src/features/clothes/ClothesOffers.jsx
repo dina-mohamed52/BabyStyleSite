@@ -5,16 +5,30 @@ import { ClothesOffersData } from "./ClothesOfferesData";
 function ClothesOffers({ 
   setSelectedOffer, 
   scrollToOrderCollection,
-  category = null // ✅ إضافة category
+  category = null,
+  productType = null
 }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  // ✅ تصفية العروض بناءً على الكاتيجوري
+  // ✅ تصفية العروض بشكل ذكي
   const filteredOffers = ClothesOffersData.filter(offer => {
-    if (!category) return true; // إذا لم يوجد كاتيجوري، اعرض الكل
+    // 1. إذا كان هناك productType محدد
+    if (productType) {
+      // إذا كان productType هو "top" ولكن العرض ليس له type، نتحقق من tabType
+      if (productType === "top") {
+        return offer.tabType === "top";
+      }
+      // باقي الأنواع نتحقق من type
+      return offer.type === productType;
+    }
     
-    // ✅ تطابق الكاتيجوري مع tabType
-    return offer.tabType === category;
+    // 2. إذا كان هناك category محدد
+    if (category) {
+      return offer.tabType === category;
+    }
+    
+    // 3. إذا لم يوجد تصفية، اعرض الكل
+    return true;
   });
 
   const getOfferIcon = (type) => {
@@ -54,7 +68,6 @@ function ClothesOffers({
   };
 
   const handleSelect = (offer) => {
-    console.log("Offer selected:", offer);
     if (setSelectedOffer) {
       setSelectedOffer(offer);
     }
@@ -65,16 +78,54 @@ function ClothesOffers({
     }
   };
 
-  // ✅ عرض رسالة إذا لم توجد عروض للكاتيجوري
+  // ✅ إذا لم توجد عروض
   if (filteredOffers.length === 0) {
     return (
-      <div dir="rtl" style={{ padding: "40px 0", textAlign: "center" }}>
-        <p style={{ color: "#8A6E86", fontSize: "16px" }}>
+      <div dir="rtl" style={{ padding: "60px 0", textAlign: "center" }}>
+        <div style={{ 
+          display: "inline-block", 
+          padding: "24px", 
+          background: "white", 
+          borderRadius: "50%",
+          marginBottom: "16px",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.05)"
+        }}>
+          <Package className="w-16 h-16" style={{ color: "#C9BBEE" }} />
+        </div>
+        <h3 style={{ color: "#3B1F38", fontSize: "20px", fontWeight: 700, marginBottom: "8px" }}>
+          {category === "top" && "عروض التوب"}
+          {category === "legging" && "عروض الليجينز"}
+          {category === "short" && "عروض الشورتات"}
+          {!category && "العروض"}
+        </h3>
+        <p style={{ color: "#8A6E86", fontSize: "16px", marginBottom: "4px" }}>
           لا توجد عروض متاحة لهذه الفئة حالياً
+        </p>
+        <p style={{ color: "#B0A0A8", fontSize: "14px" }}>
+          يمكنك تصفح المنتجات الأخرى
         </p>
       </div>
     );
   }
+
+  // ✅ تحديد النص المعروض
+  const getHeaderText = () => {
+    if (productType === "legging-rib") return "اختاري ليجن ريب";
+    if (productType === "legging-opak") return "اختاري ليجن أوباك";
+    if (category === "top") return "اختاري توبات صيفية";
+    if (category === "legging") return "اختاري ليجينز مريحة";
+    if (category === "short") return "اختاري شورتات عصرية";
+    return "اختاري الكمية المناسبة لكِ";
+  };
+
+  const getSubHeaderText = () => {
+    if (productType === "legging-rib") return "ليجن ريب مريحة وأنيقة للعب والحركة";
+    if (productType === "legging-opak") return "ليجن أوباك عالي الجودة والمتانة";
+    if (category === "top") return "تصاميم أنيقة تناسب بناتك الصغار في كل المناسبات";
+    if (category === "legging") return "مريحة وأنيقة، مثالية للعب والحركة اليومية";
+    if (category === "short") return "تصاميم عصرية تناسب أيام الصيف الحارة";
+    return "كلما زادت الكمية، زاد التوفير! استفيدي من عروضنا المميزة";
+  };
 
   return (
     <div 
@@ -86,7 +137,6 @@ function ClothesOffers({
         overflow: "hidden"
       }}
     >
-      {/* Styles and Background Decorations... */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Cairo:wght@400;500;600;700&display=swap');
 
@@ -183,16 +233,10 @@ function ClothesOffers({
             <span className="offers-body-font">عروض الحزم</span>
           </div>
           <h2 className="offers-display-font text-3xl md:text-4xl font-bold" style={{ color: "#3B1F38" }}>
-            {category === "top" && "اختاري توبات صيفية"}
-            {category === "legging" && "اختاري ليجينز مريحة"}
-            {category === "short" && "اختاري شورتات عصرية"}
-            {!category && "اختاري الكمية المناسبة لكِ"}
+            {getHeaderText()}
           </h2>
           <p className="offers-body-font text-gray-500 mt-2 text-sm max-w-md mx-auto" style={{ color: "#5B4458" }}>
-            {category === "top" && "تصاميم أنيقة تناسب بناتك الصغار في كل المناسبات"}
-            {category === "legging" && "مريحة وأنيقة، مثالية للعب والحركة اليومية"}
-            {category === "short" && "تصاميم عصرية تناسب أيام الصيف الحارة"}
-            {!category && "كلما زادت الكمية، زاد التوفير! استفيدي من عروضنا المميزة"}
+            {getSubHeaderText()}
           </p>
         </div>
 

@@ -53,7 +53,7 @@ function ClothesHomePage() {
       title: 'شورتات',
       subtitle: 'شورت صيفي',
       description: 'تصاميم عصرية تناسب أيام الصيف الحارة',
-      count: '١٢ منتج',
+      count: ' منتج',
       note: 'تشكيلة الصيف',
       img: 'https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263333/WhatsApp_Image_2026-07-05_at_5.26.23_AM_2_fmvmxg.jpg',
       path: '/clothes/short',
