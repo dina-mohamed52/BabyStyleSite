@@ -79,7 +79,12 @@ function ShippingStep({ onSuccess, onBack, cartItems }) {
   // حساب الشحن والمجموع
   const subtotal =
     cartItems?.reduce((sum, item) => sum + item.price * item.quantity, 0) || 0;
-  const shipping = HIGH_SHIPPING_GOVS.includes(formData.city) ? 90 : 60;
+  // const shipping = HIGH_SHIPPING_GOVS.includes(formData.city) ? 90 : 60;
+  const shipping = HIGH_SHIPPING_GOVS.includes(formData.city)
+  ? 110
+  : formData.city === "القاهرة" || formData.city === "الجيزة"
+  ? 60
+  : 70;
   const total = subtotal + shipping;
 
   const handleChange = (e) => {

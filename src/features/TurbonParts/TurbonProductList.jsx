@@ -4,15 +4,92 @@ import { Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "../../features/products/ProductCard";
 
-function TurbonProductList() {
+function TurbonProductList({ category }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const turbonProducts = BandanaTurbonData;
+  // ✅ فلترة المنتجات حسب الكاتيجوري
+  const getFilteredProducts = () => {
+    if (!category || category === 'all') {
+      return BandanaTurbonData;
+    }
+
+    return BandanaTurbonData.filter(product => {
+      const productCategory = product.category || '';
+      
+      switch (category) {
+        case 'bandana':
+          return productCategory === 'bandana';
+        case 'turbon':
+          return productCategory === 'turbon';
+        case 'bandana-set':
+          return productCategory === 'bandana-set';
+        case 'turbon-set':
+          return productCategory === 'turbon-set';
+        default:
+          return true;
+      }
+    });
+  };
+
+  const turbonProducts = getFilteredProducts();
 
   const handleProductClick = (product) => {
     navigate(`/product/${product.id}`);
   };
+
+  // ✅ الحصول على عنوان الصفحة حسب الكاتيجوري
+  const getPageTitle = () => {
+    switch (category) {
+      case 'bandana': return 'بندانات';
+      case 'turbon': return 'تربونات';
+      case 'bandana-set': return 'أطقم بندانات';
+      case 'turbon-set': return 'أطقم تربونات';
+      default: return 'تربونات بيبي ستايل';
+    }
+  };
+
+  // ✅ الحصول على الوصف حسب الكاتيجوري
+  const getPageDescription = () => {
+    switch (category) {
+      case 'bandana':
+        return 'تشكيلة راقية من البندانات العصرية، تناسب جميع الأذواق';
+      case 'turbon':
+        return 'تربونات مصنوعة من أجود الخامات، بتصاميم عصرية وأنيقة';
+      case 'bandana-set':
+        return 'أطقم من البندانات المتناسقة بالألوان والتصاميم المتكاملة';
+      case 'turbon-set':
+        return 'أطقم من التربونات المتناسقة بأشكال وألوان متكاملة';
+      default:
+        return 'موديلين حصريين: فيونكه أنيقة ووردة ناعمة، مصممة بعناية لراحة طفلتك';
+    }
+  };
+
+  // ✅ الحصول على الأيقونة المناسبة
+  const getCategoryIcon = () => {
+    switch (category) {
+      case 'bandana': return '🎀';
+      case 'turbon': return '🌸';
+      case 'bandana-set': return '👗';
+      case 'turbon-set': return '👗';
+      default: return '✨';
+    }
+  };
+
+  // ✅ لو مفيش منتجات
+  if (turbonProducts.length === 0) {
+    return (
+      <div className="min-h-[40vh] bg-gradient-to-b from-gray-50 to-white">
+        <div className="container mx-auto px-4 py-8 sm:py-12">
+          <div className="text-center py-16">
+            <div className="text-6xl mb-4">📦</div>
+            <h2 className="text-2xl font-bold text-gray-700 mb-2">لا توجد منتجات</h2>
+            <p className="text-gray-500">لم يتم العثور على منتجات في قسم {getPageTitle()}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
@@ -26,15 +103,22 @@ function TurbonProductList() {
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-              تربونات{" "}
+              {getPageTitle()}{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-400">
                 بيبي ستايل
               </span>
             </h1>
 
             <p className="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto">
-              موديلين حصريين: فيونكه أنيقة ووردة ناعمة، مصممة بعناية لراحة طفلتك
+              {getPageDescription()}
             </p>
+
+            {/* ✅ عرض عدد المنتجات */}
+            <div className="mt-3 inline-flex items-center gap-2 bg-gray-100 px-4 py-1.5 rounded-full">
+              <span className="text-sm text-gray-600">
+                {turbonProducts.length} منتج
+              </span>
+            </div>
           </div>
         </div>
 

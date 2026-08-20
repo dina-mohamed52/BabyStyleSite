@@ -14,6 +14,7 @@ import WhatsAppButton from "./ui/WhatsAppButton";
 import CheckoutPage from "./pages/CheckoutPage";
 import Clothes from "./pages/Clothes";
 import ClothesHomePage from "./features/clothes/ClothesHomePage";
+import TurbonHomePage from "./features/TurbonParts/TurbonHomePage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -28,13 +29,15 @@ function App() {
             <Route path="/WinterCollection" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetails />} />
 
-            <Route path="/Turbon" element={<Turbon />} />
+    
             <Route path="/Offers" element={<Offers />} />
             <Route path="/SummerHalfColon" element={<SummerHalfColon />} />
             <Route path="/SummerColon" element={<SummerColon />} />
             <Route path="/Checkout" element={<CheckoutPage />} />
             <Route path="/clothes" element={<ClothesHomePage />} />
             <Route path="/clothes/:category" element={<Clothes />} />
+            <Route path="/Turbon" element={<TurbonHomePage />} />
+            <Route path="/turbon/:category" element={<Turbon />} />
           
           </Route>
         </Routes>

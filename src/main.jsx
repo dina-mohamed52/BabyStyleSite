@@ -7,10 +7,12 @@ import { store } from "./store.js";
 import { Provider } from "react-redux";
 import "./i18n.js";
 import { CartProvider } from "./features/cart/CartContext.jsx";
+import ScrollToTop from "./Hooks/ScrollToTop.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <Provider store={store}>
         <CartProvider>
           <App />
