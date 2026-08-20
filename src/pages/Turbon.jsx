@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom"; // ✅ استخدام useParams بدلاً من useLocation
 import TurbonCarousal from "../features/TurbonParts/TurbonCarousal";
 import TurbonOffers from "../features/TurbonParts/TurbonOffers";
 import TurbonProductList from "../features/TurbonParts/TurbonProductList";
@@ -9,21 +10,19 @@ import TurbonOfferBtn from "../features/TurbonParts/TurbonOfferBtn";
 import PurchaseNotifications from "../ui/PurchaseNotifications";
 
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Sparkles, Ribbon, Flower2, ArrowDown } from "lucide-react";
 
 function Turbon() {
   const { t } = useTranslation();
-  const location = useLocation();
+  const { category } = useParams(); // ✅ استقبال الكاتيجوري من URL
+  
   const [selectedOffer, setSelectedOffer] = useState(null);
 
-  // Refs ثابتة
   const orderCollectionRef = useRef(null);
   const formRef = useRef(null);
   const offersRef = useRef(null);
 
-  // دالة التمرير للـ TurbonOrderCollection
   const scrollToOrderCollection = () => {
     if (orderCollectionRef.current) {
       orderCollectionRef.current.scrollIntoView({
@@ -33,7 +32,6 @@ function Turbon() {
     }
   };
 
-  // دالة التمرير للعروض
   const scrollToOffers = () => {
     if (offersRef.current) {
       offersRef.current.scrollIntoView({
@@ -43,7 +41,6 @@ function Turbon() {
     }
   };
 
-  // دالة التمرير للفورم بعد تأكيد الطلب
   const scrollToForm = () => {
     if (formRef.current) {
       formRef.current.scrollIntoView({
@@ -53,15 +50,6 @@ function Turbon() {
     }
   };
 
-  // التمرير للعروض إذا كانت في location state
-  useEffect(() => {
-    if (location.state?.scrollToOffers) {
-      scrollToOffers();
-      window.history.replaceState({}, document.title);
-    }
-  }, [location.state]);
-
-  // ✅ التمرير لـ OrderCollection عند اختيار عرض
   useEffect(() => {
     if (selectedOffer) {
       const timer = setTimeout(() => {
@@ -77,58 +65,66 @@ function Turbon() {
     }
   }, [selectedOffer]);
 
+  // ✅ تحديد النص المعروض حسب الكاتيجوري
+  const getCategoryTitle = () => {
+    switch (category) {
+      case 'bandana': return 'بندانات';
+      case 'turbon': return 'تربونات';
+      case 'bandana-set': return 'طقم بندانات';
+      case 'turbon-set': return 'طقم تربونات';
+      default: return 'تربون';
+    }
+  };
+
   return (
     <div dir="rtl" className="min-h-screen bg-gradient-to-b from-white via-pink-50/30 to-white">
       
-      {/* ===== 1. CAROUSEL - أول شيء يظهر ===== */}
-      {/* السلايدر الرئيسي لجذب الانتباه */}
-      <section className="relative w-full">
+      {/* ===== Brand Badge ===== */}
+      <section className="relative w-full pt-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="relative w-full"
         >
-          {/* Brand Badge */}
           <div className="flex justify-center mb-4 px-4">
             <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-6 py-2 rounded-full shadow-lg border border-pink-200">
               <Sparkles className="w-4 h-4 text-pink-500" />
               <span className="text-sm font-semibold text-gray-700">
-                {t("turbonPage.brand", "BabyStyle Turbans")}
+                {t("turbonPage.brand", "BabyStyle Turbans")} - {getCategoryTitle()}
               </span>
               <Sparkles className="w-4 h-4 text-pink-500" />
             </div>
           </div>
           
+          {/* ✅ تمرير الكاتيجوري للكروزال */}
           <div className="relative w-full">
-            <TurbonCarousal />
+            <TurbonCarousal category={category} />
           </div>
         </motion.div>
       </section>
 
-      {/* ===== 2. PURCHASE NOTIFICATIONS - إشعارات الشراء ===== */}
-      {/* تظهر بعد الكاروسيل مباشرة لخلق حالة من الإلحاح */}
+      {/* ===== PURCHASE NOTIFICATIONS ===== */}
       <PurchaseNotifications />
 
-      {/* ===== 3. OFFER BUTTON - زر العرض الرئيسي ===== */}
-      {/* زر جذاب للانتقال السريع للعروض */}
+      {/* ===== OFFER BUTTON ===== */}
       <TurbonOfferBtn />
 
-      {/* ===== 4. PRODUCT LIST - قائمة المنتجات ===== */}
-      {/* عرض المنتجات المتاحة قبل العروض الخاصة */}
-      <TurbonProductList />
+      {/* ===== PRODUCT LIST ===== */}
+      {/* ✅ تمرير الكاتيجوري لقائمة المنتجات */}
+      <TurbonProductList category={category} />
 
-      {/* ===== 5. OFFERS - العروض الخاصة ===== */}
-      {/* العروض المميزة تأتي بعد المنتجات لتشجيع الشراء */}
+      {/* ===== OFFERS ===== */}
       <div ref={offersRef} className="scroll-mt-20">
+        {/* ✅ تمرير الكاتيجوري للعروض */}
         <TurbonOffers
+          category={category}
           setSelectedOffer={setSelectedOffer}
           scrollToOrderCollection={scrollToOrderCollection}
         />
       </div>
 
-      {/* ===== 6. ORDER COLLECTION - اختيار القطع ===== */}
-      {/* بعد اختيار العرض، يظهر خيار اختيار القطع */}
+      {/* ===== ORDER COLLECTION ===== */}
       <div ref={orderCollectionRef} className="scroll-mt-20">
         <TurbonOrderCollection
           selectedOffer={selectedOffer}
@@ -136,18 +132,12 @@ function Turbon() {
           scrollToOffers={scrollToOffers}
         />
       </div>
-      {/* تكرار لتعزيز الرسالة */}
 
       <OfferCountdown />
-      {/* ===== 7. PRODUCT BENEFITS - فوائد المنتجات ===== */}
-      {/* تعزيز الثقة في المنتج بعد عرض التفاصيل */}
+      
+      {/* ===== PRODUCT BENEFITS ===== */}
       <ProductBenefits />
-      
- 
-      
-      {/* ===== 9. OFFER COUNTDOWN () - العد التنازلي ===== */}
 
-      {/* Custom Animations */}
       <style jsx>{`
         @keyframes blob {
           0%, 100% { transform: translate(0px, 0px) scale(1); }

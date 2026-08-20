@@ -1,3 +1,4 @@
+// اللي شغاللللللللللللللللللللللللللللللله
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
@@ -87,7 +88,11 @@ function CheckoutPage() {
   const addressRef = useRef(null);
 
   const subtotal = cartItems?.reduce((sum, item) => sum + item.price * item.quantity, 0) || 0;
-  const shipping = HIGH_SHIPPING_GOVS.includes(formData.city) ? 110 : 60;
+const shipping = HIGH_SHIPPING_GOVS.includes(formData.city)
+  ? 110
+  : formData.city === "القاهرة" || formData.city === "الجيزة"
+  ? 60
+  : 70;
   const total = subtotal + shipping ;
 
   const handleChange = (e) => {
@@ -199,8 +204,8 @@ function CheckoutPage() {
         setShowConfirmModal(false);
         setOrderPlaced(true);
         clearCart();
-        setTimeout(() => navigate("/"), 2000);
-      }, 2000);
+        setTimeout(() => navigate("/"), 480000);
+      }, 480000);
     } catch (error) {
       console.error("Error:", error);
       alert(`❌ حدث خطأ في إرسال الطلب:\n${error.message || "يرجى المحاولة مرة أخرى"}`);

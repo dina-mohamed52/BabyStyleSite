@@ -15,6 +15,7 @@ import {
 import { halfOffersData } from "../SummerHalf/HalfOffersData";
 
 function TurbonOffers({
+  category, // ✅ استقبال الكاتيجوري
   setSelectedOffer,
   scrollToOrderCollection,
   filterByTabType = null,
@@ -25,6 +26,20 @@ function TurbonOffers({
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [activeOfferTab, setActiveOfferTab] = useState(filterByTabType || "bandana");
 
+  // ✅ تحديد التاب النشط بناءً على الكاتيجوري
+  const getDefaultTab = () => {
+    if (category === 'bandana' || category === 'bandana-set') return 'bandana';
+    if (category === 'turbon' || category === 'turbon-set') return 'turbon';
+    return filterByTabType || "bandana";
+  };
+
+  // ✅ تحديث التاب النشط عند تغير الكاتيجوري
+  const defaultTab = getDefaultTab();
+  if (activeOfferTab !== defaultTab && !filterByTabType) {
+    // نستخدم useEffect أو نضع القيمة مباشرة
+    // لكن هنا هنضبطها في الـ state initialization
+  }
+
   // Get all available tab types from offers data
   const allTabTypes = ["bandana", "turbon"];
 
@@ -33,18 +48,51 @@ function TurbonOffers({
     turbon: "التربون"
   };
 
-  // ✅ Filter offers based on active tab AND product type
+  // ✅ Filter offers based on category
   const filteredOffers = (() => {
     let offers = halfOffersData.filter(offer => offer.tabType !== "half");
+
+    // ✅ أولوية للـ category من الـ URL
+    if (category) {
+      console.log("🔍 Filtering by category:", category);
+      
+      switch (category) {
+        case 'bandana':
+          // بندانات فردية فقط
+          return offers.filter(offer => 
+            offer.tabType === "bandana" && 
+            !offer.type?.includes("set")
+          );
+          
+        case 'turbon':
+          // تربونات فردية فقط
+          return offers.filter(offer => 
+            offer.tabType === "turbon" && 
+            !offer.type?.includes("set")
+          );
+          
+        case 'bandana-set':
+          // أطقم بندانات فقط
+          return offers.filter(offer => 
+            offer.type === "set-bandana"
+          );
+          
+        case 'turbon-set':
+          // أطقم تربونات فقط
+          return offers.filter(offer => 
+            offer.type === "set-turbon"
+          );
+          
+        default:
+          // لو كاتيجوري غير معروف
+          return offers;
+      }
+    }
 
     // ✅ لو في filterByProductType محدد (من ProductDetails)
     if (filterByProductType) {
       console.log("🔍 Filtering by product type:", filterByProductType);
-      console.log("📦 All offers:", offers.map(o => ({ name: o.name, type: o.type, tabType: o.tabType })));
       
-      // ✅ IMPORTANT: التربونات الفردية معندهمش type محدد
-      // فلو filterByProductType = "turbon" أو "bow" أو أي حاجة تانية
-      // نرجع التربونات الفردية اللي tabType = "turbon"
       if (filterByProductType === "turbon" || filterByTabType === "turbon") {
         return offers.filter(offer => 
           offer.tabType === "turbon" && 
@@ -52,12 +100,10 @@ function TurbonOffers({
         );
       }
       
-      // لو في type محدد (زي set-bandana أو set-turbon)
       if (filterByProductType === "set-bandana" || filterByProductType === "set-turbon") {
         return offers.filter(offer => offer.type === filterByProductType);
       }
       
-      // لو بندانه فردية
       if (filterByTabType === "bandana") {
         return offers.filter(offer => 
           offer.tabType === "bandana" && 
@@ -65,7 +111,6 @@ function TurbonOffers({
         );
       }
       
-      // Fallback: لو مفيش match, نرجع العروض حسب الـ tabType
       return offers.filter(offer => offer.tabType === filterByTabType);
     }
 
@@ -74,7 +119,6 @@ function TurbonOffers({
       console.log("🔍 Filtering by tab type only:", filterByTabType);
       
       if (filterByTabType === "bandana") {
-        // نرجع البندانات الفردية بس (من غير الأطقم)
         return offers.filter(offer => 
           offer.tabType === "bandana" && 
           !offer.type?.includes("set")
@@ -82,7 +126,6 @@ function TurbonOffers({
       }
       
       if (filterByTabType === "turbon") {
-        // نرجع التربونات الفردية بس (من غير الأطقم)
         return offers.filter(offer => 
           offer.tabType === "turbon" && 
           !offer.type?.includes("set")
@@ -90,7 +133,6 @@ function TurbonOffers({
       }
       
       if (filterByTabType === "set") {
-        // نرجع الأطقم حسب النوع
         if (filterByProductType === "set-bandana") {
           return offers.filter(offer => offer.type === "set-bandana");
         }
@@ -121,50 +163,39 @@ function TurbonOffers({
 
   // ✅ Debug - طباعة العروض المفلترة
   console.log("📦 Filtered Offers:", filteredOffers);
+  console.log("📋 Category:", category);
   console.log("📋 Product type filter:", filterByProductType);
   console.log("📋 Tab type filter:", filterByTabType);
 
+  // ✅ الحصول على العنوان حسب الكاتيجوري
   const getTitle = () => {
-    if (filterByProductType === "set-bandana") {
-      return "عروض أطقم البندانات";
-    }
-    if (filterByProductType === "set-turbon") {
-      return "عروض أطقم التربونات";
-    }
-    if (filterByTabType === "bandana" && !filterByProductType) {
-      return "عروض البندانات الفردية";
-    }
-    if (filterByTabType === "turbon" || filterByProductType === "turbon") {
-      return "عروض التربونات الفردية";
-    }
-    if (activeOfferTab === "bandana") {
-      return "عروض البندانات والأطقم";
-    }
-    if (activeOfferTab === "turbon") {
-      return "عروض التربون والأطقم";
-    }
+    if (category === 'bandana') return "عروض البندانات الفردية";
+    if (category === 'turbon') return "عروض التربونات الفردية";
+    if (category === 'bandana-set') return "عروض أطقم البندانات";
+    if (category === 'turbon-set') return "عروض أطقم التربونات";
+    
+    if (filterByProductType === "set-bandana") return "عروض أطقم البندانات";
+    if (filterByProductType === "set-turbon") return "عروض أطقم التربونات";
+    if (filterByTabType === "bandana" && !filterByProductType) return "عروض البندانات الفردية";
+    if (filterByTabType === "turbon" || filterByProductType === "turbon") return "عروض التربونات الفردية";
+    if (activeOfferTab === "bandana") return "عروض البندانات والأطقم";
+    if (activeOfferTab === "turbon") return "عروض التربون والأطقم";
     return "العروض";
   };
 
+  // ✅ الحصول على الوصف حسب الكاتيجوري
   const getSubtitle = () => {
-    if (filterByProductType === "set-bandana") {
-      return "عروض خاصة على أطقم البندانات - اختاري عدد القطع المناسب لك";
-    }
-    if (filterByProductType === "set-turbon") {
-      return "عروض خاصة على أطقم التربونات - اختاري عدد القطع المناسب لك";
-    }
-    if (filterByTabType === "bandana" && !filterByProductType) {
-      return "عروض خاصة على البندانات الفردية - جودة عالية وأسعار مميزة";
-    }
-    if (filterByTabType === "turbon" || filterByProductType === "turbon") {
-      return "عروض خاصة على التربونات الفردية - جودة عالية وأسعار مميزة";
-    }
-    if (activeOfferTab === "bandana") {
-      return "عروض خاصة على البندانات والأطقم - جودة عالية وأسعار مميزة";
-    }
-    if (activeOfferTab === "turbon") {
-      return "عروض خاصة على التربون والأطقم - جودة عالية وأسعار مميزة";
-    }
+    if (category === 'bandana') return "عروض خاصة على البندانات الفردية - جودة عالية وأسعار مميزة";
+    if (category === 'turbon') return "عروض خاصة على التربونات الفردية - جودة عالية وأسعار مميزة";
+    if (category === 'bandana-set') return "عروض خاصة على أطقم البندانات - اختاري عدد القطع المناسب لك";
+    if (category === 'turbon-set') return "عروض خاصة على أطقم التربونات - اختاري عدد القطع المناسب لك";
+    
+    if (filterByProductType === "set-bandana") return "عروض خاصة على أطقم البندانات - اختاري عدد القطع المناسب لك";
+    if (filterByProductType === "set-turbon") return "عروض خاصة على أطقم التربونات - اختاري عدد القطع المناسب لك";
+    if (filterByTabType === "bandana" && !filterByProductType) return "عروض خاصة على البندانات الفردية - جودة عالية وأسعار مميزة";
+    if (filterByTabType === "turbon" || filterByProductType === "turbon") return "عروض خاصة على التربونات الفردية - جودة عالية وأسعار مميزة";
+    if (activeOfferTab === "bandana") return "عروض خاصة على البندانات والأطقم - جودة عالية وأسعار مميزة";
+    if (activeOfferTab === "turbon") return "عروض خاصة على التربون والأطقم - جودة عالية وأسعار مميزة";
     return "اشتري أكتر ووفّري أكتر مع أقوى العروض";
   };
 
@@ -174,7 +205,8 @@ function TurbonOffers({
       setSelectedOffer({
         ...offer,
         selectedTabType: offer.tabType,
-        selectedType: offer.type
+        selectedType: offer.type,
+        category: category // ✅ تمرير الكاتيجوري مع العرض
       });
     }
     if (scrollToOrderCollection) {
@@ -194,6 +226,9 @@ function TurbonOffers({
     if (tab === "turbon") return <Layers className="w-4 h-4" />;
     return null;
   };
+
+  // ✅ تحديد إذا كنا في صفحة تفاصيل المنتج أو لا
+  const isProductDetailsPage = filterByProductType || filterByTabType;
 
   if (filteredOffers.length === 0) {
     console.log("⚠️ No offers found for this product");
@@ -234,7 +269,7 @@ function TurbonOffers({
       </motion.div>
 
       {/* Tabs - بس في الصفحة الرئيسية مش في ProductDetails */}
-      {!hideTabs && (
+      {!hideTabs && !category && (
         <div dir="rtl" className="flex justify-center mb-8 px-4">
           <div className="inline-flex flex-wrap justify-center gap-2 bg-white p-2 rounded-2xl shadow-md border border-gray-100 max-w-md mx-auto">
             {allTabTypes.map((tab) => (

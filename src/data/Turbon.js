@@ -5,6 +5,7 @@ export const BandanaTurbonData = [
     description:
       "بندانه مصممه لاعطاء مظهر جذاب و تهوية جيدة لراحة بنوتك متوفر باكثر لون يناسب جميع الاذواق و كل طقم لبنوتك",
     tabType: "bandana",
+     category: 'bandana',
     productColors: [
       {
         img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139096/WhatsApp_Image_2026-08-08_at_12.31.58_AM_1_bdik6m.jpg",
@@ -39,6 +40,7 @@ export const BandanaTurbonData = [
   {
     id: 9,
     name: "بندانات قطن مضلع",
+     category: 'bandana',
     description:
       "مصنوعة من خامة قطن مضلع مستورد وفي نسبة ليكرا تعطي مطاطيه و راحه في اللبس مصممه بشكل عريض والوان زاهية تناسب كل الاذواق",
     tabType: "bandana",
@@ -88,6 +90,7 @@ export const BandanaTurbonData = [
     description:
       "تربونات أطفال قطن مريحة اختيار مثالي لراحة وأناقة طفلتك طول اليوم تربونات عملية وكيوت تناسب كل الإطلالات سواء في البيت أو الخروجات",
     tabType: "turbon",
+    category: 'turbon', 
     type: "flower",
     productColors: [
       {
@@ -119,6 +122,7 @@ export const BandanaTurbonData = [
     description:
       "تربونات أطفال قطن مريحة اختيار مثالي لراحة وأناقة طفلتك طول اليوم تربونات عملية وكيوت تناسب كل الإطلالات سواء في البيت أو الخروجات",
     tabType: "turbon",
+    category: 'turbon', 
     type: "bow",
     productColors: [
       {
@@ -160,6 +164,7 @@ export const BandanaTurbonData = [
       "   طقم كيوت ومتكامل يضيف لمسة أناقة مميزة لإطلالة بنتك مكون من بندانه شيك + هاف كولون مريح علشان لوك جاهز في ثواني",
     tabType: "set",
     type: "set-bandana",
+     category: 'bandana-set',
     productColors: [
       {
         img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777471600/WhatsApp_Image_2026-04-28_at_4.04.18_AM_6_vthfqu.jpg",
@@ -201,6 +206,7 @@ export const BandanaTurbonData = [
       "   طقم كيوت ومتكامل يضيف لمسة أناقة مميزة لإطلالة بنتك مكون من بندانه شيك + هاف كولون مريح علشان لوك جاهز في ثواني",
     tabType: "set",
     type: "set-bandana",
+     category: 'bandana-set',
     productColors: [
       {
         img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777400594/WhatsApp_Image_2026-04-28_at_4.04.18_AM_3_ydjfak.jpg",
@@ -228,6 +234,7 @@ export const BandanaTurbonData = [
       "اطقم أطفال قطن مريحة اختيار مثالي لراحة وأناقة طفلتك طول اليوم تربونات عملية وكيوت تناسب كل الإطلالات سواء في البيت أو الخروجات",
     tabType: "set",
     type: "set-turbon",
+     category: 'turbon-set',
     productColors: [
       {
         img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1782242307/WhatsApp_Image_2026-06-19_at_10.22.36_AM_3_qotj3r.jpg",
@@ -244,15 +251,15 @@ export const BandanaTurbonData = [
       // {
       //   img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777556398/WhatsApp_Image_2026-04-29_at_11.12.03_AM_akjru5.jpg",
       // },
-      // {
-      //   img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777556398/WhatsApp_Image_2026-04-29_at_11.12.02_AM_6_m4hs5u.jpg",
-      // },
+      {
+        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787234878/WhatsApp_Image_2026-08-20_at_6.22.28_AM_bxlirv.jpg",
+      },
       {
          img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1782242319/WhatsApp_Image_2026-06-19_at_10.22.37_AM_1_igjxhm.jpg",
       },
-      // {
-      //   img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777556331/WhatsApp_Image_2026-04-29_at_11.12.02_AM_4_kpvl7e.jpg",
-      // },
+      {
+        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787234914/WhatsApp_Image_2026-08-20_at_6.22.29_AM_vox1fr.jpg",
+      },
       // {
       //   img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1778153099/WhatsApp_Image_2026-05-06_at_2.22.23_AM_jk80cs.jpg",
       // },
@@ -263,9 +270,9 @@ export const BandanaTurbonData = [
       "تربون فيونكه بينك + هاف بينك",
       "تربون فيونكه كافية + هاف اسود",
       // "تربون ورده بينك + هاف بينك",
-      // "تربون ورده أصفر + هاف اصفر",
+      "تربون ورده أصفر + هاف اصفر",
       "تربون فيونكه أوف وايت + هاف ابيض",
-      // "تربون ورده بيج + هاف اسود",
+      "تربون ورده بيج + هاف اسود",
       // "تربون ورده لافندر + هاف لافندر",
     ],
     image:
@@ -277,4 +284,4 @@ export const BandanaTurbonData = [
       // { size: "4-6", age: "من 3 ل5 سنين" },
     ],
   },
-];
+];  
