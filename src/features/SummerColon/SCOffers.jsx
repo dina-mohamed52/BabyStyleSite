@@ -10,15 +10,15 @@ function SCOffers({ setSelectedOffer, scrollToOrderCollection }) {
     { 
       quantity: "3 كولون", 
       name: "عرض 3 كولون صيفي",  
-      price: 345, 
+      price: 315, 
       oldPrice: 480, 
       value: 3, 
-      discount: 14 
+      discount: 15 
     },
     { 
       quantity: "4 كولون", 
       name: "عرض 4 كولون صيفي",
-      price: 440, 
+      price: 400, 
       oldPrice: 620, 
       value: 4, 
       discount: 18 
@@ -26,10 +26,10 @@ function SCOffers({ setSelectedOffer, scrollToOrderCollection }) {
     { 
       quantity: "6 كولون", 
       name: "عرض 6 كولون صيفي",
-      price: 600, 
+      price: 570, 
       oldPrice: 910,
       value: 6, 
-      discount: 23,
+      discount: 24,
       highlight: "الأكثر مبيعاً", 
       icon: <Star className="w-3.5 h-3.5" />,
     },
