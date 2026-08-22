@@ -55,6 +55,30 @@ function CProductList() {
     }
   };
 
+  // ✅ التحقق مما إذا كان هناك منتج واحد فقط لعرض جميع صوره
+  const isSingleProduct = filteredProducts.length === 1;
+
+  // ✅ دالة لاستخراج اسم اللون من البيانات
+  const getColorName = (product, index) => {
+    // 1- لو المنتج عنده avalibeColors، نستخدمه (الترتيب مهم)
+    if (product.avalibeColors && product.avalibeColors[index]) {
+      return product.avalibeColors[index];
+    }
+    
+    // 2- لو productColors فيها color، نستخدمها
+    if (product.productColors && product.productColors[index]?.color) {
+      return product.productColors[index].color;
+    }
+    
+    // 3- لو مفيش حاجة، نرجع null
+    return null;
+  };
+
+  // ✅ التحقق من وجود صور للمنتج
+  const hasProductColors = (product) => {
+    return product.productColors && product.productColors.length > 0;
+  };
+
   return (
     <div dir="rtl" className="min-h-screen bg-gradient-to-b from-[#FFF8F0] to-[#FFEFE8]">
       <div className="container mx-auto px-4 py-8 sm:py-12">
@@ -83,13 +107,12 @@ function CProductList() {
           </div>
         </div>
 
-        {/* Tabs Section - Updated for single line on mobile */}
+        {/* Tabs Section */}
         <div className="max-w-7xl mx-auto mb-8">
           <div className="flex flex-col items-center gap-4">
-            {/* Tabs - Now with overflow handling for single line */}
             <div className="w-full bg-white/60 backdrop-blur-sm rounded-2xl p-2 shadow-sm border border-white/50">
               <div className="flex justify-center gap-2 overflow-x-auto hide-scrollbar">
-                {/* {categories.map((tab) => {
+                {categories.map((tab) => {
                   const isActive = activeTab === tab.id;
                   return (
                     <button
@@ -110,42 +133,122 @@ function CProductList() {
                       )}
                     </button>
                   );
-                })} */}
+                })}
               </div>
             </div>
 
             {/* Tab Results Counter */}
             <div className="text-center">
               <span className="text-sm text-[#8A6E86] bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-white/50">
-                {filteredProducts.length} منتج في "{currentTitle}"
+                {isSingleProduct && hasProductColors(filteredProducts[0])
+                  ? `${filteredProducts[0].productColors.length} لون في "${currentTitle}"`
+                  : `${filteredProducts.length} منتج في "${currentTitle}"`
+                }
               </span>
             </div>
           </div>
         </div>
 
         {/* Products Grid */}
-        <div 
-          ref={productsRef}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 max-w-7xl mx-auto scroll-mt-20"
-        >
-          {filteredProducts.map((product, index) => (
-            <div
-              key={product.id}
-              className="transform transition-all duration-700"
-              style={{
-                opacity: mounted ? 1 : 0,
-                transform: mounted ? 'translateY(0)' : 'translateY(30px)',
-                transitionDelay: `${index * 0.07}s`
-              }}
-            >
-              <ProductCard
-                product={product}
-                onPreview={handleProductClick}
-                onClick={handleProductClick}
-              />
+        {isSingleProduct && hasProductColors(filteredProducts[0]) ? (
+          // ✅ حالة وجود منتج واحد مع صور: عرض كل صور المنتج في شبكة
+          <div 
+            ref={productsRef}
+            className="max-w-7xl mx-auto scroll-mt-20"
+          >
+            <div className="mb-8 text-center">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#3B1F38]">
+                {filteredProducts[0].name}
+              </h2>
+              <p className="text-[#5B4458] mt-3 max-w-2xl mx-auto text-sm sm:text-base">
+                {filteredProducts[0].description}
+              </p>
             </div>
-          ))}
-        </div>
+
+            {/* شبكة عرض جميع صور المنتج مع اسم اللون كبادج */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+              {filteredProducts[0].productColors.map((colorItem, index) => {
+                const colorName = getColorName(filteredProducts[0], index);
+                
+                return (
+                  <div 
+                    key={index}
+                    className="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 cursor-pointer"
+                    onClick={() => handleProductClick(filteredProducts[0])}
+                  >
+                    <div className="aspect-square overflow-hidden bg-gray-100">
+                      <img
+                        src={colorItem.img}
+                        alt={`${filteredProducts[0].name} - ${colorName || `صورة ${index + 1}`}`}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    </div>
+                    
+                    {/* ✅ بادج اسم اللون في أسفل الصورة */}
+                    {colorName && (
+                      <div className="absolute bottom-3 left-3 right-3">
+                        <span className="inline-block bg-black/70 backdrop-blur-sm text-white text-xs sm:text-sm px-3 py-1.5 rounded-full font-medium shadow-lg">
+                          {colorName}
+                        </span>
+                      </div>
+                    )}
+                    
+                    {/* ✅ أيقونة تكبير عند الهوفر */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
+                      <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 bg-white/90 rounded-full p-2 shadow-lg">
+                        <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* عرض المقاسات */}
+            {filteredProducts[0].sizes && filteredProducts[0].sizes.length > 0 && (
+              <div className="mt-10 text-center">
+                <h3 className="text-sm font-medium text-[#5B4458] mb-3">المقاسات المتاحة:</h3>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {filteredProducts[0].sizes.map((size, index) => (
+                    <span 
+                      key={index}
+                      className="bg-pink-50 text-[#B65C7C] px-4 py-2 rounded-full text-sm border border-pink-200 font-medium"
+                    >
+                      {size.size} - {size.age}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          // ✅ حالة وجود منتجات متعددة أو منتج واحد بدون صور: عرض البطاقات العادية
+          <div 
+            ref={productsRef}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 max-w-7xl mx-auto scroll-mt-20"
+          >
+            {filteredProducts.map((product, index) => (
+              <div
+                key={product.id}
+                className="transform transition-all duration-700"
+                style={{
+                  opacity: mounted ? 1 : 0,
+                  transform: mounted ? 'translateY(0)' : 'translateY(30px)',
+                  transitionDelay: `${index * 0.07}s`
+                }}
+              >
+                <ProductCard
+                  product={product}
+                  onPreview={() => handleProductClick(product)}
+                  onClick={() => handleProductClick(product)}
+                />
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Empty State */}
         {filteredProducts.length === 0 && (

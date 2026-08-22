@@ -91,6 +91,22 @@ function TurbonProductList({ category }) {
     );
   }
 
+  // ✅ التحقق مما إذا كان هناك منتج واحد فقط لعرض جميع صوره
+  const isSingleProduct = turbonProducts.length === 1;
+
+  // ✅ دالة للحصول على اسم اللون للمنتج
+  const getColorName = (product, index) => {
+    // لو المنتج عنده avalibeColors، نستخدمه
+    if (product.avalibeColors && product.avalibeColors[index]) {
+      return product.avalibeColors[index];
+    }
+    // لو productColors فيها color، نستخدمها
+    if (product.productColors && product.productColors[index]?.color) {
+      return product.productColors[index].color;
+    }
+    return null;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4 py-8 sm:py-12">
@@ -116,22 +132,96 @@ function TurbonProductList({ category }) {
             {/* ✅ عرض عدد المنتجات */}
             <div className="mt-3 inline-flex items-center gap-2 bg-gray-100 px-4 py-1.5 rounded-full">
               <span className="text-sm text-gray-600">
-                {turbonProducts.length} منتج
+                {isSingleProduct ? `${turbonProducts[0].productColors?.length || 0} لون` : `${turbonProducts.length} منتج`}
               </span>
             </div>
           </div>
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 max-w-7xl mx-auto">
-          {turbonProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onPreview={() => handleProductClick(product)}
-            />
-          ))}
-        </div>
+        {isSingleProduct ? (
+          // ✅ حالة وجود منتج واحد: عرض كل صور المنتج في شبكة
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-8 text-center">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
+                {turbonProducts[0].name}
+              </h2>
+              <p className="text-gray-500 mt-3 max-w-2xl mx-auto text-sm sm:text-base">
+                {turbonProducts[0].description}
+              </p>
+            </div>
+
+            {/* شبكة عرض جميع صور المنتج مع اسم اللون كبادج */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+              {turbonProducts[0].productColors?.map((colorItem, index) => {
+                const colorName = getColorName(turbonProducts[0], index);
+                
+                return (
+                  <div 
+                    key={index}
+                    className="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 cursor-pointer"
+                    onClick={() => handleProductClick(turbonProducts[0])}
+                  >
+                    <div className="aspect-square overflow-hidden bg-gray-100">
+                      <img
+                        src={colorItem.img}
+                        alt={`${turbonProducts[0].name} - ${colorName || `صورة ${index + 1}`}`}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    </div>
+                    
+                    {/* ✅ بادج اسم اللون في أسفل الصورة */}
+                    {colorName && (
+                      <div className="absolute bottom-3 left-3 right-3">
+                        <span className="inline-block bg-black/70 backdrop-blur-sm text-white text-xs sm:text-sm px-3 py-1.5 rounded-full font-medium shadow-lg">
+                          {colorName}
+                        </span>
+                      </div>
+                    )}
+                    
+                    {/* ✅ أيقونة تكبير عند الهوفر */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
+                      <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 bg-white/90 rounded-full p-2 shadow-lg">
+                        <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* عرض المقاسات */}
+            {turbonProducts[0].sizes && turbonProducts[0].sizes.length > 0 && (
+              <div className="mt-10 text-center">
+                <h3 className="text-sm font-medium text-gray-600 mb-3">المقاسات المتاحة:</h3>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {turbonProducts[0].sizes.map((size, index) => (
+                    <span 
+                      key={index}
+                      className="bg-pink-50 text-pink-600 px-4 py-2 rounded-full text-sm border border-pink-200 font-medium"
+                    >
+                      {size.size} - {size.age}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          // ✅ حالة وجود منتجات متعددة: عرض البطاقات العادية
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 max-w-7xl mx-auto">
+            {turbonProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onPreview={() => handleProductClick(product)}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Features Section */}
         <div className="mt-16 max-w-6xl mx-auto">
