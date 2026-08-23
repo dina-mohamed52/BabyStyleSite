@@ -56,8 +56,10 @@ function FloatingProductImage({ src, alt, className = "", delay = 0, size = "lar
         animation: `floatImage ${4 + Math.random() * 2}s ease-in-out ${delay}s infinite`,
       }}
     >
-      <div className="relative mt-10 sm:px-8 px-2">
-        <div className={`${sizeClasses[size]} rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-xl border-2 sm:border-3 border-white/90 hover:rotate-0 transition-all duration-500 hover:scale-110 hover:shadow-2xl`}
+      <div className="relative mt-10 sm:px-8 px-4">
+        <div className={`${sizeClasses[size]} rounded-xl sm:rounded-2xl
+         overflow-hidden shadow-lg sm:shadow-xl border-2 sm:border-3
+          border-white/90 hover:rotate-0 transition-all duration-500 hover:scale-110 hover:shadow-2xl`}
           style={{
             transform: `rotate(${(Math.random() - 0.5) * 8}deg)`,
           }}
@@ -343,14 +345,14 @@ export default function BackToSchoolModal() {
             <FloatingProductImage
               src={randomImages[0].src}
               alt={randomImages[0].alt}
-              className="top-[2%] right-[0%] sm:top-[4%] sm:right-[2%]"
+              className="top-[6%] right-[0%] sm:top-[4%] sm:right-[2%]"
               delay={0}
               size="large"
             />
             <FloatingProductImage
               src={randomImages[1].src}
               alt={randomImages[1].alt}
-              className="top-[4%] left-[0%] sm:top-[8%] sm:left-[2%]"
+              className="top-[5%] left-[0%] sm:top-[8%] sm:left-[2%]"
               delay={0.7}
               size="large"
             />
@@ -371,21 +373,21 @@ export default function BackToSchoolModal() {
             <FloatingProductImage
               src={randomImages[4].src}
               alt={randomImages[4].alt}
-              className="bottom-[4%] right-[0%] sm:bottom-[6%] sm:right-[2%]"
+              className="bottom-[8%] right-[0%] sm:bottom-[6%] sm:right-[2%]"
               delay={0.5}
               size="large"
             />
             <FloatingProductImage
               src={randomImages[5].src}
               alt={randomImages[5].alt}
-              className="bottom-[8%] left-[0%] sm:bottom-[10%] sm:left-[2%]"
+              className="bottom-[15%] left-[0%] sm:bottom-[10%] sm:left-[2%]"
               delay={1.2}
               size="large"
             />
             <FloatingProductImage
               src={randomImages[6].src}
               alt={randomImages[6].alt}
-              className="bottom-[18%] right-[16%] sm:bottom-[16%] sm:right-[18%]"
+              className="bottom-[25%] right-[16%] sm:bottom-[16%] sm:right-[18%]"
               delay={2.0}
               size="medium"
             />
@@ -401,7 +403,7 @@ export default function BackToSchoolModal() {
           <Shirt className="w-4 h-4 sm:w-6 sm:h-6 text-white" strokeWidth={2.2} />
         </Sticker>
         <Sticker
-          className="bottom-[16%] left-[12%] floaty hidden sm:block"
+          className="bottom-[22%] left-[12%] floaty hidden sm:block"
           rotate={6}
           bg="linear-gradient(135deg,#7EC8E3,#4A9FC7)"
         >
