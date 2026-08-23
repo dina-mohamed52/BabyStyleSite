@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { X, Calendar, Sparkles, Shirt, ShoppingBag, Timer, Star, Gift, Book, Pen, Ruler, School } from "lucide-react";
 import { Clothes } from "../data/Clothes";
 import { BandanaTurbonData } from "../data/Turbon";
+import { useNavigate } from "react-router-dom";
 
 // ===============================================================
 
@@ -18,8 +19,9 @@ function Pin({ className = "" }) {
   );
 }
 
+
 function Sticker({ children, className = "", rotate = 0, bg }) {
-  return (
+    return (
     <div
       className={`absolute select-none ${className}`}
       style={{ transform: `rotate(${rotate}deg)` }}
@@ -31,7 +33,7 @@ function Sticker({ children, className = "", rotate = 0, bg }) {
           style={{
             background: bg,
             boxShadow:
-              "0 10px 18px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(0,0,0,0.05)",
+            "0 10px 18px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(0,0,0,0.05)",
           }}
         >
           {children}
@@ -50,11 +52,11 @@ function FloatingProductImage({ src, alt, className = "", delay = 0, size = "lar
   };
 
   return (
-    <div
+      <div
       className={`absolute ${className}`}
       style={{
-        animation: `floatImage ${4 + Math.random() * 2}s ease-in-out ${delay}s infinite`,
-      }}
+          animation: `floatImage ${4 + Math.random() * 2}s ease-in-out ${delay}s infinite`,
+        }}
     >
       <div className="relative mt-10 sm:px-8 px-4">
         <div className={`${sizeClasses[size]} rounded-xl sm:rounded-2xl
@@ -62,7 +64,7 @@ function FloatingProductImage({ src, alt, className = "", delay = 0, size = "lar
           border-white/90 hover:rotate-0 transition-all duration-500 hover:scale-110 hover:shadow-2xl`}
           style={{
             transform: `rotate(${(Math.random() - 0.5) * 8}deg)`,
-          }}
+        }}
         >
           <img
             src={src}
@@ -85,7 +87,7 @@ function HangingAccessory({ children, className = "", delay = 0 }) {
       style={{
         animation: `swing ${3 + Math.random() * 1.5}s ease-in-out ${delay}s infinite`,
         transformOrigin: "top center",
-      }}
+    }}
     >
       <div className="relative flex flex-col items-center">
         {/* خيط التعليق */}
@@ -102,11 +104,12 @@ function HangingAccessory({ children, className = "", delay = 0 }) {
 }
 
 export default function BackToSchoolModal() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [countdown, setCountdown] = useState(120);
-  const modalRef = useRef(null);
-  const closeButtonRef = useRef(null);
-
+    const [isOpen, setIsOpen] = useState(false);
+    const [countdown, setCountdown] = useState(120);
+    const modalRef = useRef(null);
+    const closeButtonRef = useRef(null);
+    
+    const navigate=useNavigate()
   // ✅ جمع صور المنتجات من البيانات
   const getAllProductImages = () => {
     const images = [];
@@ -510,9 +513,10 @@ export default function BackToSchoolModal() {
             {/* زر التسوق */}
             <button
               className="body-font mt-4 sm:mt-5 w-full max-w-xs bg-gradient-to-r from-[#FF8FAB] to-[#FF5A8A] text-white font-bold py-2.5 sm:py-3 rounded-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl shadow-lg shadow-[#FF5A8A]/30 flex items-center justify-center gap-1.5 sm:gap-2 group text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF5A8A] focus:ring-offset-2"
-              onClick={() => {
-                window.location.href = "/offers";
-              }}
+           onClick={() => {
+  handleClose();
+  navigate("/Clothes");
+}}
               tabIndex={0}
             >
               <Gift className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:rotate-12 transition-transform duration-300" />
