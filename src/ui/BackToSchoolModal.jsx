@@ -56,7 +56,7 @@ function FloatingProductImage({ src, alt, className = "", delay = 0, size = "lar
         animation: `floatImage ${4 + Math.random() * 2}s ease-in-out ${delay}s infinite`,
       }}
     >
-      <div className="relative mt-10 px-8">
+      <div className="relative mt-10 sm:px-8 px-2">
         <div className={`${sizeClasses[size]} rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-xl border-2 sm:border-3 border-white/90 hover:rotate-0 transition-all duration-500 hover:scale-110 hover:shadow-2xl`}
           style={{
             transform: `rotate(${(Math.random() - 0.5) * 8}deg)`,
