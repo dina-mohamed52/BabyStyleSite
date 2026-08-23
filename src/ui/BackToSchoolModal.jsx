@@ -394,21 +394,8 @@ export default function BackToSchoolModal() {
           </>
         )}
 
-        {/* الملصقات الجانبية */}
-        <Sticker
-          className="top-[12%] right-[12%] floaty hidden sm:block"
-          rotate={-8}
-          bg="linear-gradient(135deg,#FF8FAB,#FF5A8A)"
-        >
-          <Shirt className="w-4 h-4 sm:w-6 sm:h-6 text-white" strokeWidth={2.2} />
-        </Sticker>
-        <Sticker
-          className="bottom-[22%] left-[12%] floaty hidden sm:block"
-          rotate={6}
-          bg="linear-gradient(135deg,#7EC8E3,#4A9FC7)"
-        >
-          <span className="text-white text-sm sm:text-xl">👖</span>
-        </Sticker>
+     
+       
 
         {/* ✅ زر الإغلاق - مع إمكانية التركيز عليه */}
         <button
