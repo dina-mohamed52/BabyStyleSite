@@ -515,7 +515,7 @@ export default function BackToSchoolModal() {
               className="body-font mt-4 sm:mt-5 w-full max-w-xs bg-gradient-to-r from-[#FF8FAB] to-[#FF5A8A] text-white font-bold py-2.5 sm:py-3 rounded-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl shadow-lg shadow-[#FF5A8A]/30 flex items-center justify-center gap-1.5 sm:gap-2 group text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF5A8A] focus:ring-offset-2"
            onClick={() => {
   handleClose();
-  navigate("/Clothes");
+  navigate("/WinterCollection");
 }}
               tabIndex={0}
             >

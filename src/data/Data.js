@@ -93,41 +93,7 @@ export const Data = [
     avalibeColors: ["أبيض", "أسود", "رمادي", "كحلي", "بيج"],
     image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756578760/5879927343848475491_wwzpcw.jpg",
   },
-  // {
-  //   id: 9,
-  //   name: "كولون جكار خريفي ",
-  //   productColors: [
-  //     { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756993483/5895652765307357182_ydpspj.jpg" },
-  //     { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756993483/5895652765307357183_vfww9g.jpg" },
-  //     { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756993502/5895652765307357184_kba4rd.jpg" },
-    
-  //   ],
-  //   avalibeColors: ["أبيض", "أسود", "بينك"],
-  //   image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756993483/5895652765307357182_ydpspj.jpg",
-  // },
-  // {
-  //   id: 10,
-  //   name: " كولون فيونكه خريفي ",
-  //   productColors: [
-  //     { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756993484/5895652765307357188_fmrl5x.jpg" },
-  //     { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756993484/5895652765307357187_udqc8a.jpg" },
-    
-  //   ],
-  //   avalibeColors: ["أبيض", "بينك"],
-  //   image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756993484/5895652765307357188_fmrl5x.jpg",
-  // },
-  // {
-  //   id: 11,
-  //   name: "ليجن دبل اوباك خريفي",
-  //   productColors: [
-  //     { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756993485/5895652765307357192_wrampt.jpg" },
-  //     { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756993484/5895652765307357191_ws8rbs.jpg" },
-    
-  //   ],
-  //   avalibeColors: ["أبيض", "أسود", "بينك"],
-  //   image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756993485/5895652765307357192_wrampt.jpg",
-  // },
-
+  
 // التربونات الجديدة
   {
     id: 9,

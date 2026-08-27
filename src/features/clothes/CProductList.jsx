@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Clothes } from "../../data/Clothes";
 import { useTranslation } from "react-i18next";
-import { Sparkles, Heart, ShoppingBag, Star } from "lucide-react";
+import { Sparkles, Heart, ShoppingBag, Star, Ruler } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductCard from "../../features/products/ProductCard";
 
@@ -58,20 +58,61 @@ function CProductList() {
   // ✅ التحقق مما إذا كان هناك منتج واحد فقط لعرض جميع صوره
   const isSingleProduct = filteredProducts.length === 1;
 
-  // ✅ دالة لاستخراج اسم اللون من البيانات
+  // ✅ دالة لاستخراج اسم اللون من البيانات (متوافقة مع الهيكل الجديد)
   const getColorName = (product, index) => {
-    // 1- لو المنتج عنده avalibeColors، نستخدمه (الترتيب مهم)
-    if (product.avalibeColors && product.avalibeColors[index]) {
-      return product.avalibeColors[index];
-    }
-    
-    // 2- لو productColors فيها color، نستخدمها
+    // 1- لو productColors فيها color، نستخدمها
     if (product.productColors && product.productColors[index]?.color) {
       return product.productColors[index].color;
     }
     
-    // 3- لو مفيش حاجة، نرجع null
+    // 2- لو المنتج عنده avalibeColors، نستخدمه (كفولباك)
+    if (product.avalibeColors && product.avalibeColors[index]) {
+      return product.avalibeColors[index];
+    }
+    
     return null;
+  };
+
+  // ✅ دالة لجلب المقاسات لكل لون (جديدة)
+  const getSizesForColor = (product, colorName) => {
+    if (!product) return [];
+    
+    const colorData = product.productColors?.find(
+      (c) => c.color === colorName
+    );
+    
+    if (colorData && colorData.sizes) {
+      return colorData.sizes;
+    }
+    
+    // Fallback للمقاسات العامة
+    return product.sizes || [];
+  };
+
+  // ✅ دالة لجمع كل المقاسات الفريدة من جميع الألوان (لعرضها كاملة)
+  const getAllUniqueSizes = (product) => {
+    if (!product) return [];
+    
+    const allSizes = [];
+    const sizeSet = new Set();
+    
+    product.productColors?.forEach((colorData) => {
+      if (colorData.sizes) {
+        colorData.sizes.forEach((s) => {
+          if (!sizeSet.has(s.size)) {
+            sizeSet.add(s.size);
+            allSizes.push(s);
+          }
+        });
+      }
+    });
+    
+    // لو مفيش مقاسات في الألوان، نرجع المقاسات العامة
+    if (allSizes.length === 0 && product.sizes) {
+      return product.sizes;
+    }
+    
+    return allSizes;
   };
 
   // ✅ التحقق من وجود صور للمنتج
@@ -169,6 +210,7 @@ function CProductList() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {filteredProducts[0].productColors.map((colorItem, index) => {
                 const colorName = getColorName(filteredProducts[0], index);
+                const colorSizes = getSizesForColor(filteredProducts[0], colorName);
                 
                 return (
                   <div 
@@ -207,22 +249,60 @@ function CProductList() {
               })}
             </div>
 
-            {/* عرض المقاسات */}
-            {filteredProducts[0].sizes && filteredProducts[0].sizes.length > 0 && (
-              <div className="mt-10 text-center">
-                <h3 className="text-sm font-medium text-[#5B4458] mb-3">المقاسات المتاحة:</h3>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {filteredProducts[0].sizes.map((size, index) => (
-                    <span 
-                      key={index}
-                      className="bg-pink-50 text-[#B65C7C] px-4 py-2 rounded-full text-sm border border-pink-200 font-medium"
-                    >
-                      {size.size} - {size.age}
-                    </span>
-                  ))}
+            {/* ✅ عرض المقاسات - متوافق مع الهيكل الجديد */}
+            {(() => {
+              const allSizes = getAllUniqueSizes(filteredProducts[0]);
+              return allSizes && allSizes.length > 0 ? (
+                <div className="mt-10 text-center">
+                  <h3 className="text-sm font-medium text-[#5B4458] mb-3 flex items-center justify-center gap-2">
+                    <Ruler className="w-4 h-4 text-[#B65C7C]" />
+                    المقاسات المتاحة حسب اللون:
+                  </h3>
+                  <div className="flex flex-wrap justify-center gap-3">
+                    {allSizes.map((size, index) => (
+                      <div 
+                        key={index}
+                        className="group relative"
+                      >
+                        <span className="bg-pink-50 text-[#B65C7C] px-4 py-2 rounded-full text-sm border border-pink-200 font-medium hover:bg-pink-100 transition-colors duration-200">
+                          {size.size}
+                        </span>
+                        <span className="text-[10px] text-[#8A6E86] block mt-1">
+                          {size.age}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* ✅ عرض الألوان والمقاسات معاً */}
+                  <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
+                    {filteredProducts[0].productColors.map((colorItem, index) => {
+                      const colorName = getColorName(filteredProducts[0], index);
+                      const colorSizes = getSizesForColor(filteredProducts[0], colorName);
+                      
+                      return colorName && colorSizes.length > 0 ? (
+                        <div key={index} className="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-pink-100">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div 
+                              className="w-4 h-4 rounded-full border border-gray-200"
+                              style={{ backgroundColor: getColorCode(colorName) }}
+                            />
+                            <span className="text-sm font-medium text-[#3B1F38]">{colorName}</span>
+                          </div>
+                          <div className="flex flex-wrap gap-1">
+                            {colorSizes.map((s) => (
+                              <span key={s.size} className="text-xs bg-pink-50 text-[#B65C7C] px-2 py-0.5 rounded-full">
+                                {s.size}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      ) : null;
+                    })}
+                  </div>
                 </div>
-              </div>
-            )}
+              ) : null;
+            })()}
           </div>
         ) : (
           // ✅ حالة وجود منتجات متعددة أو منتج واحد بدون صور: عرض البطاقات العادية
@@ -339,6 +419,27 @@ function CProductList() {
       </div>
     </div>
   );
+}
+
+// ✅ دالة مساعدة لتحويل اسم اللون إلى كود لون (نسخة مبسطة)
+function getColorCode(colorName) {
+  const colorMap = {
+    'أبيض': '#FFFFFF',
+    'أسود': '#000000',
+    'بينك': '#F6A6C1',
+    'وردي': '#FFB6C1',
+    'احمر': '#D6483D',
+    'لافندر': '#C9BBEE',
+    'اصفر': '#FBCB5C',
+    'بيج': '#FFF0DB',
+    'سكري': '#FFF0DB',
+    'كيوي': '#9CC084',
+    'اورنج': '#F0924A',
+    'لبني': '#BFD7EA',
+    'نبيتي': '#6B2D5E',
+    'أوف وايت': '#FDF5E6',
+  };
+  return colorMap[colorName] || '#E5E7EB';
 }
 
 export default CProductList;
