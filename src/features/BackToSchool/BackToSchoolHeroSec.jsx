@@ -171,8 +171,75 @@ const BackToSchoolHeroSec = ({scrollToOffers,scrollToProducts}) => {
     },
   ];
 
-  // Hanging items for mobile (less items, better visibility)
-  const mobileHangingItems = hangingItems.filter((_, index) => index % 2 === 0);
+  // Hanging items for mobile (smaller icons, longer ropes)
+  const mobileHangingItems = [
+    { 
+      icon: <BookOpen className="w-5 h-5" />, 
+      x: "5%", 
+      color: "text-pink-500", 
+      bg: "bg-pink-100/90",
+      ropeColor: "from-pink-400 to-pink-600",
+      ropeLength: "h-36",
+      delay: 0,
+      swingDuration: 3.2,
+      shadowColor: "shadow-pink-500/30"
+    },
+    { 
+      icon: <Pencil className="w-4 h-4" />, 
+      x: "22%", 
+      color: "text-purple-500", 
+      bg: "bg-purple-100/90",
+      ropeColor: "from-purple-400 to-purple-600",
+      ropeLength: "h-28",
+      delay: 0.3,
+      swingDuration: 3.5,
+      shadowColor: "shadow-purple-500/30"
+    },
+    { 
+      icon: <GraduationCap className="w-5 h-5" />, 
+      x: "39%", 
+      color: "text-purple-500", 
+      bg: "bg-purple-100/90",
+      ropeColor: "from-purple-400 to-purple-600",
+      ropeLength: "h-24",
+      delay: 0.2,
+      swingDuration: 3.7,
+      shadowColor: "shadow-purple-500/30"
+    },
+    { 
+      icon: <Ruler className="w-5 h-5" />, 
+      x: "56%", 
+      color: "text-blue-500", 
+      bg: "bg-blue-100/90",
+      ropeColor: "from-blue-400 to-blue-600",
+      ropeLength: "h-32",
+      delay: 0.6,
+      swingDuration: 2.8,
+      shadowColor: "shadow-blue-500/30"
+    },
+    { 
+      icon: <BookMarked className="w-5 h-5" />, 
+      x: "73%", 
+      color: "text-blue-500", 
+      bg: "bg-blue-100/90",
+      ropeColor: "from-blue-400 to-blue-600",
+      ropeLength: "h-36",
+      delay: 0.5,
+      swingDuration: 3.1,
+      shadowColor: "shadow-blue-500/30"
+    },
+    { 
+      icon: <Globe className="w-4 h-4" />, 
+      x: "90%", 
+      color: "text-pink-500", 
+      bg: "bg-pink-100/90",
+      ropeColor: "from-pink-400 to-pink-600",
+      ropeLength: "h-28",
+      delay: 0.1,
+      swingDuration: 3.6,
+      shadowColor: "shadow-pink-500/30"
+    },
+  ];
 
   // Floating items that continuously fall from top
   const floatingItems = [
@@ -280,11 +347,11 @@ const BackToSchoolHeroSec = ({scrollToOffers,scrollToProducts}) => {
               </div>
               {/* Rope knot with 3D effect */}
               <div className="relative -mt-0.5">
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-gradient-to-br from-gray-300 to-gray-500 shadow-md border border-white/30"></div>
-                <div className="absolute inset-0 w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-white/20 blur-sm"></div>
+                <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-gradient-to-br from-gray-300 to-gray-500 shadow-md border border-white/30"></div>
+                <div className="absolute inset-0 w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-white/20 blur-sm"></div>
               </div>
               {/* Icon with 3D shadow - responsive */}
-              <div className={`${item.bg} backdrop-blur-sm rounded-xl sm:rounded-2xl p-2 sm:p-3 shadow-2xl ${item.shadowColor} border border-white/50 hover:scale-110 transition-transform duration-300 relative`}>
+              <div className={`${item.bg} backdrop-blur-sm rounded-xl sm:rounded-2xl p-1.5 sm:p-3 shadow-2xl ${item.shadowColor} border border-white/50 hover:scale-110 transition-transform duration-300 relative`}>
                 {/* 3D shadow under icon */}
                 <div className={`absolute inset-0 rounded-xl sm:rounded-2xl ${item.shadowColor} blur-xl opacity-50 -z-10`}></div>
                 <div className={item.color}>
@@ -379,31 +446,30 @@ const BackToSchoolHeroSec = ({scrollToOffers,scrollToProducts}) => {
             </div>
 
             {/* CTA Buttons - responsive */}
-            {/* CTA Buttons - responsive */}
-<div className="flex flex-wrap gap-2 sm:gap-4">
-  <button 
-    onClick={scrollToOffers}
-    className="group relative px-4 sm:px-8 py-2.5 sm:py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white rounded-xl sm:rounded-2xl font-bold text-xs sm:text-base shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 overflow-hidden"
-  >
-    <span className="relative z-10 flex items-center gap-1.5 sm:gap-2">
-      <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
-      تسوقي الآن
-      <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 animate-spin-slow" />
-    </span>
-    <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
-  </button>
-  
-  <button 
-    onClick={scrollToProducts}
-    className="px-4 sm:px-8 py-2.5 sm:py-4 bg-white/80 backdrop-blur-sm border-2 border-purple-200 text-purple-600 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-base hover:bg-purple-50 hover:border-purple-400 transition-all duration-300 hover:scale-105"
-  >
-    <span className="flex items-center gap-1.5 sm:gap-2">
-      <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
-      اكتشفي المزيد
-    </span>
-  </button>
-</div>
-</div>
+            <div className="flex flex-wrap gap-2 sm:gap-4">
+              <button 
+                onClick={scrollToOffers}
+                className="group relative px-4 sm:px-8 py-2.5 sm:py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white rounded-xl sm:rounded-2xl font-bold text-xs sm:text-base shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center gap-1.5 sm:gap-2">
+                  <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
+                  تسوقي الآن
+                  <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 animate-spin-slow" />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+              </button>
+              
+              <button 
+                onClick={scrollToProducts}
+                className="px-4 sm:px-8 py-2.5 sm:py-4 bg-white/80 backdrop-blur-sm border-2 border-purple-200 text-purple-600 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-base hover:bg-purple-50 hover:border-purple-400 transition-all duration-300 hover:scale-105"
+              >
+                <span className="flex items-center gap-1.5 sm:gap-2">
+                  <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
+                  اكتشفي المزيد
+                </span>
+              </button>
+            </div>
+          </div>
 
           {/* Right Side - Image Carousel - responsive */}
           <div className="relative order-1 lg:order-2">
