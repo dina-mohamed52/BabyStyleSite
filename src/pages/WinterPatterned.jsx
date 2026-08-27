@@ -77,7 +77,7 @@ function WinterPatterned() {
           </div>
 
           {/* Offers with ref */}
-          <div ref={offersRef}>
+          <div ref={offersRef} id="offersSection">
             <Offers 
               setSelectedOffer={setSelectedOffer} 
               scrollToOrderCollection={() => {
