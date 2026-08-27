@@ -47,7 +47,7 @@ function ProductList({ products }) {
   };
 
   return (
-    <div dir="rtl" className="min-h-screen mt-4 bg-[#FFFf]">
+    <div dir="rtl" className="min-h-screen mt-4 bg-[#FFFf]  sm:px-0 px-3">
       <div className="container py-8 sm:py-12">
         {/* Header Section */}
         <div className="relative mb-12">
