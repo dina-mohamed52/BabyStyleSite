@@ -177,12 +177,12 @@ const BackToSchoolHeroSec = ({scrollToOffers,scrollToProducts}) => {
   // Floating items that continuously fall from top
   const floatingItems = [
     { icon: <Star className="w-4 h-4 sm:w-6 sm:h-6" />, x: "6%", delay: 0, duration: 12, color: "text-yellow-400", bg: "bg-yellow-100/70" },
-    { icon: <Palette className="w-4 h-4 sm:w-6 sm:h-6" />, x: "16%", delay: 0.5, duration: 14, color: "text-purple-400", bg: "bg-purple-100/70" },
-    { icon: <Heart className="w-4 h-4 sm:w-5 sm:h-5" />, x: "26%", delay: 1, duration: 10, color: "text-pink-400", bg: "bg-pink-100/70" },
+    { icon: <Palette className="w-4 h-4 sm:w-6 sm:h-6" />, x: "16%", delay: 0, duration: 14, color: "text-purple-400", bg: "bg-purple-100/70" },
+    { icon: <Heart className="w-4 h-4 sm:w-5 sm:h-5" />, x: "26%", delay: 0.2, duration: 10, color: "text-pink-400", bg: "bg-pink-100/70" },
     { icon: <Brush className="w-4 h-4 sm:w-5 sm:h-5" />, x: "36%", delay: 0.3, duration: 13, color: "text-blue-400", bg: "bg-blue-100/70" },
-    { icon: <Eraser className="w-4 h-4 sm:w-5 sm:h-5" />, x: "46%", delay: 0.8, duration: 11, color: "text-pink-400", bg: "bg-pink-100/70" },
+    { icon: <Eraser className="w-4 h-4 sm:w-5 sm:h-5" />, x: "46%", delay: 0.4, duration: 11, color: "text-pink-400", bg: "bg-pink-100/70" },
     { icon: <NotebookPen className="w-4 h-4 sm:w-6 sm:h-6" />, x: "56%", delay: 0.2, duration: 15, color: "text-purple-400", bg: "bg-purple-100/70" },
-    { icon: <Clock className="w-4 h-4 sm:w-5 sm:h-5" />, x: "66%", delay: 0.7, duration: 12, color: "text-blue-400", bg: "bg-blue-100/70" },
+    { icon: <Clock className="w-4 h-4 sm:w-5 sm:h-5" />, x: "66%", delay: 0.5, duration: 12, color: "text-blue-400", bg: "bg-blue-100/70" },
     { icon: <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />, x: "76%", delay: 0.4, duration: 11, color: "text-yellow-400", bg: "bg-yellow-100/70" },
     { icon: <Tag className="w-4 h-4 sm:w-5 sm:h-5" />, x: "86%", delay: 0.9, duration: 13, color: "text-pink-400", bg: "bg-pink-100/70" },
     { icon: <Star className="w-4 h-4 sm:w-5 sm:h-5" />, x: "94%", delay: 0.1, duration: 14, color: "text-purple-400", bg: "bg-purple-100/70" },
@@ -203,7 +203,7 @@ const BackToSchoolHeroSec = ({scrollToOffers,scrollToProducts}) => {
       const timer = setInterval(() => {
         setDirection(1);
         setCurrentSlide((prev) => (prev + 1) % slides.length);
-      }, 4000);
+      }, 2500);
       return () => clearInterval(timer);
     }
   }, [isHovering, slides.length]);
