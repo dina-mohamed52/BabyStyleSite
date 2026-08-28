@@ -25,7 +25,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useCartActions } from "../cart/AddAndBuyTOCart";
 
-// Mobile Dropdown Component - Same as Half but with Clothes theme
+// Mobile Dropdown Component
 function MobileSelect({
   value,
   onChange,
@@ -246,8 +246,6 @@ function ClothesOrderCollection({
   const containerRef = useRef(null);
   const { cartItems, addToCart } = useCart();
 
- 
-
   const navigate = useNavigate();
 
   // Check if mobile
@@ -265,19 +263,15 @@ function ClothesOrderCollection({
     if (activeTab === "shirts") {
       return Clothes.filter((p) => p.category === "top");
     }
-
     if (activeTab === "legging") {
       return Clothes.filter((p) => p.category === "legging");
     }
-
     if (activeTab === "short") {
       return Clothes.filter((p) => p.category === "short");
     }
-
     if (activeTab === "top") {
       return Clothes.filter((p) => p.category === "top");
     }
-
     return Clothes;
   };
 
@@ -325,7 +319,6 @@ function ClothesOrderCollection({
     const completed = {};
     pieces.forEach((piece) => {
       const product = getProductById(piece.productId);
-      // For clothes, we need product, color, and size
       completed[piece.id] = !!(
         piece.productId &&
         piece.color &&
@@ -336,13 +329,35 @@ function ClothesOrderCollection({
   }, [pieces, selectedSizes]);
 
   const getProductById = (id) => Clothes.find((p) => p.id === id);
-  const getProductColors = (productId) => {
+  
+  // NEW: Get product colors with their sizes
+  const getProductColorsWithSizes = (productId) => {
+    const product = getProductById(productId);
+    if (!product) return [];
+    return product.productColors || [];
+  };
+
+  // NEW: Get sizes for a specific color
+  const getSizesForColor = (productId, colorName) => {
+    const product = getProductById(productId);
+    if (!product) return [];
+    
+    const colorData = product.productColors?.find(
+      (c) => c.color === colorName
+    );
+    
+    if (colorData && colorData.sizes) {
+      return colorData.sizes;
+    }
+    
+    // Fallback to product default sizes
+    return product.sizes || [];
+  };
+
+  // Get available colors (for dropdown)
+  const getAvailableColors = (productId) => {
     const product = getProductById(productId);
     return product?.avalibeColors || [];
-  };
-  const getProductSizes = (productId) => {
-    const product = getProductById(productId);
-    return product?.sizes || [];
   };
 
   const handleGoToOffers = () => {
@@ -361,7 +376,6 @@ function ClothesOrderCollection({
       بيج: "#E8D5B5",
       لبني: "#BFD7EA",
       سكري: "#FFF0DB",
-      بيج: "#FFF0DB",
       بينك: "#F6A6C1",
       وردي: "#FFB6C1",
       فوشيا: "#FF00FF",
@@ -374,7 +388,7 @@ function ClothesOrderCollection({
       اصفر: "#FBCB5C",
       اخضر: "#98D8C8",
       نعناعي: "#A7F0D9",
-     "بيبي بلو": "#87CEEB",
+      "بيبي بلو": "#87CEEB",
       كحلي: "#1E2F4F",
       نيلي: "#4B6A8B",
       كافيه: "#8B5E3C",
@@ -411,6 +425,12 @@ function ClothesOrderCollection({
 
   const handleColorChange = (id, color) => {
     setPieces((prev) => prev.map((p) => (p.id === id ? { ...p, color } : p)));
+    // Clear size when color changes
+    setSelectedSizes((prev) => {
+      const newSizes = { ...prev };
+      delete newSizes[id];
+      return newSizes;
+    });
   };
 
   const handleSizeChange = (id, size) => {
@@ -419,13 +439,9 @@ function ClothesOrderCollection({
 
   const getProductImage = (product, colorName) => {
     if (!product) return "";
-    const colorIndex = product.avalibeColors?.findIndex((c) => c === colorName);
-    if (
-      colorIndex !== -1 &&
-      colorIndex >= 0 &&
-      product.productColors?.[colorIndex]
-    ) {
-      return product.productColors[colorIndex].img;
+    const colorData = product.productColors?.find((c) => c.color === colorName);
+    if (colorData) {
+      return colorData.img;
     }
     return product.productColors?.[0]?.img || "";
   };
@@ -462,18 +478,15 @@ function ClothesOrderCollection({
       image: orderWithDetails[0]?.image || "",
     };
   };
+
   const isFormValid = pieces.every((piece) => {
     return !!(piece.productId && piece.color && selectedSizes[piece.id]);
   });
 
-
- const { handleAddOnly, handleBuyNow } = useCartActions({
-   
+  const { handleAddOnly, handleBuyNow } = useCartActions({
     prepareCartItem,
     isFormValid,
   });
-
-
 
   const handleAddToCart = async (shouldNavigate = false) => {
     if (!isFormValid) {
@@ -529,32 +542,6 @@ function ClothesOrderCollection({
     }
   };
 
-  // const handleAddOnly = (e) => {
-  //   e.preventDefault();
-  //   handleAddToCart(false);
-  // };
-
-  // const handleBuyNow = (e) => {
-  //   e.preventDefault();
-
-  //   if (!isFormValid) {
-  //     toast.error("⚠️ يرجى إكمال جميع البيانات أولاً", {
-  //       position: "bottom-center",
-  //       autoClose: 3000,
-  //     });
-  //     return;
-  //   }
-
-  //   const cartItem = prepareCartItem();
-
-  //   const productExists = cartItems.some((item) => item.id === cartItem.id);
-
-  //   if (!productExists) {
-  //     addToCart(cartItem);
-  //   }
-
-  //   navigate("/checkout");
-  // };
   const handleContinueShopping = () => {
     setShowSuccessModal(false);
     setPendingNavigation(false);
@@ -623,7 +610,7 @@ function ClothesOrderCollection({
       ref={containerRef}
       className="py-6 md:py-12 px-3 md:px-4 max-w-7xl mx-auto"
     >
-      {/* Hero Header - Clothes Theme */}
+      {/* Hero Header */}
       <div className="text-center mb-8 md:mb-12">
         <motion.div
           initial={{ scale: 0 }}
@@ -656,7 +643,7 @@ function ClothesOrderCollection({
           قم بتخصيص كل قطعة بالمنتج واللون والمقاس المناسب
         </p>
 
-        {/* Premium Progress Bar */}
+        {/* Progress Bar */}
         <div className="max-w-md mx-auto mt-6 md:mt-8 px-4">
           <div className="flex justify-between text-xs md:text-sm mb-2">
             <span
@@ -716,12 +703,18 @@ function ClothesOrderCollection({
         )}
       </AnimatePresence>
 
-      {/* Premium Cards Grid */}
+      {/* Cards Grid */}
       <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 md:gap-6">
         {pieces.map((piece, idx) => {
           const product = getProductById(piece.productId);
-          const colors = getProductColors(piece.productId);
-          const sizes = getProductSizes(piece.productId);
+          const availableColors = getAvailableColors(piece.productId);
+          const productColorsWithSizes = getProductColorsWithSizes(piece.productId);
+          
+          // Get sizes based on selected color
+          const sizes = piece.color 
+            ? getSizesForColor(piece.productId, piece.color)
+            : product?.sizes || [];
+          
           const isCompleted = completedCards[piece.id];
           const isHovered = hoveredCard === piece.id;
 
@@ -736,11 +729,17 @@ function ClothesOrderCollection({
                   : "Layers",
           }));
 
-          const colorOptions = colors.map((c) => ({
-            value: c,
-            label: c,
-            color: getColorCode(c),
-          }));
+          const colorOptions = availableColors.map((c) => {
+            const colorData = productColorsWithSizes.find(
+              (pc) => pc.color === c
+            );
+            return {
+              value: c,
+              label: c,
+              color: getColorCode(c),
+              sizes: colorData?.sizes || product?.sizes || [],
+            };
+          });
 
           const sizeOptions = sizes.map((s) => ({
             value: s.size,
@@ -957,32 +956,42 @@ function ClothesOrderCollection({
                           style={{ borderRadius: 12 }}
                           dropdownStyle={{ borderRadius: 12 }}
                         >
-                          {colors.map((c) => (
-                            <Select.Option key={c} value={c}>
-                              <div className="flex items-center gap-2">
-                                <div
-                                  className="w-5 h-5 rounded-full shadow-inner"
-                                  style={{
-                                    backgroundColor: getColorCode(c),
-                                    border:
-                                      c === "أبيض"
-                                        ? "1px solid #E5E7EB"
-                                        : "none",
-                                  }}
-                                />
-                                <span
-                                  style={{ fontFamily: "'Cairo', sans-serif" }}
-                                >
-                                  {c}
-                                </span>
-                              </div>
-                            </Select.Option>
-                          ))}
+                          {availableColors.map((c) => {
+                            const colorData = productColorsWithSizes.find(
+                              (pc) => pc.color === c
+                            );
+                            return (
+                              <Select.Option key={c} value={c}>
+                                <div className="flex items-center gap-2">
+                                  <div
+                                    className="w-5 h-5 rounded-full shadow-inner"
+                                    style={{
+                                      backgroundColor: getColorCode(c),
+                                      border:
+                                        c === "أبيض"
+                                          ? "1px solid #E5E7EB"
+                                          : "none",
+                                    }}
+                                  />
+                                  <span
+                                    style={{ fontFamily: "'Cairo', sans-serif" }}
+                                  >
+                                    {c}
+                                    {colorData?.sizes && (
+                                      <span className="text-xs text-gray-400 mr-2">
+                                        ({colorData.sizes.length} مقاسات)
+                                      </span>
+                                    )}
+                                  </span>
+                                </div>
+                              </Select.Option>
+                            );
+                          })}
                         </Select>
                       </div>
                     )}
 
-                    {/* Size Selection */}
+                    {/* Size Selection - Now uses sizes from selected color */}
                     {isMobile ? (
                       <MobileSelect
                         value={selectedSizes[piece.id]}
@@ -1017,6 +1026,11 @@ function ClothesOrderCollection({
                         >
                           <Ruler className="w-4 h-4 text-amber-500" />
                           المقاس
+                          {piece.color && (
+                            <span className="text-xs text-gray-400">
+                              (لون: {piece.color})
+                            </span>
+                          )}
                         </label>
                         <Select
                           value={selectedSizes[piece.id]}

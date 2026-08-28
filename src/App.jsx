@@ -1,10 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 import AppLayOut from "./ui/AppLayOut";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Offers from "./features/home/Offers";
+import Offers from "./features/WinterPattern/Offers";
 import Turbon from "./pages/Turbon";
 import SummerHalfColon from "./pages/SummerHalfColon";
 import SummerColon from "./pages/SummerColon";
@@ -16,6 +15,7 @@ import Clothes from "./pages/Clothes";
 import ClothesHomePage from "./features/clothes/ClothesHomePage";
 import TurbonHomePage from "./features/TurbonParts/TurbonHomePage";
 import BackToSchoolModal from "./ui/BackToSchoolModal";
+import WinterPatterned from "./pages/WinterPatterned";
 
 function App() {
   const queryClient = new QueryClient();
@@ -28,7 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AppLayOut />}>
             <Route index element={<MainPage />} />
-            <Route path="/WinterCollection" element={<Home />} />
+            <Route path="/WinterCollection" element={<WinterPatterned/>} />
             <Route path="/product/:id" element={<ProductDetails />} />
 
     

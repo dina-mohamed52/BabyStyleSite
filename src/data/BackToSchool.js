@@ -1,0 +1,107 @@
+export const BackToSchoolData = [
+  {
+    id: 2,
+    name: "كولون الغزاله",
+    sizes: [
+      { size: "6-4", age: "من 3 ل 5 سنين" },
+      { size: "8-6", age: "من 5 ل 7 سنين" },
+      { size: "10-8", age: "من 7 ل 9 سنين" },
+      { size: "12-10", age: "من 9 ل 11 سنة" },
+      { size: "14-12", age: "من 12 ل 14 سنة" },
+    ],
+    productColors: [
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830878/WhatsApp_Image_2026-08-25_at_12.59.40_PM_ofvqix.jpg" },
+    ],
+    avalibeColors: ["أبيض"],
+    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830878/WhatsApp_Image_2026-08-25_at_12.59.40_PM_ofvqix.jpg",
+  },
+  {
+    id: 4,
+    name: "كولون قطه",
+    sizes: [
+      { size: "6-4", age: "من 3 ل 5 سنين" },
+      { size: "8-6", age: "من 5 ل 7 سنين" },
+      { size: "10-8", age: "من 7 ل 9 سنين" },
+      { size: "12-10", age: "من 9 ل 11 سنة" },
+      { size: "14-12", age: "من 12 ل 14 سنة" },
+    ],
+    productColors: [
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787833382/WhatsApp_Image_2026-08-25_at_1.10.23_PM_r3ctui.jpg" },
+    ],
+    avalibeColors: ["أبيض"],
+    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787833382/WhatsApp_Image_2026-08-25_at_1.10.23_PM_r3ctui.jpg",
+  },
+  {
+    id: 6,
+    name: "كولون ديربي بفيونكه",
+    sizes: [
+      { size: "6-4", age: "من 3 ل 5 سنين" },
+      { size: "8-6", age: "من 5 ل 7 سنين" },
+      { size: "10-8", age: "من 7 ل 9 سنين" },
+      { size: "12-10", age: "من 9 ل 11 سنة" },
+      { size: "14-12", age: "من 12 ل 14 سنة" },
+    ],
+    productColors: [
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830701/WhatsApp_Image_2026-08-25_at_12.57.33_PM_2_wo3gqy.jpg" },
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830735/WhatsApp_Image_2026-08-25_at_12.57.33_PM_1_pf1vfn.jpg" },
+    ],
+    avalibeColors: ["أبيض", "أسود"],
+    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830774/WhatsApp_Image_2026-08-25_at_12.53.22_PM_1_iiehhr.jpg",
+  },
+  {
+    id: 8,
+    name: "كولون ساده",
+    sizes: [
+      { size: "6-4", age: "من 3 ل 5 سنين" },
+      { size: "8-6", age: "من 5 ل 7 سنين" },
+      { size: "10-8", age: "من 7 ل 9 سنين" },
+      { size: "12-10", age: "من 9 ل 11 سنة" },
+      { size: "14-12", age: "من 12 ل 14 سنة" },
+    ],
+    productColors: [
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830745/WhatsApp_Image_2026-08-25_at_12.55.02_PM_2_xgiqej.jpg" },
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830751/WhatsApp_Image_2026-08-25_at_12.55.02_PM_1_oviwb8.jpg" },
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756578745/5879927343848475492_t7jagx.jpg" },
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830783/WhatsApp_Image_2026-08-25_at_12.53.22_PM_2_ahfcga.jpg" },
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787833449/WhatsApp_Image_2026-08-25_at_12.55.02_PM_yp9dep.jpg" },
+    ],
+    avalibeColors: ["أبيض", "أسود","بيج", "كحلي", "رصاصي"],
+    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830745/WhatsApp_Image_2026-08-25_at_12.55.02_PM_2_xgiqej.jpg",
+  },
+  {
+    id: 9,
+    name: "هاف كولون خريفي",
+    sizes: [
+      { size: "6-4", age: "من 3 ل 5 سنين" },
+      { size: "8-6", age: "من 5 ل 7 سنين" },
+      { size: "10-8", age: "من 7 ل 9 سنين" },
+    ],
+    productColors: [
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830671/WhatsApp_Image_2026-08-25_at_1.23.10_PM_1_ofnsqw.jpg" },
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830670/WhatsApp_Image_2026-08-25_at_1.23.10_PM_2_zn7knk.jpg" },
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830671/WhatsApp_Image_2026-08-25_at_1.23.10_PM_pdyqa4.jpg" },
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830849/WhatsApp_Image_2026-08-25_at_1.23.10_PM_4_vmsqzj.jpg" },
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830773/WhatsApp_Image_2026-08-25_at_1.23.10_PM_3_dekttp.jpg" },
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830670/WhatsApp_Image_2026-08-25_at_1.23.10_PM_5_ak3fzu.jpg" },
+    ],
+    avalibeColors: ["أبيض", "أسود", "أحمر", "أصفر", "بينك", "لافندر"],
+    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830671/WhatsApp_Image_2026-08-25_at_1.23.10_PM_1_ofnsqw.jpg",
+  },
+  {
+    id: 10,
+    name: "كولون ديربي ساده",
+    sizes: [
+      { size: "6-4", age: "من 3 ل 5 سنين" },
+      { size: "8-6", age: "من 5 ل 7 سنين" },
+      { size: "10-8", age: "من 7 ل 9 سنين" },
+      { size: "12-10", age: "من 9 ل 11 سنة" },
+      { size: "14-12", age: "من 12 ل 14 سنة" },
+    ],
+    productColors: [
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830756/WhatsApp_Image_2026-08-25_at_12.53.22_PM_ipc3kb.jpg" },
+      { img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830756/WhatsApp_Image_2026-08-25_at_12.53.21_PM_ng4q1h.jpg" },
+    ],
+    avalibeColors: ["أبيض", "أسود"],
+    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787833815/WhatsApp_Image_2026-08-25_at_12.53.22_PM_3_az6jgf.jpg",
+  },
+];

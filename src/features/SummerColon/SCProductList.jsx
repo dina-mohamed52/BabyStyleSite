@@ -1,5 +1,5 @@
 import { SummerColonData } from "../../data/SummerColon";
-import ProductList from "../home/ProductList";
+import ProductList from "../WinterPattern/ProductList";
 import { motion } from "framer-motion";
 import { Sparkles, Heart } from "lucide-react";
 
