@@ -15,7 +15,7 @@ import {
   Sparkles,
   Heart,
   Lock,
-   X,
+  X,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Select, Drawer } from "antd";
@@ -23,7 +23,7 @@ import { useCart } from "../cart/CartContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useCartActions } from "../cart/AddAndBuyTOCart";
-import{ BackToSchoolData} from "../../data/BackToSchool";
+import { BackToSchoolData } from "../../data/BackToSchool";
 
 // Mobile Dropdown Component
 function MobileSelect({
@@ -246,22 +246,36 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // استخدام BackToSchoolData
-  const colonProducts = useMemo(() => {
-    return BackToSchoolData.filter((product) => 
-      product.name.includes("كولون") || product.name.includes("هاف كولون")
+  // Filter products based on offer type
+  const filteredProducts = useMemo(() => {
+  const offerType = selectedOffer?.type || "colon";
+
+  if (offerType === "colon") {
+    // عروض الكولون: عرض الكولون + الليجن
+    return BackToSchoolData.filter(
+      (product) =>
+        product.category=== "colon" ||
+        product.category=== "legging"
     );
-  }, []);
+  } else if (offerType === "half") {
+    // عروض الهاف: منتجات الهاف فقط
+    return BackToSchoolData.filter((product) =>
+      product.name.includes("هاف")
+    );
+  }
+
+  return BackToSchoolData;
+}, [selectedOffer?.type]);
 
   const initialPieces = useMemo(() => {
     return Array.from({ length: count }, (_, i) => ({
       id: i + 1,
       productId: disableProductSelection && defaultProductName
-        ? colonProducts.find((p) => p.name === defaultProductName)?.id || null
+        ? filteredProducts.find((p) => p.name === defaultProductName)?.id || null
         : null,
       color: "",
     }));
-  }, [count, disableProductSelection, defaultProductName, colonProducts]);
+  }, [count, disableProductSelection, defaultProductName, filteredProducts]);
 
   const [pieces, setPieces] = useState(initialPieces);
 
@@ -270,20 +284,19 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
       Array.from({ length: count }, (_, i) => ({
         id: i + 1,
         productId: disableProductSelection && defaultProductName
-          ? colonProducts.find((p) => p.name === defaultProductName)?.id || null
+          ? filteredProducts.find((p) => p.name === defaultProductName)?.id || null
           : null,
         color: "",
       }))
     );
     setSelectedSizes({});
     setCompletedCards({});
-  }, [count, disableProductSelection, defaultProductName, colonProducts]);
+  }, [count, disableProductSelection, defaultProductName, filteredProducts]);
 
   // Check completion for each card
   useEffect(() => {
     const completed = {};
     pieces.forEach((piece) => {
-      const product = getProductById(piece.productId);
       completed[piece.id] = !!(
         piece.productId &&
         piece.color &&
@@ -294,10 +307,14 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
   }, [pieces, selectedSizes]);
 
   const getProductById = (id) => BackToSchoolData.find((p) => p.id === id);
+  
+  // Get available colors for a product
   const getProductColors = (productId) => {
     const product = getProductById(productId);
     return product?.avalibeColors || [];
   };
+  
+  // Get sizes for a specific product
   const getProductSizes = (productId) => {
     const product = getProductById(productId);
     if (!product) return [];
@@ -305,6 +322,24 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
       return product.sizes;
     }
     return [];
+  };
+
+  // Get sizes for a specific product and color
+  const getSizesForColor = (productId, colorName) => {
+    const product = getProductById(productId);
+    if (!product) return [];
+    
+    // Check if product has color-specific sizes
+    const colorData = product.productColors?.find(
+      (c) => c.color === colorName
+    );
+    
+    if (colorData && colorData.sizes && colorData.sizes.length > 0) {
+      return colorData.sizes;
+    }
+    
+    // Fallback to product default sizes
+    return product.sizes || [];
   };
 
   const getSizeDisplay = (sizeObj) => {
@@ -362,6 +397,12 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
 
   const handleColorChange = (id, color) => {
     setPieces((prev) => prev.map((p) => (p.id === id ? { ...p, color } : p)));
+    // Clear size when color changes (since sizes might be color-specific)
+    setSelectedSizes((prev) => {
+      const newSizes = { ...prev };
+      delete newSizes[id];
+      return newSizes;
+    });
   };
 
   const handleSizeChange = (id, size) => {
@@ -370,6 +411,10 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
 
   const getProductImage = (product, colorName) => {
     if (!product) return "";
+    const colorData = product.productColors?.find((c) => c.color === colorName);
+    if (colorData) {
+      return colorData.img;
+    }
     const colorIndex = product.avalibeColors?.findIndex((c) => c === colorName);
     if (colorIndex !== -1 && colorIndex >= 0 && product.productColors?.[colorIndex]) {
       return product.productColors[colorIndex].img;
@@ -403,7 +448,7 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
       offerDetails: {
         totalPieces: pieces.length,
         pieces: orderWithDetails,
-        type: "colon",
+        type: selectedOffer?.type || "colon",
       },
       image: mainImage,
     };
@@ -552,14 +597,14 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
         >
           اختر تفاصيل{" "}
           <span className="bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
-            الكولونات
+            {selectedOffer?.type === "colon" ? "الكولونات" : "الهاف كولونات"}
           </span>
         </h2>
         <p
           className="text-gray-400 text-xs md:text-sm px-4"
           style={{ fontFamily: "'Cairo', sans-serif" }}
         >
-          قم بتخصيص كل كولون بالمنتج واللون والمقاس المناسب
+          قم بتخصيص كل {selectedOffer?.type === "colon" ? "كولون" : "هاف كولون"} بالمنتج واللون والمقاس المناسب
         </p>
 
         {/* Progress Bar */}
@@ -593,7 +638,7 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
               className="text-[11px] md:text-xs text-green-500 mt-2"
               style={{ fontFamily: "'Cairo', sans-serif" }}
             >
-              ✨ جميع الكولونات مكتملة! يمكنك إضافة العرض للسلة الآن
+              ✨ جميع {selectedOffer?.type === "colon" ? "الكولونات" : "الهاف كولونات"} مكتملة! يمكنك إضافة العرض للسلة الآن
             </motion.p>
           )}
         </div>
@@ -627,11 +672,16 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
         {pieces.map((piece, idx) => {
           const product = getProductById(piece.productId);
           const colors = getProductColors(piece.productId);
-          const sizes = getProductSizes(piece.productId);
+          
+          // Get sizes based on selected color
+          const sizes = piece.color 
+            ? getSizesForColor(piece.productId, piece.color)
+            : getProductSizes(piece.productId);
+          
           const isCompleted = completedCards[piece.id];
           const isHovered = hoveredCard === piece.id;
 
-          const productOptions = colonProducts.map((p) => ({
+          const productOptions = filteredProducts.map((p) => ({
             value: p.id,
             label: p.name,
           }));
@@ -691,7 +741,7 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                           className="text-[10px] md:text-xs text-gray-400"
                           style={{ fontFamily: "'Cairo', sans-serif" }}
                         >
-                          الكولون
+                          {selectedOffer?.type === "colon" ? "الكولون" : "الهاف كولون"}
                         </p>
                         <p
                           className="text-base md:text-lg font-bold text-gray-800"
@@ -725,7 +775,7 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                       value={piece.productId}
                       onChange={(val) => handleProductChange(piece.id, val)}
                       options={productOptions}
-                      placeholder="اختر الكولون"
+                      placeholder={`اختر ${selectedOffer?.type === "colon" ? "الكولون" : "الهاف كولون"}`}
                       label="المنتج"
                       icon={ShoppingBag}
                       disabled={disableProductSelection}
@@ -752,19 +802,19 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                         style={{ fontFamily: "'Cairo', sans-serif" }}
                       >
                         <ShoppingBag className="w-4 h-4 text-purple-500" />
-                        اختر الكولون
+                        اختر {selectedOffer?.type === "colon" ? "الكولون" : "الهاف كولون"}
                       </label>
                       <Select
                         value={piece.productId}
                         onChange={(val) => handleProductChange(piece.id, val)}
-                        placeholder="كولون"
+                        placeholder={selectedOffer?.type === "colon" ? "كولون" : "هاف كولون"}
                         className="w-full"
                         size="large"
                         disabled={disableProductSelection}
                         style={{ borderRadius: 12 }}
                         dropdownStyle={{ borderRadius: 12 }}
                       >
-                        {colonProducts.map((p) => (
+                        {filteredProducts.map((p) => (
                           <Select.Option key={p.id} value={p.id}>
                             <div className="flex items-center gap-3 py-1">
                               <div className="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
@@ -837,32 +887,41 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                           style={{ borderRadius: 12 }}
                           dropdownStyle={{ borderRadius: 12 }}
                         >
-                          {colors.map((c) => (
-                            <Select.Option key={c} value={c}>
-                              <div className="flex items-center gap-2">
-                                <div
-                                  className="w-5 h-5 rounded-full shadow-inner"
-                                  style={{
-                                    backgroundColor: getColorCode(c),
-                                    border:
-                                      c === "أبيض"
-                                        ? "1px solid #E5E7EB"
-                                        : "none",
-                                  }}
-                                />
-                                <span
-                                  style={{ fontFamily: "'Cairo', sans-serif" }}
-                                >
-                                  {c}
-                                </span>
-                              </div>
-                            </Select.Option>
-                          ))}
+                          {colors.map((c) => {
+                            const product = getProductById(piece.productId);
+                            const colorSizes = getSizesForColor(piece.productId, c);
+                            return (
+                              <Select.Option key={c} value={c}>
+                                <div className="flex items-center gap-2">
+                                  <div
+                                    className="w-5 h-5 rounded-full shadow-inner"
+                                    style={{
+                                      backgroundColor: getColorCode(c),
+                                      border:
+                                        c === "أبيض"
+                                          ? "1px solid #E5E7EB"
+                                          : "none",
+                                    }}
+                                  />
+                                  <span
+                                    style={{ fontFamily: "'Cairo', sans-serif" }}
+                                  >
+                                    {c}
+                                    {colorSizes && colorSizes.length > 0 && (
+                                      <span className="text-xs text-gray-400 mr-2">
+                                        ({colorSizes.length} مقاسات)
+                                      </span>
+                                    )}
+                                  </span>
+                                </div>
+                              </Select.Option>
+                            );
+                          })}
                         </Select>
                       </div>
                     )}
 
-                    {/* Size Selection */}
+                    {/* Size Selection - uses color-specific sizes */}
                     {isMobile ? (
                       <MobileSelect
                         value={selectedSizes[piece.id]}
@@ -897,6 +956,11 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                         >
                           <Ruler className="w-4 h-4 text-purple-500" />
                           المقاس
+                          {piece.color && (
+                            <span className="text-xs text-gray-400">
+                              (لون: {piece.color})
+                            </span>
+                          )}
                         </label>
                         <Select
                           value={selectedSizes[piece.id]}
