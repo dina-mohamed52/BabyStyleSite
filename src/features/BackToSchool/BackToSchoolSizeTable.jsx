@@ -6,11 +6,11 @@ const BackToSchoolSizeTable = () => {
     { size: "0", age: "حديثي الولادة - 9 شهور", length: "40 سم", icon: <Baby className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#F472B6", bg: "bg-pink-50" },
     { size: "1", age: "9 شهور - سنة ونصف", length: "50 سم", icon: <Baby className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#A78BFA", bg: "bg-purple-50" },
     { size: "2", age: "سنة ونصف - 3 سنوات", length: "55 سم", icon: <User className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#60A5FA", bg: "bg-blue-50" },
-    { size: "3", age: "3 - 5 سنوات", length: "63 سم", icon: <User className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#34D399", bg: "bg-emerald-50" },
-    { size: "4", age: "5 - 7 سنوات", length: "70 سم", icon: <Star className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#FBBF24", bg: "bg-amber-50" },
-    { size: "5", age: "7 - 9 سنوات", length: "80 سم", icon: <Star className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#FB923C", bg: "bg-orange-50" },
-    { size: "6", age: "9 - 11 سنة", length: "90 سم", icon: <Crown className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#EC4899", bg: "bg-rose-50" },
-    { size: "7", age: "12 - 14 سنة", length: "95 سم", icon: <Crown className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#8B5CF6", bg: "bg-violet-50" },
+    { size: "4", age: "3 - 5 سنوات", length: "63 سم", icon: <User className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#34D399", bg: "bg-emerald-50" },
+    { size: "6", age: "5 - 7 سنوات", length: "70 سم", icon: <Star className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#FBBF24", bg: "bg-amber-50" },
+    { size: "8", age: "7 - 9 سنوات", length: "80 سم", icon: <Star className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#FB923C", bg: "bg-orange-50" },
+    { size: "10", age: "9 - 11 سنة", length: "90 سم", icon: <Crown className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#EC4899", bg: "bg-rose-50" },
+    { size: "12", age: "12 - 14 سنة", length: "95 سم", icon: <Crown className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#8B5CF6", bg: "bg-violet-50" },
   ];
 
   return (
