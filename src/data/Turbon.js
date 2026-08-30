@@ -25,16 +25,16 @@ export const BandanaTurbonData = [
       {
          img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139095/WhatsApp_Image_2026-08-08_at_12.31.57_AM_1_oarzgu.jpg",
        },
-      {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139095/WhatsApp_Image_2026-08-08_at_12.31.57_AM_a8vj4o.jpg",
-      },
+      // {
+      //   img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139095/WhatsApp_Image_2026-08-08_at_12.31.57_AM_a8vj4o.jpg",
+      // },
     ],
     avalibeColors: ["بيبي بلو","أصفر" ,"بينك", "بيج","أسود", "أحمر", "أبيض"],
     image:
       "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139096/WhatsApp_Image_2026-08-08_at_12.31.58_AM_1_bdik6m.jpg",
     sizes: [
       { size: "0-1", age: "من زيرو لسنة" },
-      { size: "1-3", age: "من سنه ل 3 سنين" },
+      // { size: "1-3", age: "من سنه ل 3 سنين" },
     ],
   },
   {
