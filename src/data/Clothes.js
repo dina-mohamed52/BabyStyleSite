@@ -543,7 +543,7 @@ export const Clothes = [
     id: 29,
     name: "ليجن ريب مضلع ",
     description:
-      "ليجن ريب مضلع صيفي قطن بجودة عالية مميزة، يحتوي على 10% ليكرا لمرونة ممتازة وراحة مثالية تناسب الاستخدام اليومي.",
+      "ليجن ريب مضلع خريفي قطن بجودة عالية مميزة، يحتوي على 10% ليكرا لمرونة ممتازة وراحة مثالية تناسب الاستخدام اليومي.",
     price: 140,
     originalPrice: 195,
     discount: 28,
@@ -603,7 +603,7 @@ export const Clothes = [
     ],
     avalibeColors: ["أبيض","بيج","رصاصي", "أسود", "سكري"],
     image:
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615536/WhatsApp_Image_2026-07-09_at_9.07.02_AM_1_yr3it2.jpg",
+      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448264/WhatsApp_Image_2026-09-03_at_6.00.51_PM_2_nejpal.jpg",
     sizes: [
       { size: "S", age: "من 2 إلى 4 سنوات" },
       { size: "M", age: "من 4 إلى 6 سنوات" },
@@ -728,7 +728,7 @@ export const Clothes = [
       "بينك ساده",
     ],
     image:
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776093867/WhatsApp_Image_2026-04-13_at_8.13.21_AM_xpijif.jpg",
+      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448037/WhatsApp_Image_2026-09-03_at_6.00.51_PM_w6qcgd.jpg",
     sizes: [
       { size: "4-2", age: "من سنة ونص ل 3 سنين" },
       { size: "6-4", age: "من 3 ل 5 سنين" },

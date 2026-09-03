@@ -12,18 +12,20 @@ const CATEGORY_IMAGES = {
     ]
   },
   legging: {
-    hero: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615458/WhatsApp_Image_2026-07-09_at_9.07.02_AM_2_pc3is5.jpg",
+    hero: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448264/WhatsApp_Image_2026-09-03_at_6.00.51_PM_2_nejpal.jpg",
     collage: [
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615536/WhatsApp_Image_2026-07-09_at_9.07.02_AM_1_yr3it2.jpg",
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615465/WhatsApp_Image_2026-07-09_at_9.07.02_AM_kcitd3.jpg",
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615463/WhatsApp_Image_2026-07-09_at_9.07.01_AM_jk9ri6.jpg"
+     // "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615536/WhatsApp_Image_2026-07-09_at_9.07.02_AM_1_yr3it2.jpg",
+    "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448265/WhatsApp_Image_2026-09-03_at_6.00.51_PM_1_cwbpwd.jpg",
+     // "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615465/WhatsApp_Image_2026-07-09_at_9.07.02_AM_kcitd3.jpg",
+     "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448264/WhatsApp_Image_2026-09-03_at_6.00.51_PM_2_nejpal.jpg",
+      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448264/WhatsApp_Image_2026-09-03_at_6.00.51_PM_2_nejpal.jpg"
     ]
   },
   short: {
     hero: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615454/WhatsApp_Image_2026-07-09_at_9.08.15_AM_ty3syu.jpg",
     collage: [
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615458/WhatsApp_Image_2026-07-09_at_9.07.02_AM_2_pc3is5.jpg",
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615536/WhatsApp_Image_2026-07-09_at_9.07.02_AM_1_yr3it2.jpg",
+      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448264/WhatsApp_Image_2026-09-03_at_6.00.51_PM_2_nejpal.jpg",
+      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448265/WhatsApp_Image_2026-09-03_at_6.00.51_PM_1_cwbpwd.jpg",
       "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615465/WhatsApp_Image_2026-07-09_at_9.07.02_AM_kcitd3.jpg"
     ]
   },
