@@ -600,8 +600,18 @@ export const Clothes = [
           { size: "XL", age: "من 8 إلى 10 سنوات" },
         ]
       },
+      {
+  color: "بينك",
+  img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783530160/WhatsApp_Image_2026-07-05_at_10.24.31_AM_1_cerr5j.jpg",
+  sizes: [
+    { size: "S", age: "من 2 إلى 4 سنوات" },
+    { size: "M", age: "من 4 إلى 6 سنوات" },
+    { size: "L", age: "من 6 إلى 8 سنوات" },
+    { size: "XL", age: "من 8 إلى 10 سنوات" }
+  ]
+},
     ],
-    avalibeColors: ["أبيض","بيج","رصاصي", "أسود", "سكري"],
+    avalibeColors: ["أبيض", "بيج", "رصاصي", "أسود", "سكري", "بينك"],
     image:
       "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448264/WhatsApp_Image_2026-09-03_at_6.00.51_PM_2_nejpal.jpg",
     sizes: [
