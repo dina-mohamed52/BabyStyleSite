@@ -6,7 +6,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1789135742/WhatsApp_Image_2026-09-11_at_5.07.24_PM_kdl9fs.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-11%20at%205.07.24%20PM.jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -20,7 +20,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756578820/5879927343848475456_gav34f.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-11%20at%205.07.21%20PM.jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -34,7 +34,7 @@ export const BackToSchoolData = [
       },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1789135742/WhatsApp_Image_2026-09-11_at_5.07.24_PM_1_jheuiw.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-11%20at%205.07.24%20PM%20(1).jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -48,7 +48,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "رصاصي"],
-    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1789135742/WhatsApp_Image_2026-09-11_at_5.07.20_PM_bg8s8r.jpg",
+    image: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-11%20at%205.07.20%20PM.jpeg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -67,7 +67,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756578820/5879927343848475450_f5awon.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-11%20at%205.07.24%20PM%20(3).jpeg",
         sizes: [
 
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -81,7 +81,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756578820/5879927343848475452_cukcb2.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.58%20PM.jpeg",
         sizes: [
 
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -95,7 +95,7 @@ export const BackToSchoolData = [
       },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756578820/5879927343848475449_amknwp.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.58%20PM%20(1).jpeg",
         sizes: [
 
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -109,7 +109,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1789136184/WhatsApp_Image_2026-09-11_at_5.07.20_PM_1_lpvsgw.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-11%20at%205.07.20%20PM%20(4).jpeg",
         sizes: [
 
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -123,7 +123,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "رصاصي", "بينك"],
-    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756575014/468075933_931535155737215_2422425145619665420_n_r6ulp9.jpg",
+    image: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-11%20at%205.07.24%20PM%20(2).jpeg",
     sizes: [
 
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -142,7 +142,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787833382/WhatsApp_Image_2026-08-25_at_1.10.23_PM_r3ctui.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.55%20PM%20(2).jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -156,7 +156,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756578820/5879927343848475452_cukcb2.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.56%20PM%20(1).jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -170,7 +170,7 @@ export const BackToSchoolData = [
       },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756578815/5879927343848475480_uhcvoz.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.55%20PM%20(1).jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -184,7 +184,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756578779/5879927343848475482_iprtxn.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.56%20PM.jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -198,7 +198,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "رصاصي", "بينك"],
-    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756575082/468185339_931536052403792_3120323499499149723_n_zp0ej5.jpg",
+    image: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.55%20PM.jpeg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -218,7 +218,7 @@ export const BackToSchoolData = [
 
       {
         color: "لبني",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756578733/5879927343848475501_heygzw.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.56%20PM%20(3).jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -232,7 +232,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1789136445/WhatsApp_Image_2026-09-11_at_5.07.23_PM_nnhtvs.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.57%20PM.jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -246,7 +246,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["لبني", "بينك"],
-    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1771784154/WhatsApp_Image_2026-02-22_at_3.25.31_AM_cynsay.jpg",
+    image: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.56%20PM%20(2).jpeg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -265,7 +265,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830701/WhatsApp_Image_2026-08-25_at_12.57.33_PM_2_wo3gqy.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.42.37%20PM.jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -279,7 +279,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830735/WhatsApp_Image_2026-08-25_at_12.57.33_PM_1_pf1vfn.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.42.38%20PM.jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -293,7 +293,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756578818/5879927343848475497_f2vrqs.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.40.02%20PM%20(1).jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -307,7 +307,7 @@ export const BackToSchoolData = [
       },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1789136785/WhatsApp_Image_2026-09-11_at_5.07.23_PM_1_ju5ocb.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.40.02%20PM.jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -321,7 +321,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بينك", "رصاصي"],
-    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830774/WhatsApp_Image_2026-08-25_at_12.53.22_PM_1_iiehhr.jpg",
+    image: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.43.05%20PM.jpeg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -340,7 +340,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756578962/5879927343848475485_eqj87r.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.58%20PM%20(4).jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -349,7 +349,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756578775/5879927343848475488_ysmz4q.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.58%20PM%20(5).jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -358,7 +358,7 @@ export const BackToSchoolData = [
       },
       {
         color: "كحلي",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1789136998/WhatsApp_Image_2026-09-11_at_5.07.20_PM_2_nwvkls.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.58%20PM%20(2).jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -367,7 +367,7 @@ export const BackToSchoolData = [
       },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1789136997/WhatsApp_Image_2026-09-11_at_5.07.20_PM_3_khbwwl.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.58%20PM%20(6).jpeg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -380,7 +380,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["بينك", "أسود", "كحلي", "رصاصي"],
-    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1789136997/WhatsApp_Image_2026-09-11_at_5.07.19_PM_n2osng.jpg",
+    image: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.37.58%20PM%20(3).jpeg",
     sizes: [
       { size: "6-4", age: "من 3 ل 5 سنين" },
       { size: "8-6", age: "من 5 ل 7 سنين" },
@@ -396,7 +396,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830745/WhatsApp_Image_2026-08-25_at_12.55.02_PM_2_xgiqej.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.43.44%20PM%20(4).jpeg",
         sizes: [
 
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
@@ -409,7 +409,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830751/WhatsApp_Image_2026-08-25_at_12.55.02_PM_1_oviwb8.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.43.44%20PM%20(3).jpeg",
         sizes: [
 
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
@@ -422,7 +422,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بيج",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756578745/5879927343848475492_t7jagx.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.43.44%20PM.jpeg",
         sizes: [
 
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
@@ -435,7 +435,7 @@ export const BackToSchoolData = [
       },
       {
         color: "كحلي",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830783/WhatsApp_Image_2026-08-25_at_12.53.22_PM_2_ahfcga.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.43.44%20PM%20(1).jpeg",
         sizes: [
 
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
@@ -448,7 +448,7 @@ export const BackToSchoolData = [
       },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787833449/WhatsApp_Image_2026-08-25_at_12.55.02_PM_yp9dep.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.43.44%20PM%20(2).jpeg",
         sizes: [
 
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
@@ -461,7 +461,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بيج", "كحلي", "رصاصي"],
-    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830745/WhatsApp_Image_2026-08-25_at_12.55.02_PM_2_xgiqej.jpg",
+    image: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-13%20at%202.43.44%20PM%20(4).jpeg",
     sizes: [
 
       { size: "4-2", age: "من سنة ونص ل 3 سنين" },
@@ -479,7 +479,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830671/WhatsApp_Image_2026-08-25_at_1.23.10_PM_1_ofnsqw.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.29%20PM%20(1).jpeg",
         sizes: [
           { size: "6-4", age: "من 3 ل 5 سنين" },
           { size: "8-6", age: "من 5 ل 7 سنين" },
@@ -488,7 +488,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830670/WhatsApp_Image_2026-08-25_at_1.23.10_PM_2_zn7knk.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.29%20PM.jpeg",
         sizes: [
           { size: "6-4", age: "من 3 ل 5 سنين" },
           { size: "8-6", age: "من 5 ل 7 سنين" },
@@ -497,7 +497,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أحمر",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830671/WhatsApp_Image_2026-08-25_at_1.23.10_PM_pdyqa4.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.29%20PM%20(2).jpeg",
         sizes: [
           { size: "6-4", age: "من 3 ل 5 سنين" },
           { size: "8-6", age: "من 5 ل 7 سنين" },
@@ -506,7 +506,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أصفر",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830849/WhatsApp_Image_2026-08-25_at_1.23.10_PM_4_vmsqzj.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.30%20PM%20(1).jpeg",
         sizes: [
           { size: "6-4", age: "من 3 ل 5 سنين" },
           { size: "8-6", age: "من 5 ل 7 سنين" },
@@ -515,7 +515,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830773/WhatsApp_Image_2026-08-25_at_1.23.10_PM_3_dekttp.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.30%20PM%20(2).jpeg",
         sizes: [
           { size: "6-4", age: "من 3 ل 5 سنين" },
           { size: "8-6", age: "من 5 ل 7 سنين" },
@@ -524,7 +524,7 @@ export const BackToSchoolData = [
       },
       {
         color: "لافندر",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830670/WhatsApp_Image_2026-08-25_at_1.23.10_PM_5_ak3fzu.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.30%20PM.jpeg",
         sizes: [
           { size: "6-4", age: "من 3 ل 5 سنين" },
           { size: "8-6", age: "من 5 ل 7 سنين" },
@@ -533,7 +533,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "أحمر", "أصفر", "بينك", "لافندر"],
-    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1787830671/WhatsApp_Image_2026-08-25_at_1.23.10_PM_1_ofnsqw.jpg",
+    image: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.29%20PM%20(1).jpeg",
     sizes: [
       { size: "6-4", age: "من 3 ل 5 سنين" },
       { size: "8-6", age: "من 5 ل 7 سنين" },
@@ -590,7 +590,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776093856/WhatsApp_Image_2026-04-13_at_8.13.21_AM_2_w8zj4z.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.32%20PM.jpeg",
         sizes: [
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
           { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -602,7 +602,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776093867/WhatsApp_Image_2026-04-13_at_8.13.21_AM_xpijif.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.32%20PM%20(1).jpeg",
         sizes: [
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
           { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -614,7 +614,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أوف وايت",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776610600/WhatsApp_Image_2026-04-19_at_4.26.08_AM_fso3aw.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.31%20PM%20(1).jpeg",
         sizes: [
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
           { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -626,7 +626,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بيج",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776610600/WhatsApp_Image_2026-04-19_at_4.26.08_AM_1_h90nua.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.31%20PM.jpeg",
         sizes: [
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
           { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -638,7 +638,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "أوف وايت", "بيج"],
-    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776093867/WhatsApp_Image_2026-04-13_at_8.13.21_AM_xpijif.jpg",
+    image: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.31%20PM.jpeg",
     sizes: [
       { size: "4-2", age: "من سنة ونص ل 3 سنين" },
       { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -660,7 +660,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أوف وايت",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776093857/WhatsApp_Image_2026-04-13_at_8.13.20_AM_lh1f7a.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.28%20PM.jpeg",
         sizes: [
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
           { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -672,7 +672,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777150015/WhatsApp_Image_2026-04-23_at_4.22.21_PM_ei6ige.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.31%20PM%20(4).jpeg",
         sizes: [
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
           { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -684,7 +684,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776093856/WhatsApp_Image_2026-04-13_at_8.13.20_AM_2_m5o6l4.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.31%20PM%20(2).jpeg",
         sizes: [
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
           { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -696,7 +696,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776093857/WhatsApp_Image_2026-04-13_at_8.13.20_AM_1_bgfipz.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.31%20PM%20(3).jpeg",
         sizes: [
           { size: "6-8", age: "من 5 ل 7 سنين" },
           { size: "8-10", age: "من 7 ل 9 سنين" },
@@ -706,7 +706,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أوف وايت", "أسود", "بينك"],
-    image: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776093857/WhatsApp_Image_2026-04-13_at_8.13.20_AM_lh1f7a.jpg",
+    image: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.31%20PM%20(2).jpeg",
     sizes: [
       { size: "4-2", age: "من سنة ونص ل 3 سنين" },
       { size: "6-4", age: "من 3 ل 5 سنين" },
