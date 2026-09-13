@@ -14,7 +14,7 @@ function TurbonHomePage() {
       description: 'تشكيلة راقية من البندانات العصرية، تناسب جميع الأذواق',
       count: '٢٥+ منتج',
       badge: 'جديد',
-      img: 'https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139965/WhatsApp_Image_2026-08-08_at_12.50.42_AM_qky1zc.jpg',
+      img: 'https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/ribbed/photo_5_2026-09-13_16-19-41.jpg',
       path: '/turbon/bandana', // ✅ route مع category
       icon: Award,
     },
@@ -25,7 +25,7 @@ function TurbonHomePage() {
       description: 'تربونات مصنوعة من أجود الخامات، بتصاميم عصرية وأنيقة',
       count: '٣٠+ منتج',
       badge: 'الأكثر مبيعاً',
-      img: 'https://res.cloudinary.com/dxenvgjv5/image/upload/v1787228192/WhatsApp_Image_2026-08-20_at_5.14.29_AM_vagugt.jpg',
+      img: 'https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/photo_9_2026-09-13_16-14-57.jpg',
       path: '/turbon/turbon', // ✅ route مع category
       icon: Zap,
     },
@@ -36,7 +36,7 @@ function TurbonHomePage() {
       description: 'أطقم من البندانات المتناسقة بالألوان والتصاميم المتكاملة',
       count: '٨+ أطقم',
       badge: 'حصري',
-      img: 'https://res.cloudinary.com/dxenvgjv5/image/upload/v1783006087/WhatsApp_Image_2026-06-28_at_5.38.23_PM_d7vhmp.jpg',
+      img: 'https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/setWithHalfBow/photo_1_2026-09-13_16-03-13.jpg',
       path: '/turbon/bandana-set', // ✅ route مع category
       icon: Package,
     },
@@ -47,7 +47,7 @@ function TurbonHomePage() {
       description: 'أطقم من التربونات المتناسقة بأشكال وألوان متكاملة',
       count: '٧+ أطقم',
       badge: 'عرض خاص',
-      img: 'https://res.cloudinary.com/dxenvgjv5/image/upload/v1787236966/WhatsApp_Image_2026-08-20_at_7.07.45_AM_vvifjl.jpg',
+      img: 'https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/Bow/photo_11_2026-09-13_16-19-41.jpg',
       path: '/turbon/turbon-set', // ✅ route مع category
       icon: Layers,
     },
@@ -353,7 +353,7 @@ function TurbonHomePage() {
             <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-2 p-3.5">
               <div className="row-span-2 rounded-xl overflow-hidden relative bg-white shadow-md">
                 <img
-                  src="https://res.cloudinary.com/dxenvgjv5/image/upload/v1777471515/WhatsApp_Image_2026-04-28_at_4.04.18_AM_7_bxi2rz.jpg"
+                  src="https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/SetWithHalfMesh/photo_10_2026-04-12_02-24-54.jpg"
                   alt="طقم بندانات"
                   className="w-full h-full object-contain bg-[#fafafa] p-2 hover:scale-105 transition-transform duration-500"
                 />
@@ -363,7 +363,7 @@ function TurbonHomePage() {
               </div>
               <div className="rounded-xl overflow-hidden relative bg-white shadow-md">
                 <img
-                  src="https://res.cloudinary.com/dxenvgjv5/image/upload/v1777556379/WhatsApp_Image_2026-04-29_at_11.12.02_AM_3_ruhdvo.jpg"
+                  src="https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/Bow/photo_11_2026-09-13_16-19-41.jpg"
                   alt="طقم تربونات"
                   className="w-full h-full object-contain bg-[#fafafa] p-2 hover:scale-105 transition-transform duration-500"
                 />
@@ -373,7 +373,7 @@ function TurbonHomePage() {
               </div>
               <div className="rounded-xl overflow-hidden relative bg-white shadow-md">
                 <img
-                  src="https://res.cloudinary.com/dxenvgjv5/image/upload/v1777400594/WhatsApp_Image_2026-04-28_at_4.04.18_AM_3_ydjfak.jpg"
+                  src="https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/setWithHalfBow/photo_1_2026-09-13_16-03-13.jpg"
                   alt="أطقم متنوعة"
                   className="w-full h-full object-contain bg-[#fafafa] p-2 hover:scale-105 transition-transform duration-500"
                 />
