@@ -76,6 +76,8 @@ function WinterPatterned() {
             <ProductList products={BackToSchoolData} />
           </div>
 
+            <BackToSchoolSizeTable />
+            <FAQ /> 
           {/* Offers with ref */}
           <div ref={offersRef} id="offersSection">
             <Offers 
@@ -97,8 +99,6 @@ function WinterPatterned() {
             </div>
           )}
 <OfferCountdown />
-          <BackToSchoolSizeTable />
-          <FAQ />
 
           <Header1st />
         </div>
