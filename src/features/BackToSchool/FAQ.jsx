@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { 
-  Shield, 
-  Eye, 
-  RefreshCw, 
-  Truck, 
-  CreditCard, 
-  ChevronDown, 
+import {
+  Shield,
+  Eye,
+  RefreshCw,
+  Truck,
+  CreditCard,
+  ChevronDown,
   ChevronUp,
   Sparkles,
   Heart,
@@ -22,16 +22,16 @@ import {
 const FAQItem = ({ question, answer, icon, isOpen, onClick, index }) => {
   const colors = [
     "from-pink-500 to-rose-500",
-    "from-purple-500 to-pink-500", 
+    "from-purple-500 to-pink-500",
     "from-blue-500 to-indigo-500",
     "from-emerald-500 to-teal-500",
     "from-amber-500 to-orange-500"
   ];
-  
+
   const gradient = colors[index % colors.length];
 
   return (
-    <div 
+    <div
       className={`group rounded-xl border-2 transition-all duration-300 overflow-hidden ${
         isOpen
           ? "bg-white shadow-lg shadow-pink-200/50 border-pink-400"
@@ -64,8 +64,8 @@ const FAQItem = ({ question, answer, icon, isOpen, onClick, index }) => {
           <ChevronDown className={`w-5 h-5 ${isOpen ? 'text-pink-500' : 'text-gray-400'}`} />
         </div>
       </button>
-      
-      <div 
+
+      <div
         className={`overflow-hidden transition-all duration-300 ease-in-out ${
           isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
@@ -103,6 +103,11 @@ const FAQ = () => {
       icon: <RotateCw />
     },
     {
+      question: "ما هي شروط الاستبدال والاسترجاع؟",
+      answer: "الاستبدال والاسترجاع بمصاريف شحن على العميل، بشرط أن يكون المنتج لم يُلبس أو يُغسل.",
+      icon: <RefreshCw />
+    },
+    {
       question: "متى يصل المنتج؟",
       answer: "يتم توصيل طلبك خلال 2 إلى 5 أيام عمل حسب منطقتك. نحرص على سرعة التوصيل لوصول منتجك في أسرع وقت.",
       icon: <Clock />
@@ -122,7 +127,7 @@ const FAQ = () => {
     <div className="relative max-w-4xl mx-auto my-8 sm:my-12 px-3 sm:px-4" dir="rtl">
       {/* Main Container */}
       <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-        
+
         {/* Header */}
         <div className="relative pt-8 sm:pt-10 pb-6 px-4 sm:px-6 md:px-8 text-center border-b border-gray-100">
           <div className="inline-flex items-center gap-2 bg-pink-100 rounded-full px-4 py-1.5 text-xs font-medium mb-4 border-2 border-pink-300">

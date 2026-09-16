@@ -7,18 +7,18 @@ export const HalfColoneData = [
     tabType: "half",
     productColors: [
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1775744004/WhatsApp_Image_2026-04-08_at_4.10.11_PM_dfghgu.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/HalfColonMesh/WhatsApp%20Image%202026-04-28%20at%203.59.30%20AM.jpeg",
       },
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777471778/WhatsApp_Image_2026-04-28_at_3.59.30_AM_2_bxipac.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/HalfColonMesh/WhatsApp%20Image%202026-04-28%20at%203.59.30%20AM%20(1).jpeg",
       },
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777471779/WhatsApp_Image_2026-04-28_at_3.59.29_AM_2_kjmil3.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/HalfColonMesh/WhatsApp%20Image%202026-04-28%20at%203.59.29%20AM%20(1).jpeg",
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بينك"],
     image:
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777392479/WhatsApp_Image_2026-04-28_at_3.59.29_AM_emd7nb.jpg",
+      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/HalfColonMesh/WhatsApp%20Image%202026-04-28%20at%203.59.29%20AM.jpeg",
     sizes: [
       { size: "0-2", age: "من زيرو لسنه" },
       { size: "2-4", age: "من سنه لسنتين" },
@@ -33,27 +33,27 @@ export const HalfColoneData = [
     tabType: "half",
     productColors: [
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777392333/WhatsApp_Image_2026-04-28_at_3.58.14_AM_1_jt1dli.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.29%20PM%20(1).jpeg",
       },
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777392416/WhatsApp_Image_2026-04-28_at_3.58.15_AM_1_tvriqk.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.29%20PM.jpeg",
       },
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777392334/WhatsApp_Image_2026-04-28_at_3.58.15_AM_asgqus.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.30%20PM%20(2).jpeg",
       },
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1781882037/WhatsApp_Image_2026-06-08_at_3.56.21_AM_lefkl5.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.29%20PM%20(2).jpeg",
       },
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777392333/WhatsApp_Image_2026-04-28_at_3.58.16_AM_bwr0x8.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.30%20PM.jpeg",
       },
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777392334/WhatsApp_Image_2026-04-28_at_3.58.15_AM_2_ygc1uh.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.30%20PM.jpeg",
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بينك", "أحمر", "أصفر", "لافندر"],
     image:
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1781882037/WhatsApp_Image_2026-06-08_at_3.56.21_AM_lefkl5.jpg ",
+      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.29%20PM%20(1).jpeg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -71,15 +71,15 @@ export const HalfColoneData = [
     tabType: "half",
     productColors: [
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777470061/WhatsApp_Image_2026-04-28_at_4.10.24_AM_fcapor.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-04-28%20at%204.10.24%20AM.jpeg",
       },
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777470416/WhatsApp_Image_2026-04-28_at_4.11.02_AM_1_ttj1mr.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-04-28%20at%204.11.02%20AM.jpeg",
       },
     ],
     avalibeColors: ["أبيض"],
     image:
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777470061/WhatsApp_Image_2026-04-28_at_4.10.24_AM_fcapor.jpg",
+      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-04-28%20at%204.10.24%20AM.jpeg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },

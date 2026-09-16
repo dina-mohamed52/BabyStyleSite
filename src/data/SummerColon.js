@@ -167,15 +167,15 @@ export const SummerColonData = [
 
     productColors: [
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776012182/WhatsApp_Image_2026-04-08_at_5.55.40_PM_zxuno0.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.04.16%20AM%20(1).jpeg",
       },
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776012028/WhatsApp_Image_2026-04-08_at_5.55.40_PM_1_on4m0r.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.04.15%20AM.jpeg",
       },
     ],
     avalibeColors: ["أبيض", "أسود"],
     image:
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776012196/WhatsApp_Image_2026-04-08_at_5.55.41_PM_sjakzv.jpg",
+      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.04.16%20AM.jpeg",
 
     sizes: [
       { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
@@ -203,21 +203,21 @@ export const SummerColonData = [
 
     productColors: [
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1778686629/WhatsApp_Image_2026-05-13_at_4.05.35_AM_l2icr8.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.01.28%20AM%20(1).jpeg",
       },
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776011999/WhatsApp_Image_2026-04-08_at_5.56.54_PM_1_citpap.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.00.00%20AM%20(1).jpeg",
       },
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776011999/WhatsApp_Image_2026-04-08_at_5.56.54_PM_qyphwk.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.00.00%20AM.jpeg",
       },
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1780341610/WhatsApp_Image_2026-05-31_at_4.26.15_AM_ekatv6.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.01.28%20AM.jpeg",
       },
     ],
     avalibeColors: ["أسود", "أبيض", "بينك","بيج"],
     image:
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776011999/WhatsApp_Image_2026-04-08_at_5.56.54_PM_1_citpap.jpg",
+      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.00.00%20AM%20(1).jpeg",
 
     sizes: [
       { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
@@ -246,18 +246,18 @@ export const SummerColonData = [
 
     productColors: [
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776011998/WhatsApp_Image_2026-04-08_at_5.57.56_PM_1_nfxbfe.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM%20(2).jpeg",
       },
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776011984/WhatsApp_Image_2026-04-08_at_5.57.57_PM_ypwxul.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM%20(1).jpeg",
       },
       {
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776011993/WhatsApp_Image_2026-04-08_at_5.57.56_PM_3_gstl7m.jpg",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM.jpeg",
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بينك"],
     image:
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776012006/WhatsApp_Image_2026-04-08_at_5.57.56_PM_uyqqda.jpg",
+      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM%20(2).jpeg",
 
     sizes: [
       { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },

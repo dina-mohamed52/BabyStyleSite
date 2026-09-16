@@ -716,4 +716,220 @@ export const BackToSchoolData = [
       { size: "14-12", age: "من 12 ل 14 سنة" },
     ],
   },
+  {
+    id: 25,
+    name: "كولون قلوب",
+    description:
+      "كولون خريفي قطن ناعم مدعوم بنسبة 10% ليكرا لمرونة عالية وراحة طوال اليوم، بتصميم قلوب أنيق مناسب للإطلالات اليومية والمناسبات.",
+    price: 140,
+    originalPrice: 195,
+    discount: 28,
+    rating: 5,
+    category: "colon",
+
+    productColors: [
+      {
+        color: "أبيض",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.04.16%20AM%20(1).jpeg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          // { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          { size: "6-4", age: "من 3 ل 5 سنين" },
+          // { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
+      },
+      {
+        color: "أسود",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.04.15%20AM.jpeg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          // { size: "6-4", age: "من 3 ل 5 سنين" },
+          // { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
+      },
+    ],
+    avalibeColors: ["أبيض", "أسود"],
+    image:
+      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.04.16%20AM.jpeg",
+
+    sizes: [
+      { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+      { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+      { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+      { size: "6-4", age: "من 3 ل 5 سنين" },
+      { size: "8-6", age: "من 5 ل 7 سنين" },
+      { size: "10-8", age: "من 7 ل 9 سنين" },
+      { size: "12-10", age: "من 9 ل 11 سنة" },
+      { size: "14-12", age: "من 12 ل 14 سنة" },
+    ],
+  },
+
+  {
+    id: 26,
+    name: "كولون فيونكه",
+    description:
+      "كولون خريفي  قطن بلمسة أنثوية ناعمة مع فيونكه أنيقة، مصنوع من خامة مرنة 10% ليكرا لتوفير راحة مثالية وحركة سهلة طوال اليوم.",
+
+    price: 140,
+    originalPrice: 195,
+    discount: 28,
+    rating: 5,
+    category: "colon",
+
+    productColors: [
+      {
+        color: "أسود",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.01.28%20AM%20(1).jpeg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          // { size: "6-4", age: "من 3 ل 5 سنين" },
+          { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
+      },
+      {
+        color: "أبيض",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.00.00%20AM%20(1).jpeg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          { size: "6-4", age: "من 3 ل 5 سنين" },
+          { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
+      },
+      {
+        color: "بينك",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.00.00%20AM.jpeg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          { size: "6-4", age: "من 3 ل 5 سنين" },
+          { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
+      },
+      {
+        color: "بيج",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.01.28%20AM.jpeg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          // { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          { size: "6-4", age: "من 3 ل 5 سنين" },
+          { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
+      },
+    ],
+    avalibeColors: ["أسود", "أبيض", "بينك","بيج"],
+    image:
+      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.00.00%20AM%20(1).jpeg",
+
+    sizes: [
+      { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+      { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+      { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+      { size: "6-4", age: "من 3 ل 5 سنين" },
+      { size: "8-6", age: "من 5 ل 7 سنين" },
+      { size: "10-8", age: "من 7 ل 9 سنين" },
+      { size: "12-10", age: "من 9 ل 11 سنة" },
+      { size: "14-12", age: "من 12 ل 14 سنة" },
+    ],
+   
+  },
+
+  {
+    id: 27,
+    name: "كولون جكار",
+    description:
+      "كولون خريفي  قطن بجودة عالية ونقشة جكار مميزة، يحتوي على 10% ليكرا لمرونة ممتازة وراحة مثالية تناسب الاستخدام اليومي.",
+
+    price: 140,
+    originalPrice: 195,
+    discount: 28,
+    rating: 5,
+    category: "colon",
+
+    productColors: [
+      {
+        color: "أبيض",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM%20(2).jpeg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          // { size: "6-4", age: "من 3 ل 5 سنين" },
+          { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
+      },
+      {
+        color: "أسود",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM%20(1).jpeg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          // { size: "6-4", age: "من 3 ل 5 سنين" },
+          // { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          // { size: "12-10", age: "من 9 ل 11 سنة" },
+          // { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
+      },
+      {
+        color: "بينك",
+        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM.jpeg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          { size: "6-4", age: "من 3 ل 5 سنين" },
+          { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
+      },
+    ],
+    avalibeColors: ["أبيض", "أسود", "بينك"],
+    image:
+      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM%20(2).jpeg",
+
+    sizes: [
+      { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+      { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+      { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+      { size: "6-4", age: "من 3 ل 5 سنين" },
+      { size: "8-6", age: "من 5 ل 7 سنين" },
+      { size: "10-8", age: "من 7 ل 9 سنين" },
+      { size: "12-10", age: "من 9 ل 11 سنة" },
+      { size: "14-12", age: "من 12 ل 14 سنة" },
+    ],
+  },
+
 ];
