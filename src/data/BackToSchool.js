@@ -581,7 +581,7 @@ export const BackToSchoolData = [
   {
     id: 11,
     name: "ليجن أوباك فيونكه",
-    description: "ليجن أوباك بتصميم فيونكة أنيق، خامة قطن مريحة غير شفافة مع مرونة عالية.",
+    description: "ليجن أوباك خريفي بتصميم فيونكة أنيق، خامة قطن مريحة غير شفافة مع مرونة عالية.",
     rating: 5,
     category: "legging",
     productColors: [
