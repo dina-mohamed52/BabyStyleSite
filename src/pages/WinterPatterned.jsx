@@ -26,7 +26,6 @@ function WinterPatterned() {
   const productListRef = useRef(null);
   const { t } = useTranslation();
 
-  // useEffect لتفعيل scroll بعد ظهور OrderCollection
   useEffect(() => {
     if (selectedOffer && orderCollectionRef.current) {
       orderCollectionRef.current.scrollIntoView({
@@ -37,7 +36,6 @@ function WinterPatterned() {
     }
   }, [selectedOffer]);
 
-  // Functions to scroll to sections
   const scrollToOffers = () => {
     if (offersRef.current) {
       offersRef.current.scrollIntoView({
@@ -58,26 +56,37 @@ function WinterPatterned() {
 
   return (
     <>
-      {/* Offer Button - خارج الـ container عشان يثبت في الشاشة كلها */}
       <div className="bg-[#FFFf]">
         <OfferButton />
 
         <div dir="rtl" className="container mx-auto">
-          {/* Hero Section with scroll functions */}
           <BackToSchoolHeroSec 
             scrollToOffers={scrollToOffers}
             scrollToProducts={scrollToProducts}
           />
 
-                {/* <WHeader /> */}
-          
           {/* Product List with ref */}
           <div ref={productListRef}>
             <ProductList products={BackToSchoolData} />
           </div>
 
-            <BackToSchoolSizeTable />
-            <FAQ /> 
+    
+          <div className="grid grid-cols-2 gap-2 my-4">
+            <img 
+              src="https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572273/WhatsApp_Image_2026-09-14_at_9.16.20_AM_1.jpg" 
+              alt="Back to School" 
+              className="w-full h-auto rounded-lg object-cover"
+            />
+            <img 
+              src="https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572344/WhatsApp_Image_2026-09-14_at_9.16.20_AM.jpg" 
+              alt="Back to School" 
+              className="w-full h-auto rounded-lg object-cover"
+            />
+          </div>
+
+          <BackToSchoolSizeTable />
+          <FAQ /> 
+
           {/* Offers with ref */}
           <div ref={offersRef} id="offersSection">
             <Offers 
@@ -98,13 +107,12 @@ function WinterPatterned() {
               <OrderCollection selectedOffer={selectedOffer} formRef={formRef} />
             </div>
           )}
-<OfferCountdown />
 
+          <OfferCountdown />
           <Header1st />
         </div>
 
         <div>
-          
           <PurchaseNotifications />
           <div className="p-6">
             <ProductBenefits />

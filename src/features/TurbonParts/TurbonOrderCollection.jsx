@@ -233,7 +233,7 @@ function TurbonOrderCollection({
   const tabType = selectedOffer?.selectedTabType;
   const type = selectedOffer?.selectedType;
 
-  console.log("tabType:", tabType, "type:", type);
+  
 
   if (type === "set-bandana") {
     return BandanaTurbonData.filter(p => p.type === "set-bandana");
