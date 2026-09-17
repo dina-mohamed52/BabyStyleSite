@@ -10,54 +10,50 @@ import { useTranslation } from "react-i18next";
 const reviewImages = [
   {
     id: 1,
-    url: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1771794334/555_c3bqcn.jpg",
+    url: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789573518/481445774_609893998524363_64198970846138266_n.jpg",
     alt: "Review 1 - Customer feedback about product quality",
   },
   {
     id: 2,
-    url: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1771794303/495252706_673781162135646_6982662795772231792_n_np1anf.jpg",
+    url: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789573510/481766259_609892698524493_3143350412755106085_n.jpg",
     alt: "Review 2 - Happy customer with their purchase",
   },
   {
     id: 3,
-    url: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1771794303/1_zhdox8.jpg",
+    url: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789573509/481671737_609893931857703_1470368248243400013_n.jpg",
     alt: "Review 3 - Customer testimonial",
   },
   {
     id: 4,
-    url: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1771794292/481766259_609892698524493_3143350412755106085_n_wy3qji.jpg",
+    url: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789573509/481183760_609893985191031_5574571128089207315_n.jpg",
     alt: "Review 4 - Product review",
   },
   {
     id: 5,
-    url: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1771794292/481671737_609893931857703_1470368248243400013_n_fygncv.jpg",
+    url: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789573508/481909641_609893901857706_2852423087529994498_n.jpg",
     alt: "Review 5 - Customer satisfaction",
   },
   {
     id: 6,
-    url: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1771794292/481183760_609893985191031_5574571128089207315_n_w1ubrz.jpg",
+    url: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789573508/480701076_609894101857686_332979890116712521_n.jpg",
     alt: "Review 6 - Product quality feedback",
   },
   {
     id: 7,
-    url: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1771794292/480701076_609894101857686_332979890116712521_n_owwaii.jpg",
+    url: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789573508/480819689_609893915191038_6254013975121748569_n.jpg",
     alt: "Review 7 - Customer testimonial",
   },
   {
     id: 8,
-    url: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1771794716/480819689_609893915191038_6254013975121748569_n_ecj3et.jpg",
+    url: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789573508/1.jpg",
     alt: "Review 8 - Customer testimonial",
   },
   {
     id: 9,
-    url: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1771794741/481829700_609894231857673_3910082717633262042_n_dm4cox.jpg",
+    url: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789573508/555.jpg",
     alt: "Review 9 - Customer testimonial",
   },
-  {
-    id: 10,
-    url: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1771794744/481909641_609893901857706_2852423087529994498_n_sfadek.jpg",
-    alt: "Review 10 - Customer testimonial",
-  },
+  
 ];
 export default function Reviews() {
   const { t } = useTranslation();

@@ -31,7 +31,7 @@ const GRAY_800 = "#4B5563";
 const colonOffers = [
   {
     quantity: "3 كولون",
-    name: "عرض 3 كولون خريفي",
+    name: "عرض 3 كولون ",
     price: 315,
     oldPrice: 480,
     value: 3,
@@ -39,7 +39,7 @@ const colonOffers = [
   },
   {
     quantity: "4 كولون",
-    name: "عرض 4 كولون خريفي",
+    name: "عرض 4 كولون ",
     price: 400,
     oldPrice: 620,
     value: 4,
@@ -47,7 +47,7 @@ const colonOffers = [
   },
   {
     quantity: "5 كولون",
-    name: "عرض 5 كولون خريفي",
+    name: "عرض 5 كولون ",
     price: 475,
     oldPrice: 740,
     value: 5,
@@ -57,7 +57,7 @@ const colonOffers = [
   },
   {
     quantity: "6 كولون",
-    name: "عرض 6 كولون خريفي",
+    name: "عرض 6 كولون ",
     price: 570,
     oldPrice: 910,
     value: 6,
@@ -67,7 +67,7 @@ const colonOffers = [
   },
   {
     quantity: "8 كولون",
-    name: "عرض 8 كولون خريفي",
+    name: "عرض 8 كولون ",
     price: 720,
     oldPrice: 1180,
     value: 8,
@@ -75,7 +75,7 @@ const colonOffers = [
   },
   {
     quantity: "12 كولون",
-    name: "عرض 12 كولون خريفي",
+    name: "عرض 12 كولون ",
     price: 960,
     oldPrice: 1720,
     value: 12,
@@ -89,7 +89,7 @@ const colonOffers = [
 const halfColonOffers = [
   {
     quantity: "3 هاف",
-    name: "عرض 3 هاف خريفي",
+    name: "عرض 3 هاف ",
     price: 210,
     oldPrice: 330,
     value: 3,
@@ -97,7 +97,7 @@ const halfColonOffers = [
   },
   {
     quantity: "4 هاف",
-    name: "عرض 4 هاف خريفي",
+    name: "عرض 4 هاف ",
     price: 260,
     oldPrice: 420,
     value: 4,
@@ -105,7 +105,7 @@ const halfColonOffers = [
   },
   {
     quantity: "6 هاف",
-    name: "عرض 6 هاف خريفي",
+    name: "عرض 6 هاف ",
     price: 330,
     oldPrice: 540,
     value: 6,
@@ -167,8 +167,8 @@ function Offers({ setSelectedOffer, scrollToOrderCollection, type = "colon" }) {
             style={{ color: GRAY_800 }}
           >
             {activeTab === "colon"
-              ? "🎨 عروض الكولون الخريفي"
-              : "🌾 عروض الهاف الخريفي"}
+              ? "🎨 عروض الكولون "
+              : "🌾 عروض الهاف "}
           </h2>
           <Sparkles className="w-5 h-5" style={{ color: primaryColor }} />
         </div>
