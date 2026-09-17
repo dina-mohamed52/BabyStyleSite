@@ -114,6 +114,7 @@ function WinterPatterned() {
 
         <div>
           <PurchaseNotifications />
+          
           <div className="p-6">
             <ProductBenefits />
           </div>
