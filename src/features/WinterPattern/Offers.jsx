@@ -337,7 +337,7 @@ function Offers({ setSelectedOffer, scrollToOrderCollection, type = "colon" }) {
 
                   {/* Name */}
                   <p className="text-xs mb-2" style={{ color: GRAY_500 }}>
-                    {offer.name}
+                    {/* {offer.name} */}
                   </p>
 
                   {/* Price Per Piece */}
