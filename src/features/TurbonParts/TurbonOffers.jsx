@@ -54,7 +54,7 @@ function TurbonOffers({
 
     // ✅ أولوية للـ category من الـ URL
     if (category) {
-      console.log("🔍 Filtering by category:", category);
+    
       
       switch (category) {
         case 'bandana':
@@ -91,7 +91,7 @@ function TurbonOffers({
 
     // ✅ لو في filterByProductType محدد (من ProductDetails)
     if (filterByProductType) {
-      console.log("🔍 Filtering by product type:", filterByProductType);
+  
       
       if (filterByProductType === "turbon" || filterByTabType === "turbon") {
         return offers.filter(offer => 
@@ -116,7 +116,7 @@ function TurbonOffers({
 
     // ✅ لو في filterByTabType محدد بس من غير product type
     if (filterByTabType) {
-      console.log("🔍 Filtering by tab type only:", filterByTabType);
+    
       
       if (filterByTabType === "bandana") {
         return offers.filter(offer => 
@@ -161,12 +161,7 @@ function TurbonOffers({
     return offers;
   })();
 
-  // ✅ Debug - طباعة العروض المفلترة
-  console.log("📦 Filtered Offers:", filteredOffers);
-  console.log("📋 Category:", category);
-  console.log("📋 Product type filter:", filterByProductType);
-  console.log("📋 Tab type filter:", filterByTabType);
-
+ 
   // ✅ الحصول على العنوان حسب الكاتيجوري
   const getTitle = () => {
     if (category === 'bandana') return "عروض البندانات الفردية";
@@ -200,7 +195,7 @@ function TurbonOffers({
   };
 
   const handleSelect = (offer) => {
-    console.log("🛒 Offer selected:", offer);
+    
     if (setSelectedOffer) {
       setSelectedOffer({
         ...offer,
@@ -231,7 +226,7 @@ function TurbonOffers({
   const isProductDetailsPage = filterByProductType || filterByTabType;
 
   if (filteredOffers.length === 0) {
-    console.log("⚠️ No offers found for this product");
+  
     return null;
   }
 

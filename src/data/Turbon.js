@@ -95,16 +95,16 @@ export const BandanaTurbonData = [
     productColors: [
       {
         color: "أصفر ورده",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/flower/photo_2_2025-11-29_01-32-07.jpg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572592/photo_2_2025-11-29_01-32-07.jpg",
       },
       {
         color: "بيج ورده",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/flower/WhatsApp%20Image%202025-12-04%20at%2011.49.28%20PM%20(1).jpeg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572581/WhatsApp_Image_2025-12-04_at_11.49.28_PM_1.jpg",
       },
 
       {
         color: "لافندر ورده",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/flower/WhatsApp%20Image%202025-12-04%20at%2011.49.28%20PM%20(1).jpeg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572664/photo_6_2026-09-13_16-19-41.jpg",
       },
     ],
     avalibeColors: [
@@ -113,7 +113,7 @@ export const BandanaTurbonData = [
       "لافندر ورده",
     ],
     image:
-      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/flower/photo_6_2026-09-13_16-19-41.jpg",
+      "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572664/photo_6_2026-09-13_16-19-41.jpg",
     sizes: [{ size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" }],
   },
   {
@@ -127,23 +127,23 @@ export const BandanaTurbonData = [
     productColors: [
       {
         color: "أسود فيونكه",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/Bow/photo_11_2026-09-13_16-19-41.jpg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572680/photo_11_2026-09-13_16-19-41.jpg",
       },
       {
         color: "أحمر فيونكه",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/Bow/photo_7_2026-09-13_16-19-41.jpg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572681/photo_7_2026-09-13_16-19-41.jpg",
       },
       {
         color: "بينك فيونكه",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/Bow/photo_17_2026-06-21_01-43-51.jpg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/photo_17_2026-06-21_01-43-51.jpg",
       },
       {
         color: "كافيه فيونكه",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/Bow/WhatsApp%20Image%202025-12-17%20at%2012.25.23%20AM.jpeg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/WhatsApp_Image_2025-12-17_at_12.25.23_AM.jpg",
       },
       {
         color: "أوف وايت فيونكه",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/Bow/photo_16_2026-06-21_01-43-51.jpg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/photo_16_2026-06-21_01-43-51.jpg",
       },
     ],
     avalibeColors: [
@@ -154,7 +154,7 @@ export const BandanaTurbonData = [
       "أوف وايت فيونكه"
     ],
     image:
-      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/Bow/photo_11_2026-09-13_16-19-41.jpg",
+      "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572680/photo_11_2026-09-13_16-19-41.jpg",
     sizes: [{ size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" }],
   },
   {

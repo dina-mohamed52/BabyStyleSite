@@ -57,7 +57,7 @@ function HalfOffers({
   };
 
   const handleSelect = (offer) => {
-    console.log("Offer selected:", offer);
+   
     if (setSelectedOffer) {
       setSelectedOffer(offer);
     }

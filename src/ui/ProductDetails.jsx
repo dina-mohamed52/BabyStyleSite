@@ -304,11 +304,7 @@ function ProductDetails() {
 
   const productTypeForOffers = getProductTypeForOffers();
 
-  // ✅ للتصحيح - طباعة النوع في الكونسول
-  console.log("Product:", product.name);
-  console.log("Category:", product.category);
-  console.log("Product Type For Offers:", productTypeForOffers);
-  console.log("Is Clothes Product:", isClothesProduct);
+ 
 
   return (
     <div className="min-h-screen bg-white" dir="rtl">
