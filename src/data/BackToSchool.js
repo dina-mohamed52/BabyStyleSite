@@ -587,7 +587,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.32%20PM.jpeg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723164/WhatsApp_Image_2026-04-13_at_8.13.21_AM_2.jpg",
         sizes: [
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
           { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -599,7 +599,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.32%20PM%20(1).jpeg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723156/WhatsApp_Image_2026-04-13_at_8.13.21_AM.jpg",
         sizes: [
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
           { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -611,7 +611,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أوف وايت",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.31%20PM%20(1).jpeg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723160/WhatsApp_Image_2026-04-19_at_4.26.08_AM.jpg",
         sizes: [
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
           { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -623,7 +623,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بيج",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.31%20PM.jpeg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723159/WhatsApp_Image_2026-04-19_at_4.26.08_AM_1.jpg",
         sizes: [
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
           { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -635,7 +635,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "أوف وايت", "بيج"],
-    image: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.31%20PM.jpeg",
+    image: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723159/WhatsApp_Image_2026-04-19_at_4.26.08_AM_1.jpg",
     sizes: [
       { size: "4-2", age: "من سنة ونص ل 3 سنين" },
       { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -657,7 +657,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أوف وايت",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.28%20PM.jpeg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723158/WhatsApp_Image_2026-04-23_at_4.22.21_PM.jpg",
         sizes: [
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
           { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -669,7 +669,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أبيض",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.31%20PM%20(4).jpeg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723152/WhatsApp_Image_2026-04-13_at_8.13.20_AM.jpg",
         sizes: [
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
           { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -681,7 +681,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.31%20PM%20(2).jpeg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723157/WhatsApp_Image_2026-04-13_at_8.13.20_AM_2.jpg",
         sizes: [
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
           { size: "6-4", age: "من 3 ل 5 سنين" },
@@ -693,7 +693,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بينك",
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.31%20PM%20(3).jpeg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723157/WhatsApp_Image_2026-04-13_at_8.13.20_AM_1.jpg",
         sizes: [
           { size: "6-8", age: "من 5 ل 7 سنين" },
           { size: "8-10", age: "من 7 ل 9 سنين" },
@@ -703,7 +703,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أوف وايت", "أسود", "بينك"],
-    image: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/leggins/WhatsApp%20Image%202026-09-13%20at%202.53.31%20PM%20(2).jpeg",
+    image: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723152/WhatsApp_Image_2026-04-13_at_8.13.20_AM.jpg",
     sizes: [
       { size: "4-2", age: "من سنة ونص ل 3 سنين" },
       { size: "6-4", age: "من 3 ل 5 سنين" },

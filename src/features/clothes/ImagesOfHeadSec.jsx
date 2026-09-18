@@ -4,15 +4,15 @@ import { memo, useState, useEffect, useMemo } from "react";
 // تعريف الصور لكل كاتيجوري
 const CATEGORY_IMAGES = {
   top: {
-    hero: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263489/WhatsApp_Image_2026-07-03_at_4.49.06_AM_sibwqi.jpg",
+    hero: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720988/WhatsApp_Image_2026-07-03_at_4.49.06_AM.jpg",
     collage: [
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263379/WhatsApp_Image_2026-07-03_at_5.01.08_AM_mpqjiq.jpg",
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263445/WhatsApp_Image_2026-07-03_at_4.57.05_AM_vqbuok.jpg",
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263449/WhatsApp_Image_2026-07-03_at_4.58.09_AM_pqukmk.jpg"
+      "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721484/WhatsApp_Image_2026-07-03_at_4.58.11_AM.jpg",
+      "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721662/WhatsApp_Image_2026-07-03_at_5.01.08_AM.jpg",
+      "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721108/WhatsApp_Image_2026-07-03_at_4.57.05_AM.jpg"
     ]
   },
   legging: {
-    hero: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448264/WhatsApp_Image_2026-09-03_at_6.00.51_PM_2_nejpal.jpg",
+    hero: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723445/WhatsApp_Image_2026-07-05_at_10.24.30_AM.jpg",
     collage: [
      // "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615536/WhatsApp_Image_2026-07-09_at_9.07.02_AM_1_yr3it2.jpg",
     "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448265/WhatsApp_Image_2026-09-03_at_6.00.51_PM_1_cwbpwd.jpg",
@@ -29,23 +29,8 @@ const CATEGORY_IMAGES = {
       "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615465/WhatsApp_Image_2026-07-09_at_9.07.02_AM_kcitd3.jpg"
     ]
   },
-  // يمكنك إضافة المزيد من الكاتيجوريات هنا
-  dress: {
-    hero: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615463/WhatsApp_Image_2026-07-09_at_9.07.01_AM_jk9ri6.jpg",
-    collage: [
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615458/WhatsApp_Image_2026-07-09_at_9.07.02_AM_2_pc3is5.jpg",
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615536/WhatsApp_Image_2026-07-09_at_9.07.02_AM_1_yr3it2.jpg",
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615465/WhatsApp_Image_2026-07-09_at_9.07.02_AM_kcitd3.jpg"
-    ]
-  },
-  jacket: {
-    hero: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615458/WhatsApp_Image_2026-07-09_at_9.07.02_AM_2_pc3is5.jpg",
-    collage: [
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615536/WhatsApp_Image_2026-07-09_at_9.07.02_AM_1_yr3it2.jpg",
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615465/WhatsApp_Image_2026-07-09_at_9.07.02_AM_kcitd3.jpg",
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615463/WhatsApp_Image_2026-07-09_at_9.07.01_AM_jk9ri6.jpg"
-    ]
-  }
+  
+ 
 };
 
 const ImagesOfHeadSec = memo(({ 

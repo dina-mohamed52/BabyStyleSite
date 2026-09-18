@@ -69,7 +69,7 @@ export const Clothes = [
     "productColors": [
       {
         "color": "أبيض",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263456/WhatsApp_Image_2026-07-03_at_4.57.06_AM_3_f6o65h.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721170/WhatsApp_Image_2026-07-03_at_4.57.06_AM_3.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -81,7 +81,7 @@ export const Clothes = [
       },
       {
         "color": "أسود",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263424/WhatsApp_Image_2026-07-03_at_4.57.06_AM_2_g7f5gt.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721130/WhatsApp_Image_2026-07-03_at_4.57.06_AM_2.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -93,7 +93,7 @@ export const Clothes = [
       },
       {
         "color": "احمر",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783265691/WhatsApp_Image_2026-07-05_at_8.08.13_AM_f8j3ih.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789722488/WhatsApp_Image_2026-07-05_at_8.08.13_AM.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -105,7 +105,7 @@ export const Clothes = [
       },
       {
         "color": "لبني",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263424/WhatsApp_Image_2026-07-03_at_4.57.06_AM_1_impout.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721187/WhatsApp_Image_2026-07-03_at_4.57.06_AM_1.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -117,7 +117,7 @@ export const Clothes = [
       },
       {
         "color": "اصفر",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263438/WhatsApp_Image_2026-07-03_at_4.57.05_AM_1_hdrmsm.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721128/WhatsApp_Image_2026-07-03_at_4.57.05_AM_1.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -163,7 +163,7 @@ export const Clothes = [
     "productColors": [
       {
         "color": "أبيض",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263391/WhatsApp_Image_2026-07-03_at_4.58.10_AM_1_j28nsc.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721500/WhatsApp_Image_2026-07-03_at_4.58.10_AM_1.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -175,7 +175,7 @@ export const Clothes = [
       },
       {
         "color": "أسود",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263424/WhatsApp_Image_2026-07-03_at_4.58.10_AM_2_wbc5v9.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721511/WhatsApp_Image_2026-07-03_at_4.58.10_AM_2.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -187,7 +187,7 @@ export const Clothes = [
       },
       {
         "color": "نبيتي",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263419/WhatsApp_Image_2026-07-03_at_4.58.09_AM_1_emnfzq.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721484/WhatsApp_Image_2026-07-03_at_4.58.11_AM.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -199,7 +199,7 @@ export const Clothes = [
       },
       {
         "color": "لبني",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263449/WhatsApp_Image_2026-07-03_at_4.58.09_AM_pqukmk.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721485/WhatsApp_Image_2026-07-03_at_4.58.09_AM.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -211,7 +211,7 @@ export const Clothes = [
       },
       {
         "color": "اصفر",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263394/WhatsApp_Image_2026-07-03_at_4.58.09_AM_2_kmtyl1.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721485/WhatsApp_Image_2026-07-03_at_4.58.09_AM_2.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -223,7 +223,7 @@ export const Clothes = [
       },
       {
         "color": "بينك",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263422/WhatsApp_Image_2026-07-03_at_4.58.10_AM_3_u6dyvq.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721486/WhatsApp_Image_2026-07-03_at_4.58.10_AM_3.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -235,7 +235,7 @@ export const Clothes = [
       }
     ],
     "avalibeColors": ["أبيض", "أسود", "نبيتي", "لبني", "اصفر", "بينك"],
-    "image": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263394/WhatsApp_Image_2026-07-03_at_4.58.09_AM_2_kmtyl1.jpg",
+    "image": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721485/WhatsApp_Image_2026-07-03_at_4.58.09_AM.jpg",
     "sizes": [
       { "size": "2", "age": "من سنه ونص لسنتين" },
       { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -281,7 +281,7 @@ export const Clothes = [
       },
       {
         "color": "احمر",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783265691/WhatsApp_Image_2026-07-05_at_8.08.13_AM_1_czgkjh.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721835/WhatsApp_Image_2026-07-05_at_8.08.13_AM_1.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -293,7 +293,7 @@ export const Clothes = [
       },
       {
         "color": "اصفر",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263359/WhatsApp_Image_2026-07-03_at_5.01.08_AM_2_zmn2u2.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721763/WhatsApp_Image_2026-07-03_at_5.01.08_AM_2.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -305,7 +305,7 @@ export const Clothes = [
       },
       {
         "color": "بينك",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263361/WhatsApp_Image_2026-07-03_at_5.01.08_AM_3_slxwso.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721717/WhatsApp_Image_2026-07-03_at_5.01.08_AM_3.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -317,7 +317,7 @@ export const Clothes = [
       },
       {
         "color": "اورنج",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263379/WhatsApp_Image_2026-07-03_at_5.01.08_AM_mpqjiq.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721662/WhatsApp_Image_2026-07-03_at_5.01.08_AM.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -329,7 +329,7 @@ export const Clothes = [
       }
     ],
     "avalibeColors": ["أبيض", "أسود","احمر", "اصفر", "بينك", "اورنج"],
-    "image": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263379/WhatsApp_Image_2026-07-03_at_5.01.08_AM_mpqjiq.jpg",
+    "image": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721662/WhatsApp_Image_2026-07-03_at_5.01.08_AM.jpg",
     "sizes": [
       { "size": "2", "age": "من سنه ونص لسنتين" },
       { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -351,7 +351,7 @@ export const Clothes = [
     "productColors": [
       {
         "color": "أبيض",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263357/WhatsApp_Image_2026-07-03_at_5.22.34_AM_atwgyl.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789722256/WhatsApp_Image_2026-07-03_at_5.22.34_AM.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -363,7 +363,7 @@ export const Clothes = [
       },
       {
         "color": "أسود",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263337/WhatsApp_Image_2026-07-03_at_5.22.34_AM_1_tszaun.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789722274/WhatsApp_Image_2026-07-03_at_5.22.34_AM_1.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -375,7 +375,7 @@ export const Clothes = [
       },
       {
         "color": "بينك",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263335/WhatsApp_Image_2026-07-03_at_5.22.34_AM_2_atgd7m.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789722255/WhatsApp_Image_2026-07-03_at_5.22.34_AM_2.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -387,7 +387,7 @@ export const Clothes = [
       }
     ],
     "avalibeColors": ["أبيض", "أسود", "بينك"],
-    "image": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263357/WhatsApp_Image_2026-07-03_at_5.22.34_AM_atwgyl.jpg",
+    "image": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789722256/WhatsApp_Image_2026-07-03_at_5.22.34_AM.jpg",
     "sizes": [
       { "size": "2", "age": "من سنه ونص لسنتين" },
       { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -409,7 +409,7 @@ export const Clothes = [
     "productColors": [
       {
         "color": "أبيض",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263347/WhatsApp_Image_2026-07-03_at_5.31.56_AM_1_u5rd38.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789722337/WhatsApp_Image_2026-07-03_at_5.31.56_AM_1.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -421,7 +421,7 @@ export const Clothes = [
       },
       {
         "color": "لافندر",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263390/WhatsApp_Image_2026-07-03_at_5.31.56_AM_2_piya05.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789722366/WhatsApp_Image_2026-07-03_at_5.31.56_AM_2.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -433,7 +433,7 @@ export const Clothes = [
       },
       {
         "color": "بينك",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263334/WhatsApp_Image_2026-07-03_at_5.31.56_AM_3_vyvcje.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789722564/WhatsApp_Image_2026-07-03_at_5.31.56_AM_3.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -445,7 +445,7 @@ export const Clothes = [
       },
       {
         "color": "كيوي",
-        "img": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263334/WhatsApp_Image_2026-07-03_at_5.31.56_AM_4_boprc9.jpg",
+        "img": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789722337/WhatsApp_Image_2026-07-03_at_5.31.55_AM.jpg",
         "sizes": [
           { "size": "2", "age": "من سنه ونص لسنتين" },
           { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -457,7 +457,7 @@ export const Clothes = [
       }
     ],
     "avalibeColors": ["أبيض", "لافندر", "بينك", "كيوي"],
-    "image": "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263334/WhatsApp_Image_2026-07-03_at_5.31.55_AM_pig1ir.jpg",
+    "image": "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789722337/WhatsApp_Image_2026-07-03_at_5.31.55_AM.jpg",
     "sizes": [
       { "size": "2", "age": "من سنه ونص لسنتين" },
       { "size": "4", "age": "من 3 ل 4 سنين" },
@@ -621,111 +621,112 @@ export const Clothes = [
       { size: "XL", age: "من 8 إلى 10 سنوات" },
     ],
   },
-  {
-    id: 30,
-    name: "ليجن أوباك ",
-    description:
-      "ليجن أوباك بتصميم أنيق، خامة قطن مريحة غير شفافة مع مرونة عالية.",
-    price: 150,
-    originalPrice: 205,
-    discount: 28,
-    rating: 5,
-    category: "legging",
-    productColors: [
-      {
-        color: "أبيض فيونكة",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776093856/WhatsApp_Image_2026-04-13_at_8.13.21_AM_2_w8zj4z.jpg",
-        sizes: [
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "فيونكة أسود",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776093867/WhatsApp_Image_2026-04-13_at_8.13.21_AM_xpijif.jpg",
-        sizes: [
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "أوف وايت فيونكة",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776610600/WhatsApp_Image_2026-04-19_at_4.26.08_AM_fso3aw.jpg",
-        sizes: [
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "فيونكة بيج",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776610600/WhatsApp_Image_2026-04-19_at_4.26.08_AM_1_h90nua.jpg",
-        sizes: [
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "أوف وايت ساده",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776093857/WhatsApp_Image_2026-04-13_at_8.13.20_AM_lh1f7a.jpg",
-        sizes: [
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "أبيض ساده",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777150015/WhatsApp_Image_2026-04-23_at_4.22.21_PM_ei6ige.jpg",
-        sizes: [
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "أسود ساده",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776093856/WhatsApp_Image_2026-04-13_at_8.13.20_AM_2_m5o6l4.jpg",
-        sizes: [
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "بينك ساده",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/q_auto/f_auto/v1776093857/WhatsApp_Image_2026-04-13_at_8.13.20_AM_1_bgfipz.jpg",
-        sizes: [
-          { size: "6-8", age: "من 5 ل 7 سنين" },
-          { size: "8-10", age: "من 7 ل 9 سنين" },
-          { size: "10-12", age: "من 9 ل 11 سنة" },
-          { size: "12-14", age: "من 11 ل 14 سنة" },
-        ]
-      },
+ {
+  id: 30,
+  name: "ليجن أوباك",
+  description:
+    "ليجن أوباك بتصميم أنيق، خامة قطن مريحة غير شفافة مع مرونة عالية.",
+  price: 150,
+  originalPrice: 205,
+  discount: 28,
+  rating: 5,
+  category: "legging",
+  productColors: [
+    {
+      color: "أبيض فيونكة",
+      img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723164/WhatsApp_Image_2026-04-13_at_8.13.21_AM_2.jpg",
+      sizes: [
+        { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+        { size: "6-4", age: "من 3 ل 5 سنين" },
+        { size: "8-6", age: "من 5 ل 7 سنين" },
+        { size: "10-8", age: "من 7 ل 9 سنين" },
+        { size: "12-10", age: "من 9 ل 11 سنة" },
+        { size: "14-12", age: "من 12 ل 14 سنة" },
+      ]
+    },
+    {
+      color: "فيونكة أسود",
+      img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723156/WhatsApp_Image_2026-04-13_at_8.13.21_AM.jpg",
+      sizes: [
+        { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+        { size: "6-4", age: "من 3 ل 5 سنين" },
+        { size: "8-6", age: "من 5 ل 7 سنين" },
+        { size: "10-8", age: "من 7 ل 9 سنين" },
+        { size: "12-10", age: "من 9 ل 11 سنة" },
+        { size: "14-12", age: "من 12 ل 14 سنة" },
+      ]
+    },
+    {
+      color: "أوف وايت فيونكة",
+      img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723160/WhatsApp_Image_2026-04-19_at_4.26.08_AM.jpg",
+      sizes: [
+        { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+        { size: "6-4", age: "من 3 ل 5 سنين" },
+        { size: "8-6", age: "من 5 ل 7 سنين" },
+        { size: "10-8", age: "من 7 ل 9 سنين" },
+        { size: "12-10", age: "من 9 ل 11 سنة" },
+        { size: "14-12", age: "من 12 ل 14 سنة" },
+      ]
+    },
+    {
+      color: "فيونكة بيج",
+      img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723159/WhatsApp_Image_2026-04-19_at_4.26.08_AM_1.jpg",
+      sizes: [
+        { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+        { size: "6-4", age: "من 3 ل 5 سنين" },
+        { size: "8-6", age: "من 5 ل 7 سنين" },
+        { size: "10-8", age: "من 7 ل 9 سنين" },
+        { size: "12-10", age: "من 9 ل 11 سنة" },
+        { size: "14-12", age: "من 12 ل 14 سنة" },
+      ]
+    },
+    {
+      color: "أوف وايت ساده",
+      img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723158/WhatsApp_Image_2026-04-23_at_4.22.21_PM.jpg",
+      sizes: [
+        { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+        { size: "6-4", age: "من 3 ل 5 سنين" },
+        { size: "8-6", age: "من 5 ل 7 سنين" },
+        { size: "10-8", age: "من 7 ل 9 سنين" },
+        { size: "12-10", age: "من 9 ل 11 سنة" },
+        { size: "14-12", age: "من 12 ل 14 سنة" },
+      ]
+    },
+    {
+      color: "أبيض ساده",
+      img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723152/WhatsApp_Image_2026-04-13_at_8.13.20_AM.jpg",
+      sizes: [
+        { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+        { size: "6-4", age: "من 3 ل 5 سنين" },
+        { size: "8-6", age: "من 5 ل 7 سنين" },
+        { size: "10-8", age: "من 7 ل 9 سنين" },
+        { size: "12-10", age: "من 9 ل 11 سنة" },
+        { size: "14-12", age: "من 12 ل 14 سنة" },
+      ]
+    },
+    {
+      color: "أسود ساده",
+      img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723157/WhatsApp_Image_2026-04-13_at_8.13.20_AM_2.jpg",
+      sizes: [
+        { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+        { size: "6-4", age: "من 3 ل 5 سنين" },
+        { size: "8-6", age: "من 5 ل 7 سنين" },
+        { size: "10-8", age: "من 7 ل 9 سنين" },
+        { size: "12-10", age: "من 9 ل 11 سنة" },
+        { size: "14-12", age: "من 12 ل 14 سنة" },
+      ]
+    },
+    {
+      color: "بينك ساده",
+      img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723157/WhatsApp_Image_2026-04-13_at_8.13.20_AM_1.jpg",
+      sizes: [
+        { size: "6-8", age: "من 5 ل 7 سنين" },
+        { size: "8-10", age: "من 7 ل 9 سنين" },
+        { size: "10-12", age: "من 9 ل 11 سنة" },
+        { size: "12-14", age: "من 11 ل 14 سنة" },
+      ]
+    },
+  
     ],
     avalibeColors: [
       "أبيض فيونكة",
@@ -738,7 +739,7 @@ export const Clothes = [
       "بينك ساده",
     ],
     image:
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448037/WhatsApp_Image_2026-09-03_at_6.00.51_PM_w6qcgd.jpg",
+      "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723159/WhatsApp_Image_2026-04-19_at_4.26.08_AM_1.jpg",
     sizes: [
       { size: "4-2", age: "من سنة ونص ل 3 سنين" },
       { size: "6-4", age: "من 3 ل 5 سنين" },
