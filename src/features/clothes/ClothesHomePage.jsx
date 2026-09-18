@@ -35,7 +35,7 @@ function ClothesHomePage() {
       description: 'تصاميم أنيقة تناسب بناتك الصغار في كل المناسبات',
       count: '١٨ منتج',
       note: 'تشكيلة جديدة',
-      img: 'https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263587/WhatsApp_Image_2026-07-03_at_4.58.11_AM_x2o3xd.jpg',
+      img: 'https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721484/WhatsApp_Image_2026-07-03_at_4.58.11_AM.jpg',
       path: '/clothes/top',
     },
     {
@@ -45,7 +45,7 @@ function ClothesHomePage() {
       description: 'مريحة وأنيقة، مثالية للعب والحركة اليومية',
       count: '٢٤ منتج',
       note: 'الأكثر مبيعاً',
-      img: 'https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615458/WhatsApp_Image_2026-07-09_at_9.07.02_AM_2_pc3is5.jpg',
+      img: 'https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723445/WhatsApp_Image_2026-07-05_at_10.24.30_AM.jpg',
       path: '/clothes/legging',
     },
     {
