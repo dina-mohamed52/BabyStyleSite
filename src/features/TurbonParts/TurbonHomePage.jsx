@@ -47,7 +47,7 @@ function TurbonHomePage() {
       description: 'أطقم من التربونات المتناسقة بأشكال وألوان متكاملة',
       count: '٧+ أطقم',
       badge: 'عرض خاص',
-      img: 'https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/Bow/photo_11_2026-09-13_16-19-41.jpg',
+      img: 'https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720346/WhatsApp_Image_2026-09-16_at_1.19.08_PM_1.jpg',
       path: '/turbon/turbon-set', // ✅ route مع category
       icon: Layers,
     },
@@ -363,7 +363,7 @@ function TurbonHomePage() {
               </div>
               <div className="rounded-xl overflow-hidden relative bg-white shadow-md">
                 <img
-                  src="https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/Bow/photo_11_2026-09-13_16-19-41.jpg"
+                  src="https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720346/WhatsApp_Image_2026-09-16_at_1.30.02_PM.jpg"
                   alt="طقم تربونات"
                   className="w-full h-full object-contain bg-[#fafafa] p-2 hover:scale-105 transition-transform duration-500"
                 />

@@ -83,9 +83,14 @@ function WinterPatterned() {
               className="w-full h-auto rounded-lg object-cover"
             />
           </div>
+          <Reviews />
 
           <BackToSchoolSizeTable />
           <FAQ /> 
+          <div className="p-6">
+            <ProductBenefits />
+          </div>
+            <OfferCountdown />
 
           {/* Offers with ref */}
           <div ref={offersRef} id="offersSection">
@@ -108,17 +113,13 @@ function WinterPatterned() {
             </div>
           )}
 
-          <OfferCountdown />
           <Header1st />
         </div>
 
         <div>
           <PurchaseNotifications />
+
           
-          <div className="p-6">
-            <ProductBenefits />
-          </div>
-          <Reviews />
         </div>
       </div>
     </>
