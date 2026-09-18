@@ -69,7 +69,7 @@ const turbonOffers = [
     originalPrice: "270",
     savings: "60",
     pieces: "3",
-    image: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572680/photo_11_2026-09-13_16-19-41.jpg"
+    image: Data.find((p) => p.id === 9)?.image,
   },
   {
     name: "عرض 5 تربونات",
@@ -78,7 +78,7 @@ const turbonOffers = [
     originalPrice: "450",
     savings: "140",
     pieces: "5",
-    image: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/photo_16_2026-06-21_01-43-51.jpg"
+    image: Data.find((p) => p.id === 9)?.image,
   },
   {
     name: "عرض 6 تربونات",
@@ -87,8 +87,8 @@ const turbonOffers = [
     originalPrice: "540",
     savings: "180",
     pieces: "6",
-    image: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572681/photo_7_2026-09-13_16-19-41.jpg"
-  }
+    image: Data.find((p) => p.id === 10)?.image,
+  },
 ];
 
 export default function PurchaseNotifications() {

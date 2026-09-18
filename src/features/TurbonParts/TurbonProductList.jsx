@@ -166,7 +166,7 @@ function TurbonProductList({ category }) {
                       <img
                         src={colorItem.img}
                         alt={`${turbonProducts[0].name} - ${colorName || `صورة ${index + 1}`}`}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
                       />
                     </div>
