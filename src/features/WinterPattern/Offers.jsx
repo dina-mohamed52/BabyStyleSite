@@ -32,10 +32,10 @@ const colonOffers = [
   {
     quantity: "3 كولون",
     name: "عرض 3 كولون ",
-    price: 315,
+    price: 330,
     oldPrice: 480,
     value: 3,
-    discount: 15,
+    discount: 16,
   },
   {
     quantity: "4 كولون",
