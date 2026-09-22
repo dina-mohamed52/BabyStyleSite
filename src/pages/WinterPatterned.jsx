@@ -86,6 +86,7 @@ function WinterPatterned() {
             <ProductList products={BackToSchoolData} />
           </div>
 
+              <BackToSchoolSizeTable />
          
           <div className="grid grid-cols-2 gap-2 my-4">
             <img
@@ -109,7 +110,6 @@ function WinterPatterned() {
           <Reviews />
 
        
-          <BackToSchoolSizeTable />
 
       
           <FAQ />
