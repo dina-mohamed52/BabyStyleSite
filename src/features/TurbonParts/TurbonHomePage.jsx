@@ -14,7 +14,7 @@ function TurbonHomePage() {
       description: 'تشكيلة راقية من البندانات العصرية، تناسب جميع الأذواق',
       count: '٢٥+ منتج',
       badge: 'جديد',
-      img: 'https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/ribbed/photo_5_2026-09-13_16-19-41.jpg',
+      img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1790089045/photo_5_2026-09-13_16-19-41.jpg',
       path: '/turbon/bandana', // ✅ route مع category
       icon: Award,
     },

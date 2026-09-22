@@ -14,7 +14,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import Clothes from "./pages/Clothes";
 import ClothesHomePage from "./features/clothes/ClothesHomePage";
 import TurbonHomePage from "./features/TurbonParts/TurbonHomePage";
-import BackToSchoolModal from "./ui/BackToSchoolModal";
+// import BackToSchoolModal from "./ui/BackToSchoolModal";
 import WinterPatterned from "./pages/WinterPatterned";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <ToastContainer />
-        <BackToSchoolModal />
+        {/* <BackToSchoolModal /> */}
         <Routes>
           <Route path="/" element={<AppLayOut />}>
             <Route index element={<MainPage />} />

@@ -16,6 +16,7 @@ import WHeader from "../features/WinterPattern/WHeader";
 import BackToSchoolSizeTable from "../features/BackToSchool/BackToSchoolSizeTable";
 import FAQ from "../features/BackToSchool/FAQ";
 import BackToSchoolHeroSec from "../features/BackToSchool/BackToSchoolHeroSec";
+import ProductHero from "../ui/Carouselv1";
 
 function WinterPatterned() {
   const [selectedOffer, setSelectedOffer] = useState(null);
@@ -37,89 +38,89 @@ function WinterPatterned() {
   }, [selectedOffer]);
 
   const scrollToOffers = () => {
-    if (offersRef.current) {
-      offersRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    offersRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const scrollToProducts = () => {
-    if (productListRef.current) {
-      productListRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    productListRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
     <>
-      <div className="bg-[#FFFf]">
-        <OfferButton />
+      <div className="bg-[#FFF]">
+        {/* <OfferButton /> */}
 
         <div dir="rtl" className="container mx-auto">
-          <BackToSchoolHeroSec 
+          {/* 1️⃣ Hero Section - */}
+          {/* <BackToSchoolHeroSec
             scrollToOffers={scrollToOffers}
             scrollToProducts={scrollToProducts}
-          />
+          /> */}
+          <ProductHero/>
+{/* <WHeader/> */}
+      
+          <OfferCountdown />
 
-          {/* Product List with ref */}
-          <div ref={productListRef}>
-            <ProductList products={BackToSchoolData} />
-          </div>
-
-    
-          <div className="grid grid-cols-2 gap-2 my-4">
-            <img 
-              src="https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572273/WhatsApp_Image_2026-09-14_at_9.16.20_AM_1.jpg" 
-              alt="Back to School" 
-              className="w-full h-auto rounded-lg object-cover"
-            />
-            <img 
-              src="https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572344/WhatsApp_Image_2026-09-14_at_9.16.20_AM.jpg" 
-              alt="Back to School" 
-              className="w-full h-auto rounded-lg object-cover"
-            />
-          </div>
-          <Reviews />
-
-          <BackToSchoolSizeTable />
-          <FAQ /> 
-          <div className="p-6">
-            <ProductBenefits />
-          </div>
-            <OfferCountdown />
-
-          {/* Offers with ref */}
+  
           <div ref={offersRef} id="offersSection">
-            <Offers 
-              setSelectedOffer={setSelectedOffer} 
+            <Offers
+              setSelectedOffer={setSelectedOffer}
               scrollToOrderCollection={() => {
-                if (orderCollectionRef.current) {
-                  orderCollectionRef.current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                  });
-                }
+                orderCollectionRef.current?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
               }}
             />
           </div>
 
+          {/* 4️⃣ نموذج الطلب - يظهر فوراً بعد اختيار العرض */}
           {selectedOffer && (
             <div ref={orderCollectionRef}>
               <OrderCollection selectedOffer={selectedOffer} formRef={formRef} />
             </div>
           )}
 
+       
+          <div ref={productListRef}>
+            <ProductList products={BackToSchoolData} />
+          </div>
+
+         
+          <div className="grid grid-cols-2 gap-2 my-4">
+            <img
+              src="https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572273/WhatsApp_Image_2026-09-14_at_9.16.20_AM_1.jpg"
+              alt="Back to School"
+              className="w-full h-auto rounded-lg object-cover"
+            />
+            <img
+              src="https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572344/WhatsApp_Image_2026-09-14_at_9.16.20_AM.jpg"
+              alt="Back to School"
+              className="w-full h-auto rounded-lg object-cover"
+            />
+          </div>
+
+        
+          <div className="p-6">
+            <ProductBenefits />
+          </div>
+
+    
+          <Reviews />
+
+       
+          <BackToSchoolSizeTable />
+
+      
+          <FAQ />
+
+        
           <Header1st />
         </div>
 
+        {/* الإشعارات العائمة */}
         <div>
           <PurchaseNotifications />
-
-          
         </div>
       </div>
     </>
