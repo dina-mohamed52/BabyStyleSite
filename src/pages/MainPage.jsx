@@ -67,7 +67,7 @@ const SEASONS = {
         nameEn: " توبات وليجن صيفي شيك",
         path: "/clothes",
         image:
-          "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783263489/WhatsApp_Image_2026-07-03_at_4.49.06_AM_sibwqi.jpg",
+          "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789721108/WhatsApp_Image_2026-07-03_at_4.57.05_AM.jpg",
         items: "8+ منتج",
         badge: "جديد",
       },
@@ -77,7 +77,7 @@ const SEASONS = {
         nameEn: "بندانات وتربونات واطقم صيفية",
         path: "/Turbon",
         image:
-          "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/sunFlower/photo_11_2026-08-08_01-29-36.jpg",
+          "https://res.cloudinary.com/sauyrrk8/image/upload/v1790089045/photo_5_2026-09-13_16-19-41.jpg",
         items: "7+ منتج",
         badge: "الأكثر مبيعاً",
       },
