@@ -7,20 +7,20 @@ export const BandanaTurbonData = [
     tabType: "bandana",
      category: 'bandana',
     productColors: [
-     // {
-       // img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139096/WhatsApp_Image_2026-08-08_at_12.31.58_AM_1_bdik6m.jpg",
-      //},
+     {
+       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088734/photo_17_2026-08-08_01-29-36.jpg",
+      },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/sunFlower/photo_14_2026-08-08_01-29-36.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088764/photo_14_2026-08-08_01-29-36.jpg",
       },
       //{ 
         // img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139096/WhatsApp_Image_2026-08-08_at_12.31.57_AM_2_jogkti.jpg",
        //},
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/sunFlower/photo_11_2026-08-08_01-29-36.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088746/photo_11_2026-08-08_01-29-36.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/sunFlower/photo_15_2026-08-08_01-29-36.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088734/photo_15_2026-08-08_01-29-36.jpg",
       },
     //  {
       //   img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139095/WhatsApp_Image_2026-08-08_at_12.31.57_AM_1_oarzgu.jpg",
@@ -29,9 +29,9 @@ export const BandanaTurbonData = [
       //   img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139095/WhatsApp_Image_2026-08-08_at_12.31.57_AM_a8vj4o.jpg",
       // },
     ],
-    avalibeColors: ["أصفر" , "بيج","أسود"],
+    avalibeColors: [ "أبيض","أصفر" , "بيج","أسود"],
     image:
-      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/sunFlower/photo_11_2026-08-08_01-29-36.jpg",
+      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088764/photo_14_2026-08-08_01-29-36.jpg",
     sizes: [
       { size: "0-1", age: "من زيرو لسنة" },
       // { size: "1-3", age: "من سنه ل 3 سنين" },
@@ -46,25 +46,25 @@ export const BandanaTurbonData = [
     tabType: "bandana",
     productColors: [
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/ribbed/photo_28_2026-04-26_00-17-35.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088855/photo_28_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/ribbed/photo_27_2026-04-26_00-17-35.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088888/photo_27_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/ribbed/photo_25_2026-04-26_00-17-35.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088870/photo_25_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/ribbed/photo_26_2026-04-26_00-17-35.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088880/photo_26_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/ribbed/photo_24_2026-04-26_00-17-35.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088856/photo_24_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/ribbed/photo_30_2026-04-26_00-17-35.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088856/photo_30_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/ribbed/photo_29_2026-04-26_00-17-35.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088856/photo_29_2026-04-26_00-17-35.jpg",
       },
     ],
     avalibeColors: [
@@ -77,7 +77,7 @@ export const BandanaTurbonData = [
       "بيج",
     ],
     image:
-      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandan/ribbed/photo_5_2026-09-13_16-19-41.jpg",
+      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790089045/photo_5_2026-09-13_16-19-41.jpg",
     sizes: [
       { size: "0-1", age: "من زيرو لسنة" },
       { size: "1-3", age: "من سنه ل 3 سنين" },

@@ -16,6 +16,7 @@ import WHeader from "../features/WinterPattern/WHeader";
 import BackToSchoolSizeTable from "../features/BackToSchool/BackToSchoolSizeTable";
 import FAQ from "../features/BackToSchool/FAQ";
 import BackToSchoolHeroSec from "../features/BackToSchool/BackToSchoolHeroSec";
+import ProductHero from "../ui/Carouselv1";
 
 function WinterPatterned() {
   const [selectedOffer, setSelectedOffer] = useState(null);
@@ -55,12 +56,12 @@ function WinterPatterned() {
             scrollToOffers={scrollToOffers}
             scrollToProducts={scrollToProducts}
           /> */}
-          <CustomCarousel/>
+          <ProductHero/>
 {/* <WHeader/> */}
-          {/* 2️⃣ العدّاد التنازلي - يخلق إلحاح فوري فوق الطية */}
+      
           <OfferCountdown />
 
-          {/* 3️⃣ العروض - قلب عملية البيع (لازم يكون فوق) */}
+  
           <div ref={offersRef} id="offersSection">
             <Offers
               setSelectedOffer={setSelectedOffer}
@@ -80,12 +81,12 @@ function WinterPatterned() {
             </div>
           )}
 
-          {/* 5️⃣ قائمة المنتجات - دليل اجتماعي بصري */}
+       
           <div ref={productListRef}>
             <ProductList products={BackToSchoolData} />
           </div>
 
-          {/* 6️⃣ الصور التوضيحية - تعزيز الرغبة */}
+         
           <div className="grid grid-cols-2 gap-2 my-4">
             <img
               src="https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572273/WhatsApp_Image_2026-09-14_at_9.16.20_AM_1.jpg"
@@ -99,21 +100,21 @@ function WinterPatterned() {
             />
           </div>
 
-          {/* 7️⃣ المزايا - تقليل الاعتراضات */}
+        
           <div className="p-6">
             <ProductBenefits />
           </div>
 
-          {/* 8️⃣ التقييمات - إثبات اجتماعي قوي */}
+    
           <Reviews />
 
-          {/* 9️⃣ جدول المقاسات - يحل شكوك المقاس */}
+       
           <BackToSchoolSizeTable />
 
-          {/* 🔟 الأسئلة الشائعة - إزالة آخر الاعتراضات */}
+      
           <FAQ />
 
-          {/* 1️⃣1️⃣ الهيدر الختامي - CTA أخير */}
+        
           <Header1st />
         </div>
 
