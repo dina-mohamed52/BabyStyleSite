@@ -25,7 +25,7 @@ function TurbonHomePage() {
       description: 'تربونات مصنوعة من أجود الخامات، بتصاميم عصرية وأنيقة',
       count: '٣٠+ منتج',
       badge: 'الأكثر مبيعاً',
-      img: 'https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/turbon/photo_9_2026-09-13_16-14-57.jpg',
+      img: 'https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572680/photo_11_2026-09-13_16-19-41.jpg',
       path: '/turbon/turbon', // ✅ route مع category
       icon: Zap,
     },
@@ -36,7 +36,7 @@ function TurbonHomePage() {
       description: 'أطقم من البندانات المتناسقة بالألوان والتصاميم المتكاملة',
       count: '٨+ أطقم',
       badge: 'حصري',
-      img: 'https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/setWithHalfBow/photo_1_2026-09-13_16-03-13.jpg',
+      img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1790258380/photo_16_2026-04-26_00-17-35.jpg',
       path: '/turbon/bandana-set', // ✅ route مع category
       icon: Package,
     },
@@ -353,7 +353,7 @@ function TurbonHomePage() {
             <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-2 p-3.5">
               <div className="row-span-2 rounded-xl overflow-hidden relative bg-white shadow-md">
                 <img
-                  src="https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/SetWithHalfMesh/photo_10_2026-04-12_02-24-54.jpg"
+                  src="https://res.cloudinary.com/sauyrrk8/image/upload/v1790258378/photo_15_2026-04-26_00-17-35.jpg"
                   alt="طقم بندانات"
                   className="w-full h-full object-contain bg-[#fafafa] p-2 hover:scale-105 transition-transform duration-500"
                 />
@@ -373,7 +373,7 @@ function TurbonHomePage() {
               </div>
               <div className="rounded-xl overflow-hidden relative bg-white shadow-md">
                 <img
-                  src="https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/setWithHalfBow/photo_1_2026-09-13_16-03-13.jpg"
+                  src="https://res.cloudinary.com/sauyrrk8/image/upload/v1790258373/photo_10_2026-04-12_02-24-54.jpg"
                   alt="أطقم متنوعة"
                   className="w-full h-full object-contain bg-[#fafafa] p-2 hover:scale-105 transition-transform duration-500"
                 />

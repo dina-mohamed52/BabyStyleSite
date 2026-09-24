@@ -154,11 +154,11 @@ export const SummerColonData = [
   //   ],
   // },
 
-  {
-    id: 5,
+ {
+    id: 25,
     name: "كولون قلوب",
     description:
-      "كولون صيفي قطن ناعم مدعوم بنسبة 10% ليكرا لمرونة عالية وراحة طوال اليوم، بتصميم قلوب أنيق مناسب للإطلالات اليومية والمناسبات.",
+      "كولون  قطن ناعم مدعوم بنسبة 10% ليكرا لمرونة عالية وراحة طوال اليوم، بتصميم قلوب أنيق مناسب للإطلالات اليومية والمناسبات.",
     price: 140,
     originalPrice: 195,
     discount: 28,
@@ -167,15 +167,37 @@ export const SummerColonData = [
 
     productColors: [
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.04.16%20AM%20(1).jpeg",
+        color: "أبيض",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257673/WhatsApp_Image_2026-09-14_at_9.04.16_AM_1.jpg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          // { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          { size: "6-4", age: "من 3 ل 5 سنين" },
+          // { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.04.15%20AM.jpeg",
+        color: "أسود",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257682/WhatsApp_Image_2026-09-14_at_9.04.15_AM.jpg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          // { size: "6-4", age: "من 3 ل 5 سنين" },
+          // { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
       },
     ],
     avalibeColors: ["أبيض", "أسود"],
     image:
-      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.04.16%20AM.jpeg",
+      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257674/WhatsApp_Image_2026-09-14_at_9.04.16_AM.jpg",
 
     sizes: [
       { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
@@ -190,10 +212,10 @@ export const SummerColonData = [
   },
 
   {
-    id: 6,
+    id: 26,
     name: "كولون فيونكه",
     description:
-      "كولون صيفي  قطن بلمسة أنثوية ناعمة مع فيونكه أنيقة، مصنوع من خامة مرنة 10% ليكرا لتوفير راحة مثالية وحركة سهلة طوال اليوم.",
+      "كولون   قطن بلمسة أنثوية ناعمة مع فيونكه أنيقة، مصنوع من خامة مرنة 10% ليكرا لتوفير راحة مثالية وحركة سهلة طوال اليوم.",
 
     price: 140,
     originalPrice: 195,
@@ -203,21 +225,65 @@ export const SummerColonData = [
 
     productColors: [
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.01.28%20AM%20(1).jpeg",
+        color: "أسود",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257711/WhatsApp_Image_2026-09-14_at_9.01.28_AM_1.jpg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          // { size: "6-4", age: "من 3 ل 5 سنين" },
+          { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.00.00%20AM%20(1).jpeg",
+        color: "أبيض",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257610/WhatsApp_Image_2026-09-14_at_9.00.00_AM_1.jpg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          { size: "6-4", age: "من 3 ل 5 سنين" },
+          { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.00.00%20AM.jpeg",
+        color: "بينك",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257590/WhatsApp_Image_2026-09-14_at_9.00.00_AM.jpg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          { size: "6-4", age: "من 3 ل 5 سنين" },
+          { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.01.28%20AM.jpeg",
+        color: "بيج",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257587/WhatsApp_Image_2026-09-14_at_9.01.28_AM.jpg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          // { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          { size: "6-4", age: "من 3 ل 5 سنين" },
+          { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
       },
     ],
     avalibeColors: ["أسود", "أبيض", "بينك","بيج"],
     image:
-      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.00.00%20AM%20(1).jpeg",
+      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257610/WhatsApp_Image_2026-09-14_at_9.00.00_AM_1.jpg",
 
     sizes: [
       { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
@@ -233,10 +299,10 @@ export const SummerColonData = [
   },
 
   {
-    id: 7,
+    id: 27,
     name: "كولون جكار",
     description:
-      "كولون صيفي  قطن بجودة عالية ونقشة جكار مميزة، يحتوي على 10% ليكرا لمرونة ممتازة وراحة مثالية تناسب الاستخدام اليومي.",
+      "كولون   قطن بجودة عالية ونقشة جكار مميزة، يحتوي على 10% ليكرا لمرونة ممتازة وراحة مثالية تناسب الاستخدام اليومي.",
 
     price: 140,
     originalPrice: 195,
@@ -246,18 +312,51 @@ export const SummerColonData = [
 
     productColors: [
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM%20(2).jpeg",
+        color: "أبيض",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257590/WhatsApp_Image_2026-09-14_at_8.59.04_AM_2.jpg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          // { size: "6-4", age: "من 3 ل 5 سنين" },
+          { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM%20(1).jpeg",
+        color: "أسود",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257591/WhatsApp_Image_2026-09-14_at_8.59.04_AM_1.jpg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          // { size: "6-4", age: "من 3 ل 5 سنين" },
+          // { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          // { size: "12-10", age: "من 9 ل 11 سنة" },
+          // { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM.jpeg",
+        color: "بينك",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257593/WhatsApp_Image_2026-09-14_at_8.59.04_AM.jpg",
+        sizes: [
+          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          { size: "6-4", age: "من 3 ل 5 سنين" },
+          { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ]
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بينك"],
     image:
-      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM%20(2).jpeg",
+      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257590/WhatsApp_Image_2026-09-14_at_8.59.04_AM_2.jpg",
 
     sizes: [
       { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
@@ -270,6 +369,7 @@ export const SummerColonData = [
       { size: "14-12", age: "من 12 ل 14 سنة" },
     ],
   },
+
   // {
   //   id: 8,
   //   name: "كولون كريستال ساده",
