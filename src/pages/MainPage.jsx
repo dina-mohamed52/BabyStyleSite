@@ -87,7 +87,7 @@ const SEASONS = {
         nameEn: " هاف كولونات صيفي شيك",
         path: "/SummerHalfColon",
         image:
-          "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-09-13%20at%202.53.29%20PM%20(1).jpeg",
+          "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257286/WhatsApp_Image_2026-08-25_at_1.23.10_PM_1.jpg",
         items: "3+ منتج",
         badge: "جديد",
       },
@@ -97,7 +97,7 @@ const SEASONS = {
         nameEn: " كولونات وليجن صيفي شيك",
         path: "/SummerColon",
         image:
-          "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/summerMesh/WhatsApp%20Image%202026-09-14%20at%209.04.16%20AM.jpeg",
+          "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257610/WhatsApp_Image_2026-09-14_at_9.00.00_AM_1.jpg",
         items: "8+ منتج",
         badge: "تخفيضات",
       },
@@ -120,7 +120,7 @@ const SEASONS = {
         nameEn: "Winter Collection ",
         path: "/WinterCollection",
         image:
-          "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/WhatsApp%20Image%202026-09-11%20at%205.07.20%20PM%20(4).jpeg",
+          "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255911/WhatsApp_Image_2026-09-11_at_7.07.23_AM_4.jpg",
         items: "10+ منتج",
         badge: "الأكثر طلباً",
       },

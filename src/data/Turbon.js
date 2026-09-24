@@ -167,31 +167,31 @@ export const BandanaTurbonData = [
      category: 'bandana-set',
     productColors: [
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/setWithHalfBow/photo_15_2026-04-26_00-17-35.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258378/photo_15_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/setWithHalfBow/photo_14_2026-04-26_00-17-35.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258377/photo_14_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/setWithHalfBow/photo_13_2026-04-26_00-17-35.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258385/photo_13_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/setWithHalfBow/photo_12_2026-04-26_00-17-35.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258402/photo_12_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/setWithHalfBow/photo_11_2026-04-26_00-17-35.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258383/photo_11_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/setWithHalfBow/photo_16_2026-04-26_00-17-35.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258380/photo_16_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/setWithHalfBow/photo_1_2026-09-13_16-03-13.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258382/photo_1_2026-09-13_16-03-13.jpg",
       },
     
     ],
     avalibeColors: ["أبيض", "أسود", "بينك", "لافندر", "أحمر", "أصفر","بيج"],
     image:
-      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/setWithHalfBow/photo_16_2026-04-26_00-17-35.jpg",
+      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258380/photo_16_2026-04-26_00-17-35.jpg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -209,18 +209,18 @@ export const BandanaTurbonData = [
      category: 'bandana-set',
     productColors: [
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/SetWithHalfMesh/photo_10_2026-04-12_02-24-54.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258373/photo_10_2026-04-12_02-24-54.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/SetWithHalfMesh/photo_11_2026-04-12_02-24-54.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258375/photo_11_2026-04-12_02-24-54.jpg",
       },
       {
-        img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/SetWithHalfMesh/photo_12_2026-04-12_02-24-54.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258373/photo_12_2026-04-12_02-24-54.jpg",
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بينك"],
     image:
-      "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/Turbon/bandanaSet/SetWithHalfMesh/photo_10_2026-04-12_02-24-54.jpg",
+      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258373/photo_12_2026-04-12_02-24-54.jpg",
     sizes: [
       { size: "0-2", age: "من زيرو لسنه" },
       { size: "2-4", age: "من سنه ونص ل3 سنتين" },
