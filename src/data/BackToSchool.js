@@ -211,6 +211,41 @@ export const BackToSchoolData = [
     ],
   },
   {
+    id: 55,
+    category: "colon",
+    name: "كولون ميكي",
+    productColors: [
+
+      {
+        color: "اسود",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790713179/5879927343848475503.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          { size: "6-4", age: "من 3 ل 5 سنين" },
+          { size: "8-6", age: "من 5 ل 7 سنين" },
+          { size: "10-8", age: "من 7 ل 9 سنين" },
+          { size: "12-10", age: "من 9 ل 11 سنة" },
+          { size: "14-12", age: "من 12 ل 14 سنة" },
+        ],
+      },
+      
+    ],
+    avalibeColors: ["اسود"],
+    image: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790713179/5879927343848475503.jpg",
+    sizes: [
+      { size: "0-1", age: "من زيرو ل9 شهور" },
+      { size: "1-2", age: "من 9 شهور لسنه ونص" },
+      { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+      { size: "6-4", age: "من 3 ل 5 سنين" },
+      { size: "8-6", age: "من 5 ل 7 سنين" },
+      { size: "10-8", age: "من 7 ل 9 سنين" },
+      { size: "12-10", age: "من 9 ل 11 سنة" },
+      { size: "14-12", age: "من 12 ل 14 سنة" },
+    ],
+  },
+  {
     id: 5,
     category: "colon",
     name: "كولون كات",
@@ -223,9 +258,9 @@ export const BackToSchoolData = [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
+          // { size: "6-4", age: "من 3 ل 5 سنين" },
           { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
+          // { size: "10-8", age: "من 7 ل 9 سنين" },
           { size: "12-10", age: "من 9 ل 11 سنة" },
           { size: "14-12", age: "من 12 ل 14 سنة" },
         ],
@@ -321,7 +356,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بينك", "رصاصي"],
-    image: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255907/WhatsApp_Image_2026-09-11_at_7.07.23_AM_6.jpg",
+    image: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790713504/WhatsApp_Image_2026-09-29_at_1.15.16_PM.jpg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
