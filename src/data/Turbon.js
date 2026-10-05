@@ -1,42 +1,42 @@
 export const BandanaTurbonData = [
-  {
-    id: 8,
-    name: "بندانه عباد الشمس",
-    description:
-      "بندانه مصممه لاعطاء مظهر جذاب و تهوية جيدة لراحة بنوتك متوفر باكثر لون يناسب جميع الاذواق و كل طقم لبنوتك",
-    tabType: "bandana",
-     category: 'bandana',
-    productColors: [
-    //  {
-    //    img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088734/photo_17_2026-08-08_01-29-36.jpg",
-    //   },
-      {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088764/photo_14_2026-08-08_01-29-36.jpg",
-      },
-      //{ 
-        // img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139096/WhatsApp_Image_2026-08-08_at_12.31.57_AM_2_jogkti.jpg",
-       //},
-      {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088746/photo_11_2026-08-08_01-29-36.jpg",
-      },
-      {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088734/photo_15_2026-08-08_01-29-36.jpg",
-      },
-    //  {
-      //   img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139095/WhatsApp_Image_2026-08-08_at_12.31.57_AM_1_oarzgu.jpg",
-       //},
-      // {
-      //   img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139095/WhatsApp_Image_2026-08-08_at_12.31.57_AM_a8vj4o.jpg",
-      // },
-    ],
-    avalibeColors: [ "أصفر" , "بيج","أسود"],
-    image:
-      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088764/photo_14_2026-08-08_01-29-36.jpg",
-    sizes: [
-      { size: "0-1", age: "من زيرو لسنة" },
-      // { size: "1-3", age: "من سنه ل 3 سنين" },
-    ],
-  },
+  // {
+  //   id: 8,
+  //   name: "بندانه عباد الشمس",
+  //   description:
+  //     "بندانه مصممه لاعطاء مظهر جذاب و تهوية جيدة لراحة بنوتك متوفر باكثر لون يناسب جميع الاذواق و كل طقم لبنوتك",
+  //   tabType: "bandana",
+  //    category: 'bandana',
+  //   productColors: [
+  //    {
+  //      img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088734/photo_17_2026-08-08_01-29-36.jpg",
+  //     },
+  //     {
+  //       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088764/photo_14_2026-08-08_01-29-36.jpg",
+  //     },
+  //     { 
+  //       img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139096/WhatsApp_Image_2026-08-08_at_12.31.57_AM_2_jogkti.jpg",
+  //      },
+  //     {
+  //       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088746/photo_11_2026-08-08_01-29-36.jpg",
+  //     },
+  //     {
+  //       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088734/photo_15_2026-08-08_01-29-36.jpg",
+  //     },
+  //    {
+  //       img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139095/WhatsApp_Image_2026-08-08_at_12.31.57_AM_1_oarzgu.jpg",
+  //      },
+  //     {
+  //       img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139095/WhatsApp_Image_2026-08-08_at_12.31.57_AM_a8vj4o.jpg",
+  //     },
+  //   ],
+  //   avalibeColors: [ "أصفر" , "بيج","أسود"],
+  //   image:
+  //     "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088764/photo_14_2026-08-08_01-29-36.jpg",
+  //   sizes: [
+  //     { size: "0-1", age: "من زيرو لسنة" },
+  //     // { size: "1-3", age: "من سنه ل 3 سنين" },
+  //   ],
+  // },
   {
     id: 9,
     name: "بندانات قطن مضلع",
