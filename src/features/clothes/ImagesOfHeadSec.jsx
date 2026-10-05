@@ -15,10 +15,10 @@ const CATEGORY_IMAGES = {
     hero: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723445/WhatsApp_Image_2026-07-05_at_10.24.30_AM.jpg",
     collage: [
      // "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615536/WhatsApp_Image_2026-07-09_at_9.07.02_AM_1_yr3it2.jpg",
-    "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448265/WhatsApp_Image_2026-09-03_at_6.00.51_PM_1_cwbpwd.jpg",
+    "https://res.cloudinary.com/sauyrrk8/image/upload/v1791198450/photo_1_2026-09-03_01-04-55.jpg",
      // "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615465/WhatsApp_Image_2026-07-09_at_9.07.02_AM_kcitd3.jpg",
-     "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448264/WhatsApp_Image_2026-09-03_at_6.00.51_PM_2_nejpal.jpg",
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448264/WhatsApp_Image_2026-09-03_at_6.00.51_PM_2_nejpal.jpg"
+     "https://res.cloudinary.com/sauyrrk8/image/upload/v1791198450/photo_3_2026-09-03_01-04-55.jpg",
+     "https://res.cloudinary.com/sauyrrk8/image/upload/v1791198450/photo_1_2026-09-03_01-04-55.jpg",
     ]
   },
   short: {

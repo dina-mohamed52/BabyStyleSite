@@ -507,9 +507,91 @@ export const BackToSchoolData = [
       { size: "14-12", age: "من 12 ل 14 سنة" },
     ],
   },
+   {
+    id: 29,
+    name: "ليجن ريب مضلع ",
+    description:
+      "ليجن ريب مضلع خريفي قطن بجودة عالية مميزة، يحتوي على 10% ليكرا لمرونة ممتازة وراحة مثالية تناسب الاستخدام اليومي.",
+    price: 140,
+    originalPrice: 195,
+    discount: 28,
+    rating: 5,
+    category: "legging",
+    productColors: [
+      {
+        color: "أبيض",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791199038/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_32_43_%D8%B5.png",
+        sizes: [
+          { size: "S", age: "من 2 إلى 4 سنوات" },
+          { size: "M", age: "من 4 إلى 6 سنوات" },
+          { size: "L", age: "من 6 إلى 8 سنوات" },
+          { size: "XL", age: "من 8 إلى 10 سنوات" },
+        ]
+      },
+     {
+       color: "بيج",
+       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791199468/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_29_56_%D8%B5.png",
+       sizes: [
+         { size: "S", age: "من 2 إلى 4 سنوات" },
+         { size: "M", age: "من 4 إلى 6 سنوات" },
+          { size: "L", age: "من 6 إلى 8 سنوات" },
+         { size: "XL", age: "من 8 إلى 10 سنوات" },
+       ]
+     },
+      {
+        color: "رصاصي",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791198784/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_29_20_%D8%B5.png",
+        sizes: [
+          { size: "S", age: "من 2 إلى 4 سنوات" },
+          { size: "M", age: "من 4 إلى 6 سنوات" },
+          { size: "L", age: "من 6 إلى 8 سنوات" },
+          { size: "XL", age: "من 8 إلى 10 سنوات" },
+        ]
+      },
+      {
+        color: "أسود",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791200907/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_30_49_%D8%B5.png",
+        sizes: [
+          { size: "S", age: "من 2 إلى 4 سنوات" },
+          { size: "M", age: "من 4 إلى 6 سنوات" },
+          { size: "L", age: "من 6 إلى 8 سنوات" },
+          { size: "XL", age: "من 8 إلى 10 سنوات" },
+        ]
+      },
+      {
+        color: "سكري",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791199837/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_31_39_%D8%B5.png",
+        sizes: [
+          { size: "S", age: "من 2 إلى 4 سنوات" },
+          { size: "M", age: "من 4 إلى 6 سنوات" },
+          { size: "L", age: "من 6 إلى 8 سنوات" },
+          { size: "XL", age: "من 8 إلى 10 سنوات" },
+        ]
+      },
+     {
+ color: "بينك",
+  img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791198822/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_27_22_%D8%B5.png",
+ sizes: [
+    { size: "S", age: "من 2 إلى 4 سنوات" },
+   { size: "M", age: "من 4 إلى 6 سنوات" },
+    { size: "L", age: "من 6 إلى 8 سنوات" },
+   { size: "XL", age: "من 8 إلى 10 سنوات" }
+ ]
+},
+    ],
+    avalibeColors: ["أبيض","بيج",  "رصاصي", "أسود", "سكري","بينك"],
+    image:
+      "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723445/WhatsApp_Image_2026-07-05_at_10.24.30_AM.jpg",
+    sizes: [
+      { size: "S", age: "من 2 إلى 4 سنوات" },
+      { size: "M", age: "من 4 إلى 6 سنوات" },
+      { size: "L", age: "من 6 إلى 8 سنوات" },
+      { size: "XL", age: "من 8 إلى 10 سنوات" },
+    ],
+  },
   {
     id: 9,
-    name: "هاف كولون خريفي",
+    name: "هاف كولون ",
     category: "half",
     productColors: [
       {
@@ -619,7 +701,7 @@ export const BackToSchoolData = [
   {
     id: 11,
     name: "ليجن أوباك فيونكه",
-    description: "ليجن أوباك خريفي بتصميم فيونكة أنيق، خامة قطن مريحة غير شفافة مع مرونة عالية.",
+    description: "ليجن أوباك  بتصميم فيونكة أنيق، خامة قطن مريحة غير شفافة مع مرونة عالية.",
     rating: 5,
     category: "legging",
     productColors: [
@@ -751,220 +833,220 @@ export const BackToSchoolData = [
       { size: "14-12", age: "من 12 ل 14 سنة" },
     ],
   },
-  {
-    id: 25,
-    name: "كولون قلوب",
-    description:
-      "كولون خريفي قطن ناعم مدعوم بنسبة 10% ليكرا لمرونة عالية وراحة طوال اليوم، بتصميم قلوب أنيق مناسب للإطلالات اليومية والمناسبات.",
-    price: 140,
-    originalPrice: 195,
-    discount: 28,
-    rating: 5,
-    category: "colon",
+  // {
+  //   id: 25,
+  //   name: "كولون قلوب",
+  //   description:
+  //     "كولون  قطن ناعم مدعوم بنسبة 10% ليكرا لمرونة عالية وراحة طوال اليوم، بتصميم قلوب أنيق مناسب للإطلالات اليومية والمناسبات.",
+  //   price: 140,
+  //   originalPrice: 195,
+  //   discount: 28,
+  //   rating: 5,
+  //   category: "colon",
 
-    productColors: [
-      {
-        color: "أبيض",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257673/WhatsApp_Image_2026-09-14_at_9.04.16_AM_1.jpg",
-        sizes: [
-          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
-          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
-          // { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          // { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "أسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257682/WhatsApp_Image_2026-09-14_at_9.04.15_AM.jpg",
-        sizes: [
-          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
-          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          // { size: "6-4", age: "من 3 ل 5 سنين" },
-          // { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-    ],
-    avalibeColors: ["أبيض", "أسود"],
-    image:
-      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257674/WhatsApp_Image_2026-09-14_at_9.04.16_AM.jpg",
+  //   productColors: [
+  //     {
+  //       color: "أبيض",
+  //       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257673/WhatsApp_Image_2026-09-14_at_9.04.16_AM_1.jpg",
+  //       sizes: [
+  //         { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+  //         { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+  //         // { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         // { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //     {
+  //       color: "أسود",
+  //       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257682/WhatsApp_Image_2026-09-14_at_9.04.15_AM.jpg",
+  //       sizes: [
+  //         { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+  //         { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         // { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         // { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //   ],
+  //   avalibeColors: ["أبيض", "أسود"],
+  //   image:
+  //     "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257674/WhatsApp_Image_2026-09-14_at_9.04.16_AM.jpg",
 
-    sizes: [
-      { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
-      { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
-      { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-      { size: "6-4", age: "من 3 ل 5 سنين" },
-      { size: "8-6", age: "من 5 ل 7 سنين" },
-      { size: "10-8", age: "من 7 ل 9 سنين" },
-      { size: "12-10", age: "من 9 ل 11 سنة" },
-      { size: "14-12", age: "من 12 ل 14 سنة" },
-    ],
-  },
+  //   sizes: [
+  //     { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+  //     { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+  //     { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //     { size: "6-4", age: "من 3 ل 5 سنين" },
+  //     { size: "8-6", age: "من 5 ل 7 سنين" },
+  //     { size: "10-8", age: "من 7 ل 9 سنين" },
+  //     { size: "12-10", age: "من 9 ل 11 سنة" },
+  //     { size: "14-12", age: "من 12 ل 14 سنة" },
+  //   ],
+  // },
 
-  {
-    id: 26,
-    name: "كولون فيونكه",
-    description:
-      "كولون خريفي  قطن بلمسة أنثوية ناعمة مع فيونكه أنيقة، مصنوع من خامة مرنة 10% ليكرا لتوفير راحة مثالية وحركة سهلة طوال اليوم.",
+  // {
+  //   id: 26,
+  //   name: "كولون فيونكه",
+  //   description:
+  //     "كولون   قطن بلمسة أنثوية ناعمة مع فيونكه أنيقة، مصنوع من خامة مرنة 10% ليكرا لتوفير راحة مثالية وحركة سهلة طوال اليوم.",
 
-    price: 140,
-    originalPrice: 195,
-    discount: 28,
-    rating: 5,
-    category: "colon",
+  //   price: 140,
+  //   originalPrice: 195,
+  //   discount: 28,
+  //   rating: 5,
+  //   category: "colon",
 
-    productColors: [
-      {
-        color: "أسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257711/WhatsApp_Image_2026-09-14_at_9.01.28_AM_1.jpg",
-        sizes: [
-          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
-          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          // { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "أبيض",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257610/WhatsApp_Image_2026-09-14_at_9.00.00_AM_1.jpg",
-        sizes: [
-          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
-          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "بينك",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257590/WhatsApp_Image_2026-09-14_at_9.00.00_AM.jpg",
-        sizes: [
-          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
-          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "بيج",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257587/WhatsApp_Image_2026-09-14_at_9.01.28_AM.jpg",
-        sizes: [
-          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
-          // { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-    ],
-    avalibeColors: ["أسود", "أبيض", "بينك","بيج"],
-    image:
-      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257610/WhatsApp_Image_2026-09-14_at_9.00.00_AM_1.jpg",
+  //   productColors: [
+  //     {
+  //       color: "أسود",
+  //       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257711/WhatsApp_Image_2026-09-14_at_9.01.28_AM_1.jpg",
+  //       sizes: [
+  //         { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+  //         { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         // { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //     {
+  //       color: "أبيض",
+  //       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257610/WhatsApp_Image_2026-09-14_at_9.00.00_AM_1.jpg",
+  //       sizes: [
+  //         { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+  //         { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //     {
+  //       color: "بينك",
+  //       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257590/WhatsApp_Image_2026-09-14_at_9.00.00_AM.jpg",
+  //       sizes: [
+  //         { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+  //         { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //     {
+  //       color: "بيج",
+  //       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257587/WhatsApp_Image_2026-09-14_at_9.01.28_AM.jpg",
+  //       sizes: [
+  //         { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+  //         // { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //   ],
+  //   avalibeColors: ["أسود", "أبيض", "بينك","بيج"],
+  //   image:
+  //     "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257610/WhatsApp_Image_2026-09-14_at_9.00.00_AM_1.jpg",
 
-    sizes: [
-      { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
-      { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
-      { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-      { size: "6-4", age: "من 3 ل 5 سنين" },
-      { size: "8-6", age: "من 5 ل 7 سنين" },
-      { size: "10-8", age: "من 7 ل 9 سنين" },
-      { size: "12-10", age: "من 9 ل 11 سنة" },
-      { size: "14-12", age: "من 12 ل 14 سنة" },
-    ],
+  //   sizes: [
+  //     { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+  //     { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+  //     { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //     { size: "6-4", age: "من 3 ل 5 سنين" },
+  //     { size: "8-6", age: "من 5 ل 7 سنين" },
+  //     { size: "10-8", age: "من 7 ل 9 سنين" },
+  //     { size: "12-10", age: "من 9 ل 11 سنة" },
+  //     { size: "14-12", age: "من 12 ل 14 سنة" },
+  //   ],
    
-  },
+  // },
 
-  {
-    id: 27,
-    name: "كولون جكار",
-    description:
-      "كولون خريفي  قطن بجودة عالية ونقشة جكار مميزة، يحتوي على 10% ليكرا لمرونة ممتازة وراحة مثالية تناسب الاستخدام اليومي.",
+  // {
+  //   id: 27,
+  //   name: "كولون جكار",
+  //   description:
+  //     "كولون   قطن بجودة عالية ونقشة جكار مميزة، يحتوي على 10% ليكرا لمرونة ممتازة وراحة مثالية تناسب الاستخدام اليومي.",
 
-    price: 140,
-    originalPrice: 195,
-    discount: 28,
-    rating: 5,
-    category: "colon",
+  //   price: 140,
+  //   originalPrice: 195,
+  //   discount: 28,
+  //   rating: 5,
+  //   category: "colon",
 
-    productColors: [
-      {
-        color: "أبيض",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257590/WhatsApp_Image_2026-09-14_at_8.59.04_AM_2.jpg",
-        sizes: [
-          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
-          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          // { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "أسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257591/WhatsApp_Image_2026-09-14_at_8.59.04_AM_1.jpg",
-        sizes: [
-          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
-          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          // { size: "6-4", age: "من 3 ل 5 سنين" },
-          // { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          // { size: "12-10", age: "من 9 ل 11 سنة" },
-          // { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "بينك",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257593/WhatsApp_Image_2026-09-14_at_8.59.04_AM.jpg",
-        sizes: [
-          { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
-          { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-    ],
-    avalibeColors: ["أبيض", "أسود", "بينك"],
-    image:
-      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257590/WhatsApp_Image_2026-09-14_at_8.59.04_AM_2.jpg",
+  //   productColors: [
+  //     {
+  //       color: "أبيض",
+  //       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257590/WhatsApp_Image_2026-09-14_at_8.59.04_AM_2.jpg",
+  //       sizes: [
+  //         { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+  //         { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         // { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //     {
+  //       color: "أسود",
+  //       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257591/WhatsApp_Image_2026-09-14_at_8.59.04_AM_1.jpg",
+  //       sizes: [
+  //         { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+  //         { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         // { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         // { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         // { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         // { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //     {
+  //       color: "بينك",
+  //       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257593/WhatsApp_Image_2026-09-14_at_8.59.04_AM.jpg",
+  //       sizes: [
+  //         { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+  //         { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //   ],
+  //   avalibeColors: ["أبيض", "أسود", "بينك"],
+  //   image:
+  //     "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257590/WhatsApp_Image_2026-09-14_at_8.59.04_AM_2.jpg",
 
-    sizes: [
-      { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
-      { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
-      { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-      { size: "6-4", age: "من 3 ل 5 سنين" },
-      { size: "8-6", age: "من 5 ل 7 سنين" },
-      { size: "10-8", age: "من 7 ل 9 سنين" },
-      { size: "12-10", age: "من 9 ل 11 سنة" },
-      { size: "14-12", age: "من 12 ل 14 سنة" },
-    ],
-  },
+  //   sizes: [
+  //     { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
+  //     { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
+  //     { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //     { size: "6-4", age: "من 3 ل 5 سنين" },
+  //     { size: "8-6", age: "من 5 ل 7 سنين" },
+  //     { size: "10-8", age: "من 7 ل 9 سنين" },
+  //     { size: "12-10", age: "من 9 ل 11 سنة" },
+  //     { size: "14-12", age: "من 12 ل 14 سنة" },
+  //   ],
+  // },
 
 ];
