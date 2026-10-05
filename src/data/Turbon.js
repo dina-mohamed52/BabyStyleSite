@@ -7,9 +7,9 @@ export const BandanaTurbonData = [
     tabType: "bandana",
      category: 'bandana',
     productColors: [
-     {
-       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088734/photo_17_2026-08-08_01-29-36.jpg",
-      },
+    //  {
+    //    img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088734/photo_17_2026-08-08_01-29-36.jpg",
+    //   },
       {
         img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088764/photo_14_2026-08-08_01-29-36.jpg",
       },
@@ -29,7 +29,7 @@ export const BandanaTurbonData = [
       //   img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1786139095/WhatsApp_Image_2026-08-08_at_12.31.57_AM_a8vj4o.jpg",
       // },
     ],
-    avalibeColors: [ "أبيض","أصفر" , "بيج","أسود"],
+    avalibeColors: [ "أصفر" , "بيج","أسود"],
     image:
       "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088764/photo_14_2026-08-08_01-29-36.jpg",
     sizes: [

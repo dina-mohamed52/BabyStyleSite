@@ -552,7 +552,7 @@ export const Clothes = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783530159/WhatsApp_Image_2026-07-05_at_10.24.32_AM_r7blxm.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791199038/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_32_43_%D8%B5.png",
         sizes: [
           { size: "S", age: "من 2 إلى 4 سنوات" },
           { size: "M", age: "من 4 إلى 6 سنوات" },
@@ -560,19 +560,19 @@ export const Clothes = [
           { size: "XL", age: "من 8 إلى 10 سنوات" },
         ]
       },
-     // {
-      //  color: "بيج",
-      //  img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783530159/WhatsApp_Image_2026-07-05_at_10.24.30_AM_1_ey86uq.jpg",
-       // sizes: [
-         // { size: "S", age: "من 2 إلى 4 سنوات" },
-        //  { size: "M", age: "من 4 إلى 6 سنوات" },
-          //{ size: "L", age: "من 6 إلى 8 سنوات" },
-        //  { size: "XL", age: "من 8 إلى 10 سنوات" },
-       // ]
-     // },
+     {
+       color: "بيج",
+       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791199468/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_29_56_%D8%B5.png",
+       sizes: [
+         { size: "S", age: "من 2 إلى 4 سنوات" },
+         { size: "M", age: "من 4 إلى 6 سنوات" },
+          { size: "L", age: "من 6 إلى 8 سنوات" },
+         { size: "XL", age: "من 8 إلى 10 سنوات" },
+       ]
+     },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783530159/WhatsApp_Image_2026-07-05_at_10.24.31_AM_2_ve0vde.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791198784/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_29_20_%D8%B5.png",
         sizes: [
           { size: "S", age: "من 2 إلى 4 سنوات" },
           { size: "M", age: "من 4 إلى 6 سنوات" },
@@ -582,7 +582,7 @@ export const Clothes = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783530159/WhatsApp_Image_2026-07-05_at_10.24.31_AM_3_hu08sz.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791200907/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_30_49_%D8%B5.png",
         sizes: [
           { size: "S", age: "من 2 إلى 4 سنوات" },
           { size: "M", age: "من 4 إلى 6 سنوات" },
@@ -592,7 +592,7 @@ export const Clothes = [
       },
       {
         color: "سكري",
-        img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783530159/WhatsApp_Image_2026-07-05_at_10.24.31_AM_o4aiaj.jpg",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791199837/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_31_39_%D8%B5.png",
         sizes: [
           { size: "S", age: "من 2 إلى 4 سنوات" },
           { size: "M", age: "من 4 إلى 6 سنوات" },
@@ -600,20 +600,20 @@ export const Clothes = [
           { size: "XL", age: "من 8 إلى 10 سنوات" },
         ]
       },
-     // {
- // color: "بينك",
-  //img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783530160/WhatsApp_Image_2026-07-05_at_10.24.31_AM_1_cerr5j.jpg",
- // sizes: [
-    //{ size: "S", age: "من 2 إلى 4 سنوات" },
-   // { size: "M", age: "من 4 إلى 6 سنوات" },
-    //{ size: "L", age: "من 6 إلى 8 سنوات" },
-   // { size: "XL", age: "من 8 إلى 10 سنوات" }
- // ]
-//},
+     {
+ color: "بينك",
+  img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791198822/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_27_22_%D8%B5.png",
+ sizes: [
+    { size: "S", age: "من 2 إلى 4 سنوات" },
+   { size: "M", age: "من 4 إلى 6 سنوات" },
+    { size: "L", age: "من 6 إلى 8 سنوات" },
+   { size: "XL", age: "من 8 إلى 10 سنوات" }
+ ]
+},
     ],
-    avalibeColors: ["أبيض",  "رصاصي", "أسود", "سكري"],
+    avalibeColors: ["أبيض","بيج",  "رصاصي", "أسود", "سكري","بينك"],
     image:
-      "https://res.cloudinary.com/dxenvgjv5/image/upload/v1788448264/WhatsApp_Image_2026-09-03_at_6.00.51_PM_2_nejpal.jpg",
+      "https://res.cloudinary.com/sauyrrk8/image/upload/v1791198450/photo_3_2026-09-03_01-04-55.jpg",
     sizes: [
       { size: "S", age: "من 2 إلى 4 سنوات" },
       { size: "M", age: "من 4 إلى 6 سنوات" },
