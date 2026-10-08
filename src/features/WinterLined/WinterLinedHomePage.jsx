@@ -34,7 +34,9 @@ const tokens = {
 };
 
 const categories = [
-  {
+  
+
+{
     id: 'legging',
     title: 'ليجينز',
     subtitle: 'مرن ومريح زي الحرير',
@@ -47,41 +49,44 @@ const categories = [
     accent: '#9B7BE8',
     accentLight: '#F5EEFF',
     emoji: '🎀',
-    img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1791203164/WhatsApp_Image_2026-10-02_at_9.57.42_AM.jpg',
+    img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1791198450/photo_1_2026-09-03_01-04-55.jpg',
     path: '/clothes/legging',
   },
+
   {
-    id: 'colon',
-    title: 'كولونات مبطنة',
-    subtitle: 'دفا ناعم من جوه',
-    description: 'بطانة قطنية بتدفّي من غير ما تتقل — مثالية لأبرد أيام الشتا',
-    count: '١٨',
-    countLabel: 'منتج',
-    note: 'دفا زيادة',
-    warmth: 5,
-    tint: '#FFE0EC',
-    accent: '#E04A8F',
-    accentLight: '#FFF0F7',
-    emoji: '🧸',
-    img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1791203068/WhatsApp_Image_2026-10-02_at_10.00.47_AM.jpg',
-    path: '/clothes/colon',
-  },
-  {
-    id: 'turbon',
-    title: 'تربونات',
-    subtitle: 'ألوان بتفرّح القلب',
-    description: 'تربونات ناعمة بألوان مبهجة — بتخلي كل يوم شتوي حكاية',
-    count: '١٢',
-    countLabel: 'منتج',
-    note: 'جديد',
-    warmth: 4,
-    tint: '#FFF3C4',
-    accent: '#F5B800',
-    accentLight: '#FFFAE0',
-    emoji: '☃️',
-    img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1791202985/WhatsApp_Image_2026-10-02_at_10.03.17_AM.jpg',
-    path: '/clothes/turbon',
-  },
+    
+      id: 'printedColon',
+      title: 'كولونات رسومات',
+      subtitle: 'ألوان بتفرّح القلب',
+      description: 'كولونات ناعمة بألوان مبهجة — بتخلي كل يوم شتوي حكاية',
+      count: '١٢',
+      countLabel: 'منتج',
+      note: 'جديد',
+      warmth: 4,
+      tint: '#FFF3C4',
+      accent: '#F5B800',
+      accentLight: '#FFFAE0',
+      emoji: '☃️',
+      img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1790255863/WhatsApp_Image_2026-09-11_at_7.07.19_AM.jpg',
+      path: '/WinterCollection',
+    },
+
+    {
+      id: 'colon',
+      title: 'كولونات مبطنة',
+      subtitle: 'دفا ناعم من جوه',
+      description: 'بطانة قطنية بتدفّي من غير ما تتقل — مثالية لأبرد أيام الشتا',
+      count: '١٨',
+      countLabel: 'منتج',
+      note: 'دفا زيادة',
+      warmth: 5,
+      tint: '#FFE0EC',
+      accent: '#E04A8F',
+      accentLight: '#FFF0F7',
+      emoji: '🧸',
+      img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1791203068/WhatsApp_Image_2026-10-02_at_10.00.47_AM.jpg',
+      path: '/clothes/colon',
+    }
 ];
 
 const byId = (id) => categories.find((c) => c.id === id);
@@ -321,7 +326,7 @@ function CategoryCard({ category: c, index }) {
   );
 }
 
-function WinterLinedHomePage() {
+function WinterHomePage() {
   const navigate = useNavigate();
   const [temp, setTemp] = useState(10);
   const rec = recommend(temp);
@@ -996,4 +1001,4 @@ function WinterLinedHomePage() {
   );
 }
 
-export default WinterLinedHomePage;
+export default WinterHomePage;

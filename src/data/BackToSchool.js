@@ -698,142 +698,142 @@ export const BackToSchoolData = [
     */ // ============================================================
   // ليجن أوباك فيونكه
   // ============================================================
-  {
-    id: 11,
-    name: "ليجن أوباك فيونكه",
-    description: "ليجن أوباك  بتصميم فيونكة أنيق، خامة قطن مريحة غير شفافة مع مرونة عالية.",
-    rating: 5,
-    category: "legging",
-    productColors: [
-      {
-        color: "أبيض",
-        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723164/WhatsApp_Image_2026-04-13_at_8.13.21_AM_2.jpg",
-        sizes: [
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "أسود",
-        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723156/WhatsApp_Image_2026-04-13_at_8.13.21_AM.jpg",
-        sizes: [
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "أوف وايت",
-        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723160/WhatsApp_Image_2026-04-19_at_4.26.08_AM.jpg",
-        sizes: [
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "بيج",
-        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723159/WhatsApp_Image_2026-04-19_at_4.26.08_AM_1.jpg",
-        sizes: [
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-    ],
-    avalibeColors: ["أبيض", "أسود", "أوف وايت", "بيج"],
-    image: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723159/WhatsApp_Image_2026-04-19_at_4.26.08_AM_1.jpg",
-    sizes: [
-      { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-      { size: "6-4", age: "من 3 ل 5 سنين" },
-      { size: "8-6", age: "من 5 ل 7 سنين" },
-      { size: "10-8", age: "من 7 ل 9 سنين" },
-      { size: "12-10", age: "من 9 ل 11 سنة" },
-      { size: "14-12", age: "من 12 ل 14 سنة" },
-    ],
-  },
-  // ============================================================
-  // ليجن أوباك ساده
-  // ============================================================
-  {
-    id: 12,
-    name: "ليجن أوباك ساده",
-    description: "ليجن أوباك بتصميم ساده أنيق، خامة قطن مريحة غير شفافة مع مرونة عالية.",
-    rating: 5,
-    category: "legging",
-    productColors: [
-      {
-        color: "أوف وايت",
-        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723158/WhatsApp_Image_2026-04-23_at_4.22.21_PM.jpg",
-        sizes: [
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "أبيض",
-        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723152/WhatsApp_Image_2026-04-13_at_8.13.20_AM.jpg",
-        sizes: [
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "أسود",
-        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723157/WhatsApp_Image_2026-04-13_at_8.13.20_AM_2.jpg",
-        sizes: [
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-          { size: "6-4", age: "من 3 ل 5 سنين" },
-          { size: "8-6", age: "من 5 ل 7 سنين" },
-          { size: "10-8", age: "من 7 ل 9 سنين" },
-          { size: "12-10", age: "من 9 ل 11 سنة" },
-          { size: "14-12", age: "من 12 ل 14 سنة" },
-        ]
-      },
-      {
-        color: "بينك",
-        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723157/WhatsApp_Image_2026-04-13_at_8.13.20_AM_1.jpg",
-        sizes: [
-          { size: "6-8", age: "من 5 ل 7 سنين" },
-          { size: "8-10", age: "من 7 ل 9 سنين" },
-          { size: "10-12", age: "من 9 ل 11 سنة" },
-          { size: "12-14", age: "من 11 ل 14 سنة" },
-        ]
-      },
-    ],
-    avalibeColors: ["أبيض", "أوف وايت", "أسود", "بينك"],
-    image: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723152/WhatsApp_Image_2026-04-13_at_8.13.20_AM.jpg",
-    sizes: [
-      { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-      { size: "6-4", age: "من 3 ل 5 سنين" },
-      { size: "8-6", age: "من 5 ل 7 سنين" },
-      { size: "10-8", age: "من 7 ل 9 سنين" },
-      { size: "12-10", age: "من 9 ل 11 سنة" },
-      { size: "14-12", age: "من 12 ل 14 سنة" },
-    ],
-  },
   // {
+  //   id: 11,
+  //   name: "ليجن أوباك فيونكه",
+  //   description: "ليجن أوباك  بتصميم فيونكة أنيق، خامة قطن مريحة غير شفافة مع مرونة عالية.",
+  //   rating: 5,
+  //   category: "legging",
+  //   productColors: [
+  //     {
+  //       color: "أبيض",
+  //       img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723164/WhatsApp_Image_2026-04-13_at_8.13.21_AM_2.jpg",
+  //       sizes: [
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //     {
+  //       color: "أسود",
+  //       img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723156/WhatsApp_Image_2026-04-13_at_8.13.21_AM.jpg",
+  //       sizes: [
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //     {
+  //       color: "أوف وايت",
+  //       img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723160/WhatsApp_Image_2026-04-19_at_4.26.08_AM.jpg",
+  //       sizes: [
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //     {
+  //       color: "بيج",
+  //       img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723159/WhatsApp_Image_2026-04-19_at_4.26.08_AM_1.jpg",
+  //       sizes: [
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //   ],
+  //   avalibeColors: ["أبيض", "أسود", "أوف وايت", "بيج"],
+  //   image: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723159/WhatsApp_Image_2026-04-19_at_4.26.08_AM_1.jpg",
+  //   sizes: [
+  //     { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //     { size: "6-4", age: "من 3 ل 5 سنين" },
+  //     { size: "8-6", age: "من 5 ل 7 سنين" },
+  //     { size: "10-8", age: "من 7 ل 9 سنين" },
+  //     { size: "12-10", age: "من 9 ل 11 سنة" },
+  //     { size: "14-12", age: "من 12 ل 14 سنة" },
+  //   ],
+  // },
+  // // ============================================================
+  // // ليجن أوباك ساده
+  // // ============================================================
+  // {
+  //   id: 12,
+  //   name: "ليجن أوباك ساده",
+  //   description: "ليجن أوباك بتصميم ساده أنيق، خامة قطن مريحة غير شفافة مع مرونة عالية.",
+  //   rating: 5,
+  //   category: "legging",
+  //   productColors: [
+  //     {
+  //       color: "أوف وايت",
+  //       img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723158/WhatsApp_Image_2026-04-23_at_4.22.21_PM.jpg",
+  //       sizes: [
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //     {
+  //       color: "أبيض",
+  //       img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723152/WhatsApp_Image_2026-04-13_at_8.13.20_AM.jpg",
+  //       sizes: [
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //     {
+  //       color: "أسود",
+  //       img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723157/WhatsApp_Image_2026-04-13_at_8.13.20_AM_2.jpg",
+  //       sizes: [
+  //         { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //         { size: "6-4", age: "من 3 ل 5 سنين" },
+  //         { size: "8-6", age: "من 5 ل 7 سنين" },
+  //         { size: "10-8", age: "من 7 ل 9 سنين" },
+  //         { size: "12-10", age: "من 9 ل 11 سنة" },
+  //         { size: "14-12", age: "من 12 ل 14 سنة" },
+  //       ]
+  //     },
+  //     {
+  //       color: "بينك",
+  //       img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723157/WhatsApp_Image_2026-04-13_at_8.13.20_AM_1.jpg",
+  //       sizes: [
+  //         { size: "6-8", age: "من 5 ل 7 سنين" },
+  //         { size: "8-10", age: "من 7 ل 9 سنين" },
+  //         { size: "10-12", age: "من 9 ل 11 سنة" },
+  //         { size: "12-14", age: "من 11 ل 14 سنة" },
+  //       ]
+  //     },
+  //   ],
+  //   avalibeColors: ["أبيض", "أوف وايت", "أسود", "بينك"],
+  //   image: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723152/WhatsApp_Image_2026-04-13_at_8.13.20_AM.jpg",
+  //   sizes: [
+  //     { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+  //     { size: "6-4", age: "من 3 ل 5 سنين" },
+  //     { size: "8-6", age: "من 5 ل 7 سنين" },
+  //     { size: "10-8", age: "من 7 ل 9 سنين" },
+  //     { size: "12-10", age: "من 9 ل 11 سنة" },
+  //     { size: "14-12", age: "من 12 ل 14 سنة" },
+  //   ],
+  // },
+  // // {
   //   id: 25,
   //   name: "كولون قلوب",
   //   description:

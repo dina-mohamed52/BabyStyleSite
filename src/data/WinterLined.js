@@ -1,0 +1,100 @@
+export const winterLined = [
+  {
+    id: 'WinerLined',
+    name: "كولون مبطن ساده",
+    category: "LinedColon",
+    productColors: [
+      {
+        color: "أبيض",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791202987/WhatsApp_Image_2026-10-02_at_10.02.14_AM_2.jpg",
+        sizes: [
+          { size: "0-1",   age: "من زيرو ل9 شهور",      category: "baby"  },
+          { size: "4-2",   age: "من سنة ونص ل 3 سنين",  category: "girl"  },
+          { size: "6-4",   age: "من 3 ل 5 سنين",        category: "girl"  },
+          { size: "8-6",   age: "من 5 ل 7 سنين",        category: "girl"  },
+          { size: "10-8",  age: "من 7 ل 9 سنين",        category: "girl"  },
+          { size: "12-10", age: "من 9 ل 11 سنة",        category: "girl"  },
+          { size: "14-12", age: "من 12 ل 14 سنة",       category: "girl"  },
+        ],
+      },
+      {
+        color: "أسود",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203014/WhatsApp_Image_2026-10-02_at_10.02.15_AM.jpg",
+        sizes: [
+          { size: "0-1",   age: "من زيرو ل9 شهور",      category: "baby"  },
+          { size: "4-2",   age: "من سنة ونص ل 3 سنين",  category: "girl"  },
+          { size: "6-4",   age: "من 3 ل 5 سنين",        category: "girl"  },
+          { size: "8-6",   age: "من 5 ل 7 سنين",        category: "girl"  },
+          { size: "10-8",  age: "من 7 ل 9 سنين",        category: "girl"  },
+          { size: "12-10", age: "من 9 ل 11 سنة",        category: "girl"  },
+          { size: "14-12", age: "من 12 ل 14 سنة",       category: "girl"  },
+        ],
+      },
+      {
+        color: "بينك",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203045/WhatsApp_Image_2026-10-02_at_10.02.14_AM_1.jpg",
+        sizes: [
+          { size: "0-1",   age: "من زيرو ل9 شهور",      category: "baby"  },
+          { size: "4-2",   age: "من سنة ونص ل 3 سنين",  category: "girl"  },
+          { size: "6-4",   age: "من 3 ل 5 سنين",        category: "girl"  },
+          { size: "8-6",   age: "من 5 ل 7 سنين",        category: "girl"  },
+          { size: "10-8",  age: "من 7 ل 9 سنين",        category: "girl"  },
+          { size: "12-10", age: "من 9 ل 11 سنة",        category: "girl"  },
+          { size: "14-12", age: "من 12 ل 14 سنة",       category: "girl"  },
+        ],
+      },
+      {
+        color: "رصاصي",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791202985/WhatsApp_Image_2026-10-02_at_10.02.14_AM_5.jpg",
+        sizes: [
+          { size: "0-1",   age: "من زيرو ل9 شهور",      category: "baby"  },
+          { size: "4-2",   age: "من سنة ونص ل 3 سنين",  category: "girl"  },
+          { size: "6-4",   age: "من 3 ل 5 سنين",        category: "girl"  },
+          { size: "8-6",   age: "من 5 ل 7 سنين",        category: "girl"  },
+          { size: "10-8",  age: "من 7 ل 9 سنين",        category: "girl"  },
+          { size: "12-10", age: "من 9 ل 11 سنة",        category: "girl"  },
+          { size: "14-12", age: "من 12 ل 14 سنة",       category: "girl"  },
+        ],
+      },
+      {
+        color: "كشمير",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203258/WhatsApp_Image_2026-10-02_at_10.02.14_AM_4.jpg",
+        sizes: [
+          { size: "0-1",   age: "من زيرو ل9 شهور",      category: "baby"  },
+          { size: "4-2",   age: "من سنة ونص ل 3 سنين",  category: "girl"  },
+          { size: "6-4",   age: "من 3 ل 5 سنين",        category: "girl"  },
+          { size: "8-6",   age: "من 5 ل 7 سنين",        category: "girl"  },
+          { size: "10-8",  age: "من 7 ل 9 سنين",        category: "girl"  },
+          { size: "12-10", age: "من 9 ل 11 سنة",        category: "girl"  },
+          { size: "14-12", age: "من 12 ل 14 سنة",       category: "girl"  },
+        ],
+      },
+      {
+        color: "بيج",
+        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791202984/WhatsApp_Image_2026-10-02_at_10.02.14_AM.jpg",
+        sizes: [
+          { size: "0-1",   age: "من زيرو ل9 شهور",      category: "baby"  },
+          { size: "4-2",   age: "من سنة ونص ل 3 سنين",  category: "girl"  },
+          { size: "6-4",   age: "من 3 ل 5 سنين",        category: "girl"  },
+          { size: "8-6",   age: "من 5 ل 7 سنين",        category: "girl"  },
+          { size: "10-8",  age: "من 7 ل 9 سنين",        category: "girl"  },
+          { size: "12-10", age: "من 9 ل 11 سنة",        category: "girl"  },
+          { size: "14-12", age: "من 12 ل 14 سنة",       category: "girl"  },
+        ],
+      },
+    ],
+    avalibeColors: ["أبيض", "أسود", "بينك", "رصاصي", "كشمير", "بيج"],
+    image: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791205629/WhatsApp_Image_2026-10-02_at_9.59.21_AM.jpg",
+    sizes: [
+      { size: "0-1",   age: "من زيرو ل9 شهور",      category: "baby"  },
+      { size: "4-2",   age: "من سنة ونص ل 3 سنين",  category: "girl"  },
+      { size: "6-4",   age: "من 3 ل 5 سنين",        category: "girl"  },
+      { size: "8-6",   age: "من 5 ل 7 سنين",        category: "girl"  },
+      { size: "10-8",  age: "من 7 ل 9 سنين",        category: "girl"  },
+      { size: "12-10", age: "من 9 ل 11 سنة",        category: "girl"  },
+      { size: "14-12", age: "من 12 ل 14 سنة",       category: "girl"  },
+    ],
+
+    
+  },
+];
