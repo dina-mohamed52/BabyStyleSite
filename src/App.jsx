@@ -16,7 +16,8 @@ import ClothesHomePage from "./features/clothes/ClothesHomePage";
 import TurbonHomePage from "./features/TurbonParts/TurbonHomePage";
 // import BackToSchoolModal from "./ui/BackToSchoolModal";
 import WinterPatterned from "./pages/WinterPatterned";
-import WinterLinedHomePage from "./features/WinterLined/WinterLinedHomePage";
+import WinterHomePage from "./features/WinterLined/WinterLinedHomePage";
+import WinterLined from "./pages/WinterLined";
 
 function App() {
   const queryClient = new QueryClient();
@@ -37,8 +38,9 @@ function App() {
             <Route path="/SummerHalfColon" element={<SummerHalfColon />} />
             <Route path="/SummerColon" element={<SummerColon />} />
             <Route path="/Checkout" element={<CheckoutPage />} />
+            <Route path="/winterHomePage" element={<WinterHomePage />} />
+            <Route path="/winter/:category" element={<WinterLined />} />
             <Route path="/clothes" element={<ClothesHomePage />} />
-            <Route path="/winterLined" element={<WinterLinedHomePage />} />
             <Route path="/clothes/:category" element={<Clothes />} />
             <Route path="/Turbon" element={<TurbonHomePage />} />
             <Route path="/turbon/:category" element={<Turbon />} />
