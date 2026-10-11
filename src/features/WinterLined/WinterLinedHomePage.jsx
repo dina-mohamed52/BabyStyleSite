@@ -63,7 +63,7 @@ const categories = [
     accent: '#F5B800',
     accentLight: '#FFFAE0',
     emoji: '☃️',
-    img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1790255822/WhatsApp_Image_2026-09-11_at_7.07.23_AM_2.jpg',
+    img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1790255911/WhatsApp_Image_2026-09-11_at_7.07.23_AM_4.jpg',
     path: '/WinterCollection',
   },
   {
@@ -93,7 +93,7 @@ function recommend(temp) {
     return { cat: byId('legging'), text: 'جو متوسط؟ ليجينز مع بلوفر دافي', color: tokens.lavender, emoji: '🌸' };
   return { cat: byId('turban') || byId('legging'), text: 'جو لطيف؟ تربون ملون يكمل الإطلالة', color: tokens.lemon, emoji: '☀️' };
 }
-
+// ───────────────────────────────────────────────────────────────────────────────//
 const marqueeItems = [
   'شتا دافي', 'ألوان فرحانة', 'بطانة ناعمة', '🎀 ليجينز',
   '🧸 كولونات مبطنة', '☃️ تربونات', '🎁 اطلبي الان', '💝 خصم للكميات',
