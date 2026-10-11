@@ -124,16 +124,16 @@ const SEASONS = {
         items: "10+ منتج",
         badge: "الأكثر طلباً",
       },
-      // {
-      //   id: 5,
-      //   name: "كنزات صوف",
-      //   nameEn: "Wool Sweaters",
-      //   path: "/WinterSweaters",
-      //   image:
-      //     "https://res.cloudinary.com/dxenvgjv5/image/upload/v1756575082/468185339_931536052403792_3120323499499149723_n_zp0ej5.jpg",
-      //   items: "14+ منتج",
-      //   badge: "جودة عالية",
-      // },
+      {
+        id: 5,
+        name: "كولونات مبطنه ",
+        nameEn: "Winter Lined",
+        path: "/winter/WinerLined",
+        image:
+          "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203068/WhatsApp_Image_2026-10-02_at_10.00.47_AM.jpg",
+        items: "14+ منتج",
+        badge: "جودة عالية",
+      },
       // {
       //   id: 6,
       //   name: "بناطيل دافئة",
