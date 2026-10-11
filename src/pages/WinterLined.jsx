@@ -278,6 +278,20 @@ const scrollToOrderCollection = () =>
         </div>
       </section>
 
+{/* عرووووووووووووووووض */}
+       <OfferesSec
+          setSelectedOffer={setSelectedOffer}
+                scrollToOrderCollection={scrollToOrderCollection}
+       />
+
+  <div ref={orderCollectionRef}>
+                <LinedOrderCollection
+                    selectedOffer={selectedOffer}
+                    scrollToOffers={scrollToOffers}
+                />
+            </div>
+
+
       {/* COLORS */}
       <section className="wl-section wl-section-colors" id="wl-colors">
         <Reveal className="wl-head">
@@ -336,18 +350,6 @@ const scrollToOrderCollection = () =>
           <p>للعب، للمشي، وللجلوس في البيت — تصميم مرن يخليها حرة وتدفي.</p>
         </div>
       </section>
-{/* عرووووووووووووووووض */}
-       <OfferesSec
-          setSelectedOffer={setSelectedOffer}
-                scrollToOrderCollection={scrollToOrderCollection}
-       />
-
-  <div ref={orderCollectionRef}>
-                <LinedOrderCollection
-                    selectedOffer={selectedOffer}
-                    scrollToOffers={scrollToOffers}
-                />
-            </div>
 
       {/* SIZES */}
      <SizesSec product={product} />
@@ -620,7 +622,7 @@ const css = `
 
 /* Marquee */
 .wl-strip{background:var(--ink);color:var(--paper);padding:18px 0;overflow:hidden;position:relative;z-index:2}
-.wl-strip-track{display:flex;gap:56px;white-space:nowrap;animation:wlSlide 32s linear infinite}
+.wl-strip-track{display:flex;gap:56px;white-space:nowrap;animation:wlSlide 16s linear infinite}
 .wl-strip-group{display:flex;gap:56px;align-items:center}
 .wl-strip-group span{font-family:'Lalezar',sans-serif;font-size:20px;letter-spacing:.02em}
 .wl-strip-group i{color:var(--pink);font-style:normal;font-size:14px}
