@@ -35,6 +35,7 @@ function MobileSelect({
   icon: Icon,
   disabled,
   renderOption,
+  renderSelected,
   getColorCode,
 }) {
   const [open, setOpen] = useState(false);
@@ -64,11 +65,15 @@ function MobileSelect({
           <ChevronDown
             className={`w-5 h-5 text-gray-400 transition-transform ${open ? "rotate-180" : ""}`}
           />
-          <span
-            className={`text-sm ${value ? "text-gray-800 font-medium" : "text-gray-400"}`}
-          >
-            {selectedOption?.label || placeholder}
-          </span>
+          {renderSelected && selectedOption ? (
+            renderSelected(selectedOption)
+          ) : (
+            <span
+              className={`text-sm ${value ? "text-gray-800 font-medium" : "text-gray-400"}`}
+            >
+              {selectedOption?.label || placeholder}
+            </span>
+          )}
         </button>
       </div>
 
@@ -233,7 +238,7 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
   const [hoveredCard, setHoveredCard] = useState(null);
   const [selectedSizes, setSelectedSizes] = useState({});
   const [completedCards, setCompletedCards] = useState({});
-  
+
   const { addToCart } = useCart();
 
   // Check if mobile
@@ -251,14 +256,11 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
     const offerType = selectedOffer?.type || "colon";
 
     if (offerType === "colon") {
-      // عروض الكولون: عرض الكولون + الليجن
       return BackToSchoolData.filter(
         (product) =>
-          product.category === "colon" ||
-          product.category === "legging"
+          product.category === "colon" || product.category === "legging"
       );
     } else if (offerType === "half") {
-      // عروض الهاف: منتجات الهاف فقط
       return BackToSchoolData.filter((product) =>
         product.name.includes("هاف")
       );
@@ -270,9 +272,11 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
   const initialPieces = useMemo(() => {
     return Array.from({ length: count }, (_, i) => ({
       id: i + 1,
-      productId: disableProductSelection && defaultProductName
-        ? filteredProducts.find((p) => p.name === defaultProductName)?.id || null
-        : null,
+      productId:
+        disableProductSelection && defaultProductName
+          ? filteredProducts.find((p) => p.name === defaultProductName)?.id ||
+            null
+          : null,
       color: "",
     }));
   }, [count, disableProductSelection, defaultProductName, filteredProducts]);
@@ -283,9 +287,11 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
     setPieces(
       Array.from({ length: count }, (_, i) => ({
         id: i + 1,
-        productId: disableProductSelection && defaultProductName
-          ? filteredProducts.find((p) => p.name === defaultProductName)?.id || null
-          : null,
+        productId:
+          disableProductSelection && defaultProductName
+            ? filteredProducts.find((p) => p.name === defaultProductName)?.id ||
+              null
+            : null,
         color: "",
       }))
     );
@@ -307,49 +313,45 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
   }, [pieces, selectedSizes]);
 
   const getProductById = (id) => BackToSchoolData.find((p) => p.id === id);
-  
-  // NEW: Get product colors with their sizes (like in Clothes)
+
   const getProductColorsWithSizes = (productId) => {
     const product = getProductById(productId);
     if (!product) return [];
     return product.productColors || [];
   };
 
-  // Get available colors for a product
   const getProductColors = (productId) => {
     const colorsWithSizes = getProductColorsWithSizes(productId);
-    return colorsWithSizes.map(item => item.color);
+    return colorsWithSizes.map((item) => item.color);
   };
-  
-  // Get sizes for a specific product and color (like in Clothes)
+
   const getSizesForColor = (productId, colorName) => {
     const product = getProductById(productId);
     if (!product) return [];
-    
+
     const colorData = product.productColors?.find(
       (c) => c.color === colorName
     );
-    
+
     if (colorData && colorData.sizes) {
       return colorData.sizes;
     }
-    
-    // Fallback to product default sizes
+
     return product.sizes || [];
   };
 
   const getSizeDisplay = (sizeObj) => {
-    if (typeof sizeObj === 'object' && sizeObj.size) {
+    if (typeof sizeObj === "object" && sizeObj.size) {
       return sizeObj.size;
     }
     return sizeObj;
   };
 
   const getSizeAge = (sizeObj) => {
-    if (typeof sizeObj === 'object' && sizeObj.age) {
+    if (typeof sizeObj === "object" && sizeObj.age) {
       return sizeObj.age;
     }
-    return '';
+    return "";
   };
 
   const handleGoToOffers = () => {
@@ -394,7 +396,6 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
 
   const handleColorChange = (id, color) => {
     setPieces((prev) => prev.map((p) => (p.id === id ? { ...p, color } : p)));
-    // Clear size when color changes (since sizes might be color-specific)
     setSelectedSizes((prev) => {
       const newSizes = { ...prev };
       delete newSizes[id];
@@ -409,11 +410,13 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
   const getProductImage = (product, colorName) => {
     if (!product) return "";
     const colorData = product.productColors?.find((c) => c.color === colorName);
-    if (colorData) {
-      return colorData.img;
-    }
+    if (colorData) return colorData.img;
     const colorIndex = product.avalibeColors?.findIndex((c) => c === colorName);
-    if (colorIndex !== -1 && colorIndex >= 0 && product.productColors?.[colorIndex]) {
+    if (
+      colorIndex !== -1 &&
+      colorIndex >= 0 &&
+      product.productColors?.[colorIndex]
+    ) {
       return product.productColors[colorIndex].img;
     }
     return product.productColors?.[0]?.img || "";
@@ -432,7 +435,7 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
       };
     });
 
-    const mainImage = orderWithDetails.find(p => p.image)?.image || "";
+    const mainImage = orderWithDetails.find((p) => p.image)?.image || "";
 
     return {
       id: `colon-offer-${selectedOffer?.name}-${Date.now()}`,
@@ -478,13 +481,17 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
       toast.success(
         <div className="flex items-center gap-2">
           <CheckCircle className="w-5 h-5 text-green-500" />
-          <span>تم إضافة <strong>{selectedOffer?.name}</strong> إلى السلة بنجاح! 🛒</span>
+          <span>
+            تم إضافة <strong>{selectedOffer?.name}</strong> إلى السلة بنجاح! 🛒
+          </span>
         </div>,
         { position: "bottom-center", autoClose: 3000, icon: false }
       );
 
       if (shouldNavigate) {
-        setSuccessMessage(`🎁 تم إضافة عرض ${selectedOffer?.name} بنجاح إلى سلة التسوق!`);
+        setSuccessMessage(
+          `🎁 تم إضافة عرض ${selectedOffer?.name} بنجاح إلى سلة التسوق!`
+        );
         setShowSuccessModal(true);
         setPendingNavigation(true);
       } else {
@@ -570,7 +577,10 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
   }
 
   return (
-    <div className="py-6 md:py-12 px-3 md:px-4 max-w-7xl mx-auto" id="orderCollection">
+    <div
+      className="py-6 md:py-12 px-3 md:px-4 max-w-7xl mx-auto"
+      id="orderCollection"
+    >
       {/* Hero Header */}
       <div className="text-center mb-8 md:mb-12">
         <motion.div
@@ -601,7 +611,9 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
           className="text-gray-400 text-xs md:text-sm px-4"
           style={{ fontFamily: "'Cairo', sans-serif" }}
         >
-          قم بتخصيص كل {selectedOffer?.type === "colon" ? "كولون" : "هاف كولون"} بالمنتج واللون والمقاس المناسب
+          قم بتخصيص كل{" "}
+          {selectedOffer?.type === "colon" ? "كولون" : "هاف كولون"} بالمنتج
+          واللون والمقاس المناسب
         </p>
 
         {/* Progress Bar */}
@@ -635,7 +647,9 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
               className="text-[11px] md:text-xs text-green-500 mt-2"
               style={{ fontFamily: "'Cairo', sans-serif" }}
             >
-              ✨ جميع {selectedOffer?.type === "colon" ? "الكولونات" : "الهاف كولونات"} مكتملة! يمكنك إضافة العرض للسلة الآن
+              ✨ جميع{" "}
+              {selectedOffer?.type === "colon" ? "الكولونات" : "الهاف كولونات"}{" "}
+              مكتملة! يمكنك إضافة العرض للسلة الآن
             </motion.p>
           )}
         </div>
@@ -668,29 +682,36 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
       <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 md:gap-6">
         {pieces.map((piece, idx) => {
           const product = getProductById(piece.productId);
-          
-          // Get colors with their specific sizes (like in Clothes)
-          const productColorsWithSizes = getProductColorsWithSizes(piece.productId);
-          const colors = productColorsWithSizes.map(item => item.color);
-          
-          // Get sizes based on selected color (like in Clothes)
-          const sizes = piece.color 
+
+          const productColorsWithSizes = getProductColorsWithSizes(
+            piece.productId
+          );
+
+          const sizes = piece.color
             ? getSizesForColor(piece.productId, piece.color)
             : [];
-          
+
           const isCompleted = completedCards[piece.id];
           const isHovered = hoveredCard === piece.id;
 
-          const productOptions = filteredProducts.map((p) => ({
-            value: p.id,
-            label: p.name,
-          }));
+          // Product options with image
+          const productOptions = filteredProducts.map((p) => {
+            const firstColor =
+              p.productColors?.[0]?.color || p.avalibeColors?.[0];
+            const img = getProductImage(p, firstColor);
+            return {
+              value: p.id,
+              label: p.name,
+              img,
+            };
+          });
 
-          // Color options with sizes count (like in Clothes)
+          // Color options with image
           const colorOptions = productColorsWithSizes.map((item) => ({
             value: item.color,
             label: item.color,
             color: getColorCode(item.color),
+            img: item.img,
             sizesCount: item.sizes?.length || 0,
           }));
 
@@ -713,14 +734,14 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
             >
               <div
                 className={`
-                  relative bg-white rounded-xl md:rounded-2xl transition-all duration-300 overflow-hidden
+                  relative bg-white rounded-xl md:rounded-2xl transition-all duration-300 overflow-visible
                   ${isCompleted ? "ring-2 ring-purple-400 ring-offset-2" : "border border-gray-100"}
                   shadow-md hover:shadow-xl
                 `}
               >
                 <div
                   className={`
-                    px-4 md:px-5 py-3 md:py-4 border-b transition-all duration-300
+                    px-4 md:px-5 py-3 md:py-4 border-b transition-all duration-300 rounded-t-xl md:rounded-t-2xl
                     ${isCompleted ? "bg-gradient-to-r from-purple-50 to-white border-purple-100" : "bg-white border-gray-100"}
                   `}
                 >
@@ -743,12 +764,15 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                           className="text-[10px] md:text-xs text-gray-400"
                           style={{ fontFamily: "'Cairo', sans-serif" }}
                         >
-                          {selectedOffer?.type === "colon" ? "الكولون" : "الهاف كولون"}
+                          {selectedOffer?.type === "colon"
+                            ? "الكولون"
+                            : "الهاف كولون"}
                         </p>
                         <p
                           className="text-base md:text-lg font-bold text-gray-800"
                           style={{
-                            fontFamily: "'Baloo Bhaijaan 2', 'Cairo', sans-serif",
+                            fontFamily:
+                              "'Baloo Bhaijaan 2', 'Cairo', sans-serif",
                           }}
                         >
                           #{piece.id}
@@ -777,23 +801,45 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                       value={piece.productId}
                       onChange={(val) => handleProductChange(piece.id, val)}
                       options={productOptions}
-                      placeholder={`اختر ${selectedOffer?.type === "colon" ? "الكولون" : "الهاف كولون"}`}
+                      placeholder={`اختر ${
+                        selectedOffer?.type === "colon"
+                          ? "الكولون"
+                          : "الهاف كولون"
+                      }`}
                       label="المنتج"
                       icon={ShoppingBag}
                       disabled={disableProductSelection}
+                      renderSelected={(opt) => (
+                        <span className="flex items-center gap-2 text-sm text-gray-800 font-medium">
+                          {opt.img && (
+                            <img
+                              src={opt.img}
+                              alt={opt.label}
+                              className="w-12 h-12 rounded-md object-cover border border-gray-200"
+                            />
+                          )}
+                          <span
+                            style={{ fontFamily: "'Cairo', sans-serif" }}
+                          >
+                            {opt.label}
+                          </span>
+                        </span>
+                      )}
                       renderOption={(option) => (
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
-                            <Package className="w-4 h-4 text-purple-500" />
-                          </div>
-                          <div className="flex-1 text-right">
-                            <p
-                              className="font-medium text-gray-800 text-sm"
-                              style={{ fontFamily: "'Cairo', sans-serif" }}
-                            >
-                              {option.label}
-                            </p>
-                          </div>
+                        <div className="flex items-center justify-between w-full">
+                          <span
+                            className="text-sm text-gray-800 flex-1 text-right"
+                            style={{ fontFamily: "'Cairo', sans-serif" }}
+                          >
+                            {option.label}
+                          </span>
+                          {option.img && (
+                            <img
+                              src={option.img}
+                              alt={option.label}
+                              className="w-12 h-12 rounded-md object-cover border border-gray-200 flex-none"
+                            />
+                          )}
                         </div>
                       )}
                     />
@@ -804,72 +850,139 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                         style={{ fontFamily: "'Cairo', sans-serif" }}
                       >
                         <ShoppingBag className="w-4 h-4 text-purple-500" />
-                        اختر {selectedOffer?.type === "colon" ? "الكولون" : "الهاف كولون"}
+                        اختر{" "}
+                        {selectedOffer?.type === "colon"
+                          ? "الكولون"
+                          : "الهاف كولون"}
                       </label>
                       <Select
                         value={piece.productId}
                         onChange={(val) => handleProductChange(piece.id, val)}
-                        placeholder={selectedOffer?.type === "colon" ? "كولون" : "هاف كولون"}
+                        placeholder={
+                          selectedOffer?.type === "colon"
+                            ? "كولون"
+                            : "هاف كولون"
+                        }
                         className="w-full"
                         size="large"
                         disabled={disableProductSelection}
                         style={{ borderRadius: 12 }}
                         dropdownStyle={{ borderRadius: 12 }}
+                        optionLabelProp="label"
                       >
-                        {filteredProducts.map((p) => (
-                          <Select.Option key={p.id} value={p.id}>
-                            <div className="flex items-center gap-3 py-1">
-                              <div className="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
-                                <Package className="w-4 h-4 text-purple-500" />
-                              </div>
-                              <div>
-                                <p
-                                  className="font-medium text-gray-800 text-sm"
-                                  style={{ fontFamily: "'Cairo', sans-serif" }}
+                        {filteredProducts.map((p) => {
+                          const firstColor =
+                            p.productColors?.[0]?.color ||
+                            p.avalibeColors?.[0];
+                          const img = getProductImage(p, firstColor);
+
+                          return (
+                            <Select.Option
+                              key={p.id}
+                              value={p.id}
+                              label={
+                                <span className="flex items-center gap-2">
+                                  {img && (
+                                    <img
+                                      src={img}
+                                      alt={p.name}
+                                      className="w-12 h-12 rounded-md object-cover border border-gray-200"
+                                    />
+                                  )}
+                                  <span
+                                    style={{
+                                      fontFamily: "'Cairo', sans-serif",
+                                    }}
+                                  >
+                                    {p.name}
+                                  </span>
+                                </span>
+                              }
+                            >
+                              <div className="flex items-center justify-between w-full gap-2">
+                                <span
+                                  className="font-medium text-gray-800 text-sm flex-1 text-right"
+                                  style={{
+                                    fontFamily: "'Cairo', sans-serif",
+                                  }}
                                 >
                                   {p.name}
-                                </p>
+                                </span>
+                                {img && (
+                                  <img
+                                    src={img}
+                                    alt={p.name}
+                                    className="w-12 h-12 rounded-md object-cover border border-gray-200 flex-none"
+                                  />
+                                )}
                               </div>
-                            </div>
-                          </Select.Option>
-                        ))}
+                            </Select.Option>
+                          );
+                        })}
                       </Select>
                     </div>
                   )}
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-                    {/* Color Selection - Like in Clothes */}
+                    {/* Color Selection */}
                     {isMobile ? (
                       <MobileSelect
                         value={piece.color}
                         onChange={(val) => handleColorChange(piece.id, val)}
-                        options={colorOptions.map(opt => ({
+                        options={colorOptions.map((opt) => ({
                           ...opt,
-                          label: `${opt.label} (${opt.sizesCount} مقاس)`
+                          label: `${opt.label} (${opt.sizesCount} مقاس)`,
                         }))}
                         placeholder="اختر اللون"
                         label="اللون"
                         icon={Palette}
                         disabled={!piece.productId}
                         getColorCode={getColorCode}
-                        renderOption={(option) => (
-                          <div className="flex items-center gap-3">
-                            <div
-                              className="w-6 h-6 rounded-full shadow-inner"
-                              style={{
-                                backgroundColor: option.color,
-                                border:
-                                  option.color === "#FFFFFF"
-                                    ? "1px solid #E5E7EB"
-                                    : "none",
-                              }}
-                            />
+                        renderSelected={(opt) => (
+                          <span className="flex items-center gap-2 text-sm text-gray-800 font-medium">
+                            {opt.img && (
+                              <img
+                                src={opt.img}
+                                alt={opt.label}
+                                className="w-12 h-12 rounded-md object-cover border border-gray-200"
+                              />
+                            )}
                             <span
-                              className="text-sm text-gray-800"
                               style={{ fontFamily: "'Cairo', sans-serif" }}
                             >
-                              {option.label}
+                              {opt.label}
                             </span>
+                          </span>
+                        )}
+                        renderOption={(option) => (
+                          <div className="flex items-center justify-between w-full gap-2">
+                            <div className="flex items-center gap-2 flex-1 overflow-hidden">
+                              <div
+                                className="w-5 h-5 rounded-full shadow-inner flex-none"
+                                style={{
+                                  backgroundColor: option.color,
+                                  border:
+                                    option.color === "#FFFFFF"
+                                      ? "1px solid #E5E7EB"
+                                      : "none",
+                                }}
+                              />
+                              <span
+                                className="text-sm text-gray-800 truncate"
+                                style={{
+                                  fontFamily: "'Cairo', sans-serif",
+                                }}
+                              >
+                                {option.label}
+                              </span>
+                            </div>
+                            {option.img && (
+                              <img
+                                src={option.img}
+                                alt={option.label}
+                                className="w-12 h-12 rounded-md object-cover border border-gray-200 flex-none"
+                              />
+                            )}
                           </div>
                         )}
                       />
@@ -891,33 +1004,68 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                           disabled={!piece.productId}
                           style={{ borderRadius: 12 }}
                           dropdownStyle={{ borderRadius: 12 }}
+                          optionLabelProp="label"
                         >
                           {productColorsWithSizes.map((item) => (
-                            <Select.Option key={item.color} value={item.color}>
-                              <div className="flex items-center gap-2">
-                                <div
-                                  className="w-5 h-5 rounded-full shadow-inner"
-                                  style={{
-                                    backgroundColor: getColorCode(item.color),
-                                    border:
-                                      item.color === "أبيض" || item.color === "أوف وايت"
-                                        ? "1px solid #E5E7EB"
-                                        : "none",
-                                  }}
-                                />
-                                <span style={{ fontFamily: "'Cairo', sans-serif" }}>
-                                  {item.color}
-                                  {item.sizes && item.sizes.length > 0 && (
-                                    <span className="text-xs text-gray-400 mr-2">
-                                      ({item.sizes.length} مقاسات)
-                                    </span>
-                                  )}
-                                  {item.sizes && item.sizes.length === 0 && (
-                                    <span className="text-xs text-red-400 mr-2">
-                                      (لا يوجد مقاسات)
-                                    </span>
-                                  )}
+                            <Select.Option
+                              key={item.color}
+                              value={item.color}
+                              label={
+                                <span className="flex items-center gap-2">
+                                  <div
+                                    className="w-5 h-5 rounded-full shadow-inner"
+                                    style={{
+                                      backgroundColor: getColorCode(
+                                        item.color
+                                      ),
+                                      border:
+                                        item.color === "أبيض" ||
+                                        item.color === "أوف وايت"
+                                          ? "1px solid #E5E7EB"
+                                          : "none",
+                                    }}
+                                  />
+                                  <span
+                                    style={{
+                                      fontFamily: "'Cairo', sans-serif",
+                                    }}
+                                  >
+                                    {item.color}
+                                  </span>
                                 </span>
+                              }
+                            >
+                              <div className="flex items-center justify-between w-full gap-2">
+                                <div className="flex items-center gap-2 flex-1 overflow-hidden">
+                                  <div
+                                    className="w-5 h-5 rounded-full shadow-inner flex-none"
+                                    style={{
+                                      backgroundColor: getColorCode(
+                                        item.color
+                                      ),
+                                      border:
+                                        item.color === "أبيض" ||
+                                        item.color === "أوف وايت"
+                                          ? "1px solid #E5E7EB"
+                                          : "none",
+                                    }}
+                                  />
+                                  <span
+                                    className="text-sm text-gray-800 truncate"
+                                    style={{
+                                      fontFamily: "'Cairo', sans-serif",
+                                    }}
+                                  >
+                                    {item.color}
+                                  </span>
+                                </div>
+                                {item.img && (
+                                  <img
+                                    src={item.img}
+                                    alt={item.color}
+                                    className="w-12 h-12 rounded-md object-cover border border-gray-200 flex-none"
+                                  />
+                                )}
                               </div>
                             </Select.Option>
                           ))}
@@ -925,16 +1073,22 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                       </div>
                     )}
 
-                    {/* Size Selection - Like in Clothes */}
+                    {/* Size Selection */}
                     {isMobile ? (
                       <MobileSelect
                         value={selectedSizes[piece.id]}
                         onChange={(val) => handleSizeChange(piece.id, val)}
                         options={sizeOptions}
-                        placeholder={sizes.length === 0 ? "لا توجد مقاسات" : "اختر المقاس"}
+                        placeholder={
+                          sizes.length === 0 ? "لا توجد مقاسات" : "اختر المقاس"
+                        }
                         label="المقاس"
                         icon={Ruler}
-                        disabled={!piece.productId || !piece.color || sizes.length === 0}
+                        disabled={
+                          !piece.productId ||
+                          !piece.color ||
+                          sizes.length === 0
+                        }
                         renderOption={(option) => (
                           <div className="flex items-center justify-between w-full">
                             <span
@@ -969,15 +1123,26 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                         <Select
                           value={selectedSizes[piece.id]}
                           onChange={(val) => handleSizeChange(piece.id, val)}
-                          placeholder={sizes.length === 0 ? "لا توجد مقاسات لهذا اللون" : "مقاس"}
+                          placeholder={
+                            sizes.length === 0
+                              ? "لا توجد مقاسات لهذا اللون"
+                              : "مقاس"
+                          }
                           className="w-full"
                           size="large"
-                          disabled={!piece.productId || !piece.color || sizes.length === 0}
+                          disabled={
+                            !piece.productId ||
+                            !piece.color ||
+                            sizes.length === 0
+                          }
                           style={{ borderRadius: 12 }}
                           dropdownStyle={{ borderRadius: 12 }}
                         >
                           {sizes.map((s) => (
-                            <Select.Option key={getSizeDisplay(s)} value={getSizeDisplay(s)}>
+                            <Select.Option
+                              key={getSizeDisplay(s)}
+                              value={getSizeDisplay(s)}
+                            >
                               <div className="flex items-center justify-between">
                                 <span
                                   className="font-medium text-gray-800"
@@ -996,7 +1161,10 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                           ))}
                         </Select>
                         {piece.color && sizes.length === 0 && (
-                          <p className="text-xs text-red-400" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                          <p
+                            className="text-xs text-red-400"
+                            style={{ fontFamily: "'Cairo', sans-serif" }}
+                          >
                             ⚠️ لا توجد مقاسات متاحة لهذا اللون
                           </p>
                         )}
@@ -1019,7 +1187,7 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
 
                 <div
                   className={`
-                    px-4 md:px-5 py-2 md:py-3 border-t transition-all duration-300
+                    px-4 md:px-5 py-2 md:py-3 border-t transition-all duration-300 rounded-b-xl md:rounded-b-2xl
                     ${isCompleted ? "bg-gradient-to-r from-purple-50 to-white border-purple-100" : "bg-gray-50 border-gray-100"}
                   `}
                 >
@@ -1081,9 +1249,10 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
             whileTap={isFormValid ? { scale: 0.98 } : {}}
             className={`
               relative group flex-1 px-5 md:px-8 py-3 md:py-4 rounded-xl font-bold text-sm md:text-lg transition-all duration-300 flex items-center justify-center gap-2 md:gap-3
-              ${isFormValid && !isSubmitting
-                ? "bg-white border-2 border-purple-500 text-purple-600 hover:bg-purple-50 shadow-md active:scale-[0.98]"
-                : "bg-gray-100 border-2 border-gray-200 text-gray-400 cursor-not-allowed"
+              ${
+                isFormValid && !isSubmitting
+                  ? "bg-white border-2 border-purple-500 text-purple-600 hover:bg-purple-50 shadow-md active:scale-[0.98]"
+                  : "bg-gray-100 border-2 border-gray-200 text-gray-400 cursor-not-allowed"
               }
             `}
             style={{ fontFamily: "'Cairo', sans-serif" }}
@@ -1108,9 +1277,10 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
             whileTap={isFormValid ? { scale: 0.98 } : {}}
             className={`
               relative group flex-1 px-5 md:px-8 py-3 md:py-4 rounded-xl font-bold text-sm md:text-lg transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 overflow-hidden
-              ${isFormValid && !isSubmitting
-                ? "bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-xl shadow-purple-200 active:scale-[0.98]"
-                : "bg-gray-100 text-gray-400 cursor-not-allowed"
+              ${
+                isFormValid && !isSubmitting
+                  ? "bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-xl shadow-purple-200 active:scale-[0.98]"
+                  : "bg-gray-100 text-gray-400 cursor-not-allowed"
               }
             `}
             style={{ fontFamily: "'Cairo', sans-serif" }}
@@ -1154,6 +1324,12 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
           .colon-select-drawer .ant-drawer-content-wrapper {
             max-height: 80vh !important;
           }
+        }
+        .ant-select-item-option-content {
+          white-space: normal !important;
+        }
+        .ant-select-item-option {
+          padding: 8px 12px !important;
         }
       `}</style>
     </div>
