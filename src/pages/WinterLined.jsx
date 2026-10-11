@@ -247,6 +247,23 @@ const scrollToOrderCollection = () =>
         </div>
       </section>
 
+{/* عرووووووووووووووووض */}
+       <OfferesSec
+          setSelectedOffer={setSelectedOffer}
+                scrollToOrderCollection={scrollToOrderCollection}
+       />
+
+  <div ref={orderCollectionRef}>
+                <LinedOrderCollection
+                    selectedOffer={selectedOffer}
+                    scrollToOffers={scrollToOffers}
+                />
+            </div>
+
+{/* /////////////////////////////// */}
+
+
+
       {/* MATERIAL — صورتين جانب بعض */}
       <section className="wl-section wl-section-material">
         <div className="wl-split">
@@ -278,18 +295,6 @@ const scrollToOrderCollection = () =>
         </div>
       </section>
 
-{/* عرووووووووووووووووض */}
-       <OfferesSec
-          setSelectedOffer={setSelectedOffer}
-                scrollToOrderCollection={scrollToOrderCollection}
-       />
-
-  <div ref={orderCollectionRef}>
-                <LinedOrderCollection
-                    selectedOffer={selectedOffer}
-                    scrollToOffers={scrollToOffers}
-                />
-            </div>
 
 
       {/* COLORS  الموديلاااااااااااااااات */}
