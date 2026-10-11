@@ -19,8 +19,8 @@ const CATEGORY_LABEL = { baby: "👶 بيبي", girl: "🎀 بنوتة" };
 
 /* صور جديدة */
 const IMAGES = {
-  hero: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203314/WhatsApp_Image_2026-10-02_at_9.56.45_AM.jpg",
-  features: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203164/WhatsApp_Image_2026-10-02_at_9.57.42_AM.jpg",
+  hero: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203164/WhatsApp_Image_2026-10-02_at_9.57.42_AM.jpg",
+  features: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203314/WhatsApp_Image_2026-10-02_at_9.56.45_AM.jpg",
   material1: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203068/WhatsApp_Image_2026-10-02_at_10.00.47_AM.jpg",
   material2: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791205629/WhatsApp_Image_2026-10-02_at_9.59.21_AM.jpg",
   lifestyle: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791202985/WhatsApp_Image_2026-10-02_at_10.03.17_AM.jpg",
@@ -102,29 +102,52 @@ const Squiggle = ({ className = "", style }) => (
   </svg>
 );
 
+/* ─────────────────────────────────────────────
+   🖼️ كلاسات الصور الموحدة — الحل الأساسي للمشكلة
+   ───────────────────────────────────────────── */
+
+// للـ Polaroid العادي (هيرو / فيتشرز / كولور ستيدج)
+const IMG_POLAROID = [
+  "w-full h-auto",
+  "max-h-[60vh] object-contain object-center",
+  "sm:max-h-none sm:aspect-[4/5] sm:object-cover sm:object-top",
+  "rounded-sm block",
+].join(" ");
+
+// للصور المزدوجة (material) — أطول شوية
+const IMG_DUO = [
+  "w-full h-auto",
+  "max-h-[45vh] object-contain object-center",
+  "sm:max-h-none sm:aspect-[3/4] sm:object-cover sm:object-center",
+  "rounded-sm block",
+].join(" ");
+
+// للـ Lifestyle (خلفية كاملة)
+const IMG_LIFESTYLE = [
+  "absolute inset-0 w-full h-full",
+  "object-cover object-[center_30%]",
+  "sm:object-[center_25%]",
+].join(" ");
+
 function WinterLined() {
   const product = winterLined[0];
   const [colorIdx, setColorIdx] = useState(0);
   const [openFaq, setOpenFaq] = useState(0);
 
+  const [selectedOffer, setSelectedOffer] = useState(null);
+  const orderCollectionRef = useRef(null);
 
-   const [selectedOffer, setSelectedOffer] = useState(null);
-    const orderCollectionRef = useRef(null);
+  const scrollToOrderCollection = () =>
+    orderCollectionRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
 
-
-const scrollToOrderCollection = () =>
-        orderCollectionRef.current?.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-        });
-
-    const scrollToOffers = () => {
-        document
-            .getElementById("offersSection")
-            ?.scrollIntoView({ behavior: "smooth", block: "start" });
-    };
-
-
+  const scrollToOffers = () => {
+    document
+      .getElementById("offersSection")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const current = product.productColors[colorIdx];
 
@@ -152,7 +175,11 @@ const scrollToOrderCollection = () =>
             <div className="wl-polaroid wl-polaroid-hero">
               <span className="wl-tape wl-tape-tl" />
               <span className="wl-tape wl-tape-br" />
-              <img src={IMAGES.hero} alt={product.name} />
+              <img
+                src={IMAGES.hero}
+                alt={product.name}
+                className={IMG_POLAROID}
+              />
               <span className="wl-polaroid-caption">— دفء الشتا ❄️ —</span>
             </div>
             <svg className="wl-arrow" viewBox="0 0 120 100" fill="none">
@@ -224,7 +251,12 @@ const scrollToOrderCollection = () =>
           <Reveal className="wl-features-img" delay={80}>
             <div className="wl-polaroid wl-polaroid-tilt-left">
               <span className="wl-tape wl-tape-tl" />
-              <img src={IMAGES.features} alt="تفاصيل المنتج" loading="lazy" />
+              <img
+                src={IMAGES.features}
+                alt="تفاصيل المنتج"
+                loading="lazy"
+                className={IMG_POLAROID}
+              />
               <span className="wl-polaroid-caption">تفاصيل كيوت 🎀</span>
             </div>
           </Reveal>
@@ -235,7 +267,7 @@ const scrollToOrderCollection = () =>
                 key={f.title}
                 className="wl-feature"
                 delay={i * 80}
-                style={{ background: f.color, transform: `rotate(${f.rotate})` }}
+                style={{ background: f.color, "--rot": f.rotate }}
               >
                 <span className="wl-tape wl-tape-sm" />
                 <div className="wl-feature-icon">{f.icon}</div>
@@ -247,22 +279,18 @@ const scrollToOrderCollection = () =>
         </div>
       </section>
 
-{/* عرووووووووووووووووض */}
-       <OfferesSec
-          setSelectedOffer={setSelectedOffer}
-                scrollToOrderCollection={scrollToOrderCollection}
-       />
+      {/* عرووووووووووووووووض */}
+      <OfferesSec
+        setSelectedOffer={setSelectedOffer}
+        scrollToOrderCollection={scrollToOrderCollection}
+      />
 
-  <div ref={orderCollectionRef}>
-                <LinedOrderCollection
-                    selectedOffer={selectedOffer}
-                    scrollToOffers={scrollToOffers}
-                />
-            </div>
-
-       {/* ///////////////////////////////////////////////////////////////////////////////////////// */}
-
-
+      <div ref={orderCollectionRef}>
+        <LinedOrderCollection
+          selectedOffer={selectedOffer}
+          scrollToOffers={scrollToOffers}
+        />
+      </div>
 
       {/* MATERIAL — صورتين جانب بعض */}
       <section className="wl-section wl-section-material">
@@ -271,11 +299,21 @@ const scrollToOrderCollection = () =>
             <div className="wl-imgs-duo">
               <div className="wl-polaroid wl-polaroid-tilt">
                 <span className="wl-tape wl-tape-tl" />
-                <img src={IMAGES.material1} alt="خامة الكولون 1" loading="lazy" />
+                <img
+                  src={IMAGES.material1}
+                  alt="خامة الكولون 1"
+                  loading="lazy"
+                  className={IMG_DUO}
+                />
               </div>
               <div className="wl-polaroid wl-polaroid-tilt-r">
                 <span className="wl-tape wl-tape-tr" />
-                <img src={IMAGES.material2} alt="خامة الكولون 2" loading="lazy" />
+                <img
+                  src={IMAGES.material2}
+                  alt="خامة الكولون 2"
+                  loading="lazy"
+                  className={IMG_DUO}
+                />
               </div>
             </div>
           </Reveal>
@@ -295,9 +333,7 @@ const scrollToOrderCollection = () =>
         </div>
       </section>
 
-
-
-      {/* COLORS  الموديلاااااااااااااااات */}
+      {/* COLORS */}
       <section className="wl-section wl-section-colors" id="wl-colors">
         <Reveal className="wl-head">
           <span className="wl-pill">🎨 الألوان</span>
@@ -310,7 +346,12 @@ const scrollToOrderCollection = () =>
             <div className="wl-polaroid">
               <span className="wl-tape wl-tape-tl" />
               <span className="wl-tape wl-tape-tr" />
-              <img key={current.color} src={current.img} alt={current.color} />
+              <img
+                key={current.color}
+                src={current.img}
+                alt={current.color}
+                className={IMG_POLAROID}
+              />
               <span className="wl-polaroid-caption">{current.color}</span>
             </div>
           </Reveal>
@@ -348,7 +389,7 @@ const scrollToOrderCollection = () =>
 
       {/* LIFESTYLE */}
       <section className="wl-lifestyle">
-        <img src={IMAGES.lifestyle} alt="" loading="lazy" />
+        <img src={IMAGES.lifestyle} alt="" loading="lazy" className={IMG_LIFESTYLE} />
         <div className="wl-lifestyle-overlay">
           <span className="wl-pill wl-pill-light">✨ لحظاتها اليومية</span>
           <h2>تتحرك براحتها... وإنتِ مطمنة 🤍</h2>
@@ -357,8 +398,9 @@ const scrollToOrderCollection = () =>
       </section>
 
       {/* SIZES */}
-     <SizesSec product={product} />
-<RealLife/>
+      <SizesSec product={product} />
+      <RealLife />
+
       {/* FAQ */}
       <section className="wl-section wl-section-faq">
         <Reveal className="wl-head">
@@ -401,6 +443,10 @@ const scrollToOrderCollection = () =>
   );
 }
 
+/* ─────────────────────────────────────────────
+   CSS مخصص — بس للتفاصيل الجمالية
+   (الصور بقت بالـ Tailwind)
+   ───────────────────────────────────────────── */
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@400;600;700;900&family=Caveat:wght@500;700&display=swap');
 
@@ -592,7 +638,6 @@ const css = `
   display:inline-block;
   width:100%;
 }
-.wl-polaroid img{aspect-ratio:4/5;object-fit:cover;width:100%;display:block}
 .wl-polaroid-caption{
   position:absolute;bottom:16px;left:0;right:0;
   text-align:center;
@@ -604,13 +649,6 @@ const css = `
 .wl-polaroid-tilt{transform:rotate(2.5deg)}
 .wl-polaroid-tilt-r{transform:rotate(-2.5deg)}
 .wl-polaroid-tilt-left{transform:rotate(-2deg)}
-
-/* ✅ تعديل صورة الهيرو — عشان ما تتعملش crop غلط */
-.wl-polaroid-hero img{
-  aspect-ratio:4/5;
-  object-fit:cover;
-  object-position:center top;
-}
 
 .wl-hero-img{position:relative}
 .wl-arrow{
@@ -641,7 +679,6 @@ const css = `
   align-items:center;
 }
 .wl-features-img{position:relative}
-.wl-features-img .wl-polaroid img{aspect-ratio:3/4}
 
 .wl-features{
   display:grid;grid-template-columns:repeat(2,1fr);gap:22px;
@@ -653,8 +690,13 @@ const css = `
   border:2.5px solid var(--ink);
   box-shadow:6px 6px 0 rgba(58,46,69,.15);
   transition:.3s cubic-bezier(.2,.7,.2,1);
+  transform: rotate(var(--rot, 0deg));
+  will-change: transform;
 }
-.wl-feature:hover{transform:translate(-3px,-3px) rotate(0)!important;box-shadow:10px 10px 0 rgba(58,46,69,.2)}
+.wl-feature:hover{
+  transform: rotate(0deg) translate(-3px,-3px);
+  box-shadow:10px 10px 0 rgba(58,46,69,.2);
+}
 .wl-feature-icon{
   font-size:38px;width:76px;height:76px;margin:0 auto 16px;
   display:grid;place-items:center;
@@ -743,7 +785,6 @@ const css = `
 
 /* Lifestyle */
 .wl-lifestyle{position:relative;min-height:520px;display:grid;place-items:center;overflow:hidden}
-.wl-lifestyle img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .wl-lifestyle::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(58,46,69,.35),rgba(240,98,146,.45))}
 .wl-lifestyle-overlay{
   position:relative;z-index:1;text-align:center;color:#fff;
@@ -759,16 +800,6 @@ const css = `
   line-height:1.25;
 }
 .wl-lifestyle-overlay p{margin:0;font-size:16px;color:rgba(255,255,255,.95);max-width:460px;margin-inline:auto}
-
-/* ✅ تعديل صورة اللايف ستايل — عشان تبان أحسن */
-.wl-lifestyle img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center 25%;
-}
 
 /* Table */
 .wl-table-wrap{
@@ -862,14 +893,11 @@ const css = `
 }
 
 /* ── Responsive ── */
-
-/* Features layout: صورة + كروت */
 @media(max-width:900px){
   .wl-features-layout{
     grid-template-columns:1fr;
     gap:36px;
   }
-  .wl-features-img .wl-polaroid img{aspect-ratio:4/3}
   .wl-hero-inner{
     grid-template-columns:1fr;
     gap:44px;
@@ -888,7 +916,6 @@ const css = `
   .wl-split,.wl-colors-grid{grid-template-columns:1fr;gap:44px;text-align:center}
 }
 
-/* 2 كروت في الصف للموبايل */
 @media(max-width:700px){
   .wl-features{
     grid-template-columns:repeat(2,1fr);
