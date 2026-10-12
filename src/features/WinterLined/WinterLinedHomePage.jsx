@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ArrowUpRight, Truck, ShieldCheck, Star, Percent, Gift,
   Sparkles, Heart, Snowflake, Thermometer, Crown, ShoppingBag, Candy,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import OfferesSec from './OfferesSec';
 
 // ————————————————————————————————————————————
 // Design tokens — "Velvet Winter Dream"
@@ -35,9 +34,7 @@ const tokens = {
 };
 
 const categories = [
-  
-
-{
+  {
     id: 'legging',
     title: 'ليجينز',
     subtitle: 'مرن ومريح زي الحرير',
@@ -53,41 +50,38 @@ const categories = [
     img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1791198450/photo_1_2026-09-03_01-04-55.jpg',
     path: '/clothes/legging',
   },
-
   {
-    
-      id: 'printedColon',
-      title: 'كولونات رسومات',
-      subtitle: 'ألوان بتفرّح القلب',
-      description: 'كولونات ناعمة بألوان مبهجة — بتخلي كل يوم شتوي حكاية',
-      count: '١٢',
-      countLabel: 'منتج',
-      note: 'جديد',
-      warmth: 4,
-      tint: '#FFF3C4',
-      accent: '#F5B800',
-      accentLight: '#FFFAE0',
-      emoji: '☃️',
-      img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1790255863/WhatsApp_Image_2026-09-11_at_7.07.19_AM.jpg',
-      path: '/WinterCollection',
-    },
-
-    {
-      id: 'colon',
-      title: 'كولونات مبطنة',
-      subtitle: 'دفا ناعم من جوه',
-      description: 'بطانة قطنية بتدفّي من غير ما تتقل — مثالية لأبرد أيام الشتا',
-      count: '١٨',
-      countLabel: 'منتج',
-      note: 'دفا زيادة',
-      warmth: 5,
-      tint: '#FFE0EC',
-      accent: '#E04A8F',
-      accentLight: '#FFF0F7',
-      emoji: '🧸',
-      img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1791203068/WhatsApp_Image_2026-10-02_at_10.00.47_AM.jpg',
-      path: '/winter/WinerLined',
-    }
+    id: 'printedColon',
+    title: 'كولونات رسومات',
+    subtitle: 'ألوان بتفرّح القلب',
+    description: 'كولونات ناعمة بألوان مبهجة — بتخلي كل يوم شتوي حكاية',
+    count: '١٢',
+    countLabel: 'منتج',
+    note: 'جديد',
+    warmth: 4,
+    tint: '#FFF3C4',
+    accent: '#F5B800',
+    accentLight: '#FFFAE0',
+    emoji: '☃️',
+    img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1790255863/WhatsApp_Image_2026-09-11_at_7.07.19_AM.jpg',
+    path: '/WinterCollection',
+  },
+  {
+    id: 'colon',
+    title: 'كولونات مبطنة',
+    subtitle: 'دفا ناعم من جوه',
+    description: 'بطانة قطنية بتدفّي من غير ما تتقل — مثالية لأبرد أيام الشتا',
+    count: '١٨',
+    countLabel: 'منتج',
+    note: 'دفا زيادة',
+    warmth: 5,
+    tint: '#FFE0EC',
+    accent: '#E04A8F',
+    accentLight: '#FFF0F7',
+    emoji: '🧸',
+    img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1791203068/WhatsApp_Image_2026-10-02_at_10.00.47_AM.jpg',
+    path: '/winter/WinerLined',
+  },
 ];
 
 const byId = (id) => categories.find((c) => c.id === id);
@@ -97,7 +91,7 @@ function recommend(temp) {
     return { cat: byId('colon'), text: 'برد قارص؟ الكولون المبطن صديقك', color: tokens.sky, emoji: '❄️' };
   if (temp <= 14)
     return { cat: byId('legging'), text: 'جو متوسط؟ ليجينز مع بلوفر دافي', color: tokens.lavender, emoji: '🌸' };
-  return { cat: byId('turbon'), text: 'جو لطيف؟ تربون ملون يكمل الإطلالة', color: tokens.lemon, emoji: '☀️' };
+  return { cat: byId('turban') || byId('legging'), text: 'جو لطيف؟ تربون ملون يكمل الإطلالة', color: tokens.lemon, emoji: '☀️' };
 }
 
 const marqueeItems = [
@@ -105,14 +99,17 @@ const marqueeItems = [
   '🧸 كولونات مبطنة', '☃️ تربونات', '🎁 اطلبي الان', '💝 خصم للكميات',
 ];
 
-// ───────── كرات ثلج فضية متساقطة ─────────
-const snowBalls = Array.from({ length: 36 }, (_, i) => ({
-  left: `${(i * 31) % 100}%`,
-  size: 5 + ((i * 5) % 9),
-  duration: 10 + ((i * 3) % 12),
-  delay: (i * 0.5) % 10,
-  drift: (i % 2 === 0 ? 1 : -1) * (15 + ((i * 7) % 45)),
-  opacity: 0.6 + ((i * 13) % 40) / 100,
+// ───────── كرات ثلج فضية متساقطة (عدد أقل + إيقافها على الموبايل) ─────────
+const isMobileViewport = () =>
+  typeof window !== 'undefined' && window.innerWidth < 768;
+
+const snowBalls = Array.from({ length: 14 }, (_, i) => ({
+  left: `${(i * 37) % 100}%`,
+  size: 4 + ((i * 5) % 7),
+  duration: 12 + ((i * 3) % 10),
+  delay: (i * 0.7) % 8,
+  drift: (i % 2 === 0 ? 1 : -1) * (10 + ((i * 7) % 30)),
+  opacity: 0.5 + ((i * 13) % 40) / 100,
 }));
 
 function WarmthMeter({ level, color }) {
@@ -162,7 +159,6 @@ function CategoryCard({ category: c, index }) {
         boxShadow: `0 20px 50px -22px ${c.accent}66, 0 4px 16px -8px rgba(61,42,95,.1), inset 0 2px 0 rgba(255,255,255,.9), inset 0 -3px 12px ${c.accent}22`,
       }}
     >
-      {/* طبقة مخملية */}
       <div
         className="fw-velvet-texture"
         style={{
@@ -171,7 +167,6 @@ function CategoryCard({ category: c, index }) {
         }}
       />
 
-      {/* هالة */}
       <div style={{
         position: 'absolute', top: '-30%', insetInlineEnd: '-20%',
         width: '220px', height: '220px', borderRadius: '50%',
@@ -179,7 +174,6 @@ function CategoryCard({ category: c, index }) {
         pointerEvents: 'none',
       }} />
 
-      {/* إيموجي عائم */}
       <motion.div
         animate={{ y: [0, -6, 0], rotate: [-8, 8, -8] }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
@@ -195,7 +189,6 @@ function CategoryCard({ category: c, index }) {
         {c.emoji}
       </motion.div>
 
-      {/* الصورة */}
       <div
         className="fw-velvet-img-wrap"
         style={{
@@ -245,7 +238,6 @@ function CategoryCard({ category: c, index }) {
         </motion.span>
       </div>
 
-      {/* المحتوى */}
       <div style={{ position: 'relative', zIndex: 2, marginTop: '22px' }}>
         <div style={{
           height: '3px', width: '48px', borderRadius: '2px',
@@ -330,12 +322,22 @@ function CategoryCard({ category: c, index }) {
 function WinterHomePage() {
   const navigate = useNavigate();
   const [temp, setTemp] = useState(10);
-  const rec = recommend(temp);
+  const [showSnow, setShowSnow] = useState(false);
 
+  // كرات الثلج تظهر بس على الديسكتوب
+  useEffect(() => {
+    const check = () => setShowSnow(!isMobileViewport());
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const rec = recommend(temp);
   const goTo = (path) => navigate(path);
 
   return (
     <div
+      className="fw-root"
       style={{
         backgroundColor: tokens.bg,
         color: tokens.ink,
@@ -343,25 +345,28 @@ function WinterHomePage() {
         fontFamily: "'Tajawal', sans-serif",
         direction: 'rtl',
         overflowX: 'hidden',
-        backgroundImage: `
-          radial-gradient(circle at 10% 5%, ${tokens.bubblegum}18 0%, transparent 35%),
-          radial-gradient(circle at 90% 20%, ${tokens.lavender}18 0%, transparent 35%),
-          radial-gradient(circle at 50% 95%, ${tokens.mint}12 0%, transparent 40%),
-          radial-gradient(circle at 5% 60%, ${tokens.sky}12 0%, transparent 30%)
-        `,
       }}
     >
+      {/* ════ Styles — مرة واحدة بس، مش بتتحسب مع كل render ════ */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap');
         .fw-display { font-family: 'Baloo Bhaijaan 2', 'Tajawal', sans-serif; }
 
-        /* ─── إحساس القطيفة (Fuzzy/Felt) — نقاط ناعمة عشوائية ─── */
+        .fw-root {
+          background-image:
+            radial-gradient(circle at 10% 5%, ${tokens.bubblegum}18 0%, transparent 35%),
+            radial-gradient(circle at 90% 20%, ${tokens.lavender}18 0%, transparent 35%),
+            radial-gradient(circle at 50% 95%, ${tokens.mint}12 0%, transparent 40%);
+          background-attachment: scroll;
+        }
+
+        /* ─── إحساس القطيفة — طبقة واحدة فقط، مش fixed (أخف على الموبايل) ─── */
         .fw-velvet-page {
           position: relative;
         }
         .fw-velvet-page::before {
           content: '';
-          position: fixed;
+          position: absolute;
           inset: 0;
           pointer-events: none;
           z-index: 1;
@@ -369,50 +374,24 @@ function WinterHomePage() {
             radial-gradient(circle at 25% 35%, rgba(255,255,255,.5) 0%, rgba(255,255,255,.15) 0.8%, transparent 1.6%),
             radial-gradient(circle at 65% 55%, rgba(255,255,255,.45) 0%, rgba(255,255,255,.12) 0.7%, transparent 1.5%),
             radial-gradient(circle at 15% 75%, rgba(255,255,255,.4) 0%, rgba(255,255,255,.1) 0.7%, transparent 1.4%),
-            radial-gradient(circle at 85% 25%, rgba(255,255,255,.5) 0%, rgba(255,255,255,.15) 0.8%, transparent 1.6%),
-            radial-gradient(circle at 45% 85%, rgba(255,255,255,.4) 0%, rgba(255,255,255,.1) 0.6%, transparent 1.3%),
-            radial-gradient(circle at 75% 15%, rgba(255,255,255,.45) 0%, rgba(255,255,255,.12) 0.7%, transparent 1.5%),
-            radial-gradient(circle at 35% 25%, rgba(255,255,255,.35) 0%, rgba(255,255,255,.08) 0.5%, transparent 1.2%),
-            radial-gradient(circle at 55% 45%, rgba(255,255,255,.4) 0%, rgba(255,255,255,.1) 0.6%, transparent 1.3%);
-          background-size: 90px 90px, 110px 110px, 100px 100px, 120px 120px, 95px 95px, 105px 105px, 85px 85px, 115px 115px;
-          background-position: 0 0, 30px 30px, 60px 10px, 20px 70px, 80px 50px, 45px 90px, 10px 40px, 70px 80px;
+            radial-gradient(circle at 85% 25%, rgba(255,255,255,.5) 0%, rgba(255,255,255,.15) 0.8%, transparent 1.6%);
+          background-size: 90px 90px, 110px 110px, 100px 100px, 120px 120px;
+          background-position: 0 0, 30px 30px, 60px 10px, 20px 70px;
           opacity: 0.75;
-        }
-
-        /* طبقة زغب ناعمة إضافية — بدون خطوط */
-        .fw-velvet-page::after {
-          content: '';
-          position: fixed;
-          inset: 0;
-          pointer-events: none;
-          z-index: 0;
-          background-image:
-            radial-gradient(ellipse 3px 2px at 12% 18%, rgba(255,255,255,.5), transparent 60%),
-            radial-gradient(ellipse 2px 3px at 28% 42%, rgba(255,255,255,.45), transparent 60%),
-            radial-gradient(ellipse 3px 2px at 47% 22%, rgba(255,255,255,.5), transparent 60%),
-            radial-gradient(ellipse 2px 2px at 68% 58%, rgba(255,255,255,.4), transparent 60%),
-            radial-gradient(ellipse 3px 3px at 82% 32%, rgba(255,255,255,.45), transparent 60%),
-            radial-gradient(ellipse 2px 3px at 22% 78%, rgba(255,255,255,.4), transparent 60%),
-            radial-gradient(ellipse 3px 2px at 58% 88%, rgba(255,255,255,.45), transparent 60%),
-            radial-gradient(ellipse 2px 2px at 88% 72%, rgba(255,255,255,.4), transparent 60%);
-          background-size: 220px 220px, 190px 190px, 240px 240px, 200px 200px, 230px 230px, 210px 210px, 250px 250px, 195px 195px;
-          background-position: 0 0, 40px 40px, 80px 20px, 30px 80px, 100px 60px, 60px 120px, 20px 60px, 90px 100px;
-          opacity: 0.6;
-          mix-blend-mode: soft-light;
         }
 
         .fw-velvet-texture {
           background-image:
             radial-gradient(circle at 20% 30%, rgba(255,255,255,.6) 0%, rgba(255,255,255,.2) 3%, transparent 8%),
             radial-gradient(circle at 70% 60%, rgba(255,255,255,.5) 0%, rgba(255,255,255,.15) 2.5%, transparent 7%),
-            radial-gradient(circle at 40% 80%, rgba(255,255,255,.45) 0%, rgba(255,255,255,.12) 2%, transparent 6%),
-            radial-gradient(circle at 85% 20%, rgba(255,255,255,.55) 0%, rgba(255,255,255,.18) 3%, transparent 7.5%);
+            radial-gradient(circle at 40% 80%, rgba(255,255,255,.45) 0%, rgba(255,255,255,.12) 2%, transparent 6%);
           mix-blend-mode: overlay;
         }
 
         /* ─── كارت مخملي ─── */
         .fw-velvet-card {
           transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease;
+          will-change: transform;
         }
         .fw-velvet-card:hover {
           transform: translateY(-12px) rotate(-.6deg);
@@ -430,23 +409,84 @@ function WinterHomePage() {
         .fw-btn:active { transform: translateY(0) scale(.98); }
 
         @keyframes fw-marquee { from { transform: translateX(0); } to { transform: translateX(50%); } }
-        .fw-track { display: flex; width: max-content; animation: fw-marquee 32s linear infinite; }
+        .fw-track {
+          display: flex;
+          width: max-content;
+          animation: fw-marquee 22s linear infinite;
+          will-change: transform;
+        }
 
-        .fw-range { -webkit-appearance: none; appearance: none; width: 100%; height: 14px; border-radius: 999px;
-          background: linear-gradient(to left, ${tokens.sky}, ${tokens.lavender} 35%, ${tokens.lemon} 65%, ${tokens.peach});
-          outline: none; direction: ltr; border: 2px solid #fff;
-          box-shadow: inset 0 2px 6px rgba(61,42,95,.15), 0 4px 14px rgba(61,42,95,.1); }
-        .fw-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 32px; height: 32px; border-radius: 50%;
-          background: #fff; border: 4px solid ${tokens.bubblegum}; cursor: grab;
+        /* ═══════════ SLIDER — الحل النهائي للمشكلة البيضاء ═══════════ */
+        .fw-range-wrap {
+          position: relative;
+          width: 100%;
+          height: 14px;
+        }
+        .fw-range-bg {
+          position: absolute;
+          inset: 0;
+          border-radius: 999px;
+          border: 2px solid #fff;
+          background-image: linear-gradient(to left, ${tokens.sky}, ${tokens.lavender} 35%, ${tokens.lemon} 65%, ${tokens.peach});
+          box-shadow: inset 0 2px 6px rgba(61,42,95,.15), 0 4px 14px rgba(61,42,95,.1);
+          pointer-events: none;
+          z-index: 1;
+        }
+        .fw-range {
+          -webkit-appearance: none;
+          appearance: none;
+          position: relative;
+          z-index: 2;
+          width: 100%;
+          height: 14px;
+          background: transparent !important;
+          outline: none;
+          direction: ltr;
+          border: none;
+          box-shadow: none;
+          margin: 0;
+          cursor: pointer;
+          touch-action: pan-y;
+        }
+        .fw-range::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background: #fff;
+          border: 4px solid ${tokens.bubblegum};
+          cursor: grab;
           box-shadow: 0 6px 16px rgba(255,123,181,.5);
-          background-image: radial-gradient(circle, ${tokens.bubblegum} 40%, #fff 45%); }
-        .fw-range::-webkit-slider-thumb:hover { transform: scale(1.15); }
-        .fw-range::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 4px solid ${tokens.bubblegum}; cursor: grab; }
+          background-image: radial-gradient(circle, ${tokens.bubblegum} 40%, #fff 45%);
+          transition: transform .15s ease;
+        }
+        .fw-range::-webkit-slider-thumb:hover { transform: scale(1.12); }
+        .fw-range::-webkit-slider-thumb:active { cursor: grabbing; transform: scale(1.05); }
+        .fw-range::-moz-range-thumb {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          background: #fff;
+          border: 4px solid ${tokens.bubblegum};
+          cursor: grab;
+        }
+        .fw-range::-webkit-slider-runnable-track {
+          background: transparent;
+          height: 14px;
+          border: none;
+        }
+        .fw-range::-moz-range-track {
+          background: transparent;
+          height: 14px;
+          border: none;
+        }
 
         .fw-stripe-bg {
           background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,255,255,.35) 10px, rgba(255,255,255,.35) 20px);
         }
 
+        /* ═══════════ MOBILE OPTIMIZATIONS ═══════════ */
         @media (max-width: 760px) {
           .fw-hero-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
           .fw-collage { height: 340px !important; }
@@ -454,6 +494,20 @@ function WinterHomePage() {
           .fw-promo { grid-template-columns: 1fr !important; }
           .fw-promo-img { min-height: 220px !important; }
           .fw-promo-content { padding: 28px 22px !important; }
+
+          /* إخفاء الطبقة الزغبية على الموبايل (أداء أفضل) */
+          .fw-velvet-page::before { display: none; }
+
+          /* تعطيل الظلال الثقيلة */
+          .fw-velvet-card {
+            box-shadow: 0 12px 30px -18px rgba(61,42,95,.25) !important;
+          }
+
+          /* إيقاف الأنيميشن الطويل */
+          .fw-track { animation-duration: 30s; }
+
+          /* منع hover transforms على الموبايل */
+          .fw-velvet-card:hover { transform: none; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -462,271 +516,268 @@ function WinterHomePage() {
         }
       `}</style>
 
-      {/* ───────── كرات ثلج فضية متساقطة ───────── */}
-      <div aria-hidden style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 60 }}>
-        {snowBalls.map((s, i) => (
-          <motion.div
-            key={i}
-            initial={{ y: -30, x: 0, opacity: 0 }}
-            animate={{
-              y: ['0vh', '105vh'],
-              x: [0, s.drift, 0],
-              opacity: [0, s.opacity, s.opacity, 0],
-            }}
-            transition={{
-              duration: s.duration,
-              delay: s.delay,
-              repeat: Infinity,
-              ease: 'linear',
-            }}
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: s.left,
-              width: s.size,
-              height: s.size,
-              borderRadius: '50%',
-              background: `radial-gradient(circle at 30% 30%, #FFFFFF, ${tokens.silver} 45%, ${tokens.silverDeep} 100%)`,
-              boxShadow: `0 0 ${s.size}px rgba(232,236,245,.9), 0 0 ${s.size * 2}px rgba(199,208,224,.6), inset -1px -1px 2px rgba(199,208,224,.7), inset 1px 1px 2px rgba(255,255,255,.9)`,
-            }}
-          />
-        ))}
-      </div>
+      {/* ───────── كرات ثلج (ديسكتوب فقط) ───────── */}
+      {showSnow && (
+        <div aria-hidden style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 60 }}>
+          {snowBalls.map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ y: -30, x: 0, opacity: 0 }}
+              animate={{
+                y: ['0vh', '105vh'],
+                x: [0, s.drift, 0],
+                opacity: [0, s.opacity, s.opacity, 0],
+              }}
+              transition={{
+                duration: s.duration,
+                delay: s.delay,
+                repeat: Infinity,
+                ease: 'linear',
+              }}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: s.left,
+                width: s.size,
+                height: s.size,
+                borderRadius: '50%',
+                background: `radial-gradient(circle at 30% 30%, #FFFFFF, ${tokens.silver} 45%, ${tokens.silverDeep} 100%)`,
+                boxShadow: `0 0 ${s.size}px rgba(232,236,245,.9), inset -1px -1px 2px rgba(199,208,224,.7), inset 1px 1px 2px rgba(255,255,255,.9)`,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* المحتوى الرئيسي */}
       <div className="fw-velvet-page" style={{ position: 'relative', zIndex: 2 }}>
 
-       {/* ───────── HERO ───────── */}
-<section className="relative overflow-hidden">
-  <div className="relative z-[1] max-w-[1180px] mx-auto px-5 pt-12 pb-14">
+        {/* ───────── HERO ───────── */}
+        <section className="relative overflow-hidden">
+          <div className="relative z-[1] max-w-[1180px] mx-auto px-5 pt-12 pb-14">
 
-    {/* صف العنوان */}
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="flex items-center gap-2.5 mb-[22px]"
-    >
-      <span className="w-7 h-[3px] rounded-sm" style={{ backgroundColor: tokens.bubblegum }} />
-      <span className="text-[12.5px] tracking-[0.16em] font-extrabold" style={{ color: tokens.bubblegumDeep }}>
-        تشكيلة شتا ٢٠٢٦ — للبنوتات
-      </span>
-      <motion.span
-        animate={{ rotate: [0, 360] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
-        className="mr-auto inline-flex"
-      >
-        <Sparkles size={18} color={tokens.lemonDeep} />
-      </motion.span>
-    </motion.div>
-
-    {/* ─── الشبكة: موبايل = عمود واحد بترتيب مخصص | ديسكتوب = عمودين + شريط تحت ─── */}
-    <div className="grid grid-cols-1 gap-7 md:grid-cols-2 md:gap-12 md:items-center">
-
-      {/* ── الكلام ── */}
-      <motion.div
-        initial={{ opacity: 0, y: 14 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, delay: 0.05 }}
-        className="order-3 md:order-none"
-      >
-        <h1
-          className="fw-display text-[clamp(2.4rem,6vw,4.2rem)] font-extrabold leading-[1.15] mb-[18px] m-0"
-          style={{ color: tokens.ink }}
-        >
-          الشتا جاي
-          <br />
-          <span
-            className="inline-block px-4 -rotate-1"
-            style={{
-              color: tokens.ink,
-              background: `linear-gradient(transparent 55%, ${tokens.lemon} 55%, ${tokens.lemon} 88%, transparent 88%)`,
-            }}
-          >
-            بألوان فرحانة ✨
-          </span>
-        </h1>
-        <p
-          className="max-w-[440px] text-[15.5px] leading-[1.9] mb-[30px] m-0"
-          style={{ color: tokens.inkMuted }}
-        >
-          ليجينز · كولونات مبطنة · تربونات — دفا ناعم وألوان بتفرّح قلب بنوتتك، عشان الشتا يبقى أحلى فصل في السنة 🌸
-        </p>
-        <button
-          onClick={() => goTo(categories[0].path)}
-          className="fw-btn inline-flex items-center gap-2.5 text-white border-0 px-8 py-[15px] rounded-full text-[15px] font-extrabold cursor-pointer mb-8 font-[inherit]"
-          style={{
-            background: `linear-gradient(135deg, ${tokens.bubblegum}, ${tokens.bubblegumDeep})`,
-            boxShadow: `0 12px 32px -8px ${tokens.bubblegum}88, inset 0 1px 0 rgba(255,255,255,.4)`,
-          }}
-        >
-          اكتشفي تشكيلة الشتا
-          <ArrowUpRight size={17} strokeWidth={2.4} />
-        </button>
-
-        <div className="flex gap-2.5 flex-wrap">
-          {[
-            { icon: Star, label: '٥٤+ قطعة', bg: tokens.lemon, color: tokens.lemonDeep },
-            { icon: Truck, label: 'شحن سريع', bg: tokens.mint, color: tokens.mintDeep },
-            { icon: ShieldCheck, label: 'توصيل آمن', bg: tokens.lavender, color: tokens.lavenderDeep },
-          ].map((stat, i) => (
-            <motion.span
-              key={i}
-              whileHover={{ scale: 1.08, rotate: -3 }}
-              className="flex items-center gap-2.5 rounded-full py-[7px] pr-[7px] pl-4 text-[12.5px] font-bold"
-              style={{
-                backgroundColor: tokens.surface,
-                border: `2px solid ${tokens.line}`,
-                boxShadow: '0 4px 12px rgba(61,42,95,.06), inset 0 1px 0 #fff',
-              }}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center gap-2.5 mb-[22px]"
             >
-              <span
-                className="flex items-center justify-center w-[30px] h-[30px] rounded-full"
-                style={{ backgroundColor: stat.bg }}
+              <span className="w-7 h-[3px] rounded-sm" style={{ backgroundColor: tokens.bubblegum }} />
+              <span className="text-[12.5px] tracking-[0.16em] font-extrabold" style={{ color: tokens.bubblegumDeep }}>
+                تشكيلة شتا ٢٠٢٦ — للبنوتات
+              </span>
+              <motion.span
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+                className="mr-auto inline-flex"
               >
-                <stat.icon
-                  size={15}
-                  strokeWidth={2.4}
-                  color={stat.color}
-                  fill={stat.icon === Star ? stat.color : 'none'}
+                <Sparkles size={18} color={tokens.lemonDeep} />
+              </motion.span>
+            </motion.div>
+
+            <div className="grid grid-cols-1 gap-7 md:grid-cols-2 md:gap-12 md:items-center">
+
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.05 }}
+                className="order-3 md:order-none"
+              >
+                <h1
+                  className="fw-display text-[clamp(2.4rem,6vw,4.2rem)] font-extrabold leading-[1.15] mb-[18px] m-0"
+                  style={{ color: tokens.ink }}
+                >
+                  الشتا جاي
+                  <br />
+                  <span
+                    className="inline-block px-4 -rotate-1"
+                    style={{
+                      color: tokens.ink,
+                      background: `linear-gradient(transparent 55%, ${tokens.lemon} 55%, ${tokens.lemon} 88%, transparent 88%)`,
+                    }}
+                  >
+                    بألوان فرحانة ✨
+                  </span>
+                </h1>
+                <p
+                  className="max-w-[440px] text-[15.5px] leading-[1.9] mb-[30px] m-0"
+                  style={{ color: tokens.inkMuted }}
+                >
+                  ليجينز · كولونات مبطنة · تربونات — دفا ناعم وألوان بتفرّح قلب بنوتتك، عشان الشتا يبقى أحلى فصل في السنة 🌸
+                </p>
+                <button
+                  onClick={() => goTo(categories[0].path)}
+                  className="fw-btn inline-flex items-center gap-2.5 text-white border-0 px-8 py-[15px] rounded-full text-[15px] font-extrabold cursor-pointer mb-8 font-[inherit]"
+                  style={{
+                    background: `linear-gradient(135deg, ${tokens.bubblegum}, ${tokens.bubblegumDeep})`,
+                    boxShadow: `0 12px 32px -8px ${tokens.bubblegum}88, inset 0 1px 0 rgba(255,255,255,.4)`,
+                  }}
+                >
+                  اكتشفي تشكيلة الشتا
+                  <ArrowUpRight size={17} strokeWidth={2.4} />
+                </button>
+
+                <div className="flex gap-2.5 flex-wrap">
+                  {[
+                    { icon: Star, label: '٥٤+ قطعة', bg: tokens.lemon, color: tokens.lemonDeep },
+                    { icon: Truck, label: 'شحن سريع', bg: tokens.mint, color: tokens.mintDeep },
+                    { icon: ShieldCheck, label: 'توصيل آمن', bg: tokens.lavender, color: tokens.lavenderDeep },
+                  ].map((stat, i) => (
+                    <motion.span
+                      key={i}
+                      whileHover={{ scale: 1.08, rotate: -3 }}
+                      className="flex items-center gap-2.5 rounded-full py-[7px] pr-[7px] pl-4 text-[12.5px] font-bold"
+                      style={{
+                        backgroundColor: tokens.surface,
+                        border: `2px solid ${tokens.line}`,
+                        boxShadow: '0 4px 12px rgba(61,42,95,.06), inset 0 1px 0 #fff',
+                      }}
+                    >
+                      <span
+                        className="flex items-center justify-center w-[30px] h-[30px] rounded-full"
+                        style={{ backgroundColor: stat.bg }}
+                      >
+                        <stat.icon
+                          size={15}
+                          strokeWidth={2.4}
+                          color={stat.color}
+                          fill={stat.icon === Star ? stat.color : 'none'}
+                        />
+                      </span>
+                      {stat.label}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="relative h-[340px] md:h-[460px] order-1 md:order-none"
+              >
+                <div
+                  className="absolute rounded-full"
+                  style={{
+                    top: '4%', insetInlineEnd: '4%',
+                    width: '160px', height: '160px',
+                    background: `radial-gradient(circle at 30% 30%, ${tokens.lemon}, ${tokens.peach})`,
+                    boxShadow: `0 20px 60px -20px ${tokens.peach}88`,
+                  }}
                 />
-              </span>
-              {stat.label}
-            </motion.span>
-          ))}
-        </div>
-      </motion.div>
 
-      {/* ── الصور ── */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.92 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.15 }}
-        className="relative h-[340px] md:h-[460px] order-1 md:order-none"
-      >
-        <div
-          className="absolute rounded-full"
-          style={{
-            top: '4%', insetInlineEnd: '4%',
-            width: '160px', height: '160px',
-            background: `radial-gradient(circle at 30% 30%, ${tokens.lemon}, ${tokens.peach})`,
-            boxShadow: `0 20px 60px -20px ${tokens.peach}88`,
-          }}
-        />
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
+                  className="absolute inset-0 rounded-full border-2 border-dashed opacity-40"
+                  style={{ borderColor: tokens.bubblegum }}
+                />
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+                  className="absolute inset-[12%] rounded-full border-2 border-dashed opacity-30"
+                  style={{ borderColor: tokens.lavenderDeep }}
+                />
 
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
-          className="absolute inset-0 rounded-full border-2 border-dashed opacity-40"
-          style={{ borderColor: tokens.bubblegum }}
-        />
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-          className="absolute inset-[12%] rounded-full border-2 border-dashed opacity-30"
-          style={{ borderColor: tokens.lavenderDeep }}
-        />
+                <div
+                  className="absolute overflow-hidden z-[2]"
+                  style={{
+                    top: '6%', insetInlineStart: '4%',
+                    width: '54%', height: '84%',
+                    borderRadius: '999px 999px 28px 28px',
+                    border: `7px solid ${tokens.surface}`,
+                    backgroundColor: '#FFDDE9',
+                    boxShadow: '0 30px 50px -22px rgba(61,42,95,.45), inset 0 2px 0 #fff',
+                    transform: 'rotate(-4deg)',
+                  }}
+                >
+                  <img
+                    src={categories[1].img}
+                    alt={categories[1].title}
+                    className="w-full h-full object-cover object-top block"
+                  />
+                </div>
 
-        <div
-          className="absolute overflow-hidden z-[2]"
-          style={{
-            top: '6%', insetInlineStart: '4%',
-            width: '54%', height: '84%',
-            borderRadius: '999px 999px 28px 28px',
-            border: `7px solid ${tokens.surface}`,
-            backgroundColor: '#FFDDE9',
-            boxShadow: '0 30px 50px -22px rgba(61,42,95,.45), inset 0 2px 0 #fff',
-            transform: 'rotate(-4deg)',
-          }}
-        >
-          <img
-            src={categories[1].img}
-            alt={categories[1].title}
-            className="w-full h-full object-cover object-top block"
-          />
-        </div>
+                <div
+                  className="absolute overflow-hidden z-[3]"
+                  style={{
+                    bottom: '2%', insetInlineEnd: '2%',
+                    width: '48%', height: '66%',
+                    borderRadius: '999px 999px 24px 24px',
+                    border: `7px solid ${tokens.surface}`,
+                    boxShadow: '0 24px 44px -18px rgba(61,42,95,.45), inset 0 2px 0 #fff',
+                    transform: 'rotate(5deg)',
+                  }}
+                >
+                  <img
+                    src={categories[2].img}
+                    alt={categories[2].title}
+                    className="w-full h-full object-cover object-top block"
+                  />
+                </div>
 
-        <div
-          className="absolute overflow-hidden z-[3]"
-          style={{
-            bottom: '2%', insetInlineEnd: '2%',
-            width: '48%', height: '66%',
-            borderRadius: '999px 999px 24px 24px',
-            border: `7px solid ${tokens.surface}`,
-            boxShadow: '0 24px 44px -18px rgba(61,42,95,.45), inset 0 2px 0 #fff',
-            transform: 'rotate(5deg)',
-          }}
-        >
-          <img
-            src={categories[2].img}
-            alt={categories[2].title}
-            className="w-full h-full object-cover object-top block"
-          />
-        </div>
+                <motion.span
+                  animate={{ rotate: [-8, 8, -8], y: [0, -4, 0] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute z-[4] flex items-center gap-1.5 rounded-2xl px-4 py-2.5 text-[12.5px] font-extrabold text-white"
+                  style={{
+                    bottom: '14%', insetInlineStart: '0',
+                    backgroundColor: tokens.bubblegum,
+                    boxShadow: `0 12px 24px -6px ${tokens.bubblegum}99, inset 0 1px 0 rgba(255,255,255,.4)`,
+                    border: '2px solid #fff',
+                  }}
+                >
+                  <Snowflake size={15} color="#fff" />
+                  دفا لحد ٥ درجات
+                </motion.span>
 
-        <motion.span
-          animate={{ rotate: [-8, 8, -8], y: [0, -4, 0] }}
-          transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute z-[4] flex items-center gap-1.5 rounded-2xl px-4 py-2.5 text-[12.5px] font-extrabold text-white"
-          style={{
-            bottom: '14%', insetInlineStart: '0',
-            backgroundColor: tokens.bubblegum,
-            boxShadow: `0 12px 24px -6px ${tokens.bubblegum}99, inset 0 1px 0 rgba(255,255,255,.4)`,
-            border: '2px solid #fff',
-          }}
-        >
-          <Snowflake size={15} color="#fff" />
-          دفا لحد ٥ درجات
-        </motion.span>
+                <motion.span
+                  animate={{ rotate: [6, -6, 6] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute z-[4] flex items-center gap-1.5 rounded-[14px] px-3.5 py-2 text-[11.5px] font-extrabold"
+                  style={{
+                    top: '16%', insetInlineStart: '-2%',
+                    backgroundColor: tokens.lemon,
+                    color: tokens.ink,
+                    boxShadow: `0 10px 20px -4px ${tokens.lemonDeep}66, inset 0 1px 0 rgba(255,255,255,.6)`,
+                    border: '2px solid #fff',
+                  }}
+                >
+                  <Sparkles size={13} />
+                  جديد ٢٠٢٦
+                </motion.span>
+              </motion.div>
 
-        <motion.span
-          animate={{ rotate: [6, -6, 6] }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute z-[4] flex items-center gap-1.5 rounded-[14px] px-3.5 py-2 text-[11.5px] font-extrabold"
-          style={{
-            top: '16%', insetInlineStart: '-2%',
-            backgroundColor: tokens.lemon,
-            color: tokens.ink,
-            boxShadow: `0 10px 20px -4px ${tokens.lemonDeep}66, inset 0 1px 0 rgba(255,255,255,.6)`,
-            border: '2px solid #fff',
-          }}
-        >
-          <Sparkles size={13} />
-          جديد ٢٠٢٦
-        </motion.span>
-      </motion.div>
+              {/* ── الشريط المتحرك ── */}
+              <div
+                className="order-2 md:order-none md:col-span-2 md:mt-2 overflow-hidden text-white -mx-2.5 -rotate-[1.2deg]"
+                style={{
+                  background: `linear-gradient(135deg, ${tokens.bubblegum}, ${tokens.lavenderDeep}, ${tokens.skyDeep})`,
+                  boxShadow: '0 12px 32px -12px rgba(61,42,95,.3), inset 0 2px 0 rgba(255,255,255,.2)',
+                }}
+              >
+                <div className="fw-track" aria-hidden>
+                  {[...marqueeItems, ...marqueeItems].map((t, i) => (
+                    <span
+                      key={i}
+                      className="fw-display inline-flex items-center gap-[18px] px-5 py-[15px] text-[17px] font-bold whitespace-nowrap"
+                      style={{ textShadow: '0 2px 6px rgba(61,42,95,.2)' }}
+                    >
+                      {t}
+                      <span className="inline-flex">
+                        {i % 4 === 0 && <Snowflake size={16} color="#fff" />}
+                        {i % 4 === 1 && <Heart size={16} color="#fff" fill="#fff" />}
+                        {i % 4 === 2 && <Star size={16} color="#fff" fill="#fff" />}
+                        {i % 4 === 3 && <Sparkles size={16} color="#fff" />}
+                      </span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      {/* ── الشريط المتحرك ── */}
-      <div
-        className="order-2 md:order-none md:col-span-2 md:mt-2 overflow-hidden text-white -mx-2.5 -rotate-[1.2deg]"
-        style={{
-          background: `linear-gradient(135deg, ${tokens.bubblegum}, ${tokens.lavenderDeep}, ${tokens.skyDeep})`,
-          boxShadow: '0 12px 32px -12px rgba(61,42,95,.3), inset 0 2px 0 rgba(255,255,255,.2)',
-        }}
-      >
-        <div className="fw-track" aria-hidden>
-          {[...marqueeItems, ...marqueeItems].map((t, i) => (
-            <span
-              key={i}
-              className="fw-display inline-flex items-center gap-[18px] px-5 py-[15px] text-[17px] font-bold whitespace-nowrap"
-              style={{ textShadow: '0 2px 6px rgba(61,42,95,.2)' }}
-            >
-              {t}
-              <span className="inline-flex">
-                {i % 4 === 0 && <Snowflake size={16} color="#fff" />}
-                {i % 4 === 1 && <Heart size={16} color="#fff" fill="#fff" />}
-                {i % 4 === 2 && <Star size={16} color="#fff" fill="#fff" />}
-                {i % 4 === 3 && <Sparkles size={16} color="#fff" />}
-              </span>
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-       
         <div style={{ maxWidth: '1180px', margin: '0 auto', padding: '70px 20px 60px' }}>
           {/* ───────── اختاري حسب الطقس ───────── */}
           <motion.div
@@ -761,19 +812,25 @@ function WinterHomePage() {
               <h2 className="fw-display" style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', margin: '0 0 20px', lineHeight: 1.3, fontWeight: 800 }}>
                 حركي السلايدر على درجة حرارة النهاردة 🌡️
               </h2>
-              <input
-                className="fw-range"
-                type="range"
-                min={3}
-                max={22}
-                value={temp}
-                onChange={(e) => setTemp(Number(e.target.value))}
-                aria-label="درجة الحرارة"
-              />
+
+              {/* ═══ SLIDER الجديد ═══ */}
+              <div className="fw-range-wrap">
+                <div className="fw-range-bg" />
+                <input
+                  className="fw-range"
+                  type="range"
+                  min={3}
+                  max={22}
+                  value={temp}
+                  onChange={(e) => setTemp(Number(e.target.value))}
+                  aria-label="درجة الحرارة"
+                />
+              </div>
+
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: tokens.inkMuted, marginTop: '12px', fontWeight: 700 }}>
-                <span>🥶 ٣° برد</span>
-                <span>😊 ١٢° معتدل</span>
                 <span>☀️ ٢٢° دافي</span>
+                <span>😊 ١٢° معتدل</span>
+                <span>🥶 ٣° برد</span>
               </div>
             </div>
 
@@ -974,7 +1031,6 @@ function WinterHomePage() {
               </motion.div>
             </div>
           </motion.div>
-         
 
           {/* ───────── Footer ───────── */}
           <div style={{ marginTop: '48px', textAlign: 'center', fontSize: '12.5px', color: tokens.inkMuted }}>
