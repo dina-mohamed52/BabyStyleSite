@@ -63,7 +63,7 @@ const categories = [
     accent: '#F5B800',
     accentLight: '#FFFAE0',
     emoji: '☃️',
-    img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1790255863/WhatsApp_Image_2026-09-11_at_7.07.19_AM.jpg',
+    img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1790255822/WhatsApp_Image_2026-09-11_at_7.07.23_AM_2.jpg',
     path: '/WinterCollection',
   },
   {
