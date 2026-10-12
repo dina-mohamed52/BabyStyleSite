@@ -5,6 +5,7 @@ import {
   Sparkles, Heart, Snowflake, Thermometer, Crown, ShoppingBag, Candy,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import OfferesSec from './OfferesSec';
 
 // ————————————————————————————————————————————
 // Design tokens — "Velvet Winter Dream"
@@ -85,7 +86,7 @@ const categories = [
       accentLight: '#FFF0F7',
       emoji: '🧸',
       img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1791203068/WhatsApp_Image_2026-10-02_at_10.00.47_AM.jpg',
-      path: '/clothes/colon',
+      path: '/winter/WinerLined',
     }
 ];
 
@@ -973,6 +974,7 @@ function WinterHomePage() {
               </motion.div>
             </div>
           </motion.div>
+         
 
           {/* ───────── Footer ───────── */}
           <div style={{ marginTop: '48px', textAlign: 'center', fontSize: '12.5px', color: tokens.inkMuted }}>

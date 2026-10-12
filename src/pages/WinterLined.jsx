@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { winterLined } from "../data/WinterLined";
+import OfferesSec from "../features/WinterLined/OfferesSec";
+import SizesSec from "../features/WinterLined/SizesSec";
+import LinedOrderCollection from "../features/WinterLined/LinedOrderCollection";
+import RealLife from "../features/WinterLined/RealLife";
 
 const COLOR_HEX = {
   "أبيض": "#ffffff",
@@ -102,6 +106,25 @@ function WinterLined() {
   const product = winterLined[0];
   const [colorIdx, setColorIdx] = useState(0);
   const [openFaq, setOpenFaq] = useState(0);
+
+
+   const [selectedOffer, setSelectedOffer] = useState(null);
+    const orderCollectionRef = useRef(null);
+
+
+const scrollToOrderCollection = () =>
+        orderCollectionRef.current?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
+
+    const scrollToOffers = () => {
+        document
+            .getElementById("offersSection")
+            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+
 
   const current = product.productColors[colorIdx];
 
@@ -313,48 +336,22 @@ function WinterLined() {
           <p>للعب، للمشي، وللجلوس في البيت — تصميم مرن يخليها حرة وتدفي.</p>
         </div>
       </section>
+{/* عرووووووووووووووووض */}
+       <OfferesSec
+          setSelectedOffer={setSelectedOffer}
+                scrollToOrderCollection={scrollToOrderCollection}
+       />
+
+  <div ref={orderCollectionRef}>
+                <LinedOrderCollection
+                    selectedOffer={selectedOffer}
+                    scrollToOffers={scrollToOffers}
+                />
+            </div>
 
       {/* SIZES */}
-      <section className="wl-section wl-section-sizes">
-        <Reveal className="wl-head">
-          <span className="wl-pill">📏 المقاسات</span>
-          <h2>من <em>البيبي</em> للبنوتة الكبيرة</h2>
-          <Squiggle className="wl-squiggle" />
-        </Reveal>
-
-        <Reveal className="wl-table-wrap">
-          <table className="wl-table">
-            <thead>
-              <tr>
-                <th>المقاس</th>
-                <th>العمر</th>
-                <th>الفئة</th>
-              </tr>
-            </thead>
-            <tbody>
-              {product.sizes.map((s) => (
-                <tr key={s.size}>
-                  <td><span className="wl-size-pill" dir="ltr">{s.size}</span></td>
-                  <td>{s.age}</td>
-                  <td>
-                    <span className={`wl-cat ${s.category}`}>
-                      {CATEGORY_LABEL[s.category] || s.category}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </Reveal>
-
-        <Reveal className="wl-note">
-          <div className="wl-note-title">💌 ملاحظة صغيرة</div>
-          <p>📏 الطول بيتقاس من أعلى الخصر لأسفل القدم</p>
-          <p>✨ المقاسات تقريبية وقد تختلف شوية حسب جسم البنت</p>
-          <p className="wl-note-strong">محتارة بين مقاسين؟ اكتبي طول بنتك من الوسط للقدم</p>
-        </Reveal>
-      </section>
-
+     <SizesSec product={product} />
+<RealLife/>
       {/* FAQ */}
       <section className="wl-section wl-section-faq">
         <Reveal className="wl-head">

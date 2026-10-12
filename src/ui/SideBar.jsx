@@ -1,5 +1,18 @@
 import { useState } from "react";
-import { Menu, ShoppingCart, X, ChevronDown, Sparkles, Home, Sun, Snowflake, Wind, Heart, Layers, Grid3x3 } from "lucide-react";
+import {
+  Menu,
+  ShoppingCart,
+  X,
+  ChevronDown,
+  Sparkles,
+  Home,
+  Sun,
+  Snowflake,
+  Wind,
+  Heart,
+  Layers,
+  Grid3x3,
+} from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { FaWhatsapp } from "react-icons/fa";
@@ -14,32 +27,32 @@ const COLORS = {
   primaryLight: "#F9A8D4",
   primarySoft: "rgba(244, 114, 182, 0.15)",
   primaryGlow: "rgba(244, 114, 182, 0.3)",
-  
+
   secondary: "#1C2533",
   secondaryLight: "#2A3548",
   secondarySoft: "rgba(28, 37, 51, 0.12)",
   secondaryGlow: "rgba(28, 37, 51, 0.2)",
-  
+
   accent: "#F472B6",
   accentSoft: "rgba(244, 114, 182, 0.15)",
-  
+
   ink: "#1A1513",
   inkSoft: "#3D322E",
   muted: "#8A7A72",
   mutedLight: "#C5B5AD",
-  
+
   bg: "#FCF9F7",
   card: "#FFFFFF",
   hairline: "#E8DDD7",
   hairlineDark: "#D5C8C0",
-  
+
   shadow: "rgba(28, 37, 51, 0.08)",
   shadowStrong: "rgba(28, 37, 51, 0.15)",
   overlay: "rgba(28, 37, 51, 0.35)",
-  
+
   gradientStart: "#FCF9F7",
   gradientEnd: "#F8F0EA",
-  
+
   gold: "#E8C9A0",
   pink: "#F472B6",
   navy: "#1C2533",
@@ -217,11 +230,18 @@ function SideBar() {
       icon: <Snowflake size={18} strokeWidth={1.5} />,
       label: { ar: "شتوي", en: "Winter" },
       accent: COLORS.secondary,
+      mainPage: "/winterHomePage",
       children: [
         {
           key: "winter.collection",
           to: "/WinterCollection",
           label: { ar: "كولونات رسومات شتوية", en: "Winter Collection" },
+          badge: { ar: "الأكثر طلباً", en: "Most Wanted" },
+        },
+        {
+          key: "winter.lined",
+          to: "/winter/WinerLined",
+          label: { ar: "كولونات شتوية مبطنة", en: "Winter Lined" },
           badge: { ar: "الأكثر طلباً", en: "Most Wanted" },
         },
       ],
@@ -259,72 +279,113 @@ function SideBar() {
         >
           <div className="flex items-center gap-1">
             {hasMainPage ? (
-              // إذا كان القسم له صفحة رئيسية - يبقى اسم القسم لينك
-              <NavLink to={node.mainPage} className="flex-1" onClick={() => setIsOpen(false)}>
-                {({ isActive }) => (
-                  <motion.div
-                    whileHover={{ 
-                      backgroundColor: "rgba(255, 255, 255, 0.6)",
-                      x: isRTL ? -2 : 2,
+              <div className="flex items-center gap-1 flex-1">
+                {/* اسم القسم كـ NavLink للصفحة الرئيسية */}
+                <NavLink
+                  to={node.mainPage}
+                  className="flex-1 min-w-0"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {({ isActive }) => (
+                    <motion.div
+                      whileHover={{
+                        backgroundColor: "rgba(255, 255, 255, 0.6)",
+                        x: isRTL ? -2 : 2,
+                      }}
+                      whileTap={{ scale: 0.98 }}
+                      className={`w-full flex items-center gap-3 rounded-2xl transition-all duration-300 px-4 py-3.5
+            ${isExpanded ? "shadow-md" : ""}`}
+                      style={{
+                        backgroundColor: isActive
+                          ? `${accent}12`
+                          : "transparent",
+                        color: COLORS.ink,
+                        boxShadow: isExpanded
+                          ? `0 2px 16px ${COLORS.shadow}`
+                          : "none",
+                        border: isActive
+                          ? `1px solid ${accent}25`
+                          : "1px solid transparent",
+                      }}
+                    >
+                      <span className="flex items-center gap-3 min-w-0">
+                        {node.icon && (
+                          <motion.span
+                            className="shrink-0 transition-all duration-300"
+                            style={{ color: isActive ? accent : COLORS.muted }}
+                            animate={{
+                              scale: isExpanded ? 1.15 : 1,
+                              rotate: isExpanded ? 5 : 0,
+                            }}
+                          >
+                            {node.icon}
+                          </motion.span>
+                        )}
+                        <span className="truncate text-[15px] font-bold tracking-wide">
+                          {label(node)}
+                        </span>
+                        {node.badge && (
+                          <motion.span
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="shrink-0 text-[8px] font-bold tracking-wider px-2.5 py-0.5 rounded-full uppercase"
+                            style={{
+                              color: accent,
+                              backgroundColor: `${accent}18`,
+                              border: `1px solid ${accent}30`,
+                            }}
+                          >
+                            {label(node.badge)}
+                          </motion.span>
+                        )}
+                      </span>
+                      {isActive && (
+                        <motion.span
+                          layoutId="activeIndicator"
+                          className="w-2 h-2 rounded-full shrink-0"
+                          style={{ backgroundColor: accent }}
+                        />
+                      )}
+                    </motion.div>
+                  )}
+                </NavLink>
+
+                {/* زر السهم المنفصل لفتح/قفل الـ children */}
+                {node.children && node.children.length > 0 && (
+                  <motion.button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      toggleExpand(node.key);
                     }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`w-full flex items-center gap-3 rounded-2xl transition-all duration-300 px-4 py-3.5
-                      ${isExpanded ? "shadow-md" : ""}`}
+                    whileHover={{
+                      backgroundColor: `${accent}20`,
+                      scale: 1.05,
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                    aria-label={isExpanded ? "إغلاق القسم" : "فتح القسم"}
+                    className="shrink-0 w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300"
                     style={{
-                      backgroundColor: isActive ? `${accent}12` : "transparent",
-                      color: isActive ? COLORS.ink : COLORS.ink,
-                      boxShadow: isExpanded ? `0 2px 16px ${COLORS.shadow}` : "none",
-                      border: isActive ? `1px solid ${accent}25` : "1px solid transparent",
+                      color: isExpanded ? accent : COLORS.muted,
+                      backgroundColor: isExpanded
+                        ? `${accent}15`
+                        : "transparent",
                     }}
                   >
-                    <span className="flex items-center gap-3 min-w-0">
-                      {node.icon && (
-                        <motion.span
-                          className="shrink-0 transition-all duration-300"
-                          style={{ 
-                            color: isActive ? accent : COLORS.muted,
-                          }}
-                          animate={{ 
-                            scale: isExpanded ? 1.15 : 1,
-                            rotate: isExpanded ? 5 : 0,
-                          }}
-                        >
-                          {node.icon}
-                        </motion.span>
-                      )}
-                      <span className="truncate text-[15px] font-bold tracking-wide">
-                        {label(node)}
-                      </span>
-                      {node.badge && (
-                        <motion.span
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          className="shrink-0 text-[8px] font-bold tracking-wider px-2.5 py-0.5 rounded-full uppercase"
-                          style={{
-                            color: accent,
-                            backgroundColor: `${accent}18`,
-                            border: `1px solid ${accent}30`,
-                          }}
-                        >
-                          {label(node.badge)}
-                        </motion.span>
-                      )}
-                    </span>
-                    {isActive && (
-                      <motion.span
-                        layoutId="activeIndicator"
-                        className="w-2 h-2 rounded-full shrink-0"
-                        style={{ backgroundColor: accent }}
-                      />
-                    )}
-                  </motion.div>
+                    <motion.div
+                      animate={{ rotate: isExpanded ? 180 : 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <ChevronDown size={16} strokeWidth={2} />
+                    </motion.div>
+                  </motion.button>
                 )}
-              </NavLink>
+              </div>
             ) : (
               // إذا كان القسم ليس له صفحة رئيسية - يبقى زر عادي
               <motion.button
                 onClick={() => toggleExpand(node.key)}
-                whileHover={{ 
+                whileHover={{
                   backgroundColor: "rgba(255, 255, 255, 0.6)",
                   x: isRTL ? -2 : 2,
                 }}
@@ -334,19 +395,27 @@ function SideBar() {
                   ${isExpanded ? "shadow-md" : ""}`}
                 style={{
                   backgroundColor: isExpanded ? `${accent}12` : "transparent",
-                  color: isExpanded ? COLORS.ink : depth === 0 ? COLORS.ink : COLORS.muted,
-                  boxShadow: isExpanded ? `0 2px 16px ${COLORS.shadow}` : "none",
-                  border: isExpanded ? `1px solid ${accent}25` : "1px solid transparent",
+                  color: isExpanded
+                    ? COLORS.ink
+                    : depth === 0
+                      ? COLORS.ink
+                      : COLORS.muted,
+                  boxShadow: isExpanded
+                    ? `0 2px 16px ${COLORS.shadow}`
+                    : "none",
+                  border: isExpanded
+                    ? `1px solid ${accent}25`
+                    : "1px solid transparent",
                 }}
               >
                 <span className="flex items-center gap-3 min-w-0">
                   {node.icon && (
                     <motion.span
                       className="shrink-0 transition-all duration-300"
-                      style={{ 
+                      style={{
                         color: isExpanded ? accent : COLORS.muted,
                       }}
-                      animate={{ 
+                      animate={{
                         scale: isExpanded ? 1.15 : 1,
                         rotate: isExpanded ? 5 : 0,
                       }}
@@ -415,12 +484,12 @@ function SideBar() {
                   className={`flex flex-col gap-0.5 py-1.5 ${
                     isRTL ? "mr-4 pr-3" : "ml-4 pl-3"
                   }`}
-                  style={{ 
+                  style={{
                     borderInlineStart: `2px solid ${COLORS.hairline}`,
                   }}
                 >
                   {node.children.map((child, idx) =>
-                    renderNode(child, depth + 1, idx)
+                    renderNode(child, depth + 1, idx),
                   )}
                 </div>
               </motion.div>
@@ -442,7 +511,7 @@ function SideBar() {
         <NavLink to={node.to} onClick={() => setIsOpen(false)}>
           {({ isActive }) => (
             <motion.div
-              whileHover={{ 
+              whileHover={{
                 backgroundColor: "rgba(255, 255, 255, 0.6)",
                 x: isRTL ? -2 : 2,
               }}
@@ -450,17 +519,27 @@ function SideBar() {
               className={`flex items-center justify-between gap-3 rounded-2xl transition-all duration-300
                 ${depth === 0 ? "px-4 py-3.5" : "px-3.5 py-3"}`}
               style={{
-                backgroundColor: isActive ? `${COLORS.primary}12` : "transparent",
-                color: isActive ? COLORS.ink : depth === 0 ? COLORS.ink : COLORS.muted,
-                border: isActive ? `1px solid ${COLORS.primary}25` : "1px solid transparent",
-                boxShadow: isActive ? `inset 3px 0 0 ${COLORS.primary}` : "none",
+                backgroundColor: isActive
+                  ? `${COLORS.primary}12`
+                  : "transparent",
+                color: isActive
+                  ? COLORS.ink
+                  : depth === 0
+                    ? COLORS.ink
+                    : COLORS.muted,
+                border: isActive
+                  ? `1px solid ${COLORS.primary}25`
+                  : "1px solid transparent",
+                boxShadow: isActive
+                  ? `inset 3px 0 0 ${COLORS.primary}`
+                  : "none",
               }}
             >
               <span className="flex items-center gap-3 min-w-0">
                 {node.icon ? (
                   <span
                     className="shrink-0 transition-all duration-300"
-                    style={{ 
+                    style={{
                       color: isActive ? COLORS.primary : COLORS.muted,
                     }}
                   >
@@ -470,7 +549,9 @@ function SideBar() {
                   <div
                     className="shrink-0 w-1.5 h-1.5 rounded-full transition-all duration-300"
                     style={{
-                      backgroundColor: isActive ? COLORS.primary : COLORS.hairline,
+                      backgroundColor: isActive
+                        ? COLORS.primary
+                        : COLORS.hairline,
                     }}
                   />
                 ) : null}
@@ -488,8 +569,8 @@ function SideBar() {
                 {node.badge && (
                   <span
                     className="text-[8px] font-bold tracking-wider px-2.5 py-0.5 rounded-full uppercase"
-                    style={{ 
-                      color: COLORS.primary, 
+                    style={{
+                      color: COLORS.primary,
                       backgroundColor: COLORS.primarySoft,
                       border: `1px solid ${COLORS.primary}30`,
                     }}
@@ -526,7 +607,7 @@ function SideBar() {
           transition-all duration-300 shadow-lg
           ${isRTL ? "left-5" : "right-5"}
           ${isOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}
-        style={{ 
+        style={{
           borderColor: COLORS.primary,
           color: COLORS.primary,
         }}
@@ -591,7 +672,7 @@ function SideBar() {
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full opacity-5"
                 style={{ background: COLORS.white }}
               />
-              
+
               <div className="flex items-center gap-4 relative z-10">
                 <motion.div
                   whileHover={{ rotate: -10, scale: 1.05 }}
@@ -600,7 +681,11 @@ function SideBar() {
                     background: `linear-gradient(135deg, ${COLORS.white} 0%, ${COLORS.primaryLight} 100%)`,
                   }}
                 >
-                  <Sparkles size={17} color={COLORS.primary} strokeWidth={1.5} />
+                  <Sparkles
+                    size={17}
+                    color={COLORS.primary}
+                    strokeWidth={1.5}
+                  />
                 </motion.div>
                 <div>
                   <motion.h2
@@ -624,7 +709,10 @@ function SideBar() {
               <motion.button
                 onClick={() => setIsOpen(false)}
                 aria-label={t("nav.close", "Close menu")}
-                whileHover={{ rotate: 90, backgroundColor: "rgba(255,255,255,0.2)" }}
+                whileHover={{
+                  rotate: 90,
+                  backgroundColor: "rgba(255,255,255,0.2)",
+                }}
                 whileTap={{ scale: 0.9 }}
                 className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 relative z-10 text-white/80 hover:text-white"
               >
@@ -674,7 +762,10 @@ function SideBar() {
               <div className="text-center space-y-3">
                 <div className="flex items-center justify-center gap-2.5">
                   <Heart size={12} fill={COLORS.primary} stroke="none" />
-                  <span className="text-xs tracking-wide" style={{ color: COLORS.muted }}>
+                  <span
+                    className="text-xs tracking-wide"
+                    style={{ color: COLORS.muted }}
+                  >
                     © 2024 BabyStyle
                   </span>
                   <Heart size={12} fill={COLORS.secondary} stroke="none" />
@@ -700,7 +791,10 @@ function SideBar() {
                     boxShadow: `0 4px 20px ${COLORS.primarySoft}`,
                   }}
                 >
-                  <span className="text-[10px] tracking-wide" style={{ color: COLORS.muted }}>
+                  <span
+                    className="text-[10px] tracking-wide"
+                    style={{ color: COLORS.muted }}
+                  >
                     {t("footer.designBy")}
                   </span>
                   <motion.a
@@ -711,7 +805,10 @@ function SideBar() {
                     whileTap={{ scale: 0.95 }}
                     className="font-semibold flex items-center gap-1.5"
                   >
-                    <span className="text-[10px]" style={{ color: COLORS.primary }}>
+                    <span
+                      className="text-[10px]"
+                      style={{ color: COLORS.primary }}
+                    >
                       {t("footer.developerName")}
                     </span>
                     <FaWhatsapp

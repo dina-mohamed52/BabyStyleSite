@@ -25,7 +25,19 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <ToastContainer />
+      <ToastContainer
+    position="bottom-center"
+    autoClose={3000}
+    hideProgressBar={false}
+    newestOnTop
+    closeOnClick
+    rtl
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+    theme="light"
+    toastClassName="wl-toast"
+/>
         {/* <BackToSchoolModal /> */}
         <Routes>
           <Route path="/" element={<AppLayOut />}>
