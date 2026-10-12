@@ -292,7 +292,7 @@ const scrollToOrderCollection = () =>
             </div>
 
 
-      {/* COLORS */}
+      {/* COLORS  الموديلاااااااااااااااات */}
       <section className="wl-section wl-section-colors" id="wl-colors">
         <Reveal className="wl-head">
           <span className="wl-pill">🎨 الألوان</span>
