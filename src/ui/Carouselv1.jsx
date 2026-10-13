@@ -49,7 +49,7 @@ const ProductHero = () => {
         >
           <div className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-[#22303F]/30 bg-white/60 px-4 py-1.5 hero-body text-sm font-medium text-[#22303F]">
             <Shirt className="h-4 w-4" style={{ color: "#C1622D" }} />
-            تشكيلة الخريف
+            تشكيلة الشتاء القادم
           </div>
 
           <h1 className="hero-display mt-5 text-4xl leading-[1.15] text-[#22303F] sm:text-5xl lg:text-6xl">
