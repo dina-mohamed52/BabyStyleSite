@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BackToSchoolData } from "../data/BackToSchoolData";
+import { BackToSchoolData } from "../data/BackToSchool";
 import { ShoppingBag, MapPin, Clock, Crown, Zap, Star } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { FaWhatsapp } from "react-icons/fa";
