@@ -149,7 +149,7 @@ function CProductList() {
         </div>
 
        
-            {/* Tab Results Counter */}
+            {/* Tab Results Counter ****************************/}
             <div className="text-center mb-8">
               <span className="text-sm text-[#8A6E86] bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-white/50">
                 {isSingleProduct && hasProductColors(filteredProducts[0])
