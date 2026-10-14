@@ -128,7 +128,7 @@ const SEASONS = {
         id: 5,
         name: "كولونات مبطنه ",
         nameEn: "Winter Lined",
-        path: "/winter/WinerLined",
+        path: "/winterHomePage",
         image:
           "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203068/WhatsApp_Image_2026-10-02_at_10.00.47_AM.jpg",
         items: "14+ منتج",
@@ -157,7 +157,7 @@ const STATS = [
 
 /* ---------- page ---------- */
 export default function MainPage({ onNavigate }) {
-  const [season, setSeason] = useState("summer");
+  const [season, setSeason] = useState("winter");
   const [toast, setToast] = useState(null);
   const active = SEASONS[season];
 

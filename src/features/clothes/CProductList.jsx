@@ -148,38 +148,9 @@ function CProductList() {
           </div>
         </div>
 
-        {/* Tabs Section */}
-        <div className="max-w-7xl mx-auto mb-8">
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-full bg-white/60 backdrop-blur-sm rounded-2xl p-2 shadow-sm border border-white/50">
-              <div className="flex justify-center gap-2 overflow-x-auto hide-scrollbar">
-                {categories.map((tab) => {
-                  const isActive = activeTab === tab.id;
-                  return (
-                    <button
-                      key={tab.id}
-                      onClick={() => handleTabChange(tab.id, tab.path)}
-                      className={`
-                        flex items-center gap-1 sm:gap-2 px-3 sm:px-6 py-2 sm:py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition-all duration-300 whitespace-nowrap flex-shrink-0
-                        ${isActive
-                          ? "bg-gradient-to-r from-[#F6A6C1] to-[#B65C7C] text-white shadow-lg shadow-pink-200/50 scale-105"
-                          : "text-[#5B4458] hover:bg-pink-50 hover:text-[#3B1F38]"
-                        }
-                      `}
-                    >
-                      <span className="text-base sm:text-lg">{tab.icon}</span>
-                      <span>{tab.label}</span>
-                      {isActive && (
-                        <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
+       
             {/* Tab Results Counter */}
-            <div className="text-center">
+            <div className="text-center mb-8">
               <span className="text-sm text-[#8A6E86] bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-white/50">
                 {isSingleProduct && hasProductColors(filteredProducts[0])
                   ? `${filteredProducts[0].productColors.length} لون في "${currentTitle}"`
@@ -187,8 +158,7 @@ function CProductList() {
                 }
               </span>
             </div>
-          </div>
-        </div>
+       
 
         {/* Products Grid */}
         {isSingleProduct && hasProductColors(filteredProducts[0]) ? (

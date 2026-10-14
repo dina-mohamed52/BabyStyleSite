@@ -1,9 +1,15 @@
 // 📁 SizesSec.jsx
 function SizesSec({ product }) {
-    const CATEGORY_LABEL = {
-        baby: "👶 بيبي",
-        girl: "🎀 بنوتة",
-    };
+    // جدول المقاسات الثابت زي الصورة
+    const SIZES_TABLE = [
+        { size: "0",  age: "من 0 إلى 9 شهور",  length: "40 سم" },
+        { size: "2",  age: "من سنة إلى سنتين", length: "45 سم" },
+        { size: "4",  age: "من 2 إلى 4 سنوات", length: "50 سم" },
+        { size: "6",  age: "من 5 إلى 6 سنوات", length: "60 سم" },
+        { size: "8",  age: "من 7 إلى 8 سنوات", length: "70 سم" },
+        { size: "10", age: "من 9 إلى 10 سنوات", length: "80 سم" },
+        { size: "12", age: "من 11 إلى 12 سنة", length: "90 سم" },
+    ];
 
     return (
         <section className="sz-section">
@@ -36,12 +42,12 @@ function SizesSec({ product }) {
                     <thead>
                         <tr>
                             <th>المقاس</th>
-                            <th>العمر</th>
-                            <th>الفئة</th>
+                            <th>العمر المناسب</th>
+                            <th>طول الكولون</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {product.sizes.map((s) => (
+                        {SIZES_TABLE.map((s) => (
                             <tr key={s.size}>
                                 <td>
                                     <span className="sz-size-pill" dir="ltr">
@@ -50,9 +56,7 @@ function SizesSec({ product }) {
                                 </td>
                                 <td>{s.age}</td>
                                 <td>
-                                    <span className={`sz-cat ${s.category}`}>
-                                        {CATEGORY_LABEL[s.category] || s.category}
-                                    </span>
+                                    <span className="sz-length">{s.length}</span>
                                 </td>
                             </tr>
                         ))}
@@ -68,7 +72,7 @@ function SizesSec({ product }) {
                     <li>✨ المقاسات تقريبية وقد تختلف شوية حسب جسم البنت</li>
                 </ul>
                 <p className="sz-note-strong">
-                    محتارة بين مقاسين؟  محتارة بين مقاسين اكتبي في الملاحظات في تأكيد الاوردر طول البنت من الوسط لحد القدم
+                    محتارة بين مقاسين؟ اكتبي في الملاحظات في تأكيد الأوردر طول البنت من الوسط لحد القدم
                 </p>
             </div>
         </section>
@@ -88,6 +92,7 @@ const szCss = `
   --sun:#FFD166;
   --baby:#E9F3FF;
   --girl:#FFE7F1;
+  --rose:#B85C7A;
   position:relative;
   max-width:900px;
   margin:0 auto;
@@ -137,24 +142,26 @@ const szCss = `
   text-align:center;
 }
 .sz-table th{
-  background:var(--ink);
-  color:var(--paper);
+  background:var(--rose);
+  color:#fff;
   padding:16px 12px;
   font-family:'Lalezar','Cairo',sans-serif;
   font-weight:400;
-  font-size:15px;
+  font-size:16px;
   letter-spacing:.02em;
 }
 .sz-table th:first-child{border-top-right-radius:17px}
 .sz-table th:last-child{border-top-left-radius:17px}
 .sz-table td{
   padding:14px 12px;
-  border-top:1.5px dashed var(--line);
-  font-size:14px;
-  font-weight:600;
+  border-top:1.5px solid #F0E6E8;
+  font-size:15px;
+  font-weight:700;
 }
+.sz-table tbody tr:nth-child(odd){background:#FFF5F7}
+.sz-table tbody tr:nth-child(even){background:#FFFBFB}
 .sz-table tbody tr{transition:background .2s ease}
-.sz-table tbody tr:hover{background:var(--paper-2)}
+.sz-table tbody tr:hover{background:#FFEDF2}
 .sz-table tbody tr:last-child td:first-child{border-bottom-right-radius:17px}
 .sz-table tbody tr:last-child td:last-child{border-bottom-left-radius:17px}
 
@@ -162,23 +169,16 @@ const szCss = `
   display:inline-block;
   font-weight:800;
   padding:5px 14px;
-  background:var(--sun);
-  color:var(--ink);
-  border:2px solid var(--ink);
-  border-radius:8px;
-  font-size:12.5px;
+  color:var(--rose);
+  font-size:18px;
   min-width:52px;
 }
-.sz-cat{
+.sz-length{
   display:inline-block;
-  padding:4px 12px;
-  font-size:12px;
   font-weight:800;
-  border:2px solid var(--ink);
-  border-radius:999px;
+  font-size:18px;
+  color:var(--rose);
 }
-.sz-cat.baby{background:var(--baby);color:#2b6cb0}
-.sz-cat.girl{background:var(--girl);color:var(--pink-d)}
 
 /* ── Note ── */
 .sz-note{
@@ -230,10 +230,10 @@ const szCss = `
 @media(max-width:520px){
   .sz-section{padding:56px 14px}
   .sz-table-wrap{border-radius:16px;box-shadow:5px 5px 0 rgba(58,46,69,.15)}
-  .sz-table th{padding:12px 8px;font-size:13px}
-  .sz-table td{padding:10px 8px;font-size:12.5px}
-  .sz-size-pill{padding:4px 10px;font-size:11.5px;min-width:46px}
-  .sz-cat{padding:3px 9px;font-size:11px}
+  .sz-table th{padding:12px 8px;font-size:14px}
+  .sz-table td{padding:10px 8px;font-size:13px}
+  .sz-size-pill{padding:4px 10px;font-size:16px;min-width:46px}
+  .sz-length{font-size:16px}
   .sz-note{padding:16px 18px;margin-top:20px}
   .sz-note-title{font-size:15px}
   .sz-note-list li{font-size:12px}

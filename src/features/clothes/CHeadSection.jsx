@@ -1,7 +1,7 @@
 
 import { useEffect, useState, useCallback, useMemo } from "react";
 import { Clothes } from "../../data/Clothes";
-import ImagesOfHeadSec from "./ImagesOfHeadSec"; // استيراد الكومبوننت الجديد
+import ImagesOfHeadSec from "./ImagesOfHeadSec"; // import { useNavigate } from "react-router-dom";
 
 function CHeadSection({ scrollToProductList ,category }) {
   const [mounted, setMounted] = useState(false);
