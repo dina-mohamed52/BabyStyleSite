@@ -137,10 +137,10 @@ export const BandanaTurbonData = [
         color: "بينك فيونكه",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/photo_17_2026-06-21_01-43-51.jpg",
       },
-      {
-        color: "كافيه فيونكه",
-        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/WhatsApp_Image_2025-12-17_at_12.25.23_AM.jpg",
-      },
+      // {
+      //   color: "كافيه فيونكه",
+      //   img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/WhatsApp_Image_2025-12-17_at_12.25.23_AM.jpg",
+      // },
       {
         color: "أوف وايت فيونكه",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/photo_16_2026-06-21_01-43-51.jpg",
@@ -150,7 +150,7 @@ export const BandanaTurbonData = [
       "أسود فيونكه",
       "أحمر فيونكه",
       "بينك فيونكه",
-      "كافيه فيونكه",
+      // "كافيه فيونكه",
       "أوف وايت فيونكه"
     ],
     image:
@@ -245,9 +245,9 @@ export const BandanaTurbonData = [
       {
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720346/WhatsApp_Image_2026-09-16_at_1.19.08_PM_2.jpg",
       },
-      {
-        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720348/WhatsApp_Image_2026-09-16_at_1.22.47_PM.jpg",
-      },
+      // {
+      //   img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720348/WhatsApp_Image_2026-09-16_at_1.22.47_PM.jpg",
+      // },
       // {
       //   img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777556398/WhatsApp_Image_2026-04-29_at_11.12.03_AM_akjru5.jpg",
       // },
@@ -268,7 +268,7 @@ export const BandanaTurbonData = [
       " فيونكه أحمر",
       " فيونكه أسود",
       " فيونكه بينك",
-      " فيونكه كافية + هاف اسود",
+      // " فيونكه كافية + هاف اسود",
       // "تربون ورده بينك + هاف بينك",
       " ورده أصفر",
       " فيونكه أوف وايت ",
