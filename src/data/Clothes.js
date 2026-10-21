@@ -584,8 +584,8 @@ export const Clothes = [
         color: "أسود",
         img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791200907/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_30_49_%D8%B5.png",
         sizes: [
-          { size: "S", age: "من 2 إلى 4 سنوات" },
-          { size: "M", age: "من 4 إلى 6 سنوات" },
+          // { size: "S", age: "من 2 إلى 4 سنوات" },
+          // { size: "M", age: "من 4 إلى 6 سنوات" },
           { size: "L", age: "من 6 إلى 8 سنوات" },
           { size: "XL", age: "من 8 إلى 10 سنوات" },
         ]
