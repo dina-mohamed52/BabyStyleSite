@@ -4,39 +4,39 @@ const offers = [
         name: "ال3 كولون",
         count: 3,
         prices: {
-            baby: 295,
-            girls: 360,
+            baby: 330,
+            girls: 390,
         },
     },
     {
         name: "ال4 كولون",
         count: 4,
         prices: {
-            baby: 360,
-            girls: 460,
+            baby: 420,
+            girls: 480,
         },
     },
     {
         name: "ال6 كولون",
         count: 6,
         prices: {
-            baby: 510,
-            girls: 630,
+            baby: 570,
+            girls: 660,
         },
     },
     {
         name: "ال8 كولون",
         count: 8,
         prices: {
-            baby: 660,
-            girls: 780,
+            baby: 720,
+            girls: 800,
         },
     },
     {
         name: "ال10 كولون",
         count: 10,
         prices: {
-            baby: 780,
+            baby: 850,
             girls: 950,
         },
     },
@@ -44,7 +44,7 @@ const offers = [
         name: "ال12 كولون",
         count: 12,
         prices: {
-            baby: 900,
+            baby: 960,
             girls: 1080,
         },
     },

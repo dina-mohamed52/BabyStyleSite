@@ -95,16 +95,16 @@ export const BandanaTurbonData = [
     productColors: [
       {
         color: "أصفر ورده",
-        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572592/photo_2_2025-11-29_01-32-07.jpg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1792603039/WhatsApp_Image_2026-10-17_at_2.17.46_AM_2.jpg",
       },
       {
         color: "بيج ورده",
-        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572581/WhatsApp_Image_2025-12-04_at_11.49.28_PM_1.jpg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1792603130/WhatsApp_Image_2026-10-17_at_2.17.46_AM_1.jpg",
       },
 
       {
         color: "لافندر ورده",
-        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572664/photo_6_2026-09-13_16-19-41.jpg",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1792602957/WhatsApp_Image_2026-10-17_at_2.17.46_AM.jpg",
       },
     ],
     avalibeColors: [
