@@ -6,7 +6,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255983/WhatsApp_Image_2026-09-11_at_7.07.24_AM_3.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680448/WhatsApp_Image_2026-09-11_at_7.07.24_AM_3.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -20,7 +20,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255769/WhatsApp_Image_2026-09-11_at_7.07.21_AM.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680536/WhatsApp_Image_2026-09-11_at_7.07.21_AM.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -34,7 +34,7 @@ export const BackToSchoolData = [
       },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255915/WhatsApp_Image_2026-09-11_at_7.07.24_AM_2.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680448/WhatsApp_Image_2026-09-11_at_7.07.24_AM_2.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -48,7 +48,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "رصاصي"],
-    image: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255785/WhatsApp_Image_2026-09-11_at_7.07.20_AM_4.jpg",
+    image: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680540/WhatsApp_Image_2026-09-11_at_7.07.20_AM_4.jpg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -67,7 +67,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255880/WhatsApp_Image_2026-09-11_at_7.07.24_AM_1.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680447/WhatsApp_Image_2026-09-11_at_7.07.24_AM_1.jpg",
         sizes: [
   { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -81,7 +81,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790256478/5879927343848475452.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680447/5879927343848475452.jpg",
         sizes: [
   { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -95,7 +95,7 @@ export const BackToSchoolData = [
       },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790256428/5879927343848475449.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680447/5879927343848475449.jpg",
         sizes: [
   { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -109,7 +109,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255769/WhatsApp_Image_2026-09-11_at_7.07.20_AM_3.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680687/WhatsApp_Image_2026-09-11_at_7.07.20_AM_3.jpg",
         sizes: [
   { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -123,7 +123,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "رصاصي", "بينك"],
-    image: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790256278/WhatsApp_Image_2026-09-11_at_7.07.24_AM.jpg",
+    image: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680505/WhatsApp_Image_2026-09-11_at_7.07.24_AM.jpg",
     sizes: [
   { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -142,7 +142,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790256128/WhatsApp_Image_2026-09-11_at_7.07.22_AM.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680577/WhatsApp_Image_2026-09-11_at_7.07.22_AM.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -156,7 +156,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255967/WhatsApp_Image_2026-09-11_at_7.07.22_AM_2.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680555/WhatsApp_Image_2026-09-11_at_7.07.22_AM_2.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -170,7 +170,7 @@ export const BackToSchoolData = [
       },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255769/WhatsApp_Image_2026-09-11_at_7.07.21_AM_1.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680525/WhatsApp_Image_2026-09-11_at_7.07.21_AM_1.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -184,7 +184,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790256044/WhatsApp_Image_2026-09-11_at_7.07.22_AM_1.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680592/WhatsApp_Image_2026-09-11_at_7.07.22_AM_1.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -198,7 +198,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "رصاصي", "بينك"],
-    image: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255791/WhatsApp_Image_2026-09-11_at_7.07.21_AM_2.jpg",
+    image: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680525/WhatsApp_Image_2026-09-11_at_7.07.21_AM_2.jpg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -218,7 +218,7 @@ export const BackToSchoolData = [
 
       {
         color: "اسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790713179/5879927343848475503.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680451/5879927343848475503.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -233,7 +233,7 @@ export const BackToSchoolData = [
       
     ],
     avalibeColors: ["اسود"],
-    image: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790713179/5879927343848475503.jpg",
+    image: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680451/5879927343848475503.jpg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -253,7 +253,7 @@ export const BackToSchoolData = [
 
       {
         color: "لبني",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255840/WhatsApp_Image_2026-09-11_at_7.07.23_AM.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680572/WhatsApp_Image_2026-09-11_at_7.07.23_AM.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -267,7 +267,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255823/WhatsApp_Image_2026-09-11_at_7.07.23_AM_3.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680592/WhatsApp_Image_2026-09-11_at_7.07.23_AM_3.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -281,7 +281,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["لبني", "بينك"],
-    image: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255822/WhatsApp_Image_2026-09-11_at_7.07.23_AM_2.jpg",
+    image: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680577/WhatsApp_Image_2026-09-11_at_7.07.23_AM_2.jpg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -300,7 +300,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790256785/5879927343848475499.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680449/5879927343848475499.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -314,7 +314,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790256786/5879927343848475500.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680449/5879927343848475500.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -328,7 +328,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790256790/5879927343848475497.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680449/5879927343848475497.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -342,7 +342,7 @@ export const BackToSchoolData = [
       },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255907/WhatsApp_Image_2026-09-11_at_7.07.23_AM_6.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680632/WhatsApp_Image_2026-09-11_at_7.07.23_AM_6.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -356,7 +356,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بينك", "رصاصي"],
-    image: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790713504/WhatsApp_Image_2026-09-29_at_1.15.16_PM.jpg",
+    image: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792681300/WhatsApp_Image_2026-09-29_at_1.15.16_PM.jpg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -375,7 +375,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255795/WhatsApp_Image_2026-09-11_at_7.07.20_AM.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680542/WhatsApp_Image_2026-09-11_at_7.07.20_AM.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -385,7 +385,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255772/WhatsApp_Image_2026-09-11_at_7.07.19_AM_1.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680452/WhatsApp_Image_2026-09-11_at_7.07.19_AM_1.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -395,7 +395,7 @@ export const BackToSchoolData = [
       },
       {
         color: "كحلي",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255793/WhatsApp_Image_2026-09-11_at_7.07.20_AM_1.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680491/WhatsApp_Image_2026-09-11_at_7.07.20_AM_1.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -404,7 +404,7 @@ export const BackToSchoolData = [
       },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255842/WhatsApp_Image_2026-09-11_at_7.07.20_AM_2.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680530/WhatsApp_Image_2026-09-11_at_7.07.20_AM_2.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -415,7 +415,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["بينك", "أسود", "كحلي", "رصاصي"],
-    image: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255863/WhatsApp_Image_2026-09-11_at_7.07.19_AM.jpg",
+    image: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680451/WhatsApp_Image_2026-09-11_at_7.07.19_AM.jpg",
     sizes: [
       { size: "6-4", age: "من 3 ل 5 سنين" },
       { size: "8-6", age: "من 5 ل 7 سنين" },
@@ -431,7 +431,7 @@ export const BackToSchoolData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257033/5879927343848475491.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680714/5879927343848475491.jpg",
         sizes: [
 
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
@@ -444,7 +444,7 @@ export const BackToSchoolData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257044/5879927343848475490.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680448/5879927343848475490.jpg",
         sizes: [
 
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
@@ -457,7 +457,7 @@ export const BackToSchoolData = [
       },
       {
         color: "بيج",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257033/5879927343848475492.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680448/5879927343848475492.jpg",
         sizes: [
 
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
@@ -470,7 +470,7 @@ export const BackToSchoolData = [
       },
       {
         color: "كحلي",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257060/5879927343848475493.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680448/5879927343848475493.jpg",
         sizes: [
 
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
@@ -483,7 +483,7 @@ export const BackToSchoolData = [
       },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257034/5879927343848475489.jpg",
+        img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680459/5879927343848475489.jpg",
         sizes: [
 
           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
@@ -496,7 +496,7 @@ export const BackToSchoolData = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بيج", "كحلي", "رصاصي"],
-    image: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257033/5879927343848475492.jpg",
+    image: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680448/5879927343848475492.jpg",
     sizes: [
 
       { size: "4-2", age: "من سنة ونص ل 3 سنين" },
