@@ -120,7 +120,7 @@ const SEASONS = {
         nameEn: "Winter Collection ",
         path: "/WinterCollection",
         image:
-          "https://res.cloudinary.com/sauyrrk8/image/upload/v1790255911/WhatsApp_Image_2026-09-11_at_7.07.23_AM_4.jpg",
+          "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680505/WhatsApp_Image_2026-09-11_at_7.07.24_AM.jpg",
         items: "10+ منتج",
         badge: "الأكثر طلباً",
       },
@@ -130,7 +130,7 @@ const SEASONS = {
         nameEn: "Winter Lined",
         path: "/winterHomePage",
         image:
-          "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203068/WhatsApp_Image_2026-10-02_at_10.00.47_AM.jpg",
+          "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%209.57.42%20AM.jpeg",
         items: "14+ منتج",
         badge: "جودة عالية",
       },
@@ -155,7 +155,7 @@ const STATS = [
   { icon: Heart, label: "رضا العملاء", value: "98% رضا" },
 ];
 
-/* ---------- page ---------- */
+/* ---------- page********************** ---------- */
 export default function MainPage({ onNavigate }) {
   const [season, setSeason] = useState("winter");
   const [toast, setToast] = useState(null);
