@@ -63,7 +63,7 @@ const categories = [
     accent: '#F5B800',
     accentLight: '#FFFAE0',
     emoji: '☃️',
-    img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1790255911/WhatsApp_Image_2026-09-11_at_7.07.23_AM_4.jpg',
+    img: 'https://res.cloudinary.com/xvhexfbn/image/upload/v1792680505/WhatsApp_Image_2026-09-11_at_7.07.24_AM.jpg',
     path: '/WinterCollection',
   },
   {
@@ -79,7 +79,7 @@ const categories = [
     accent: '#E04A8F',
     accentLight: '#FFF0F7',
     emoji: '🧸',
-    img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1791203068/WhatsApp_Image_2026-10-02_at_10.00.47_AM.jpg',
+    img: 'https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%209.57.42%20AM.jpeg',
     path: '/winter/WinerLined',
   },
 ];
