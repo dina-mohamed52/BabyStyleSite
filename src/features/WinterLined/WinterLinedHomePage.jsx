@@ -47,7 +47,7 @@ const categories = [
     accent: '#9B7BE8',
     accentLight: '#F5EEFF',
     emoji: '🎀',
-    img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1791198450/photo_1_2026-09-03_01-04-55.jpg',
+    img: 'https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/photo_1_2026-09-03_01-04-55.jpg',
     path: '/clothes/legging',
   },
   {

@@ -7,7 +7,7 @@ export const winterLined = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791202987/WhatsApp_Image_2026-10-02_at_10.02.14_AM_2.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%2010.02.14%20AM%20(2).jpeg",
         sizes: [
           { size: "0",   age: "من زيرو ل9 شهور",   category: "baby" },
           { size: "2",   age: "من سنة ل سنتين",    category: "girl" },
@@ -20,7 +20,7 @@ export const winterLined = [
       },
       {
         color: "سكري",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203080/WhatsApp_Image_2026-10-02_at_10.02.14_AM_3.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%2010.02.14%20AM%20(3).jpeg",
         sizes: [
           { size: "0",   age: "من زيرو ل9 شهور",   category: "baby" },
           { size: "2",   age: "من سنة ل سنتين",    category: "girl" },
@@ -33,7 +33,7 @@ export const winterLined = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203014/WhatsApp_Image_2026-10-02_at_10.02.15_AM.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%2010.02.15%20AM.jpeg",
         sizes: [
           { size: "0",   age: "من زيرو ل9 شهور",   category: "baby" },
           { size: "2",   age: "من سنة ل سنتين",    category: "girl" },
@@ -46,7 +46,7 @@ export const winterLined = [
       },
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203045/WhatsApp_Image_2026-10-02_at_10.02.14_AM_1.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%2010.02.14%20AM%20(1).jpeg",
         sizes: [
           { size: "0",   age: "من زيرو ل9 شهور",   category: "baby" },
           { size: "2",   age: "من سنة ل سنتين",    category: "girl" },
@@ -59,7 +59,7 @@ export const winterLined = [
       },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791202985/WhatsApp_Image_2026-10-02_at_10.02.14_AM_5.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%2010.02.14%20AM%20(5).jpeg",
         sizes: [
           { size: "0",   age: "من زيرو ل9 شهور",   category: "baby" },
           { size: "2",   age: "من سنة ل سنتين",    category: "girl" },
@@ -72,7 +72,7 @@ export const winterLined = [
       },
       {
         color: "كشمير",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203258/WhatsApp_Image_2026-10-02_at_10.02.14_AM_4.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%2010.02.14%20AM%20(4).jpeg",
         sizes: [
           { size: "0",   age: "من زيرو ل9 شهور",   category: "baby" },
           { size: "2",   age: "من سنة ل سنتين",    category: "girl" },
@@ -85,7 +85,7 @@ export const winterLined = [
       },
       {
         color: "بيج",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791202984/WhatsApp_Image_2026-10-02_at_10.02.14_AM.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%2010.02.14%20AM.jpeg",
         sizes: [
           { size: "0",   age: "من زيرو ل9 شهور",   category: "baby" },
           { size: "2",   age: "من سنة ل سنتين",    category: "girl" },

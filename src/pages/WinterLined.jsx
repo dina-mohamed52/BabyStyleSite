@@ -19,11 +19,11 @@ const CATEGORY_LABEL = { baby: "👶 بيبي", girl: "🎀 بنوتة" };
 
 /* صور جديدة */
 const IMAGES = {
-  hero: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203164/WhatsApp_Image_2026-10-02_at_9.57.42_AM.jpg",
-  features: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203314/WhatsApp_Image_2026-10-02_at_9.56.45_AM.jpg",
-  material1: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791203068/WhatsApp_Image_2026-10-02_at_10.00.47_AM.jpg",
-  material2: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791205629/WhatsApp_Image_2026-10-02_at_9.59.21_AM.jpg",
-  lifestyle: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791202985/WhatsApp_Image_2026-10-02_at_10.03.17_AM.jpg",
+  hero: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%209.57.42%20AM.jpeg",
+  features: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%209.56.45%20AM.jpeg",
+  material1: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%2010.00.47%20AM.jpeg",
+  material2: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%209.59.21%20AM.jpeg",
+  lifestyle: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%2010.03.17%20AM.jpeg",
 };
 
 const FEATURES = [

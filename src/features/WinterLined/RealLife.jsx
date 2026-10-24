@@ -2,11 +2,11 @@
 import { useRef, useState, useEffect } from "react";
 
 const IMAGES = [
-    "https://res.cloudinary.com/sauyrrk8/image/upload/v1791744957/WhatsApp_Image_2026-10-10_at_4.34.35_AM_2.jpg",
-    "https://res.cloudinary.com/sauyrrk8/image/upload/v1791744955/WhatsApp_Image_2026-10-10_at_4.34.35_AM_3.jpg",
-    "https://res.cloudinary.com/sauyrrk8/image/upload/v1791744955/WhatsApp_Image_2026-10-10_at_4.34.35_AM_1.jpg",
-    "https://res.cloudinary.com/sauyrrk8/image/upload/v1791744955/WhatsApp_Image_2026-10-10_at_4.34.35_AM_4.jpg",
-    "https://res.cloudinary.com/sauyrrk8/image/upload/v1791745068/WhatsApp_Image_2026-10-10_at_4.34.35_AM.jpg",
+    "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/%D8%B7%D8%A8%D9%8A%D8%B9%D9%871.jpeg",
+    "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/%D8%B7%D8%A8%D9%8A%D8%B9%D9%87%20%D9%85%D8%A8%D8%B7%D9%863.jpeg",
+    "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/%D8%B7%D8%A8%D9%8A%D8%B9%D9%87%20%D9%85%D8%A8%D8%B7%D9%862.jpeg",
+    "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/%D8%B7%D8%A8%D9%8A%D8%B9%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%205.jpeg",
+    "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/%D8%B7%D8%A8%D9%8A%D8%B9%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%204.jpeg",
 ];
 
 function RealLife() {
