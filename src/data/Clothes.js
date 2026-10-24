@@ -552,7 +552,7 @@ export const Clothes = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791199038/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_32_43_%D8%B5.png",
+        img: "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/ChatGPT%20Image%203%20%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1%202026%D8%8C%2002_32_43%20%D8%B5.png",
         sizes: [
           { size: "S", age: "من 2 إلى 4 سنوات" },
           { size: "M", age: "من 4 إلى 6 سنوات" },
@@ -563,7 +563,7 @@ export const Clothes = [
      
      {
        color: "بيج",
-       img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791199468/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_29_56_%D8%B5.png",
+       img: "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/ChatGPT%20Image%203%20%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1%202026%D8%8C%2002_29_56%20%D8%B5.png",
        sizes: [
          { size: "S", age: "من 2 إلى 4 سنوات" },
          { size: "M", age: "من 4 إلى 6 سنوات" },
@@ -573,7 +573,7 @@ export const Clothes = [
      },
       {
         color: "رصاصي",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791198784/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_29_20_%D8%B5.png",
+        img: "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/ChatGPT%20Image%203%20%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1%202026%D8%8C%2002_29_20%20%D8%B5.png",
         sizes: [
           { size: "S", age: "من 2 إلى 4 سنوات" },
           { size: "M", age: "من 4 إلى 6 سنوات" },
@@ -583,7 +583,7 @@ export const Clothes = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791200907/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_30_49_%D8%B5.png",
+        img: "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/ChatGPT%20Image%203%20%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1%202026%D8%8C%2002_30_49%20%D8%B5.png",
         sizes: [
           // { size: "S", age: "من 2 إلى 4 سنوات" },
           // { size: "M", age: "من 4 إلى 6 سنوات" },
@@ -593,7 +593,7 @@ export const Clothes = [
       },
       {
         color: "سكري",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791199837/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_31_39_%D8%B5.png",
+        img: "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/ChatGPT%20Image%203%20%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1%202026%D8%8C%2002_31_39%20%D8%B5.png",
         sizes: [
           { size: "S", age: "من 2 إلى 4 سنوات" },
           { size: "M", age: "من 4 إلى 6 سنوات" },
@@ -603,7 +603,7 @@ export const Clothes = [
       },
      {
  color: "بينك",
-  img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1791198822/ChatGPT_Image_3_%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1_2026_02_27_22_%D8%B5.png",
+  img: "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/ChatGPT%20Image%203%20%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1%202026%D8%8C%2002_27_22%20%D8%B5.png",
  sizes: [
     { size: "S", age: "من 2 إلى 4 سنوات" },
    { size: "M", age: "من 4 إلى 6 سنوات" },

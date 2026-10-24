@@ -12,13 +12,13 @@ const CATEGORY_IMAGES = {
     ]
   },
   legging: {
-    hero: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789723445/WhatsApp_Image_2026-07-05_at_10.24.30_AM.jpg",
+    hero: "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/ChatGPT%20Image%203%20%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1%202026%D8%8C%2002_36_03%20%D8%B5.png",
     collage: [
      // "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615536/WhatsApp_Image_2026-07-09_at_9.07.02_AM_1_yr3it2.jpg",
-    "https://res.cloudinary.com/sauyrrk8/image/upload/v1791198450/photo_1_2026-09-03_01-04-55.jpg",
+    "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/photo_3_2026-09-03_01-04-55.jpg",
      // "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615465/WhatsApp_Image_2026-07-09_at_9.07.02_AM_kcitd3.jpg",
-     "https://res.cloudinary.com/sauyrrk8/image/upload/v1791198450/photo_3_2026-09-03_01-04-55.jpg",
-     "https://res.cloudinary.com/sauyrrk8/image/upload/v1791198450/photo_1_2026-09-03_01-04-55.jpg",
+     "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/photo_1_2026-09-03_01-04-55.jpg",
+     "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/ChatGPT%20Image%203%20%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1%202026%D8%8C%2002_36_03%20%D8%B5.png",
     ]
   },
   short: {
