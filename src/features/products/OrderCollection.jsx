@@ -18,12 +18,16 @@ import {
   X,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Select, Drawer } from "antd";
+
 import { useCart } from "../cart/CartContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useCartActions } from "../cart/AddAndBuyTOCart";
 import { BackToSchoolData } from "../../data/BackToSchool";
+
+
+import Select from "../../ui/Select";
+import Drawer from "../../ui/Drawer";
 
 // Mobile Dropdown Component
 function MobileSelect({
@@ -82,11 +86,8 @@ function MobileSelect({
         height="auto"
         open={open}
         onClose={() => setOpen(false)}
-        className="colon-select-drawer"
-        styles={{
-          body: { padding: 0, maxHeight: "70vh", overflow: "auto" },
-          header: { display: "none" },
-        }}
+        closable={false}
+        bodyStyle={{ padding: 0, maxHeight: "70vh", overflow: "auto" }}
       >
         <div className="sticky top-0 z-10 bg-white border-b border-gray-100 p-4">
           <div className="flex items-center justify-between mb-3">
@@ -863,12 +864,10 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                             ? "كولون"
                             : "هاف كولون"
                         }
-                        className="w-full"
                         size="large"
                         disabled={disableProductSelection}
                         style={{ borderRadius: 12 }}
                         dropdownStyle={{ borderRadius: 12 }}
-                        optionLabelProp="label"
                       >
                         {filteredProducts.map((p) => {
                           const firstColor =
@@ -877,28 +876,7 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                           const img = getProductImage(p, firstColor);
 
                           return (
-                            <Select.Option
-                              key={p.id}
-                              value={p.id}
-                              label={
-                                <span className="flex items-center gap-2">
-                                  {img && (
-                                    <img
-                                      src={img}
-                                      alt={p.name}
-                                      className="w-12 h-12 rounded-md object-cover border border-gray-200"
-                                    />
-                                  )}
-                                  <span
-                                    style={{
-                                      fontFamily: "'Cairo', sans-serif",
-                                    }}
-                                  >
-                                    {p.name}
-                                  </span>
-                                </span>
-                              }
-                            >
+                            <Select.Option key={p.id} value={p.id}>
                               <div className="flex items-center justify-between w-full gap-2">
                                 <span
                                   className="font-medium text-gray-800 text-sm flex-1 text-right"
@@ -999,41 +977,15 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                           value={piece.color || undefined}
                           onChange={(val) => handleColorChange(piece.id, val)}
                           placeholder="لون"
-                          className="w-full"
                           size="large"
                           disabled={!piece.productId}
                           style={{ borderRadius: 12 }}
                           dropdownStyle={{ borderRadius: 12 }}
-                          optionLabelProp="label"
                         >
                           {productColorsWithSizes.map((item) => (
                             <Select.Option
                               key={item.color}
                               value={item.color}
-                              label={
-                                <span className="flex items-center gap-2">
-                                  <div
-                                    className="w-5 h-5 rounded-full shadow-inner"
-                                    style={{
-                                      backgroundColor: getColorCode(
-                                        item.color
-                                      ),
-                                      border:
-                                        item.color === "أبيض" ||
-                                        item.color === "أوف وايت"
-                                          ? "1px solid #E5E7EB"
-                                          : "none",
-                                    }}
-                                  />
-                                  <span
-                                    style={{
-                                      fontFamily: "'Cairo', sans-serif",
-                                    }}
-                                  >
-                                    {item.color}
-                                  </span>
-                                </span>
-                              }
                             >
                               <div className="flex items-center justify-between w-full gap-2">
                                 <div className="flex items-center gap-2 flex-1 overflow-hidden">
@@ -1128,7 +1080,6 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
                               ? "لا توجد مقاسات لهذا اللون"
                               : "مقاس"
                           }
-                          className="w-full"
                           size="large"
                           disabled={
                             !piece.productId ||
@@ -1318,20 +1269,6 @@ function OrderCollection({ selectedOffer, scrollToOffers, disableProductSelectio
         onContinue={handleContinueShopping}
         onCheckout={handleCheckout}
       />
-
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .colon-select-drawer .ant-drawer-content-wrapper {
-            max-height: 80vh !important;
-          }
-        }
-        .ant-select-item-option-content {
-          white-space: normal !important;
-        }
-        .ant-select-item-option {
-          padding: 8px 12px !important;
-        }
-      `}</style>
     </div>
   );
 }

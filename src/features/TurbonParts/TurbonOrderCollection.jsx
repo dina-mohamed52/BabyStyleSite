@@ -18,7 +18,11 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Select, Drawer, Spin } from "antd";
+
+
+import Select from "../../ui/Select";
+import Drawer from "../../ui/Drawer";
+
 import { useCart } from "../cart/CartContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -73,11 +77,8 @@ function MobileSelect({
         height="auto"
         open={open}
         onClose={() => setOpen(false)}
-        className="mobile-select-drawer"
-        styles={{
-          body: { padding: 0, maxHeight: "70vh", overflow: "auto" },
-          header: { display: "none" },
-        }}
+        closable={false}
+        bodyStyle={{ padding: 0, maxHeight: "70vh", overflow: "auto" }}
       >
         <div className="sticky top-0 z-10 bg-white border-b border-gray-100 p-4">
           <div className="flex items-center justify-between mb-3">
@@ -229,30 +230,29 @@ function TurbonOrderCollection({
   }, [selectedOffer]);
 
   // Get products based on selected offer
- const getFilteredProducts = () => {
-  const tabType = selectedOffer?.selectedTabType;
-  const type = selectedOffer?.selectedType;
+  const getFilteredProducts = () => {
+    const tabType = selectedOffer?.selectedTabType;
+    const type = selectedOffer?.selectedType;
 
-  
+    if (type === "set-bandana") {
+      return BandanaTurbonData.filter(p => p.type === "set-bandana");
+    }
 
-  if (type === "set-bandana") {
-    return BandanaTurbonData.filter(p => p.type === "set-bandana");
-  }
+    if (type === "set-turbon") {
+      return BandanaTurbonData.filter(p => p.type === "set-turbon");
+    }
 
-  if (type === "set-turbon") {
-    return BandanaTurbonData.filter(p => p.type === "set-turbon");
-  }
+    if (tabType === "bandana") {
+      return BandanaTurbonData.filter(p => p.tabType === "bandana");
+    }
 
-  if (tabType === "bandana") {
-    return BandanaTurbonData.filter(p => p.tabType === "bandana");
-  }
+    if (tabType === "turbon") {
+      return BandanaTurbonData.filter(p => p.tabType === "turbon");
+    }
 
-  if (tabType === "turbon") {
-    return BandanaTurbonData.filter(p => p.tabType === "turbon");
-  }
+    return [];
+  };
 
-  return [];
-};
   const products = useMemo(
     () => getFilteredProducts(),
     [selectedOffer?.selectedTabType, selectedOffer?.type]
@@ -312,7 +312,7 @@ function TurbonOrderCollection({
 
   const isOneSizeProduct = (productId) => {
     const product = getProductById(productId);
-     return product?.tabType === "turbon" && product?.type !== "set-turbon";
+    return product?.tabType === "turbon" && product?.type !== "set-turbon";
   };
 
   const handleGoToOffers = () => {
@@ -345,7 +345,7 @@ function TurbonOrderCollection({
       "أسود فيونكه": "#000000",
       "أحمر فيونكه": "#FF0000",
       "بينك فيونكه": "#FF69B4",
-        "بيبي بلو": "#87CEEB",
+      "بيبي بلو": "#87CEEB",
       "كافيه فيونكه": "#6F4E37",
       "أوف وايت فيونكه": "#FDF5E6",
       default: "#CCCCCC"
@@ -485,8 +485,7 @@ function TurbonOrderCollection({
     }
   };
 
-const { handleAddOnly, handleBuyNow } = useCartActions({
-   
+  const { handleAddOnly, handleBuyNow } = useCartActions({
     prepareCartItem,
     isFormValid,
   });
@@ -597,7 +596,6 @@ const { handleAddOnly, handleBuyNow } = useCartActions({
           </span>
         </h2>
         
-        {/* ⭐ إضافة توضيح للمستخدم ⭐ */}
         <p className="text-gray-500 text-xs md:text-sm px-4 mt-1">
           {selectedOffer?.selectedTabType === "bandana" && !selectedOffer?.type?.includes("set") && "🟣 اختر البندانات الفردية المناسبة لك"}
           {selectedOffer?.selectedTabType === "bandana" && selectedOffer?.type === "set-bandana" && "🟣 اختر أطقم البندانات المناسبة لك"}
@@ -640,8 +638,6 @@ const { handleAddOnly, handleBuyNow } = useCartActions({
           )}
         </div>
       </div>
-
-      {/* باقي الكود كما هو - products grid والbuttons */}
 
       {/* Locked Product Badge */}
       <AnimatePresence>
@@ -797,7 +793,6 @@ const { handleAddOnly, handleBuyNow } = useCartActions({
                         value={piece.productId}
                         onChange={(val) => handleProductChange(piece.id, val)}
                         placeholder="الموديل"
-                        className="w-full"
                         size="large"
                         disabled={disableProductSelection}
                         style={{ borderRadius: 12 }}
@@ -861,7 +856,6 @@ const { handleAddOnly, handleBuyNow } = useCartActions({
                           value={piece.color || undefined}
                           onChange={(val) => handleColorChange(piece.id, val)}
                           placeholder="اللون"
-                          className="w-full"
                           size="large"
                           disabled={!piece.productId}
                           style={{ borderRadius: 12 }}
@@ -918,7 +912,6 @@ const { handleAddOnly, handleBuyNow } = useCartActions({
                               value={selectedSizes[piece.id]}
                               onChange={(val) => handleSizeChange(piece.id, val)}
                               placeholder="مقاس"
-                              className="w-full"
                               size="large"
                               disabled={!piece.productId || !piece.color}
                               style={{ borderRadius: 12 }}
@@ -1092,14 +1085,6 @@ const { handleAddOnly, handleBuyNow } = useCartActions({
         onContinue={handleContinueShopping}
         onCheckout={handleCheckout}
       />
-
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .mobile-select-drawer .ant-drawer-content-wrapper {
-            max-height: 80vh !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }

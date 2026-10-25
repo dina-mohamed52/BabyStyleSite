@@ -18,7 +18,12 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Select, Drawer, Spin } from "antd";
+
+
+import Select from "../../ui/Select";
+import Drawer from "../../ui/Drawer";
+import Spin from "../../ui/Spin";
+
 import { useCart } from "../cart/CartContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -77,11 +82,8 @@ function MobileSelect({
         height="auto"
         open={open}
         onClose={() => setOpen(false)}
-        className="mobile-select-drawer"
-        styles={{
-          body: { padding: 0, maxHeight: "70vh", overflow: "auto" },
-          header: { display: "none" },
-        }}
+        closable={false}
+        bodyStyle={{ padding: 0, maxHeight: "70vh", overflow: "auto" }}
       >
         <div className="sticky top-0 z-10 bg-white border-b border-gray-100 p-4">
           <div className="flex items-center justify-between mb-3">
@@ -269,32 +271,27 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
     setPieces(initialPieces);
   }
 
-  // داخل دالة SCOrderCollection، قم بتعديل دالة handleChange كالتالي:
   const handleChange = (id, field, value) => {
     const updated = pieces.map((p) => {
       if (p.id === id) {
-        // إذا كان الحقل المغير هو "name" (المنتج)
         if (field === "name") {
-          // إعادة تعيين اللون و المقاس عند تغيير المنتج
-          return { 
-            ...p, 
-            name: value, 
-            color: "",      // ← مسح اللون القديم
-            size: ""        // ← مسح المقاس القديم (اختياري)
+          return {
+            ...p,
+            name: value,
+            color: "",
+            size: ""
           };
         }
-        // لتحديث الحقول الأخرى بشكل طبيعي
         return { ...p, [field]: value };
       }
       return p;
     });
     setPieces(updated);
 
-    // إذا تم تغيير المنتج، قم أيضاً بمسح المقاس المحدد لذلك القطعة
     if (field === "name") {
       setSelectedSizes((prev) => {
         const newSizes = { ...prev };
-        delete newSizes[id]; // إزالة المقاس القديم من حالة الأحجام
+        delete newSizes[id];
         return newSizes;
       });
     }
@@ -309,30 +306,25 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
     setSelectedSizes((prev) => ({ ...prev, [id]: size }));
   };
 
-  // Modified function to filter sizes based on product id and color
   const getAvailableSizes = (productName, color) => {
-  const product = SummerColonData.find((item) => item.name === productName);
-  
-  if (!product) return [];
+    const product = SummerColonData.find((item) => item.name === productName);
 
-  let sizes = [...product.sizes]; // Create a copy of sizes array
+    if (!product) return [];
 
-  // Special case: Product with id=2 and color "بينك" (Pink)
-  // Start sizes from "8-6" (which represents 6-8) and remove smaller sizes
-  if (product.id === 2 && color === "بينك") {
-    // Define the order of sizes as they appear in the array
-    const sizeOrder = ["4-2", "6-4", "8-6", "10-8", "12-10", "14-12"];
-    // Find the index of "8-6"
-    const startIndex = sizeOrder.indexOf("8-6");
-    // Filter sizes to only include those from "8-6" onwards
-    sizes = sizes.filter(sizeItem => {
-      const sizeIndex = sizeOrder.indexOf(sizeItem.size);
-      return sizeIndex >= startIndex;
-    });
-  }
+    let sizes = [...product.sizes];
 
-  return sizes;
-};
+    if (product.id === 2 && color === "بينك") {
+      const sizeOrder = ["4-2", "6-4", "8-6", "10-8", "12-10", "14-12"];
+      const startIndex = sizeOrder.indexOf("8-6");
+      sizes = sizes.filter(sizeItem => {
+        const sizeIndex = sizeOrder.indexOf(sizeItem.size);
+        return sizeIndex >= startIndex;
+      });
+    }
+
+    return sizes;
+  };
+
   const getColorCode = (colorName) => {
     const colorMap = {
       أبيض: "#FFFFFF",
@@ -376,16 +368,13 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
     }
   };
 
-  // التحقق من صحة النموذج
   const isFormValid = pieces.every(
     (piece) => piece.name && piece.color && selectedSizes[piece.id],
   );
 
-  // تجهيز عناصر العرض للإضافة للسلة
   const prepareCartItem = () => {
     const orderWithDetails = pieces.map((piece) => {
       const product = SummerColonData.find((p) => p.name === piece.name);
-      // جلب الصورة المناسبة بناءً على اللون المختار
       let productImage = "";
       if (product && product.productColors) {
         const colorIndex = product.avalibeColors?.findIndex(
@@ -411,7 +400,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
       };
     });
 
-    // استخدام أول صورة متاحة كصورة رئيسية للعرض
     const mainImage = orderWithDetails.find((p) => p.image)?.image || "";
 
     return {
@@ -431,7 +419,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
     };
   };
 
-  // دالة الإضافة للسلة (مع خيار التوجيه)
   const handleAddToCart = async (shouldNavigate = false) => {
     if (!isFormValid) {
       toast.error("⚠️ يرجى إكمال جميع البيانات أولاً", {
@@ -447,7 +434,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
       const cartItem = prepareCartItem();
       addToCart(cartItem);
 
-      // عرض Toast نجاح مع أيقونة
       toast.success(
         <div className="flex items-center gap-2">
           <CheckCircle className="w-5 h-5 text-green-500" />
@@ -463,14 +449,12 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
       );
 
       if (shouldNavigate) {
-        // عرض Modal قبل التوجيه
         setSuccessMessage(
           `🎁 تم إضافة عرض ${selectedOffer?.name} بنجاح إلى سلة التسوق!`,
         );
         setShowSuccessModal(true);
         setPendingNavigation(true);
       } else {
-        // إضافة فقط - عرض رسالة مختلفة
         toast.info("يمكنك متابعة التسوق أو الذهاب للسلة لإتمام الطلب", {
           position: "bottom-center",
           autoClose: 4000,
@@ -489,13 +473,11 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
     }
   };
 
- const { handleAddOnly, handleBuyNow } = useCartActions({
-    
-     prepareCartItem,
-     isFormValid,
-   });
- 
-  // متابعة التسوق بعد الإضافة
+  const { handleAddOnly, handleBuyNow } = useCartActions({
+    prepareCartItem,
+    isFormValid,
+  });
+
   const handleContinueShopping = () => {
     setShowSuccessModal(false);
     setPendingNavigation(false);
@@ -505,7 +487,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
     });
   };
 
-  // إتمام الطلب
   const handleCheckout = () => {
     setShowSuccessModal(false);
     if (pendingNavigation) {
@@ -513,7 +494,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
     }
   };
 
-  // إغلاق المودال
   const closeModal = () => {
     setShowSuccessModal(false);
     setPendingNavigation(false);
@@ -553,7 +533,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
     );
   }
 
-  // Prepare options for mobile selects
   const productOptions = scProducts.map((product) => ({
     value: product.name,
     label: product.name,
@@ -622,7 +601,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
           const isCompleted =
             piece.name && piece.color && selectedSizes[piece.id];
 
-          // Prepare options for selects
           const colorOptions = colors.map((c) => ({
             value: c,
             label: c,
@@ -733,7 +711,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
                           handleChange(piece.id, "name", value)
                         }
                         placeholder="كولون"
-                        className="w-full"
                         size="large"
                         style={{ borderRadius: 12 }}
                         dropdownStyle={{ borderRadius: 12 }}
@@ -799,7 +776,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
                             handleChange(piece.id, "color", value)
                           }
                           placeholder="لون"
-                          className="w-full"
                           size="large"
                           disabled={!piece.name}
                           style={{ borderRadius: 12 }}
@@ -862,7 +838,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
                             handleSizeChange(piece.id, reversedValue);
                           }}
                           placeholder="مقاس"
-                          className="w-full"
                           size="large"
                           disabled={!piece.name || !piece.color}
                           style={{ borderRadius: 12 }}
@@ -964,7 +939,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
         transition={{ delay: 0.4 }}
         className="flex flex-col items-center gap-4 md:gap-6 mt-8 md:mt-12"
       >
-        {/* شرح مبسط للخيارات */}
         <div className="flex flex-wrap justify-center gap-3 md:gap-4 text-[10px] md:text-xs text-gray-400">
           <div className="flex items-center gap-1">
             <div className="w-1.5 h-1.5 bg-purple-500 rounded-full" />
@@ -977,7 +951,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
         </div>
 
         <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 w-full max-w-2xl px-4">
-          {/* زرار إضافة للسلة فقط */}
           <motion.button
             onClick={handleAddOnly}
             disabled={isSubmitting || !isFormValid}
@@ -1005,7 +978,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
             )}
           </motion.button>
 
-          {/* زرار شراء الآن + متابعة للدفع */}
           <motion.button
             onClick={handleBuyNow}
             disabled={isSubmitting || !isFormValid}
@@ -1038,7 +1010,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
           </motion.button>
         </div>
 
-        {/* رسالة توجيهية عند اكتمال البيانات */}
         {isFormValid && !isSubmitting && (
           <motion.p
             initial={{ opacity: 0 }}
@@ -1058,14 +1029,6 @@ function SCOrderCollection({ selectedOffer, scrollToOffers }) {
         onContinue={handleContinueShopping}
         onCheckout={handleCheckout}
       />
-
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .mobile-select-drawer .ant-drawer-content-wrapper {
-            max-height: 80vh !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }

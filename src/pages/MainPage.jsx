@@ -17,9 +17,21 @@ import { useNavigate } from "react-router-dom";
 function useReveal() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
+  const [supported, setSupported] = useState(false);
+
   useEffect(() => {
+    // Fallback: لو IntersectionObserver مش مدعوم، خلي المحتوى ظاهر فورًا
+    if (typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
+
+    // دلوقتي بس نفعّل كلاس الإخفاء (reveal)
+    setSupported(true);
+
     const el = ref.current;
     if (!el) return;
+
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -32,15 +44,18 @@ function useReveal() {
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-  return [ref, visible];
+
+  return [ref, visible, supported];
 }
 
 function Reveal({ children, delay = 0, className = "" }) {
-  const [ref, visible] = useReveal();
+  const [ref, visible, supported] = useReveal();
   return (
     <div
       ref={ref}
-      className={`reveal ${visible ? "reveal-visible" : ""} ${className}`}
+      className={`${supported ? "reveal" : ""} ${
+        visible ? "reveal-visible" : ""
+      } ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
@@ -112,7 +127,7 @@ const SEASONS = {
     accentDark: "#2563EB",
     soft: "#DBEAFE",
     softLight: "#EFF6FF",
-   tagline: "دفء وأناقة بأجواء دافئة وإطلالة ناعمة",
+    tagline: "دفء وأناقة بأجواء دافئة وإطلالة ناعمة",
     categories: [
       {
         id: 4,
@@ -156,7 +171,7 @@ const STATS = [
 ];
 
 /* ---------- page********************** ---------- */
-export default function MainPage({ onNavigate }) {
+export default function MainPage() {
   const [season, setSeason] = useState("winter");
   const [toast, setToast] = useState(null);
   const active = SEASONS[season];
@@ -167,19 +182,16 @@ export default function MainPage({ onNavigate }) {
     return () => clearTimeout(t);
   }, [toast]);
 
-
-const navigate= useNavigate();
+  const navigate = useNavigate();
 
   const go = (path, label) => {
     setToast(`فتح: ${label}`);
-   navigate(path);
+    navigate(path);
   };
 
   return (
     <div dir="rtl" className="mp-root">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap');
-
         .mp-root {
           --paper: #F8FAFC;
           --paper-deep: #F1F5F9;
@@ -213,12 +225,14 @@ const navigate= useNavigate();
 
         .mp-toggle-thumb { transition: transform .35s cubic-bezier(.65,0,.35,1); }
 
-        /* FIX: Image container to prevent cropping */
+        /* FIX: Image container to prevent cropping + content-visibility */
         .mp-card-img-wrapper {
           border-radius: 26px 26px 26px 64px;
           position: relative;
           aspect-ratio: 4 / 5;
           overflow: hidden;
+          content-visibility: auto;
+          contain-intrinsic-size: 300px 375px;
         }
         .mp-card-img-wrapper img {
           width: 100%;
@@ -354,7 +368,6 @@ const navigate= useNavigate();
           {toast}
         </div>
       </div>
-      {/* ضضضضضضضضضضضضضضضضضضضضضضض */}
 
       {/* HERO — Baby Pink & Baby Blue Blend */}
       <section className="relative pt-16 pb-28 px-4 overflow-hidden">
@@ -516,9 +529,12 @@ const navigate= useNavigate();
                     <img
                       src={cat.image}
                       alt={cat.name}
-                      loading="lazy"
+                      loading={i === 0 ? "eager" : "lazy"}
+                      fetchpriority={i === 0 ? "high" : "auto"}
+                      decoding="async"
                       onError={(e) => {
-                        e.target.src =
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src =
                           "https://via.placeholder.com/400x300/FCE7F3/EC4899?text=صورة+غير+متاحة";
                       }}
                     />

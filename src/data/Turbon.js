@@ -46,25 +46,25 @@ export const BandanaTurbonData = [
     tabType: "bandana",
     productColors: [
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088855/photo_28_2026-04-26_00-17-35.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_28_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088888/photo_27_2026-04-26_00-17-35.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_27_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088870/photo_25_2026-04-26_00-17-35.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_25_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088880/photo_26_2026-04-26_00-17-35.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_26_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088856/photo_24_2026-04-26_00-17-35.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_24_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088856/photo_30_2026-04-26_00-17-35.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_30_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790088856/photo_29_2026-04-26_00-17-35.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_29_2026-04-26_00-17-35.jpg",
       },
     ],
     avalibeColors: [
@@ -77,7 +77,7 @@ export const BandanaTurbonData = [
       "بيج",
     ],
     image:
-      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790089045/photo_5_2026-09-13_16-19-41.jpg",
+      "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_5_2026-09-13_16-19-41.jpg",
     sizes: [
       { size: "0-1", age: "من زيرو لسنة" },
       { size: "1-3", age: "من سنه ل 3 سنين" },
@@ -167,31 +167,31 @@ export const BandanaTurbonData = [
      category: 'bandana-set',
     productColors: [
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258378/photo_15_2026-04-26_00-17-35.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_15_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258377/photo_14_2026-04-26_00-17-35.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_14_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258385/photo_13_2026-04-26_00-17-35.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_13_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258402/photo_12_2026-04-26_00-17-35.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_12_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258383/photo_11_2026-04-26_00-17-35.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_11_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258380/photo_16_2026-04-26_00-17-35.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_16_2026-04-26_00-17-35.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258382/photo_1_2026-09-13_16-03-13.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_1_2026-09-13_16-03-13.jpg",
       },
     
     ],
     avalibeColors: ["أبيض", "أسود", "بينك", "لافندر", "أحمر", "أصفر","بيج"],
     image:
-      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258380/photo_16_2026-04-26_00-17-35.jpg",
+      "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_16_2026-04-26_00-17-35.jpg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -209,18 +209,18 @@ export const BandanaTurbonData = [
      category: 'bandana-set',
     productColors: [
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258373/photo_10_2026-04-12_02-24-54.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_10_2026-04-12_02-24-54.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258375/photo_11_2026-04-12_02-24-54.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_11_2026-04-12_02-24-54.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258373/photo_12_2026-04-12_02-24-54.jpg",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_12_2026-04-12_02-24-54.jpg",
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بينك"],
     image:
-      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258373/photo_12_2026-04-12_02-24-54.jpg",
+      "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_12_2026-04-12_02-24-54.jpg",
     sizes: [
       { size: "0-2", age: "من زيرو لسنه" },
       { size: "2-4", age: "من سنه ونص ل3 سنتين" },

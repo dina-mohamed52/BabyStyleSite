@@ -180,7 +180,6 @@ function CProductList() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {filteredProducts[0].productColors.map((colorItem, index) => {
                 const colorName = getColorName(filteredProducts[0], index);
-                const colorSizes = getSizesForColor(filteredProducts[0], colorName);
                 
                 return (
                   <div 
@@ -194,6 +193,7 @@ function CProductList() {
                         alt={`${filteredProducts[0].name} - ${colorName || `صورة ${index + 1}`}`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     
