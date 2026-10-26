@@ -19,10 +19,10 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// ✅ استبدال Ant Design بمكونات يدوية
-import Select from "../ui/Select";
-import Drawer from "../ui/Drawer";
-import Spin from "../ui/Spin";
+
+import Select from "../../ui/Select";
+import Drawer from "../../ui/Drawer";
+import Spin from "../../ui/Spin";
 
 import { useCart } from "../cart/CartContext";
 import { toast } from "react-toastify";

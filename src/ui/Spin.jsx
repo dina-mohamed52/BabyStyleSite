@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from "react";
-import { SummerColonData } from "../../data/SummerColon";
+import { SummerColonData } from "../data/SummerColon";
 import { useTranslation } from "react-i18next";
 import {
   ShoppingBag,
@@ -22,12 +22,11 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import Select from "../ui/Select";
 import Drawer from "../ui/Drawer";
-
-
-import { useCart } from "../cart/CartContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useCartActions } from "../cart/AddAndBuyTOCart";
+// import { useCartActions } from "../cart/AddAndBuyTOCart";
+import { useCart } from "../features/cart/CartContext";
+import { useCartActions } from "../features/cart/AddAndBuyTOCart";
 
 // Mobile Dropdown Component
 function MobileSelect({
