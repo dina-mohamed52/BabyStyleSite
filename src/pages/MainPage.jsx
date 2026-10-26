@@ -530,7 +530,7 @@ export default function MainPage() {
                       src={cat.image}
                       alt={cat.name}
                       loading={i === 0 ? "eager" : "lazy"}
-                      fetchPriority={i === 0 ? "high" : "auto"}
+                      fetchpriority={i === 0 ? "high" : "auto"}
                       decoding="async"
                       onError={(e) => {
                         e.currentTarget.onerror = null;
