@@ -1,19 +1,70 @@
-import { Modal } from "antd";
 import PropTypes from "prop-types";
+import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
-import { 
-  ClockIcon, 
-  PhoneIcon, 
+import {
+  ClockIcon,
+  PhoneIcon,
   CheckCircleIcon,
   ShoppingBagIcon,
   SparklesIcon,
-  HeartIcon,
   GiftIcon,
-  StarIcon
-} from '@heroicons/react/24/outline';
-import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
+  StarIcon,
+} from "@heroicons/react/24/outline";
+import { HeartIcon as HeartSolidIcon } from "@heroicons/react/24/solid";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+
+
+function ModalShell({ open, onClose, width = 450, children }) {
+  useEffect(() => {
+    if (!open) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose?.();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open, onClose]);
+
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          key="confirm-order-mask"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-[1000] overflow-y-auto bg-black/45"
+          onClick={onClose}
+        >
+          <div className="flex min-h-full items-center justify-center p-4">
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="w-full overflow-hidden rounded-[2rem]"
+              style={{ maxWidth: width }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {children}
+            </motion.div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    document.body,
+  );
+}
 
 export default function ConfirmOrderModal({ visible, onClose }) {
   const { t } = useTranslation();
@@ -27,45 +78,37 @@ export default function ConfirmOrderModal({ visible, onClose }) {
         left: `${Math.random() * 100}%`,
         delay: Math.random() * 2,
         size: Math.random() * 10 + 5,
-        color: i % 2 === 0 ? '#ec4899' : '#f472b6'
+        color: i % 2 === 0 ? "#ec4899" : "#f472b6",
       }));
       setConfetti(newConfetti);
     }
   }, [visible]);
 
   return (
-    <Modal
-      open={visible}
-      onCancel={onClose}
-      footer={null}
-      width={450}
-      centered
-      closable={false}
-      className="confirm-order-modal"
-    >
+    <ModalShell open={visible} onClose={onClose} width={450}>
       <div className="relative bg-gradient-to-br from-white to-pink-50/30 rounded-2xl overflow-hidden">
-        
         {/* Confetti Effect */}
         <AnimatePresence>
-          {visible && confetti.map((c) => (
-            <motion.div
-              key={c.id}
-              initial={{ y: -20, opacity: 1, rotate: 0 }}
-              animate={{ y: 400, opacity: 0, rotate: 360 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 3, delay: c.delay, ease: "easeOut" }}
-              className="absolute pointer-events-none"
-              style={{ 
-                left: c.left, 
-                top: -20,
-                width: c.size,
-                height: c.size,
-                backgroundColor: c.color,
-                borderRadius: '50%',
-                zIndex: 10
-              }}
-            />
-          ))}
+          {visible &&
+            confetti.map((c) => (
+              <motion.div
+                key={c.id}
+                initial={{ y: -20, opacity: 1, rotate: 0 }}
+                animate={{ y: 400, opacity: 0, rotate: 360 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 3, delay: c.delay, ease: "easeOut" }}
+                className="absolute pointer-events-none"
+                style={{
+                  left: c.left,
+                  top: -20,
+                  width: c.size,
+                  height: c.size,
+                  backgroundColor: c.color,
+                  borderRadius: "50%",
+                  zIndex: 10,
+                }}
+              />
+            ))}
         </AnimatePresence>
 
         {/* Decorative Background Elements */}
@@ -93,7 +136,7 @@ export default function ConfirmOrderModal({ visible, onClose }) {
               transition={{ repeat: Infinity, duration: 2, delay: 0.5 }}
               className="absolute inset-2 bg-gradient-to-r from-pink-300 to-pink-400 rounded-full blur-lg opacity-20"
             />
-            
+
             {/* Main Circle */}
             <motion.div
               whileHover={{ rotate: 360 }}
@@ -160,12 +203,16 @@ export default function ConfirmOrderModal({ visible, onClose }) {
                   <ClockIcon className="w-5 h-5 text-pink-600" />
                 </div>
                 <div className="text-right">
-                  <p className="text-gray-600 text-sm">{t("confirmOrder.deliveryTime")}</p>
-                  <p className="text-xs text-gray-400">{t("confirmOrder.workingDays")}</p>
+                  <p className="text-gray-600 text-sm">
+                    {t("confirmOrder.deliveryTime")}
+                  </p>
+                  <p className="text-xs text-gray-400">
+                    {t("confirmOrder.workingDays")}
+                  </p>
                 </div>
               </div>
               <div className="bg-gradient-to-r from-pink-500 to-pink-600 text-white font-bold px-4 py-2 rounded-full text-sm shadow-lg">
-               5 {t("confirmOrder.workingDays")}
+                5 {t("confirmOrder.workingDays")}
               </div>
             </div>
 
@@ -176,11 +223,14 @@ export default function ConfirmOrderModal({ visible, onClose }) {
                   <PhoneIcon className="w-5 h-5 text-pink-600" />
                 </div>
                 <div className="text-right">
-                  <p className="text-gray-600 text-sm">{t("confirmOrder.support")}</p>
-                  <p className="text-xs text-gray-400">{t("confirmOrder.supportHours")}</p>
+                  <p className="text-gray-600 text-sm">
+                    {t("confirmOrder.support")}
+                  </p>
+                  <p className="text-xs text-gray-400">
+                    {t("confirmOrder.supportHours")}
+                  </p>
                 </div>
               </div>
-             
             </div>
           </motion.div>
 
@@ -192,15 +242,25 @@ export default function ConfirmOrderModal({ visible, onClose }) {
             className="grid grid-cols-2 gap-4 mb-8"
           >
             {[
-              { icon: CheckCircleIcon, text: t("confirmOrder.preview"), color: "from-pink-400 to-pink-500" },
-              { icon: ShoppingBagIcon, text: t("confirmOrder.rejection"), color: "from-pink-500 to-pink-600" }
+              {
+                icon: CheckCircleIcon,
+                text: t("confirmOrder.preview"),
+                color: "from-pink-400 to-pink-500",
+              },
+              {
+                icon: ShoppingBagIcon,
+                text: t("confirmOrder.rejection"),
+                color: "from-pink-500 to-pink-600",
+              },
             ].map((item, idx) => (
               <motion.div
                 key={idx}
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="bg-white rounded-xl p-4 text-center shadow-md border border-pink-100 cursor-pointer group"
               >
-                <div className={`w-12 h-12 mx-auto mb-2 bg-gradient-to-br ${item.color} rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all`}>
+                <div
+                  className={`w-12 h-12 mx-auto mb-2 bg-gradient-to-br ${item.color} rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all`}
+                >
                   <item.icon className="w-6 h-6 text-white" />
                 </div>
                 <p className="text-sm font-medium text-gray-700">{item.text}</p>
@@ -222,7 +282,10 @@ export default function ConfirmOrderModal({ visible, onClose }) {
             <p className="text-pink-600 text-sm text-center mt-1">
               {t("confirmOrder.thanks2")}
             </p>
-            <HeartSolidIcon className="w-8 h-8 text-pink-400 absolute -right-2 -bottom-2 animate-pulse" style={{ animationDelay: "0.5s" }} />
+            <HeartSolidIcon
+              className="w-8 h-8 text-pink-400 absolute -right-2 -bottom-2 animate-pulse"
+              style={{ animationDelay: "0.5s" }}
+            />
           </motion.div>
 
           {/* Action Button */}
@@ -237,7 +300,7 @@ export default function ConfirmOrderModal({ visible, onClose }) {
           >
             {/* Glow Effect */}
             <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 to-pink-600 rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
-            
+
             {/* Button */}
             <div className="relative bg-gradient-to-r from-gray-900 to-gray-800 text-white font-bold py-4 px-6 rounded-2xl shadow-2xl border border-pink-400/30">
               <span className="flex items-center justify-center gap-2 text-lg">
@@ -245,7 +308,7 @@ export default function ConfirmOrderModal({ visible, onClose }) {
                 {t("confirmOrder.gotIt")}
                 <SparklesIcon className="w-6 h-6 text-pink-400" />
               </span>
-              
+
               {/* Shine Effect */}
               <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000"></div>
             </div>
@@ -264,30 +327,7 @@ export default function ConfirmOrderModal({ visible, onClose }) {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .confirm-order-modal :global(.ant-modal-content) {
-          background: transparent;
-          box-shadow: none;
-          border-radius: 2rem;
-          overflow: hidden;
-        }
-        .confirm-order-modal :global(.ant-modal-body) {
-          padding: 0;
-        }
-        
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
-    </Modal>
+    </ModalShell>
   );
 }
 

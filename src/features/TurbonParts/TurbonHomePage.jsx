@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowUpRight, Truck, ShieldCheck, Star, Gift, Sparkles, Heart, Crown, Award, Zap, Layers, CheckCircle, Package, ShoppingBag, TrendingUp } from 'lucide-react';
+import { ArrowUpRight, Truck, ShieldCheck, Gift, Sparkles, Heart, Crown, Award, Zap, Layers, Package, ShoppingBag, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 function TurbonHomePage() {
@@ -14,8 +14,8 @@ function TurbonHomePage() {
       description: 'تشكيلة راقية من البندانات العصرية، تناسب جميع الأذواق',
       count: '٢٥+ منتج',
       badge: 'جديد',
-      img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1790089045/photo_5_2026-09-13_16-19-41.jpg',
-      path: '/turbon/bandana', // ✅ route مع category
+      img: 'https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_5_2026-09-13_16-19-41.jpg',
+      path: '/turbon/bandana', 
       icon: Award,
     },
     {
@@ -26,7 +26,7 @@ function TurbonHomePage() {
       count: '٣٠+ منتج',
       badge: 'الأكثر مبيعاً',
       img: 'https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572680/photo_11_2026-09-13_16-19-41.jpg',
-      path: '/turbon/turbon', // ✅ route مع category
+      path: '/turbon/turbon',
       icon: Zap,
     },
     {
@@ -36,8 +36,8 @@ function TurbonHomePage() {
       description: 'أطقم من البندانات المتناسقة بالألوان والتصاميم المتكاملة',
       count: '٨+ أطقم',
       badge: 'حصري',
-      img: 'https://res.cloudinary.com/sauyrrk8/image/upload/v1790258380/photo_16_2026-04-26_00-17-35.jpg',
-      path: '/turbon/bandana-set', // ✅ route مع category
+      img: 'https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_16_2026-04-26_00-17-35.jpg',
+      path: '/turbon/bandana-set',
       icon: Package,
     },
     {
@@ -48,12 +48,11 @@ function TurbonHomePage() {
       count: '٧+ أطقم',
       badge: 'عرض خاص',
       img: 'https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720346/WhatsApp_Image_2026-09-16_at_1.19.08_PM_1.jpg',
-      path: '/turbon/turbon-set', // ✅ route مع category
+      path: '/turbon/turbon-set',
       icon: Layers,
     },
   ];
 
-  // ✅ دالة للتنقل مع تمرير الكاتيجوري
   const goToCategory = (path) => navigate(path);
 
   return (
@@ -199,7 +198,7 @@ function TurbonHomePage() {
               <div className="w-[85%] h-[85%] rounded-full bg-gradient-to-br from-pink-100/50 via-pink-50/20 to-transparent" />
             </div>
 
-            {/* Main Image - Turbon */}
+            {/* Main Image - Turbon (LCP candidate) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -210,6 +209,9 @@ function TurbonHomePage() {
               <img
                 src={categories[1].img}
                 alt="تربونات"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-contain bg-[#fafafa] p-2"
               />
               <div className="absolute bottom-4 right-4 bg-pink-600/90 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg">
@@ -229,6 +231,8 @@ function TurbonHomePage() {
               <img
                 src={categories[0].img}
                 alt="بندانات"
+                loading="eager"
+                decoding="async"
                 className="w-full h-full object-contain bg-[#fafafa] p-2"
               />
               <div className="absolute bottom-2.5 right-2.5 bg-pink-600/85 backdrop-blur-sm text-white px-3 py-1 rounded-full text-[10px] font-semibold">
@@ -247,6 +251,8 @@ function TurbonHomePage() {
               <img
                 src={categories[3].img}
                 alt="أطقم"
+                loading="eager"
+                decoding="async"
                 className="w-full h-full object-contain bg-[#fafafa] p-2"
               />
               <div className="absolute bottom-2.5 right-2.5 bg-pink-600/85 backdrop-blur-sm text-white px-3 py-1 rounded-full text-[10px] font-semibold">
@@ -254,36 +260,20 @@ function TurbonHomePage() {
               </div>
             </motion.div>
 
-            {/* Floating Badge */}
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute bottom-[10%] left-0 z-40 hidden lg:flex items-center gap-3 px-4 py-3 rounded-2xl backdrop-blur-xl bg-white/90 shadow-xl border border-white/80"
-            >
-              <motion.div
-                animate={{ scale: [1, 1.08, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-9 h-9 rounded-full bg-gradient-to-r from-pink-400 to-pink-600 flex items-center justify-center"
-              >
+            {/* Floating Badge - animation removed (static) */}
+            <div className="absolute bottom-[10%] left-0 z-40 hidden lg:flex items-center gap-3 px-4 py-3 rounded-2xl backdrop-blur-xl bg-white/90 shadow-xl border border-white/80">
+              <div className="w-9 h-9 rounded-full bg-gradient-to-r from-pink-400 to-pink-600 flex items-center justify-center">
                 <Crown size={16} className="text-white" />
-              </motion.div>
+              </div>
               <div>
                 <div className="text-[10px] text-[#8E8E93] font-medium">تشكيلة حصرية</div>
                 <div className="font-bold text-sm text-pink-600">أطقم ٢٠٢٦</div>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Decorative dots */}
-            <motion.div
-              animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.5, 0.2] }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="absolute top-[6%] right-[6%] w-2 h-2 rounded-full bg-pink-400 opacity-20 z-0"
-            />
-            <motion.div
-              animate={{ scale: [1, 1.5, 1], opacity: [0.15, 0.4, 0.15] }}
-              transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-              className="absolute bottom-[32%] left-[4%] w-1.5 h-1.5 rounded-full bg-pink-500 opacity-15 z-0"
-            />
+            {/* Decorative dots - animation removed (static) */}
+            <div className="absolute top-[6%] right-[6%] w-2 h-2 rounded-full bg-pink-400 opacity-20 z-0" />
+            <div className="absolute bottom-[32%] left-[4%] w-1.5 h-1.5 rounded-full bg-pink-500 opacity-15 z-0" />
           </motion.div>
         </div>
 
@@ -353,8 +343,10 @@ function TurbonHomePage() {
             <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-2 p-3.5">
               <div className="row-span-2 rounded-xl overflow-hidden relative bg-white shadow-md">
                 <img
-                  src="https://res.cloudinary.com/sauyrrk8/image/upload/v1790258378/photo_15_2026-04-26_00-17-35.jpg"
+                  src="https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_15_2026-04-26_00-17-35.jpg"
                   alt="طقم بندانات"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain bg-[#fafafa] p-2 hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute bottom-3 right-3 bg-pink-600/90 px-3 py-1 rounded-full text-white text-[10px] font-semibold backdrop-blur-sm">
@@ -365,6 +357,8 @@ function TurbonHomePage() {
                 <img
                   src="https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720346/WhatsApp_Image_2026-09-16_at_1.30.02_PM.jpg"
                   alt="طقم تربونات"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain bg-[#fafafa] p-2 hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute bottom-3 right-3 bg-pink-600/90 px-3 py-1 rounded-full text-white text-[10px] font-semibold backdrop-blur-sm">
@@ -373,8 +367,10 @@ function TurbonHomePage() {
               </div>
               <div className="rounded-xl overflow-hidden relative bg-white shadow-md">
                 <img
-                  src="https://res.cloudinary.com/sauyrrk8/image/upload/v1790258373/photo_10_2026-04-12_02-24-54.jpg"
+                  src="https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_12_2026-04-12_02-24-54.jpg"
                   alt="أطقم متنوعة"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain bg-[#fafafa] p-2 hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute bottom-3 right-3 bg-pink-600/90 px-3 py-1 rounded-full text-white text-[10px] font-semibold backdrop-blur-sm">
@@ -383,14 +379,11 @@ function TurbonHomePage() {
               </div>
             </div>
 
-            <motion.div
-              animate={{ rotate: [-2, 2, -2], y: [0, -4, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
-              className="absolute top-5 left-5 bg-gradient-to-r from-pink-400 to-pink-600 text-white px-4 py-1.5 rounded-xl text-[11px] font-bold shadow-lg shadow-pink-200 z-10 flex items-center gap-1.5"
-            >
+            {/* Promo badge - animation removed (static) */}
+            <div className="absolute top-5 left-5 bg-gradient-to-r from-pink-400 to-pink-600 text-white px-4 py-1.5 rounded-xl text-[11px] font-bold shadow-lg shadow-pink-200 z-10 flex items-center gap-1.5">
               <Crown size={13} />
               أطقم ٢٠٢٦
-            </motion.div>
+            </div>
           </div>
         </motion.div>
 
@@ -422,6 +415,10 @@ function TurbonHomePage() {
                   <img
                     src={category.img}
                     alt={category.title}
+                    loading="lazy"
+                    decoding="async"
+                    width={320}
+                    height={400}
                     className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3.5 right-3.5 bg-gradient-to-r from-pink-400 to-pink-600 text-white px-3.5 py-1 rounded-full text-[10px] font-bold shadow-md shadow-pink-200">
@@ -487,7 +484,9 @@ function TurbonHomePage() {
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Tajawal:wght@400;500;700&display=swap');
+        @media (prefers-reduced-motion: reduce) {
+          .direction-rtl * { animation: none !important; transition: none !important; }
+        }
       `}</style>
     </div>
   );

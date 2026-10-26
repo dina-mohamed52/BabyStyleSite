@@ -1,5 +1,5 @@
 // ImagesOfHeadSec.jsx
-import { memo, useState, useEffect, useMemo } from "react";
+import { memo, useState, useMemo } from "react";
 
 // تعريف الصور لكل كاتيجوري
 const CATEGORY_IMAGES = {
@@ -14,11 +14,9 @@ const CATEGORY_IMAGES = {
   legging: {
     hero: "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/ChatGPT%20Image%203%20%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1%202026%D8%8C%2002_36_03%20%D8%B5.png",
     collage: [
-     // "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615536/WhatsApp_Image_2026-07-09_at_9.07.02_AM_1_yr3it2.jpg",
-    "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/photo_3_2026-09-03_01-04-55.jpg",
-     // "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615465/WhatsApp_Image_2026-07-09_at_9.07.02_AM_kcitd3.jpg",
-     "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/photo_1_2026-09-03_01-04-55.jpg",
-     "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/ChatGPT%20Image%203%20%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1%202026%D8%8C%2002_36_03%20%D8%B5.png",
+      "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/photo_3_2026-09-03_01-04-55.jpg",
+      "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/photo_1_2026-09-03_01-04-55.jpg",
+      "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/ChatGPT%20Image%203%20%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1%202026%D8%8C%2002_36_03%20%D8%B5.png",
     ]
   },
   short: {
@@ -29,8 +27,6 @@ const CATEGORY_IMAGES = {
       "https://res.cloudinary.com/dxenvgjv5/image/upload/v1783615465/WhatsApp_Image_2026-07-09_at_9.07.02_AM_kcitd3.jpg"
     ]
   },
-  
- 
 };
 
 const ImagesOfHeadSec = memo(({ 
@@ -41,7 +37,6 @@ const ImagesOfHeadSec = memo(({
   onImageLoad 
 }) => {
   const [loadedImages, setLoadedImages] = useState({});
-  const [allLoaded, setAllLoaded] = useState(false);
 
   // الحصول على الصور المناسبة للكاتيجوري
   const categoryImages = useMemo(() => {
@@ -58,37 +53,6 @@ const ImagesOfHeadSec = memo(({
       }))
     };
   }, [categoryImages, collage]);
-
-  // تحميل الصور
-  useEffect(() => {
-    const imageUrls = [imagesToUse.hero, ...imagesToUse.collage.map(c => c.image)];
-    let loadedCount = 0;
-    const totalImages = imageUrls.length;
-
-    imageUrls.forEach(url => {
-      const img = new Image();
-      img.src = url;
-      img.onload = () => {
-        loadedCount++;
-        setLoadedImages(prev => ({ ...prev, [url]: true }));
-        if (loadedCount === totalImages) {
-          setAllLoaded(true);
-          onImageLoad?.();
-        }
-      };
-      img.onerror = () => {
-        loadedCount++;
-        if (loadedCount === totalImages) {
-          setAllLoaded(true);
-          onImageLoad?.();
-        }
-      };
-    });
-  }, [imagesToUse, onImageLoad]);
-
-
-
-
 
   return (
     <>
@@ -126,7 +90,8 @@ const ImagesOfHeadSec = memo(({
           <img
             src={imagesToUse.hero}
             alt={hero?.name || "Product"}
-            loading="lazy"
+            loading="eager"
+            fetchPriority="high"
             decoding="async"
             style={{
               width: "100%",
@@ -136,7 +101,10 @@ const ImagesOfHeadSec = memo(({
               opacity: loadedImages[imagesToUse.hero] ? 1 : 0,
               transition: "opacity 0.5s ease",
             }}
-            onLoad={() => setLoadedImages(prev => ({ ...prev, [imagesToUse.hero]: true }))}
+            onLoad={() => {
+              setLoadedImages(prev => ({ ...prev, [imagesToUse.hero]: true }));
+              onImageLoad?.();
+            }}
           />
         </div>
 
@@ -183,7 +151,7 @@ const ImagesOfHeadSec = memo(({
               className="khs-body-font name"
               style={{ fontSize: 14, fontWeight: 700, color: "#3B1F38" }}
             >
-             {category}
+              {category}
             </div>
             <div
               className="khs-eyebrow-font price"

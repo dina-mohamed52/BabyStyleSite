@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Clothes } from "../../data/Clothes";
 import {
   ShoppingBag,
@@ -19,13 +20,82 @@ import {
   Flame,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Select, Drawer } from "antd";
 import { useCart } from "../cart/CartContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useCartActions } from "../cart/AddAndBuyTOCart";
 
+// ---------------------------------------------------------------
+// Bottom Sheet ()
+// ---------------------------------------------------------------
+function BottomSheet({ open, onClose, title, children }) {
+  useEffect(() => {
+    if (!open) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open, onClose]);
+
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
+    <AnimatePresence>
+      {open && (
+        <div className="fixed inset-0 z-[90]">
+          <motion.div
+            className="absolute inset-0 bg-black/50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={onClose}
+          />
+          <motion.div
+            className="absolute bottom-0 inset-x-0 bg-white rounded-t-2xl shadow-2xl flex flex-col max-h-[80vh]"
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="bg-white border-b border-gray-100 p-4 rounded-t-2xl">
+              <div className="flex items-center justify-between">
+                <h3
+                  className="text-lg font-bold text-gray-800"
+                  style={{
+                    fontFamily: "'Baloo Bhaijaan 2', 'Cairo', sans-serif",
+                  }}
+                >
+                  {title}
+                </h3>
+                <button
+                  onClick={onClose}
+                  className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center active:scale-95 transition-transform"
+                >
+                  <X className="w-4 h-4 text-gray-500" />
+                </button>
+              </div>
+            </div>
+            <div className="overflow-y-auto">{children}</div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>,
+    document.body,
+  );
+}
+
+// ---------------------------------------------------------------
 // Mobile Dropdown Component
+// ---------------------------------------------------------------
 function MobileSelect({
   value,
   onChange,
@@ -37,11 +107,6 @@ function MobileSelect({
   renderOption,
 }) {
   const [open, setOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const filteredOptions = options.filter((opt) =>
-    opt.label.toLowerCase().includes(searchTerm.toLowerCase()),
-  );
 
   const selectedOption = options.find((opt) => opt.value === value);
 
@@ -56,6 +121,7 @@ function MobileSelect({
           {label}
         </label>
         <button
+          type="button"
           onClick={() => !disabled && setOpen(true)}
           disabled={disabled}
           className={`
@@ -76,48 +142,21 @@ function MobileSelect({
         </button>
       </div>
 
-      <Drawer
-        placement="bottom"
-        height="auto"
-        open={open}
-        onClose={() => setOpen(false)}
-        className="clothes-select-drawer"
-        styles={{
-          body: { padding: 0, maxHeight: "70vh", overflow: "auto" },
-          header: { display: "none" },
-        }}
-      >
-        <div className="sticky top-0 z-10 bg-white border-b border-gray-100 p-4">
-          <div className="flex items-center justify-between mb-3">
-            <h3
-              className="text-lg font-bold text-gray-800"
-              style={{ fontFamily: "'Baloo Bhaijaan 2', 'Cairo', sans-serif" }}
-            >
-              {label}
-            </h3>
-            <button
-              onClick={() => setOpen(false)}
-              className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center active:scale-95 transition-transform"
-            >
-              <X className="w-4 h-4 text-gray-500" />
-            </button>
-          </div>
-        </div>
-
-        <div className="divide-y divide-gray-50 max-h-[50vh] overflow-y-auto">
-          {filteredOptions.length === 0 ? (
+      <BottomSheet open={open} onClose={() => setOpen(false)} title={label}>
+        <div className="divide-y divide-gray-50">
+          {options.length === 0 ? (
             <div className="p-8 text-center text-gray-400">
               <Package className="w-8 h-8 mx-auto mb-2 opacity-50" />
               <p className="text-sm">لا توجد خيارات</p>
             </div>
           ) : (
-            filteredOptions.map((option) => (
+            options.map((option) => (
               <button
+                type="button"
                 key={option.value}
                 onClick={() => {
                   onChange(option.value);
                   setOpen(false);
-                  setSearchTerm("");
                 }}
                 className={`
                   w-full px-4 py-3 text-right transition-all duration-150 active:bg-amber-50
@@ -156,8 +195,143 @@ function MobileSelect({
             ))
           )}
         </div>
-      </Drawer>
+      </BottomSheet>
     </>
+  );
+}
+
+// ---------------------------------------------------------------
+// Desktop Dropdown Component ()
+// ---------------------------------------------------------------
+function DesktopSelect({
+  value,
+  onChange,
+  options,
+  placeholder,
+  disabled,
+  renderOption,
+  renderSelected,
+}) {
+  const [open, setOpen] = useState(false);
+  const wrapperRef = useRef(null);
+
+  // Close on outside click / Escape
+  useEffect(() => {
+    if (!open) return;
+    const onMouseDown = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    const onKey = (e) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onMouseDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onMouseDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  // Close if it becomes disabled
+  useEffect(() => {
+    if (disabled) setOpen(false);
+  }, [disabled]);
+
+  const hasValue = value !== undefined && value !== null && value !== "";
+  const selectedOption = hasValue
+    ? options.find((opt) => opt.value === value)
+    : undefined;
+
+  return (
+    <div ref={wrapperRef} className="relative w-full">
+      <button
+        type="button"
+        onClick={() => !disabled && setOpen((o) => !o)}
+        disabled={disabled}
+        className={`
+          w-full h-10 px-3 bg-white border rounded-xl text-right
+          flex items-center justify-between gap-2 transition-all duration-200
+          ${
+            disabled
+              ? "bg-gray-50 border-gray-200 cursor-not-allowed"
+              : "hover:border-amber-300 cursor-pointer"
+          }
+          ${open ? "border-amber-400 ring-2 ring-amber-100" : selectedOption ? "border-amber-300" : "border-gray-200"}
+        `}
+      >
+        <ChevronDown
+          className={`w-4 h-4 text-gray-400 shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
+        />
+        <span
+          className={`flex-1 min-w-0 truncate text-sm ${selectedOption ? "text-gray-800" : "text-gray-400"}`}
+          style={{ fontFamily: "'Cairo', sans-serif" }}
+        >
+          {selectedOption
+            ? renderSelected
+              ? renderSelected(selectedOption)
+              : selectedOption.label
+            : placeholder}
+        </span>
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.15 }}
+            className="absolute z-50 mt-1 w-full bg-white border border-gray-100 rounded-xl shadow-xl max-h-64 overflow-y-auto py-1"
+          >
+            {options.length === 0 ? (
+              <div className="p-6 text-center text-gray-400">
+                <Package className="w-6 h-6 mx-auto mb-1 opacity-50" />
+                <p className="text-xs" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                  لا توجد خيارات
+                </p>
+              </div>
+            ) : (
+              options.map((option) => {
+                const isSelected = option.value === value;
+                return (
+                  <button
+                    type="button"
+                    key={option.value}
+                    onClick={() => {
+                      onChange(option.value);
+                      setOpen(false);
+                    }}
+                    className={`
+                      w-full px-3 py-2 text-right transition-colors duration-150
+                      flex items-center justify-between gap-2
+                      ${isSelected ? "bg-amber-50" : "hover:bg-gray-50"}
+                    `}
+                  >
+                    <div className="flex-1 min-w-0">
+                      {renderOption ? (
+                        renderOption(option)
+                      ) : (
+                        <span
+                          className="text-sm text-gray-800"
+                          style={{ fontFamily: "'Cairo', sans-serif" }}
+                        >
+                          {option.label}
+                        </span>
+                      )}
+                    </div>
+                    {isSelected && (
+                      <CheckCircle className="w-4 h-4 text-amber-500 shrink-0" />
+                    )}
+                  </button>
+                );
+              })
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
@@ -318,7 +492,6 @@ function ClothesOrderCollection({
   useEffect(() => {
     const completed = {};
     pieces.forEach((piece) => {
-      const product = getProductById(piece.productId);
       completed[piece.id] = !!(
         piece.productId &&
         piece.color &&
@@ -329,27 +502,25 @@ function ClothesOrderCollection({
   }, [pieces, selectedSizes]);
 
   const getProductById = (id) => Clothes.find((p) => p.id === id);
-  
-  // NEW: Get product colors with their sizes
+
+  // Get product colors with their sizes
   const getProductColorsWithSizes = (productId) => {
     const product = getProductById(productId);
     if (!product) return [];
     return product.productColors || [];
   };
 
-  // NEW: Get sizes for a specific color
+  // Get sizes for a specific color
   const getSizesForColor = (productId, colorName) => {
     const product = getProductById(productId);
     if (!product) return [];
-    
-    const colorData = product.productColors?.find(
-      (c) => c.color === colorName
-    );
-    
+
+    const colorData = product.productColors?.find((c) => c.color === colorName);
+
     if (colorData && colorData.sizes) {
       return colorData.sizes;
     }
-    
+
     // Fallback to product default sizes
     return product.sizes || [];
   };
@@ -708,36 +879,33 @@ function ClothesOrderCollection({
         {pieces.map((piece, idx) => {
           const product = getProductById(piece.productId);
           const availableColors = getAvailableColors(piece.productId);
-          const productColorsWithSizes = getProductColorsWithSizes(piece.productId);
-          
+          const productColorsWithSizes = getProductColorsWithSizes(
+            piece.productId,
+          );
+
           // Get sizes based on selected color
-          const sizes = piece.color 
+          const sizes = piece.color
             ? getSizesForColor(piece.productId, piece.color)
             : product?.sizes || [];
-          
+
           const isCompleted = completedCards[piece.id];
-          const isHovered = hoveredCard === piece.id;
 
           const productOptions = products.map((p) => ({
             value: p.id,
             label: p.name,
-            icon:
-              p.category === "shirts"
-                ? "Shirt"
-                : p.category === "legging"
-                  ? "Package"
-                  : "Layers",
+            category: p.category,
           }));
 
           const colorOptions = availableColors.map((c) => {
             const colorData = productColorsWithSizes.find(
-              (pc) => pc.color === c
+              (pc) => pc.color === c,
             );
             return {
               value: c,
               label: c,
               color: getColorCode(c),
               sizes: colorData?.sizes || product?.sizes || [],
+              hasColorSizes: !!colorData?.sizes,
             };
           });
 
@@ -758,14 +926,14 @@ function ClothesOrderCollection({
             >
               <div
                 className={`
-                  relative bg-white rounded-xl md:rounded-2xl transition-all duration-300 overflow-hidden
+                  relative bg-white rounded-xl md:rounded-2xl transition-all duration-300
                   ${isCompleted ? "ring-2 ring-amber-400 ring-offset-2" : "border border-gray-100"}
                   shadow-md
                 `}
               >
                 <div
                   className={`
-                    px-4 md:px-5 py-3 md:py-4 border-b transition-all duration-300
+                    px-4 md:px-5 py-3 md:py-4 border-b rounded-t-xl md:rounded-t-2xl transition-all duration-300
                     ${isCompleted ? "bg-gradient-to-r from-amber-50 to-white border-amber-100" : "bg-white border-gray-100"}
                   `}
                 >
@@ -868,40 +1036,32 @@ function ClothesOrderCollection({
                         <ShoppingBag className="w-4 h-4 text-amber-500" />
                         اختر المنتج
                       </label>
-                      <Select
+                      <DesktopSelect
                         value={piece.productId}
                         onChange={(val) => handleProductChange(piece.id, val)}
+                        options={productOptions}
                         placeholder="منتج"
-                        className="w-full"
-                        size="large"
                         disabled={disableProductSelection}
-                        style={{ borderRadius: 12 }}
-                        dropdownStyle={{ borderRadius: 12 }}
-                      >
-                        {products.map((p) => (
-                          <Select.Option key={p.id} value={p.id}>
-                            <div className="flex items-center gap-3 py-1">
-                              <div className="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center">
-                                {p.category === "shirts" ? (
-                                  <Shirt className="w-4 h-4 text-amber-500" />
-                                ) : p.category === "legging" ? (
-                                  <Package className="w-4 h-4 text-amber-500" />
-                                ) : (
-                                  <Layers className="w-4 h-4 text-amber-500" />
-                                )}
-                              </div>
-                              <div>
-                                <p
-                                  className="font-medium text-gray-800 text-sm"
-                                  style={{ fontFamily: "'Cairo', sans-serif" }}
-                                >
-                                  {p.name}
-                                </p>
-                              </div>
+                        renderOption={(option) => (
+                          <div className="flex items-center gap-3 py-0.5">
+                            <div className="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center shrink-0">
+                              {option.category === "shirts" ? (
+                                <Shirt className="w-4 h-4 text-amber-500" />
+                              ) : option.category === "legging" ? (
+                                <Package className="w-4 h-4 text-amber-500" />
+                              ) : (
+                                <Layers className="w-4 h-4 text-amber-500" />
+                              )}
                             </div>
-                          </Select.Option>
-                        ))}
-                      </Select>
+                            <p
+                              className="font-medium text-gray-800 text-sm"
+                              style={{ fontFamily: "'Cairo', sans-serif" }}
+                            >
+                              {option.label}
+                            </p>
+                          </div>
+                        )}
+                      />
                     </div>
                   )}
 
@@ -946,52 +1106,57 @@ function ClothesOrderCollection({
                           <Palette className="w-4 h-4 text-amber-500" />
                           اللون
                         </label>
-                        <Select
+                        <DesktopSelect
                           value={piece.color || undefined}
                           onChange={(val) => handleColorChange(piece.id, val)}
+                          options={colorOptions}
                           placeholder="لون"
-                          className="w-full"
-                          size="large"
                           disabled={!piece.productId}
-                          style={{ borderRadius: 12 }}
-                          dropdownStyle={{ borderRadius: 12 }}
-                        >
-                          {availableColors.map((c) => {
-                            const colorData = productColorsWithSizes.find(
-                              (pc) => pc.color === c
-                            );
-                            return (
-                              <Select.Option key={c} value={c}>
-                                <div className="flex items-center gap-2">
-                                  <div
-                                    className="w-5 h-5 rounded-full shadow-inner"
-                                    style={{
-                                      backgroundColor: getColorCode(c),
-                                      border:
-                                        c === "أبيض"
-                                          ? "1px solid #E5E7EB"
-                                          : "none",
-                                    }}
-                                  />
-                                  <span
-                                    style={{ fontFamily: "'Cairo', sans-serif" }}
-                                  >
-                                    {c}
-                                    {colorData?.sizes && (
-                                      <span className="text-xs text-gray-400 mr-2">
-                                        ({colorData.sizes.length} مقاسات)
-                                      </span>
-                                    )}
+                          renderSelected={(option) => (
+                            <span className="inline-flex items-center gap-2">
+                              <span
+                                className="inline-block w-4 h-4 rounded-full shadow-inner"
+                                style={{
+                                  backgroundColor: option.color,
+                                  border:
+                                    option.color === "#FFFFFF"
+                                      ? "1px solid #E5E7EB"
+                                      : "none",
+                                }}
+                              />
+                              {option.label}
+                            </span>
+                          )}
+                          renderOption={(option) => (
+                            <div className="flex items-center gap-2">
+                              <div
+                                className="w-5 h-5 rounded-full shadow-inner shrink-0"
+                                style={{
+                                  backgroundColor: option.color,
+                                  border:
+                                    option.value === "أبيض"
+                                      ? "1px solid #E5E7EB"
+                                      : "none",
+                                }}
+                              />
+                              <span
+                                className="text-sm text-gray-800"
+                                style={{ fontFamily: "'Cairo', sans-serif" }}
+                              >
+                                {option.label}
+                                {option.hasColorSizes && (
+                                  <span className="text-xs text-gray-400 mr-2">
+                                    ({option.sizes.length} مقاسات)
                                   </span>
-                                </div>
-                              </Select.Option>
-                            );
-                          })}
-                        </Select>
+                                )}
+                              </span>
+                            </div>
+                          )}
+                        />
                       </div>
                     )}
 
-                    {/* Size Selection - Now uses sizes from selected color */}
+                    {/* Size Selection - uses sizes from selected color */}
                     {isMobile ? (
                       <MobileSelect
                         value={selectedSizes[piece.id]}
@@ -1032,35 +1197,30 @@ function ClothesOrderCollection({
                             </span>
                           )}
                         </label>
-                        <Select
+                        <DesktopSelect
                           value={selectedSizes[piece.id]}
                           onChange={(val) => handleSizeChange(piece.id, val)}
+                          options={sizeOptions}
                           placeholder="مقاس"
-                          className="w-full"
-                          size="large"
                           disabled={!piece.productId || !piece.color}
-                          style={{ borderRadius: 12 }}
-                          dropdownStyle={{ borderRadius: 12 }}
-                        >
-                          {sizes.map((s) => (
-                            <Select.Option key={s.size} value={s.size}>
-                              <div className="flex items-center justify-between">
-                                <span
-                                  className="font-medium text-gray-800"
-                                  style={{ fontFamily: "'Cairo', sans-serif" }}
-                                >
-                                  {s.size}
-                                </span>
-                                <span
-                                  className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full"
-                                  style={{ fontFamily: "'Cairo', sans-serif" }}
-                                >
-                                  {s.age}
-                                </span>
-                              </div>
-                            </Select.Option>
-                          ))}
-                        </Select>
+                          renderSelected={(option) => option.size}
+                          renderOption={(option) => (
+                            <div className="flex items-center justify-between">
+                              <span
+                                className="font-medium text-gray-800 text-sm"
+                                style={{ fontFamily: "'Cairo', sans-serif" }}
+                              >
+                                {option.size}
+                              </span>
+                              <span
+                                className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full"
+                                style={{ fontFamily: "'Cairo', sans-serif" }}
+                              >
+                                {option.age}
+                              </span>
+                            </div>
+                          )}
+                        />
                       </div>
                     )}
                   </div>
@@ -1080,7 +1240,7 @@ function ClothesOrderCollection({
 
                 <div
                   className={`
-                    px-4 md:px-5 py-2 md:py-3 border-t transition-all duration-300
+                    px-4 md:px-5 py-2 md:py-3 border-t rounded-b-xl md:rounded-b-2xl transition-all duration-300
                     ${isCompleted ? "bg-gradient-to-r from-amber-50 to-white border-amber-100" : "bg-gray-50 border-gray-100"}
                   `}
                 >
@@ -1214,14 +1374,6 @@ function ClothesOrderCollection({
         onContinue={handleContinueShopping}
         onCheckout={handleCheckout}
       />
-
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .clothes-select-drawer .ant-drawer-content-wrapper {
-            max-height: 80vh !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }

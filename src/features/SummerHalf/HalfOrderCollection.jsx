@@ -18,7 +18,11 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Select, Drawer, Spin } from "antd";
+
+
+import Select from "../../ui/Select";
+import Drawer from "../../ui/Drawer";
+
 import { useCart } from "../cart/CartContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -73,11 +77,8 @@ function MobileSelect({
         height="auto"
         open={open}
         onClose={() => setOpen(false)}
-        className="mobile-select-drawer"
-        styles={{
-          body: { padding: 0, maxHeight: "70vh", overflow: "auto" },
-          header: { display: "none" },
-        }}
+        closable={false}
+        bodyStyle={{ padding: 0, maxHeight: "70vh", overflow: "auto" }}
       >
         <div className="sticky top-0 z-10 bg-white border-b border-gray-100 p-4">
           <div className="flex items-center justify-between mb-3">
@@ -277,10 +278,8 @@ function HalfOrderCollection({
       const isOneSizeProduct = product?.id === 6; // تربون أطفال
         
       if (isOneSizeProduct) {
-        // للمنتج One Size، نحتاج فقط المنتج واللون
         completed[piece.id] = !!(piece.productId && piece.color);
       } else {
-        // للمنتجات العادية، نحتاج المنتج واللون والمقاس
         completed[piece.id] = !!(piece.productId && piece.color && selectedSizes[piece.id]);
       }
     });
@@ -297,10 +296,9 @@ function HalfOrderCollection({
     return product?.sizes || [];
   };
 
-  // دالة للتحقق إذا كان المنتج من نوع One Size
   const isOneSizeProduct = (productId) => {
     const product = getProductById(productId);
-    return product?.id === 6; // تربون أطفال
+    return product?.id === 6;
   };
 
   const handleGoToOffers = () => {
@@ -336,7 +334,7 @@ function HalfOrderCollection({
       كافيه: "#8B5E3C",
       بني: "#8B4513",
       بندقي: "#D2B48C",
-        "بيبي بلو": "#87CEEB",
+      "بيبي بلو": "#87CEEB",
       "أوف وايت ورده": "#FDF5E6",
       "أصفر ورده": "#FFD700",
       "بيج ورده": "#F5F5DC",
@@ -357,7 +355,6 @@ function HalfOrderCollection({
     setPieces((prev) =>
       prev.map((p) => (p.id === id ? { ...p, productId, color: "" } : p))
     );
-    // مسح المقاس المخزن عند تغيير المنتج
     setSelectedSizes((prev) => {
       const newSizes = { ...prev };
       delete newSizes[id];
@@ -396,7 +393,6 @@ function HalfOrderCollection({
         productId: piece.productId,
         name: product?.name,
         color: piece.color,
-        // فقط أضف المقاس إذا لم يكن المنتج One Size
         ...(isOneSize ? {} : { size: selectedSizes[piece.id] }),
         image: getProductImage(product, piece.color),
       };
@@ -419,15 +415,12 @@ function HalfOrderCollection({
     };
   };
 
-  // التحقق من صحة النموذج
   const isFormValid = pieces.every((piece) => {
     const isOneSize = isOneSizeProduct(piece.productId);
     
     if (isOneSize) {
-      // للمنتج One Size: نحتاج منتج ولون فقط
       return !!(piece.productId && piece.color);
     } else {
-      // للمنتجات العادية: نحتاج منتج ولون ومقاس
       return !!(piece.productId && piece.color && selectedSizes[piece.id]);
     }
   });
@@ -487,10 +480,9 @@ function HalfOrderCollection({
   };
 
   const { handleAddOnly, handleBuyNow } = useCartActions({
-     
-      prepareCartItem,
-      isFormValid,
-    });
+    prepareCartItem,
+    isFormValid,
+  });
   
   const handleContinueShopping = () => {
     setShowSuccessModal(false);
@@ -630,7 +622,6 @@ function HalfOrderCollection({
           const isHovered = hoveredCard === piece.id;
           const isOneSize = isOneSizeProduct(piece.productId);
 
-          // Prepare options for mobile selects
           const productOptions = products.map((p) => ({
             value: p.id,
             label: p.name,
@@ -754,7 +745,6 @@ function HalfOrderCollection({
                         value={piece.productId}
                         onChange={(val) => handleProductChange(piece.id, val)}
                         placeholder="منتج"
-                        className="w-full"
                         size="large"
                         disabled={disableProductSelection}
                         style={{ borderRadius: 12 }}
@@ -818,7 +808,6 @@ function HalfOrderCollection({
                           value={piece.color || undefined}
                           onChange={(val) => handleColorChange(piece.id, val)}
                           placeholder="لون"
-                          className="w-full"
                           size="large"
                           disabled={!piece.productId}
                           style={{ borderRadius: 12 }}
@@ -875,7 +864,6 @@ function HalfOrderCollection({
                               value={selectedSizes[piece.id]}
                               onChange={(val) => handleSizeChange(piece.id, val)}
                               placeholder="مقاس"
-                              className="w-full"
                               size="large"
                               disabled={!piece.productId || !piece.color}
                               style={{ borderRadius: 12 }}
@@ -963,7 +951,6 @@ function HalfOrderCollection({
         transition={{ delay: 0.4 }}
         className="flex flex-col items-center gap-4 md:gap-6 mt-8 md:mt-12"
       >
-        {/* Simple explanation */}
         <div className="flex flex-wrap justify-center gap-3 md:gap-4 text-[10px] md:text-xs text-gray-400">
           <div className="flex items-center gap-1">
             <div className="w-1.5 h-1.5 bg-pink-500 rounded-full" />
@@ -976,7 +963,6 @@ function HalfOrderCollection({
         </div>
 
         <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 w-full max-w-2xl px-4">
-          {/* Add to Cart Button */}
           <motion.button
             onClick={handleAddOnly}
             disabled={isSubmitting || !isFormValid}
@@ -1004,7 +990,6 @@ function HalfOrderCollection({
             )}
           </motion.button>
 
-          {/* Buy Now Button */}
           <motion.button
             onClick={handleBuyNow}
             disabled={isSubmitting || !isFormValid}
@@ -1033,7 +1018,6 @@ function HalfOrderCollection({
           </motion.button>
         </div>
 
-        {/* Completion message */}
         {isFormValid && !isSubmitting && (
           <motion.p
             initial={{ opacity: 0 }}
@@ -1045,7 +1029,6 @@ function HalfOrderCollection({
         )}
       </motion.div>
 
-      {/* Success Modal */}
       <SuccessModal
         visible={showSuccessModal}
         onClose={closeModal}
@@ -1053,14 +1036,6 @@ function HalfOrderCollection({
         onContinue={handleContinueShopping}
         onCheckout={handleCheckout}
       />
-
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .mobile-select-drawer .ant-drawer-content-wrapper {
-            max-height: 80vh !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }

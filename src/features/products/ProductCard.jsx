@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Sparkles, ShoppingBag, Heart, Eye } from "lucide-react";
 import { useState } from "react";
 
-function ProductCard({ product, onPreview, onClick }) { 
+function ProductCard({ product, onPreview, onClick, priority = false }) { 
   const { t, i18n } = useTranslation();
   const [isLiked, setIsLiked] = useState(false);
   const lang = i18n.language;
@@ -34,7 +34,7 @@ function ProductCard({ product, onPreview, onClick }) {
       كافيه: "#8B5E3C",
       بني: "#8B4513",
       بندقي: "#D2B48C",
-        "بيبي بلو": "#87CEEB",
+      "بيبي بلو": "#87CEEB",
       default: "#E5E7EB",
     };
 
@@ -75,7 +75,7 @@ function ProductCard({ product, onPreview, onClick }) {
 
   const handleLikeClick = (e) => {
     e.stopPropagation();
-    setIsLiked(!isLiked);
+    setIsLiked((prev) => !prev);
   };
 
   // تحديد الألوان المراد عرضها
@@ -106,6 +106,9 @@ function ProductCard({ product, onPreview, onClick }) {
         <img
           src={product.image}
           alt={product.name}
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
+          decoding="async"
           className="w-full h-[200px] sm:h-[20rem] object-contain transition-transform duration-700 group-hover:scale-110"
         />
 
