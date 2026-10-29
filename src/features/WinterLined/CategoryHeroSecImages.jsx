@@ -13,6 +13,6 @@
     features: "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/bow%20hero.jpeg",
     material1: "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/WhatsApp%20Image%202026-10-21%20at%203.40.09%20PM.jpeg",
     material2: "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/WhatsApp%20Image%202026-10-21%20at%203.34.19%20PM%20(3).jpeg",
-    lifestyle: "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/furhero.png",
+    lifestyle: "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/WhatsApp%20Image%202026-10-21%20at%203.34.19%20PM.jpeg",
   },
 };
