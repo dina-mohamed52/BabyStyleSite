@@ -1,196 +1,201 @@
 // 📁 RealLife.jsx
 import { useRef, useState, useEffect } from "react";
 
-const IMAGES = [
+/* ─────────────────────────────────────────────
+   🖼️ صور "لحظات حقيقية" لكل كاتيجوري
+   ───────────────────────────────────────────── */
+const CATEGORY_IMAGES = {
+  lined: [
     "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/%D8%B7%D8%A8%D9%8A%D8%B9%D9%871.jpeg",
     "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/%D8%B7%D8%A8%D9%8A%D8%B9%D9%87%20%D9%85%D8%A8%D8%B7%D9%863.jpeg",
     "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/%D8%B7%D8%A8%D9%8A%D8%B9%D9%87%20%D9%85%D8%A8%D8%B7%D9%862.jpeg",
     "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/%D8%B7%D8%A8%D9%8A%D8%B9%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%205.jpeg",
     "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/%D8%B7%D8%A8%D9%8A%D8%B9%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%204.jpeg",
-];
+  ],
+  fur: [
+    "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/%D8%B71.jpeg",
+    "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/%D8%B72.jpeg",
+    "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/%D8%B73.jpeg",
+  ],
+};
 
-function RealLife() {
-    const [activeIdx, setActiveIdx] = useState(0);
-    const [isOpen, setIsOpen] = useState(false);
-    const [loaded, setLoaded] = useState(false);
+const DEFAULT_IMAGES = CATEGORY_IMAGES.lined;
 
-    // Swipe support for mobile
-    const touchStartX = useRef(0);
+function RealLife({ category = "lined" }) {
+  const IMAGES = CATEGORY_IMAGES[category] || DEFAULT_IMAGES;
 
-    const handleTouchStart = (e) => {
-        touchStartX.current = e.touches[0].clientX;
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  const touchStartX = useRef(0);
+
+  /* ✅ إعادة تعيين لما الكاتيجوري يتغير */
+  useEffect(() => {
+    setActiveIdx(0);
+    setIsOpen(false);
+    setLoaded(false);
+  }, [category]);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (diff > 50) next();
+    if (diff < -50) prev();
+  };
+
+  const next = () => setActiveIdx((i) => (i + 1) % IMAGES.length);
+  const prev = () =>
+    setActiveIdx((i) => (i - 1 + IMAGES.length) % IMAGES.length);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e) => {
+      if (e.key === "ArrowRight") prev();
+      if (e.key === "ArrowLeft") next();
+      if (e.key === "Escape") setIsOpen(false);
     };
-    const handleTouchEnd = (e) => {
-        const diff = touchStartX.current - e.changedTouches[0].clientX;
-        if (diff > 50) next();
-        if (diff < -50) prev();
-    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isOpen]);
 
-    const next = () =>
-        setActiveIdx((i) => (i + 1) % IMAGES.length);
-    const prev = () =>
-        setActiveIdx((i) => (i - 1 + IMAGES.length) % IMAGES.length);
+  return (
+    <section className="rl-section">
+      <style>{rlCss}</style>
 
-    // Keyboard nav inside lightbox
-    useEffect(() => {
-        if (!isOpen) return;
-        const onKey = (e) => {
-            if (e.key === "ArrowRight") prev();
-            if (e.key === "ArrowLeft") next();
-            if (e.key === "Escape") setIsOpen(false);
-        };
-        window.addEventListener("keydown", onKey);
-        return () => window.removeEventListener("keydown", onKey);
-    }, [isOpen]);
+      {/* Head */}
+      <div className="rl-head">
+        <span className="rl-pill">📸 لحظات حقيقية</span>
+        <h2>
+          بنوتاتنا <em>بتلبسها</em> في الواقع
+        </h2>
+        <p className="rl-sub">
+          صور من عملائنا — دفء ونعومة زي ما وعدنا 💗
+        </p>
+        <svg
+          className="rl-squiggle"
+          viewBox="0 0 200 20"
+          fill="none"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M2 12 Q20 2 40 12 T80 12 T120 12 T160 12 T198 12"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
+        </svg>
+      </div>
 
-    return (
-        <section className="rl-section">
-            <style>{rlCss}</style>
+      {/* Hero image + thumbnails */}
+      <div className="rl-grid">
+        <div className="rl-hero" onClick={() => setIsOpen(true)}>
+          <span className="rl-tape rl-tape-tl" />
+          <span className="rl-tape rl-tape-br" />
 
-            {/* Head */}
-            <div className="rl-head">
-                <span className="rl-pill">📸 لحظات حقيقية</span>
-                <h2>
-                    بنوتاتنا <em>بتلبسها</em> في الواقع
-                </h2>
-                <p className="rl-sub">
-                    صور من عملائنا — دفء ونعومة زي ما وعدنا 💗
-                </p>
-                <svg
-                    className="rl-squiggle"
-                    viewBox="0 0 200 20"
-                    fill="none"
-                    preserveAspectRatio="none"
-                >
-                    <path
-                        d="M2 12 Q20 2 40 12 T80 12 T120 12 T160 12 T198 12"
-                        stroke="currentColor"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                    />
-                </svg>
-            </div>
+          <img
+            key={IMAGES[activeIdx]}
+            src={IMAGES[activeIdx]}
+            alt={`صورة ${activeIdx + 1}`}
+            onLoad={() => setLoaded(true)}
+            className={loaded ? "loaded" : ""}
+          />
 
-            {/* Hero image + thumbnails */}
-            <div className="rl-grid">
-                <div
-                    className="rl-hero"
-                    onClick={() => setIsOpen(true)}
-                >
-                    <span className="rl-tape rl-tape-tl" />
-                    <span className="rl-tape rl-tape-br" />
+          <span className="rl-hero-caption">✨ لحظة #{activeIdx + 1}</span>
 
-                    <img
-                        key={activeIdx}
-                        src={IMAGES[activeIdx]}
-                        alt={`صورة ${activeIdx + 1}`}
-                        onLoad={() => setLoaded(true)}
-                        className={loaded ? "loaded" : ""}
-                    />
+          <span className="rl-zoom">🔍 اضغطي للتكبير</span>
 
-                    <span className="rl-hero-caption">
-                        ✨ لحظة #{activeIdx + 1}
-                    </span>
+          <button
+            className="rl-nav rl-nav-prev"
+            onClick={(e) => {
+              e.stopPropagation();
+              prev();
+            }}
+            aria-label="السابق"
+          >
+            ‹
+          </button>
+          <button
+            className="rl-nav rl-nav-next"
+            onClick={(e) => {
+              e.stopPropagation();
+              next();
+            }}
+            aria-label="التالي"
+          >
+            ›
+          </button>
+        </div>
 
-                    <span className="rl-zoom">🔍 اضغطي للتكبير</span>
+        <div className="rl-thumbs">
+          {IMAGES.map((img, i) => (
+            <button
+              key={img}
+              className={`rl-thumb ${i === activeIdx ? "active" : ""}`}
+              onClick={() => setActiveIdx(i)}
+              aria-label={`صورة ${i + 1}`}
+            >
+              <img src={img} alt={`مصغرة ${i + 1}`} loading="lazy" />
+              {i === activeIdx && <span className="rl-thumb-dot" />}
+            </button>
+          ))}
+        </div>
+      </div>
 
-                    <button
-                        className="rl-nav rl-nav-prev"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            prev();
-                        }}
-                        aria-label="السابق"
-                    >
-                        ‹
-                    </button>
-                    <button
-                        className="rl-nav rl-nav-next"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            next();
-                        }}
-                        aria-label="التالي"
-                    >
-                        ›
-                    </button>
-                </div>
+      {/* Lightbox */}
+      {isOpen && (
+        <div
+          className="rl-lightbox"
+          onClick={() => setIsOpen(false)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          <button
+            className="rl-lb-close"
+            onClick={() => setIsOpen(false)}
+            aria-label="إغلاق"
+          >
+            ✕
+          </button>
 
-                <div className="rl-thumbs">
-                    {IMAGES.map((img, i) => (
-                        <button
-                            key={img}
-                            className={`rl-thumb ${
-                                i === activeIdx ? "active" : ""
-                            }`}
-                            onClick={() => setActiveIdx(i)}
-                            aria-label={`صورة ${i + 1}`}
-                        >
-                            <img
-                                src={img}
-                                alt={`مصغرة ${i + 1}`}
-                                loading="lazy"
-                            />
-                            {i === activeIdx && (
-                                <span className="rl-thumb-dot" />
-                            )}
-                        </button>
-                    ))}
-                </div>
-            </div>
+          <button
+            className="rl-lb-nav rl-lb-prev"
+            onClick={(e) => {
+              e.stopPropagation();
+              prev();
+            }}
+            aria-label="السابق"
+          >
+            ‹
+          </button>
 
-            {/* Lightbox */}
-            {isOpen && (
-                <div
-                    className="rl-lightbox"
-                    onClick={() => setIsOpen(false)}
-                    onTouchStart={handleTouchStart}
-                    onTouchEnd={handleTouchEnd}
-                >
-                    <button
-                        className="rl-lb-close"
-                        onClick={() => setIsOpen(false)}
-                        aria-label="إغلاق"
-                    >
-                        ✕
-                    </button>
+          <img
+            className="rl-lb-img"
+            src={IMAGES[activeIdx]}
+            alt={`صورة ${activeIdx + 1}`}
+            onClick={(e) => e.stopPropagation()}
+          />
 
-                    <button
-                        className="rl-lb-nav rl-lb-prev"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            prev();
-                        }}
-                        aria-label="السابق"
-                    >
-                        ‹
-                    </button>
+          <button
+            className="rl-lb-nav rl-lb-next"
+            onClick={(e) => {
+              e.stopPropagation();
+              next();
+            }}
+            aria-label="التالي"
+          >
+            ›
+          </button>
 
-                    <img
-                        className="rl-lb-img"
-                        src={IMAGES[activeIdx]}
-                        alt={`صورة ${activeIdx + 1}`}
-                        onClick={(e) => e.stopPropagation()}
-                    />
-
-                    <button
-                        className="rl-lb-nav rl-lb-next"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            next();
-                        }}
-                        aria-label="التالي"
-                    >
-                        ›
-                    </button>
-
-                    <div className="rl-lb-counter">
-                        {activeIdx + 1} / {IMAGES.length}
-                    </div>
-                </div>
-            )}
-        </section>
-    );
+          <div className="rl-lb-counter">
+            {activeIdx + 1} / {IMAGES.length}
+          </div>
+        </div>
+      )}
+    </section>
+  );
 }
 
 const rlCss = `

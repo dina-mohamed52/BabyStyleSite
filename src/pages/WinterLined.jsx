@@ -1,45 +1,71 @@
 import { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
 import { winterLined } from "../data/WinterLined";
 import OfferesSec from "../features/WinterLined/OfferesSec";
 import SizesSec from "../features/WinterLined/SizesSec";
 import LinedOrderCollection from "../features/WinterLined/LinedOrderCollection";
 import RealLife from "../features/WinterLined/RealLife";
+import { CATEGORY_IMAGES } from "../features/WinterLined/CategoryHeroSecImages";
 
 const COLOR_HEX = {
-  "أبيض": "#ffffff",
-  "أسود": "#2b2b2b",
-  "بينك": "#ff9ec4",
-  "رصاصي": "#9aa0a6",
-  "كشمير": "#d4b291",
-  "بيج": "#eedcbf",
-  "سكري": "#f6d9c4",
+  أبيض: "#ffffff",
+  أسود: "#2b2b2b",
+  بينك: "#ff9ec4",
+  رصاصي: "#9aa0a6",
+  كشمير: "#d4b291",
+  بيج: "#eedcbf",
+  سكري: "#f6d9c4",
 };
 
-const CATEGORY_LABEL = { baby: "👶 بيبي", girl: "🎀 بنوتة" };
-
-/* صور جديدة */
-const IMAGES = {
-  hero: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%209.57.42%20AM.jpeg",
-  features: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%209.56.45%20AM.jpeg",
-  material1: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%2010.00.47%20AM.jpeg",
-  material2: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%209.59.21%20AM.jpeg",
-  lifestyle: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%2010.03.17%20AM.jpeg",
+const CATEGORY_LABEL = {
+  lined: "🧸 مبطن",
+  fur: "❄️ فرو",
 };
 
-const FEATURES = [
-  { icon: "🧸", title: "دفء ونعومة", text: "بطانة دافية تخلي بنوتك دافية طول اليوم", rotate: "-3deg", color: "#FFE7F1" },
-  { icon: "🎀", title: "خامة ناعمة", text: "قطن مرن مريح على بشرتها الحساسة", rotate: "2deg", color: "#E5F1FF" },
-  { icon: "🌈", title: "ألوان كيوت", text: "ألوان حلوة تختاري اللي يحبها قلبها", rotate: "-2deg", color: "#F0E7FF" },
-  { icon: "🦋", title: "حرية الحركة", text: "مرن يسمح لها تلعب وتتحرك براحتها", rotate: "3deg", color: "#DFF7EA" },
-];
+const DEFAULT_IMAGES = CATEGORY_IMAGES.lined;
+
+/* ✅ تحسين رابط الصورة حسب حجم العرض */
+const optimizeImage = (url, width = 600) => {
+  if (!url) return "";
+  if (url.includes("cloudinary.com")) {
+    return url.replace("/upload/", `/upload/w_${width},q_auto,f_auto/`);
+  }
+  if (url.includes("images.baby-style-store.com")) {
+    return `${url}${url.includes("?") ? "&" : "?"}w=${width}&q=80&auto=format`;
+  }
+  return url;
+};
+
+const CATEGORY_CONTENT = {
+  lined: {
+    heroTitle: "كولون مبطن",
+    heroSubtitle: "بطانة فوطه ناعمة ودافئة — مثالي للشتا",
+    features: [
+      { icon: "🧸", title: "بطانة فوطه", text: "دافية من الداخل ومريحة طول اليوم", rotate: "-3deg", color: "#FFE7F1" },
+      { icon: "🎀", title: "قطن ناعم", text: "مرن على بشرتها الحساسة", rotate: "2deg", color: "#E5F1FF" },
+      { icon: "🌈", title: "ألوان كيوت", text: "درجات حلوة تختاري اللي يعجبك", rotate: "-2deg", color: "#F0E7FF" },
+      { icon: "🦋", title: "حرية الحركة", text: "مرن يسمح لها تلعب براحتها", rotate: "3deg", color: "#DFF7EA" },
+    ],
+  },
+  fur: {
+    heroTitle: "كولون مبطن فرو",
+    heroSubtitle: "فرو ناعم من الداخل — دفء مضاعف للشتا القارس",
+    features: [
+      { icon: "❄️", title: "دفء مضاعف", text: "فرو كامل يديها دفء استثنائي", rotate: "-3deg", color: "#E5F1FF" },
+      { icon: "☁️", title: "نعومة فائقة", text: "فرو ناعم جدًا على البشرة", rotate: "2deg", color: "#FFE7F1" },
+      { icon: "💫", title: "شيك وأنيق", text: "شكل فخم يليق ببنوتك", rotate: "-2deg", color: "#F0E7FF" },
+      { icon: "🔥", title: "أدفأ اختيار", text: "مثالي لأبرد أيام الشتا", rotate: "3deg", color: "#DFF7EA" },
+    ],
+  },
+};
 
 const FAQS = [
-  { q: "الكولون مبطن من الداخل؟", a: "أيوه، مبطن فوطه من الداخل بخامة ناعمة ودافئة، مثالي للشتا ❄️" },
-  { q: "هل يوجد ضمان على المنتج؟", a: "طبعًا! كل منتجاتنا عليها ضمان ضد عيوب الصناعة لمدة 30 يوم ✅" },
+  { q: "الكولون مبطن من الداخل؟", a: "أيوه، مبطن من الداخل بخامة ناعمة ودافئة ❄️" },
+  { q: "هل يوجد ضمان على المنتج؟", a: "طبعًا! ضمان ضد عيوب الصناعة لمدة 30 يوم ✅" },
   { q: "المقاسات المتاحة إيه؟", a: "من حديثي الولادة لحد 12 سنة 👶👧" },
-  { q: "أختار المقاس إزاي؟", a: "شوفي جدول المقاسات، ولو محتارة اكتبي طول بنتك من الوسط للقدم في الملاحظات 💌" },
+  { q: "أختار المقاس إزاي؟", a: "شوفي جدول المقاسات، ولو محتارة اكتبي طول بنتك من الوسط للقدم 💌" },
   { q: "هل يوجد معاينة عند الاستلام؟", a: "نعم، تعايني المنتج كامل قبل ما تدفعي 👀" },
-  { q: "هل يوجد استرجاع أو استبدال؟", a: "خلال 14 يوم من الاستلام، بشرط المنتج ما اتلبسش ولا اتغسل 🔄" },
+  { q: "هل يوجد استرجاع أو استبدال؟", a: "خلال 14 يوم من الاستلام، بشرط المنتج ما اتلبسش 🔄" },
   { q: "متى يوصل وهل الشحن لكل المحافظات؟", a: "لكل المحافظات 🚚 والتوصيل من 3 لـ 5 أيام عمل" },
 ];
 
@@ -73,28 +99,24 @@ function Reveal({ children, delay = 0, className = "", as: Tag = "div", ...rest 
   );
 }
 
-/* ───── SVG Doodles ───── */
 const Cloud = ({ className = "", style }) => (
   <svg className={className} style={style} viewBox="0 0 120 60" fill="none">
     <path d="M15 45 Q5 45 5 33 Q5 22 18 22 Q20 8 35 8 Q50 8 55 20 Q60 12 72 12 Q88 12 90 26 Q102 26 105 38 Q107 45 100 45 Z"
       stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
   </svg>
 );
-
 const Star = ({ className = "", style }) => (
   <svg className={className} style={style} viewBox="0 0 40 40" fill="none">
     <path d="M20 4 L24 16 L36 20 L24 24 L20 36 L16 24 L4 20 L16 16 Z"
       stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
   </svg>
 );
-
 const Heart = ({ className = "", style }) => (
   <svg className={className} style={style} viewBox="0 0 40 40" fill="none">
     <path d="M20 34 C20 34 6 25 6 15 C6 9 11 5 16 5 C19 5 20 7 20 9 C20 7 21 5 24 5 C29 5 34 9 34 15 C34 25 20 34 20 34 Z"
       stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
   </svg>
 );
-
 const Squiggle = ({ className = "", style }) => (
   <svg className={className} style={style} viewBox="0 0 200 20" fill="none" preserveAspectRatio="none">
     <path d="M2 12 Q20 2 40 12 T80 12 T120 12 T160 12 T198 12"
@@ -102,11 +124,6 @@ const Squiggle = ({ className = "", style }) => (
   </svg>
 );
 
-/* ─────────────────────────────────────────────
-   🖼️ كلاسات الصور الموحدة — الحل الأساسي للمشكلة
-   ───────────────────────────────────────────── */
-
-// للـ Polaroid العادي (هيرو / فيتشرز / كولور ستيدج)
 const IMG_POLAROID = [
   "w-full h-auto",
   "max-h-[60vh] object-contain object-center",
@@ -114,7 +131,6 @@ const IMG_POLAROID = [
   "rounded-sm block",
 ].join(" ");
 
-// للصور المزدوجة (material) — أطول شوية
 const IMG_DUO = [
   "w-full h-auto",
   "max-h-[45vh] object-contain object-center",
@@ -122,20 +138,129 @@ const IMG_DUO = [
   "rounded-sm block",
 ].join(" ");
 
-// للـ Lifestyle (خلفية كاملة)
 const IMG_LIFESTYLE = [
   "absolute inset-0 w-full h-full",
   "object-cover object-[center_30%]",
   "sm:object-[center_25%]",
 ].join(" ");
 
-function WinterLined() {
-  const product = winterLined[0];
+/* ─────────────────────────────────────────────
+   🎨 بلوك ألوان مستقل لكل منتج (محسّن)
+   ───────────────────────────────────────────── */
+function ProductColorsBlock({ product }) {
   const [colorIdx, setColorIdx] = useState(0);
-  const [openFaq, setOpenFaq] = useState(0);
+  const [loadedImages, setLoadedImages] = useState({});
+  const current = product.productColors[colorIdx];
 
+  return (
+    <div className="wl-product-block">
+      <h3
+        className="wl-panel-title"
+        style={{ textAlign: "center", marginTop: 40, marginBottom: 24, fontSize: 26 }}
+      >
+        {product.name}
+      </h3>
+
+      <div className="wl-colors-grid">
+        <Reveal className="wl-color-stage" delay={100}>
+          <div className="wl-polaroid">
+            <span className="wl-tape wl-tape-tl" />
+            <span className="wl-tape wl-tape-tr" />
+
+            <div className="wl-img-wrapper" style={{ position: "relative", width: "100%", aspectRatio: "4/5" }}>
+              {!loadedImages[current.img] && (
+                <div className="wl-shimmer" />
+              )}
+              <img
+                key={current.color}
+                src={optimizeImage(current.img, 700)}
+                alt={current.color}
+                loading="eager"
+                decoding="async"
+                onLoad={() =>
+                  setLoadedImages((prev) => ({ ...prev, [current.img]: true }))
+                }
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  opacity: loadedImages[current.img] ? 1 : 0,
+                  transition: "opacity 0.4s ease",
+                  display: "block",
+                }}
+              />
+            </div>
+
+            <span className="wl-polaroid-caption">{current.color}</span>
+          </div>
+        </Reveal>
+
+        <Reveal className="wl-colors-panel" delay={150}>
+          <h3 className="wl-panel-title">الدرجات المتوفرة</h3>
+          <div className="wl-swatches">
+            {product.productColors.map((c, i) => (
+              <button
+                key={c.color}
+                className={`wl-swatch ${i === colorIdx ? "active" : ""}`}
+                onClick={() => setColorIdx(i)}
+              >
+                <span
+                  className="wl-dot"
+                  style={{ background: COLOR_HEX[c.color] || "#ddd" }}
+                />
+                <span className="wl-swatch-name">{c.color}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="wl-thumbs">
+            {product.productColors.map((c, i) => (
+              <button
+                key={c.color}
+                className={`wl-thumb ${i === colorIdx ? "active" : ""}`}
+                onClick={() => setColorIdx(i)}
+              >
+                <img
+                  src={optimizeImage(c.img, 150)}
+                  alt={c.color}
+                  loading="lazy"
+                  decoding="async"
+                  width={88}
+                  height={88}
+                />
+                <span>{c.color}</span>
+              </button>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   الكومبوننت الرئيسي
+   ───────────────────────────────────────────── */
+function WinterLined() {
+  const { category = "lined" } = useParams();
+
+  const products = winterLined.filter((p) => p.category === category);
+  const safeProducts = products.length ? products : [winterLined[0]];
+  const heroProduct = safeProducts[0];
+
+  const IMAGES = CATEGORY_IMAGES[category] || DEFAULT_IMAGES;
+  const content = CATEGORY_CONTENT[category] || CATEGORY_CONTENT.lined;
+  const categoryLabel = CATEGORY_LABEL[category] || "🧸";
+
+  const [openFaq, setOpenFaq] = useState(0);
   const [selectedOffer, setSelectedOffer] = useState(null);
+  const [heroLoaded, setHeroLoaded] = useState(false);
   const orderCollectionRef = useRef(null);
+
+  useEffect(() => {
+    setSelectedOffer(null);
+    setOpenFaq(0);
+  }, [category]);
 
   const scrollToOrderCollection = () =>
     orderCollectionRef.current?.scrollIntoView({
@@ -149,8 +274,6 @@ function WinterLined() {
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const current = product.productColors[colorIdx];
-
   const goToColors = () =>
     document.getElementById("wl-colors")?.scrollIntoView({ behavior: "smooth" });
 
@@ -158,10 +281,9 @@ function WinterLined() {
     <div className="wl" dir="rtl">
       <style>{css}</style>
 
-      {/* HERO — Storybook cover */}
+      {/* HERO */}
       <section className="wl-hero">
         <div className="wl-paper-bg" />
-
         <Cloud className="wl-doodle wl-doodle-c1" />
         <Cloud className="wl-doodle wl-doodle-c2" />
         <Star className="wl-doodle wl-doodle-s1" />
@@ -175,11 +297,28 @@ function WinterLined() {
             <div className="wl-polaroid wl-polaroid-hero">
               <span className="wl-tape wl-tape-tl" />
               <span className="wl-tape wl-tape-br" />
-              <img
-                src={IMAGES.hero}
-                alt={product.name}
-                className={IMG_POLAROID}
-              />
+
+              <div style={{ position: "relative", width: "100%", aspectRatio: "4/5" }}>
+                {!heroLoaded && <div className="wl-shimmer" />}
+                <img
+                  src={optimizeImage(IMAGES.hero, 800)}
+                  alt={heroProduct.name}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  onLoad={() => setHeroLoaded(true)}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "top",
+                    opacity: heroLoaded ? 1 : 0,
+                    transition: "opacity 0.4s ease",
+                    display: "block",
+                  }}
+                />
+              </div>
+
               <span className="wl-polaroid-caption">— دفء الشتا ❄️ —</span>
             </div>
             <svg className="wl-arrow" viewBox="0 0 120 100" fill="none">
@@ -192,15 +331,17 @@ function WinterLined() {
           <Reveal className="wl-hero-text">
             <div className="wl-tape-label">
               <span className="wl-tape" />
-              <span className="wl-label">✨ Winter Collection 2026 ✨</span>
+              <span className="wl-label">
+                {categoryLabel} Winter Collection 2026 ✨
+              </span>
             </div>
             <h1>
               حكاية <span className="wl-hl">دفء</span>
               <br />
-              بنوتة في الشتا
+              {content.heroTitle}
             </h1>
             <p className="wl-lead">
-              كولون مبطن بخامة ناعمة ودافئة
+              {content.heroSubtitle}
               <br />
               مريح، كيوت، ومناسب للبيت والخروج 🎀
             </p>
@@ -223,7 +364,7 @@ function WinterLined() {
         </div>
       </section>
 
-      {/* Marquee strip */}
+      {/* Marquee */}
       <div className="wl-strip">
         <div className="wl-strip-track">
           {Array.from({ length: 2 }).map((_, k) => (
@@ -239,7 +380,7 @@ function WinterLined() {
         </div>
       </div>
 
-      {/* FEATURES — صورة جانبية + كروت */}
+      {/* FEATURES */}
       <section className="wl-section wl-section-features">
         <Reveal className="wl-head">
           <span className="wl-pill">💭 ليه هي مميزة؟</span>
@@ -252,9 +393,10 @@ function WinterLined() {
             <div className="wl-polaroid wl-polaroid-tilt-left">
               <span className="wl-tape wl-tape-tl" />
               <img
-                src={IMAGES.features}
+                src={optimizeImage(IMAGES.features, 600)}
                 alt="تفاصيل المنتج"
                 loading="lazy"
+                decoding="async"
                 className={IMG_POLAROID}
               />
               <span className="wl-polaroid-caption">تفاصيل كيوت 🎀</span>
@@ -262,7 +404,7 @@ function WinterLined() {
           </Reveal>
 
           <div className="wl-features">
-            {FEATURES.map((f, i) => (
+            {content.features.map((f, i) => (
               <Reveal
                 key={f.title}
                 className="wl-feature"
@@ -279,20 +421,22 @@ function WinterLined() {
         </div>
       </section>
 
-      {/* عرووووووووووووووووض */}
+      {/* OFFERS */}
       <OfferesSec
         setSelectedOffer={setSelectedOffer}
         scrollToOrderCollection={scrollToOrderCollection}
+        category={category}
       />
 
       <div ref={orderCollectionRef}>
         <LinedOrderCollection
           selectedOffer={selectedOffer}
           scrollToOffers={scrollToOffers}
+          category={category}
         />
       </div>
 
-      {/* MATERIAL — صورتين جانب بعض */}
+      {/* MATERIAL */}
       <section className="wl-section wl-section-material">
         <div className="wl-split">
           <Reveal className="wl-split-imgs">
@@ -300,18 +444,20 @@ function WinterLined() {
               <div className="wl-polaroid wl-polaroid-tilt">
                 <span className="wl-tape wl-tape-tl" />
                 <img
-                  src={IMAGES.material1}
+                  src={optimizeImage(IMAGES.material1, 500)}
                   alt="خامة الكولون 1"
                   loading="lazy"
+                  decoding="async"
                   className={IMG_DUO}
                 />
               </div>
               <div className="wl-polaroid wl-polaroid-tilt-r">
                 <span className="wl-tape wl-tape-tr" />
                 <img
-                  src={IMAGES.material2}
+                  src={optimizeImage(IMAGES.material2, 500)}
                   alt="خامة الكولون 2"
                   loading="lazy"
+                  decoding="async"
                   className={IMG_DUO}
                 />
               </div>
@@ -321,11 +467,15 @@ function WinterLined() {
             <span className="wl-pill">🧵 الخامة</span>
             <h2>نعومة <span className="wl-underline">تحسّيها</span> من أول لمسة</h2>
             <p>
-              تصميم خطوط أنيقة + بطانة دافئة ناعمة من الداخل.
-              توازن مثالي بين الدفء والشكل الحلو.
+              {category === "fur"
+                ? "فرو ناعم من الداخل + خامة خارجية أنيقة. دفء مضاعف للشتا القارس."
+                : "بطانة فوطه دافئة من الداخل + تصميم خطوط أنيقة. توازن مثالي بين الدفء والشكل."}
             </p>
             <ul className="wl-list">
-              <li><span className="wl-bullet">1</span> بطانة فوطه ناعمة 🧸</li>
+              <li>
+                <span className="wl-bullet">1</span>
+                {category === "fur" ? "فرو ناعم من الداخل ☁️" : "بطانة فوطه ناعمة 🧸"}
+              </li>
               <li><span className="wl-bullet">2</span> قطن مرن يسمح بالحركة 🌈</li>
               <li><span className="wl-bullet">3</span> خياطة دقيقة وتشطيب نظيف ✨</li>
             </ul>
@@ -341,55 +491,20 @@ function WinterLined() {
           <Squiggle className="wl-squiggle" />
         </Reveal>
 
-        <div className="wl-colors-grid">
-          <Reveal className="wl-color-stage" delay={100}>
-            <div className="wl-polaroid">
-              <span className="wl-tape wl-tape-tl" />
-              <span className="wl-tape wl-tape-tr" />
-              <img
-                key={current.color}
-                src={current.img}
-                alt={current.color}
-                className={IMG_POLAROID}
-              />
-              <span className="wl-polaroid-caption">{current.color}</span>
-            </div>
-          </Reveal>
-
-          <Reveal className="wl-colors-panel" delay={150}>
-            <h3 className="wl-panel-title">الدرجات المتوفرة</h3>
-            <div className="wl-swatches">
-              {product.productColors.map((c, i) => (
-                <button
-                  key={c.color}
-                  className={`wl-swatch ${i === colorIdx ? "active" : ""}`}
-                  onClick={() => setColorIdx(i)}
-                >
-                  <span className="wl-dot" style={{ background: COLOR_HEX[c.color] || "#ddd" }} />
-                  <span className="wl-swatch-name">{c.color}</span>
-                </button>
-              ))}
-            </div>
-
-            <div className="wl-thumbs">
-              {product.productColors.map((c, i) => (
-                <button
-                  key={c.color}
-                  className={`wl-thumb ${i === colorIdx ? "active" : ""}`}
-                  onClick={() => setColorIdx(i)}
-                >
-                  <img src={c.img} alt={c.color} loading="lazy" />
-                  <span>{c.color}</span>
-                </button>
-              ))}
-            </div>
-          </Reveal>
-        </div>
+        {safeProducts.map((product) => (
+          <ProductColorsBlock key={product.id} product={product} />
+        ))}
       </section>
 
       {/* LIFESTYLE */}
       <section className="wl-lifestyle">
-        <img src={IMAGES.lifestyle} alt="" loading="lazy" className={IMG_LIFESTYLE} />
+        <img
+          src={optimizeImage(IMAGES.lifestyle, 1200)}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className={IMG_LIFESTYLE}
+        />
         <div className="wl-lifestyle-overlay">
           <span className="wl-pill wl-pill-light">✨ لحظاتها اليومية</span>
           <h2>تتحرك براحتها... وإنتِ مطمنة 🤍</h2>
@@ -398,8 +513,8 @@ function WinterLined() {
       </section>
 
       {/* SIZES */}
-      <SizesSec product={product} />
-      <RealLife />
+      <SizesSec product={heroProduct} category={category} />
+      <RealLife category={category} />
 
       {/* FAQ */}
       <section className="wl-section wl-section-faq">
@@ -410,10 +525,16 @@ function WinterLined() {
         </Reveal>
         <div className="wl-faqs">
           {FAQS.map((f, i) => (
-            <Reveal className={`wl-faq ${openFaq === i ? "open" : ""}`} key={f.q} delay={i * 50}>
+            <Reveal
+              className={`wl-faq ${openFaq === i ? "open" : ""}`}
+              key={f.q}
+              delay={i * 50}
+            >
               <button onClick={() => setOpenFaq(openFaq === i ? -1 : i)}>
                 <span className="wl-faq-q">
-                  <span className="wl-faq-num">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="wl-faq-num">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   {f.q}
                 </span>
                 <span className="wl-faq-icon">{openFaq === i ? "−" : "+"}</span>
@@ -444,8 +565,7 @@ function WinterLined() {
 }
 
 /* ─────────────────────────────────────────────
-   CSS مخصص — بس للتفاصيل الجمالية
-   (الصور بقت بالـ Tailwind)
+   CSS
    ───────────────────────────────────────────── */
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@400;600;700;900&family=Caveat:wght@500;700&display=swap');
@@ -477,7 +597,6 @@ const css = `
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:translateY(0)}
 
-/* ── Paper background ── */
 .wl-paper-bg{
   position:absolute;inset:0;pointer-events:none;
   background-image:
@@ -486,7 +605,6 @@ const css = `
     radial-gradient(circle at 85% 75%, rgba(182,156,255,.15), transparent 40%);
 }
 
-/* ── Doodles ── */
 .wl-doodle{position:absolute;color:var(--ink-soft);opacity:.45;pointer-events:none}
 .wl-doodle-c1{width:110px;top:8%;right:6%;color:var(--sky);animation:wlFloat 6s ease-in-out infinite}
 .wl-doodle-c2{width:80px;top:22%;left:8%;color:var(--sky);animation:wlFloat 5s ease-in-out infinite .5s}
@@ -501,7 +619,20 @@ const css = `
 @keyframes wlFloat{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-16px) rotate(4deg)}}
 @keyframes wlSpin{to{transform:rotate(360deg)}}
 
-/* ── Pills / Tapes ── */
+/* ✅ Shimmer placeholder */
+@keyframes wlShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.wl-shimmer{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,#f0e6e0 0%,#e8d8d0 50%,#f0e6e0 100%);
+  background-size:200% 200%;
+  animation:wlShimmer 1.5s ease-in-out infinite;
+  border-radius:4px;
+}
+
 .wl-pill,.wl-pill-light{
   display:inline-flex;align-items:center;gap:6px;
   font-weight:700;font-size:13px;padding:8px 20px;border-radius:999px;margin-bottom:18px;
@@ -537,13 +668,10 @@ const css = `
   transform:rotate(-2deg);
 }
 
-/* ── Sections ── */
 .wl-section{padding:90px 22px;max-width:1140px;margin:0 auto;position:relative}
 .wl-section-features{background:var(--paper-2);max-width:none;border-radius:60px;margin:0 12px}
 .wl-section-features>*{max-width:1140px;margin-inline:auto}
 .wl-section-colors{background:linear-gradient(180deg,transparent,#FFF0F7 40%,#FFF0F7 60%,transparent)}
-.wl-section-sizes{background:var(--paper-2);max-width:none;border-radius:60px;margin:0 12px}
-.wl-section-sizes>*{max-width:1140px;margin-inline:auto}
 .wl-section-faq{max-width:900px}
 
 .wl-head{text-align:center;max-width:660px;margin:0 auto 46px;position:relative}
@@ -567,7 +695,6 @@ const css = `
   padding:0 4px;
 }
 
-/* ── Buttons ── */
 .wl-btn{
   display:inline-flex;align-items:center;gap:10px;
   padding:16px 34px;border-radius:999px;
@@ -594,7 +721,6 @@ const css = `
   box-shadow:6px 6px 0 rgba(0,0,0,.25);
 }
 
-/* ── HERO ── */
 .wl-hero{
   position:relative;
   padding:90px 22px 110px;
@@ -629,7 +755,6 @@ const css = `
 }
 .wl-trust span:nth-child(even){color:var(--pink)}
 
-/* Polaroid */
 .wl-polaroid{
   position:relative;
   background:#fff;
@@ -663,7 +788,6 @@ const css = `
   text-shadow:1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
 }
 
-/* Marquee */
 .wl-strip{background:var(--ink);color:var(--paper);padding:18px 0;overflow:hidden;position:relative;z-index:2}
 .wl-strip-track{display:flex;gap:56px;white-space:nowrap;animation:wlSlide 16s linear infinite}
 .wl-strip-group{display:flex;gap:56px;align-items:center}
@@ -671,7 +795,6 @@ const css = `
 .wl-strip-group i{color:var(--pink);font-style:normal;font-size:14px}
 @keyframes wlSlide{to{transform:translateX(50%)}}
 
-/* Features */
 .wl-features-layout{
   display:grid;
   grid-template-columns:0.9fr 1.3fr;
@@ -709,7 +832,6 @@ const css = `
 }
 .wl-feature p{margin:0;color:var(--ink-soft);font-size:13.5px;line-height:1.75}
 
-/* Split (material) */
 .wl-split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
 .wl-split-imgs{position:relative}
 .wl-imgs-duo{
@@ -744,7 +866,6 @@ const css = `
   font-weight:800;font-size:14px;
 }
 
-/* Colors */
 .wl-colors-grid{
   display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;
 }
@@ -783,7 +904,6 @@ const css = `
 .wl-thumb:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 rgba(58,46,69,.25)}
 .wl-thumb.active{background:var(--sun)}
 
-/* Lifestyle */
 .wl-lifestyle{position:relative;min-height:520px;display:grid;place-items:center;overflow:hidden}
 .wl-lifestyle::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(58,46,69,.35),rgba(240,98,146,.45))}
 .wl-lifestyle-overlay{
@@ -801,49 +921,6 @@ const css = `
 }
 .wl-lifestyle-overlay p{margin:0;font-size:16px;color:rgba(255,255,255,.95);max-width:460px;margin-inline:auto}
 
-/* Table */
-.wl-table-wrap{
-  overflow-x:auto;
-  border:3px solid var(--ink);
-  background:#fff;
-  box-shadow:10px 10px 0 rgba(58,46,69,.2);
-}
-.wl-table{width:100%;border-collapse:collapse;text-align:center}
-.wl-table th{
-  background:var(--ink);color:var(--paper);
-  padding:20px 14px;
-  font-family:'Lalezar',sans-serif;
-  font-weight:400;font-size:16px;
-}
-.wl-table td{padding:16px 14px;border-top:2px dashed var(--line);font-size:15px}
-.wl-table tbody tr{transition:background .2s}
-.wl-table tbody tr:hover{background:var(--paper-2)}
-.wl-size-pill{
-  display:inline-block;font-weight:800;
-  padding:6px 18px;
-  background:var(--sun);color:var(--ink);
-  border:2.5px solid var(--ink);
-  font-size:13.5px;
-}
-.wl-cat{display:inline-block;padding:5px 14px;font-size:12.5px;font-weight:800;border:2.5px solid var(--ink)}
-.wl-cat.baby{background:#CFE5FF;color:var(--ink)}
-.wl-cat.girl{background:#FFD1E3;color:var(--ink)}
-
-.wl-note{
-  margin-top:30px;padding:26px 30px;
-  background:#fff;
-  border:3px dashed var(--pink);
-  box-shadow:8px 8px 0 rgba(240,98,146,.2);
-  position:relative;
-}
-.wl-note-title{
-  font-family:'Lalezar',sans-serif;
-  font-size:22px;color:var(--pink-d);margin-bottom:10px;
-}
-.wl-note p{margin:6px 0;color:var(--ink-soft);font-size:14.5px}
-.wl-note-strong{color:var(--pink-d)!important;font-weight:800}
-
-/* FAQ */
 .wl-faqs{display:flex;flex-direction:column;gap:16px}
 .wl-faq{
   background:#fff;
@@ -876,7 +953,6 @@ const css = `
 .wl-faq.open .wl-faq-body{max-height:280px}
 .wl-faq-body p{margin:0;padding:0 24px 22px 70px;color:var(--ink-soft);font-size:15px;line-height:1.85}
 
-/* Final */
 .wl-final{
   position:relative;
   background:var(--ink);color:#fff;
@@ -892,17 +968,29 @@ const css = `
   margin:0 0 30px;line-height:1.25;color:#fff;
 }
 
-/* ── Responsive ── */
+/* ✅ فاصل بين بلوكات المنتجات */
+.wl-product-block + .wl-product-block {
+  margin-top: 70px;
+  padding-top: 50px;
+  border-top: 3px dashed var(--line);
+}
+
+/* ✅ تحسين أداء الصور */
+.wl img {
+  content-visibility: auto;
+}
+
+.wl-thumb img {
+  background: #f7f2ee;
+}
+
+.wl-polaroid img {
+  background: #f7f2ee;
+}
+
 @media(max-width:900px){
-  .wl-features-layout{
-    grid-template-columns:1fr;
-    gap:36px;
-  }
-  .wl-hero-inner{
-    grid-template-columns:1fr;
-    gap:44px;
-    text-align:center;
-  }
+  .wl-features-layout{grid-template-columns:1fr;gap:36px}
+  .wl-hero-inner{grid-template-columns:1fr;gap:44px;text-align:center}
   .wl-hero-img{order:-1}
   .wl-hero-text{order:1}
   .wl-lead{margin-inline:auto}
@@ -917,22 +1005,9 @@ const css = `
 }
 
 @media(max-width:700px){
-  .wl-features{
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
-    padding-top:10px;
-  }
-  .wl-feature{
-    padding:28px 12px 20px;
-    box-shadow:5px 5px 0 rgba(58,46,69,.15);
-  }
-  .wl-feature-icon{
-    font-size:32px;
-    width:60px;
-    height:60px;
-    margin-bottom:12px;
-    border-width:2px;
-  }
+  .wl-features{grid-template-columns:repeat(2,1fr);gap:14px;padding-top:10px}
+  .wl-feature{padding:28px 12px 20px;box-shadow:5px 5px 0 rgba(58,46,69,.15)}
+  .wl-feature-icon{font-size:32px;width:60px;height:60px;margin-bottom:12px;border-width:2px}
   .wl-feature h3{font-size:15px;margin-bottom:6px}
   .wl-feature p{font-size:12px;line-height:1.65}
   .wl-tape-sm{width:50px;height:16px}
@@ -941,8 +1016,7 @@ const css = `
 @media(max-width:520px){
   .wl-hero-text h1{font-size:38px}
   .wl-section{padding:56px 16px}
-  .wl-section-features,.wl-section-sizes{border-radius:40px;margin:0 8px}
-  .wl-table th,.wl-table td{padding:12px 8px;font-size:13.5px}
+  .wl-section-features{border-radius:40px;margin:0 8px}
   .wl-btn,.wl-btn-ghost{padding:14px 26px;font-size:15px;box-shadow:4px 4px 0}
   .wl-faq-body p{padding-left:24px}
   .wl-faq-num{font-size:18px;min-width:26px}

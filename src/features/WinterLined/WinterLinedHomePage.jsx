@@ -52,7 +52,7 @@ const categories = [
   },
   {
     id: 'printedColon',
-    title: 'كولونات رسومات',
+    title: 'كولونات مبطنه فرو',
     subtitle: 'ألوان بتفرّح القلب',
     description: 'كولونات ناعمة بألوان مبهجة — بتخلي كل يوم شتوي حكاية',
     count: '١٢',
@@ -63,8 +63,8 @@ const categories = [
     accent: '#F5B800',
     accentLight: '#FFFAE0',
     emoji: '☃️',
-    img: 'https://res.cloudinary.com/xvhexfbn/image/upload/v1792680505/WhatsApp_Image_2026-09-11_at_7.07.24_AM.jpg',
-    path: '/WinterCollection',
+    img: 'https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/WhatsApp%20Image%202026-10-21%20at%203.34.19%20PM%20(3).jpeg',
+    path: '/winter/fur',
   },
   {
     id: 'colon',

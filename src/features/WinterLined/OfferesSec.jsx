@@ -1,121 +1,136 @@
 // 📁 OfferesSec.jsx
-import offers, { AGE_GROUPS } from "./OfferesData";
+import { getOffersByCategory, AGE_GROUPS } from "./OfferesData";
 
-function OfferCard({ offer, index, onSelect }) {
-    const accent = index % 2 === 0 ? "pink" : "lav";
-    const disc = offer.oldPrice
-        ? Math.round(((offer.oldPrice - offer.prices.girls) / offer.oldPrice) * 100)
-        : 0;
+function OfferCard({ offer, index, onSelect, category }) {
+  const accent = index % 2 === 0 ? "pink" : "lav";
+  const isFur = category === "fur";
 
-    return (
-        <button
-            type="button"
-            onClick={() => onSelect(offer)}
-            className={`of-card of-${accent}`}
-        >
-            <span className="of-tape" />
+  return (
+    <button
+      type="button"
+      onClick={() => onSelect(offer)}
+      className={`of-card of-${accent}`}
+    >
+      <span className="of-tape" />
 
-            {offer.highlight && (
-                <span className="of-badge of-badge-top">✨ {offer.highlight}</span>
-            )}
-            {disc > 0 && (
-                <span className="of-badge of-badge-left">-{disc}%</span>
-            )}
+      {offer.highlight && (
+        <span className="of-badge of-badge-top">✨ {offer.highlight}</span>
+      )}
 
-            <div className="of-card-head">
-                <h3 className="of-name">{offer.name}</h3>
-                <span className="of-count">{offer.count} قطع</span>
+      <div className="of-card-head">
+        <h3 className="of-name">{offer.name}</h3>
+        <span className="of-count">{offer.count} قطع</span>
+      </div>
+
+      {/* ✅ الفرو: سعر واحد — المبطن: بيبي + بناتي */}
+      <div className="of-prices">
+        {isFur ? (
+          <div className="of-price of-single">
+            <div className="of-price-top">
+              <span className="of-price-label">❄️ مبطن فرو</span>
+              <span className="of-price-value">
+                {offer.prices.single}
+                <small>ج</small>
+              </span>
+            </div>
+            <p className="of-age">كل المقاسات بنفس السعر 🎀</p>
+          </div>
+        ) : (
+          <>
+            <div className="of-price of-baby">
+              <div className="of-price-top">
+                <span className="of-price-label">👶 بيبي</span>
+                <span className="of-price-value">
+                  {offer.prices.baby}
+                  <small>ج</small>
+                </span>
+              </div>
+              <p className="of-age">{AGE_GROUPS.baby}</p>
             </div>
 
-            <div className="of-prices">
-                <div className="of-price of-baby">
-                    <div className="of-price-top">
-                        <span className="of-price-label">👶 بيبي</span>
-                        <span className="of-price-value">
-                            {offer.prices.baby}
-                            <small>ج</small>
-                        </span>
-                    </div>
-                    <p className="of-age">{AGE_GROUPS.baby}</p>
-                </div>
-
-                <div className="of-price of-girls">
-                    <div className="of-price-top">
-                        <span className="of-price-label">🎀 بناتي</span>
-                        <span className="of-price-value">
-                            {offer.prices.girls}
-                            <small>ج</small>
-                        </span>
-                    </div>
-                    <p className="of-age">{AGE_GROUPS.girls}</p>
-                </div>
+            <div className="of-price of-girls">
+              <div className="of-price-top">
+                <span className="of-price-label">🎀 بناتي</span>
+                <span className="of-price-value">
+                  {offer.prices.girls}
+                  <small>ج</small>
+                </span>
+              </div>
+              <p className="of-age">{AGE_GROUPS.girls}</p>
             </div>
+          </>
+        )}
+      </div>
 
-            <span className="of-cta">
-                اختاري العرض <span>←</span>
-            </span>
-        </button>
-    );
+      <span className="of-cta">
+        اختاري العرض <span>←</span>
+      </span>
+    </button>
+  );
 }
 
-function OfferesSec({ setSelectedOffer, scrollToOrderCollection }) {
-     const handleSelect = (offer) => {
-        const normalized = {
-            name: offer.name,
-            count: offer.count,
-            value: offer.count,
-            prices: offer.prices,      
-            oldPrice: offer.oldPrice,
-            highlight: offer.highlight,
-        };
-        if (setSelectedOffer) setSelectedOffer(normalized);
-        setTimeout(() => scrollToOrderCollection?.(), 100);
+function OfferesSec({ setSelectedOffer, scrollToOrderCollection, category = "lined" }) {
+  /* ✅ اختيار العروض حسب الكاتيجوري */
+  const offers = getOffersByCategory(category);
+
+  const handleSelect = (offer) => {
+    const normalized = {
+      name: offer.name,
+      count: offer.count,
+      value: offer.count,
+      prices: offer.prices,
+      category,
     };
+    if (setSelectedOffer) setSelectedOffer(normalized);
+    setTimeout(() => scrollToOrderCollection?.(), 100);
+  };
 
+  return (
+    <section id="offersSection" className="of-section">
+      <style>{ofCss}</style>
 
-    return (
-        <section id="offersSection" className="of-section">
-            <style>{ofCss}</style>
+      <div className="of-head">
+        <span className="of-pill">🛍️ عروض الكولونات</span>
+        <h2>
+          كل ما تاخدي <em>أكتر</em>… توفري أكتر
+        </h2>
+        <p className="of-sub">
+          {category === "fur"
+            ? "أسعار موحدة لكل المقاسات — اختاري العرض اللي يناسبك 💗"
+            : "أسعار خاصة لكل فئة — اختاري العرض اللي يناسب بنتك 💗"}
+        </p>
+        <svg
+          className="of-squiggle"
+          viewBox="0 0 200 20"
+          fill="none"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M2 12 Q20 2 40 12 T80 12 T120 12 T160 12 T198 12"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
+        </svg>
+      </div>
 
-            <div className="of-head">
-                <span className="of-pill">🛍️ عروض الكولونات</span>
-                <h2>
-                    كل ما تاخدي <em>أكتر</em>… توفري أكتر
-                </h2>
-                <p className="of-sub">
-                    أسعار خاصة لكل فئة — اختاري العرض اللي يناسب بنتك 💗
-                </p>
-                <svg
-                    className="of-squiggle"
-                    viewBox="0 0 200 20"
-                    fill="none"
-                    preserveAspectRatio="none"
-                >
-                    <path
-                        d="M2 12 Q20 2 40 12 T80 12 T120 12 T160 12 T198 12"
-                        stroke="currentColor"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                    />
-                </svg>
-            </div>
+      <div className="of-grid">
+        {offers.map((offer, i) => (
+          <OfferCard
+            key={offer.count}
+            offer={offer}
+            index={i}
+            onSelect={handleSelect}
+            category={category}
+          />
+        ))}
+      </div>
 
-            <div className="of-grid">
-                {offers.map((offer, i) => (
-                    <OfferCard
-                        key={offer.count}
-                        offer={offer}
-                        index={i}
-                        onSelect={handleSelect}
-                    />
-                ))}
-            </div>
-
-            <div className="of-foot">
-                <p>✨ الأسعار بالجنيه المصري — للاستفسار عن عروض الجملة كلمينا</p>
-            </div>
-        </section>
-    );
+      <div className="of-foot">
+        <p>✨ الأسعار بالجنيه المصري — للاستفسار عن عروض الجملة كلمينا</p>
+      </div>
+    </section>
+  );
 }
 
 const ofCss = `
@@ -220,7 +235,6 @@ const ofCss = `
   z-index:2;
 }
 .of-badge-top{top:-12px;right:14px;background:var(--ink);color:var(--sun)}
-.of-badge-left{top:-12px;left:14px}
 
 .of-card-head{
   display:flex;align-items:center;justify-content:space-between;
@@ -252,6 +266,7 @@ const ofCss = `
 .of-price:hover{transform:translateY(-2px)}
 .of-price.of-baby{background:#E9F3FF}
 .of-price.of-girls{background:#FFE7F1}
+.of-price.of-single{background:#E5F5EE}
 
 .of-price-top{
   display:flex;align-items:center;justify-content:space-between;
