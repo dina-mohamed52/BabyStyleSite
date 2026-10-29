@@ -1261,8 +1261,8 @@ const css = `
 .wl-lifestyle-overlay{
   position:relative;z-index:1;text-align:center;color:#fff;
   padding:50px 40px;max-width:640px;margin:60px 24px;
-  background:rgba(58,46,69,.35);
-  backdrop-filter:blur(10px);
+  background:rgba(58,46,69,0.1);
+  backdrop-filter:blur(1.5px);
   border:3px solid #fff;
   box-shadow:10px 10px 0 rgba(0,0,0,.2);
 }
