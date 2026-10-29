@@ -35,22 +35,6 @@ const tokens = {
 
 const categories = [
   {
-    id: 'legging',
-    title: 'ليجينز',
-    subtitle: 'مرن ومريح زي الحرير',
-    description: 'قصة مريحة بتخلي بنوتتك تلعب وتجري من غير ما تحس بأي ضيق',
-    count: '٢٤',
-    countLabel: 'منتج',
-    note: 'الأكثر مبيعاً',
-    warmth: 3,
-    tint: '#EDE4FF',
-    accent: '#9B7BE8',
-    accentLight: '#F5EEFF',
-    emoji: '🎀',
-    img: 'https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/photo_1_2026-09-03_01-04-55.jpg',
-    path: '/clothes/legging',
-  },
-  {
     id: 'printedColon',
     title: 'كولونات مبطنه فرو',
     subtitle: 'ألوان بتفرّح القلب',
@@ -80,7 +64,7 @@ const categories = [
     accentLight: '#FFF0F7',
     emoji: '🧸',
     img: 'https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/WhatsApp%20Image%202026-10-02%20at%209.57.42%20AM.jpeg',
-    path: '/winter/WinerLined',
+    path: '/winter/lined',
   },
 ];
 
@@ -88,18 +72,34 @@ const byId = (id) => categories.find((c) => c.id === id);
 
 function recommend(temp) {
   if (temp <= 8)
-    return { cat: byId('colon'), text: 'برد قارص؟ الكولون المبطن صديقك', color: tokens.sky, emoji: '❄️' };
+    return {
+      cat: byId('colon'),
+      text: 'برد قارص؟ الكولون المبطن صديقك',
+      color: tokens.sky,
+      emoji: '❄️',
+    };
   if (temp <= 14)
-    return { cat: byId('legging'), text: 'جو متوسط؟ ليجينز مع بلوفر دافي', color: tokens.lavender, emoji: '🌸' };
-  return { cat: byId('turban') || byId('legging'), text: 'جو لطيف؟ تربون ملون يكمل الإطلالة', color: tokens.lemon, emoji: '☀️' };
+    return {
+      cat: byId('printedColon'),
+      text: 'جو متوسط؟ كولونات الفرو مثالية',
+      color: tokens.lavender,
+      emoji: '🌸',
+    };
+  return {
+    cat: byId('printedColon'),
+    text: 'جو لطيف؟ كولونات الفرو خيار حلو',
+    color: tokens.lemon,
+    emoji: '☀️',
+  };
 }
+
 // ───────────────────────────────────────────────────────────────────────────────//
 const marqueeItems = [
-  'شتا دافي', 'ألوان فرحانة', 'بطانة ناعمة', '🎀 ليجينز',
-  '🧸 كولونات مبطنة', '☃️ تربونات', '🎁 اطلبي الان', '💝 خصم للكميات',
+  'شتا دافي', 'ألوان فرحانة', 'بطانة ناعمة', '🎀 كولونات',
+  '🧸 كولونات مبطنة', '☃️ كولونات فرو', '🎁 اطلبي الان', '💝 خصم للكميات',
 ];
 
-// ───────── كرات ثلج فضية متساقطة (عدد أقل + إيقافها على الموبايل) ─────────
+// ───────── كرات ثلج فضية متساقطة ─────────
 const isMobileViewport = () =>
   typeof window !== 'undefined' && window.innerWidth < 768;
 
@@ -114,7 +114,7 @@ const snowBalls = Array.from({ length: 14 }, (_, i) => ({
 
 function WarmthMeter({ level, color }) {
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '2px' }}>
       {[1, 2, 3, 4, 5].map((n) => (
         <motion.span
           key={n}
@@ -123,10 +123,10 @@ function WarmthMeter({ level, color }) {
           viewport={{ once: true }}
           transition={{ delay: n * 0.06, type: 'spring', stiffness: 400 }}
           style={{
-            width: '9px', height: '9px', borderRadius: '50%',
+            width: '6px', height: '6px', borderRadius: '50%',
             backgroundColor: n <= level ? color : 'transparent',
-            border: `2px solid ${color}`,
-            boxShadow: n <= level ? `0 0 8px ${color}88` : 'none',
+            border: `1.5px solid ${color}`,
+            boxShadow: n <= level ? `0 0 6px ${color}88` : 'none',
           }}
         />
       ))}
@@ -134,7 +134,7 @@ function WarmthMeter({ level, color }) {
   );
 }
 
-// ───────── كارت قسم ─────────
+// ───────── كارت قسم (مصغّر + كارتين على الموبايل) ─────────
 function CategoryCard({ category: c, index }) {
   const navigate = useNavigate();
   const goTo = () => navigate(c.path);
@@ -150,56 +150,58 @@ function CategoryCard({ category: c, index }) {
       style={{
         position: 'relative',
         cursor: 'pointer',
-        borderRadius: '36px',
+        borderRadius: '24px',
         background: `linear-gradient(160deg, ${c.tint}, ${c.accentLight})`,
-        padding: '24px 24px 26px',
+        padding: '14px 14px 16px',
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',
-        boxShadow: `0 20px 50px -22px ${c.accent}66, 0 4px 16px -8px rgba(61,42,95,.1), inset 0 2px 0 rgba(255,255,255,.9), inset 0 -3px 12px ${c.accent}22`,
+        boxShadow: `0 16px 40px -20px ${c.accent}55, 0 4px 14px -8px rgba(61,42,95,.1), inset 0 2px 0 rgba(255,255,255,.9), inset 0 -3px 12px ${c.accent}22`,
       }}
     >
       <div
         className="fw-velvet-texture"
         style={{
-          position: 'absolute', inset: 0, borderRadius: '36px',
+          position: 'absolute', inset: 0, borderRadius: '24px',
           pointerEvents: 'none', opacity: 0.7,
         }}
       />
 
       <div style={{
         position: 'absolute', top: '-30%', insetInlineEnd: '-20%',
-        width: '220px', height: '220px', borderRadius: '50%',
+        width: '140px', height: '140px', borderRadius: '50%',
         background: `radial-gradient(circle, ${c.accent}33, transparent 70%)`,
         pointerEvents: 'none',
       }} />
 
+      {/* إيموجي صغير */}
       <motion.div
-        animate={{ y: [0, -6, 0], rotate: [-8, 8, -8] }}
+        animate={{ y: [0, -4, 0], rotate: [-8, 8, -8] }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         style={{
-          position: 'absolute', top: '32px', insetInlineEnd: '28px', zIndex: 4,
-          width: '52px', height: '52px', borderRadius: '50%',
+          position: 'absolute', top: '14px', insetInlineEnd: '14px', zIndex: 4,
+          width: '34px', height: '34px', borderRadius: '50%',
           backgroundColor: '#fff',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: '26px',
-          boxShadow: `0 10px 24px -6px ${c.accent}88, 0 0 0 4px ${c.accentLight}`,
+          fontSize: '17px',
+          boxShadow: `0 8px 18px -6px ${c.accent}88, 0 0 0 3px ${c.accentLight}`,
         }}
       >
         {c.emoji}
       </motion.div>
 
+      {/* الصورة */}
       <div
         className="fw-velvet-img-wrap"
         style={{
           position: 'relative',
           width: '100%',
-          aspectRatio: '1 / 1.15',
+          aspectRatio: '1 / 1',
           overflow: 'hidden',
           borderRadius: '50% 50% 40% 40% / 60% 60% 40% 40%',
           backgroundColor: '#fff',
-          border: `5px solid #fff`,
-          boxShadow: `0 12px 28px -12px ${c.accent}55, 0 0 0 1px ${c.accent}22`,
+          border: `3px solid #fff`,
+          boxShadow: `0 10px 24px -12px ${c.accent}55, 0 0 0 1px ${c.accent}22`,
           zIndex: 1,
         }}
       >
@@ -224,80 +226,82 @@ function CategoryCard({ category: c, index }) {
           animate={{ rotate: [-2, 2, -2] }}
           transition={{ duration: 3, repeat: Infinity }}
           style={{
-            position: 'absolute', bottom: '16px', insetInlineStart: '16px',
-            fontSize: '11.5px', fontWeight: 800, color: '#fff',
+            position: 'absolute', bottom: '8px', insetInlineStart: '8px',
+            fontSize: '9.5px', fontWeight: 800, color: '#fff',
             background: `linear-gradient(135deg, ${c.accent}, ${c.accent}dd)`,
-            padding: '6px 14px', borderRadius: '999px',
-            boxShadow: `0 8px 18px -6px ${c.accent}cc`,
-            border: '2px solid #fff',
-            display: 'inline-flex', alignItems: 'center', gap: '5px',
+            padding: '3px 9px', borderRadius: '999px',
+            boxShadow: `0 6px 14px -6px ${c.accent}cc`,
+            border: '1.5px solid #fff',
+            display: 'inline-flex', alignItems: 'center', gap: '3px',
           }}
         >
-          <Sparkles size={12} fill="#fff" />
+          <Sparkles size={9} fill="#fff" />
           {c.note}
         </motion.span>
       </div>
 
-      <div style={{ position: 'relative', zIndex: 2, marginTop: '22px' }}>
+      <div style={{ position: 'relative', zIndex: 2, marginTop: '12px' }}>
         <div style={{
-          height: '3px', width: '48px', borderRadius: '2px',
+          height: '2px', width: '32px', borderRadius: '2px',
           background: `linear-gradient(90deg, ${c.accent}, transparent)`,
-          marginBottom: '14px',
+          marginBottom: '8px',
         }} />
 
         <h3 className="fw-display" style={{
-          fontSize: '26px', fontWeight: 800, margin: '0 0 6px',
+          fontSize: '16px', fontWeight: 800, margin: '0 0 3px',
           color: tokens.ink, lineHeight: 1.2,
         }}>
           {c.title}
         </h3>
 
         <p style={{
-          fontSize: '13px', color: c.accent, margin: '0 0 12px',
+          fontSize: '10.5px', color: c.accent, margin: '0 0 8px',
           fontWeight: 700,
         }}>
           {c.subtitle}
         </p>
 
         <p style={{
-          fontSize: '13.5px', lineHeight: 1.75,
-          color: tokens.ink, opacity: 0.78,
-          margin: '0 0 20px',
+          fontSize: '10.5px', lineHeight: 1.6,
+          color: tokens.ink, opacity: 0.72,
+          margin: '0 0 10px',
         }}>
           {c.description}
         </p>
 
+        {/* الصف: العدد + الدفا */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '12px 16px',
+          padding: '6px 10px',
           backgroundColor: 'rgba(255,255,255,.7)',
           backdropFilter: 'blur(8px)',
-          borderRadius: '18px',
+          borderRadius: '12px',
           border: `1.5px solid #fff`,
           boxShadow: 'inset 0 1px 0 #fff, 0 4px 12px -6px rgba(61,42,95,.15)',
-          marginBottom: '16px',
+          marginBottom: '10px',
         }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '5px' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '3px' }}>
             <span className="fw-display" style={{
-              fontSize: '24px', fontWeight: 800, color: c.accent,
+              fontSize: '15px', fontWeight: 800, color: c.accent,
               lineHeight: 1,
             }}>
               {c.count}
             </span>
-            <span style={{ fontSize: '12px', fontWeight: 700, color: tokens.inkMuted }}>
+            <span style={{ fontSize: '9.5px', fontWeight: 700, color: tokens.inkMuted }}>
               {c.countLabel}
             </span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ fontSize: '11px', fontWeight: 700, color: tokens.inkMuted }}>دفا</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <span style={{ fontSize: '9px', fontWeight: 700, color: tokens.inkMuted }}>دفا</span>
             <WarmthMeter level={c.warmth} color={c.accent} />
           </div>
         </div>
 
+        {/* CTA */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
-          <span style={{ fontSize: '13.5px', fontWeight: 800, color: tokens.ink }}>
+          <span style={{ fontSize: '11px', fontWeight: 800, color: tokens.ink }}>
             تسوقي الآن
           </span>
           <motion.span
@@ -305,13 +309,13 @@ function CategoryCard({ category: c, index }) {
             className="fw-velvet-arrow"
             style={{
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-              width: '40px', height: '40px', borderRadius: '50%',
+              width: '28px', height: '28px', borderRadius: '50%',
               background: `linear-gradient(135deg, ${c.accent}, ${c.accent}cc)`,
-              boxShadow: `0 10px 20px -6px ${c.accent}aa, inset 0 1px 0 rgba(255,255,255,.5)`,
+              boxShadow: `0 8px 16px -6px ${c.accent}aa, inset 0 1px 0 rgba(255,255,255,.5)`,
               border: '2px solid #fff',
             }}
           >
-            <ArrowUpRight size={18} strokeWidth={2.6} color="#fff" />
+            <ArrowUpRight size={13} strokeWidth={2.6} color="#fff" />
           </motion.span>
         </div>
       </div>
@@ -324,7 +328,6 @@ function WinterHomePage() {
   const [temp, setTemp] = useState(10);
   const [showSnow, setShowSnow] = useState(false);
 
-  // كرات الثلج تظهر بس على الديسكتوب
   useEffect(() => {
     const check = () => setShowSnow(!isMobileViewport());
     check();
@@ -334,6 +337,9 @@ function WinterHomePage() {
 
   const rec = recommend(temp);
   const goTo = (path) => navigate(path);
+
+  const printedColon = byId('printedColon');
+  const colon = byId('colon');
 
   return (
     <div
@@ -347,7 +353,6 @@ function WinterHomePage() {
         overflowX: 'hidden',
       }}
     >
-      {/* ════ Styles — مرة واحدة بس، مش بتتحسب مع كل render ════ */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap');
         .fw-display { font-family: 'Baloo Bhaijaan 2', 'Tajawal', sans-serif; }
@@ -360,7 +365,6 @@ function WinterHomePage() {
           background-attachment: scroll;
         }
 
-        /* ─── إحساس القطيفة — طبقة واحدة فقط، مش fixed (أخف على الموبايل) ─── */
         .fw-velvet-page {
           position: relative;
         }
@@ -388,14 +392,13 @@ function WinterHomePage() {
           mix-blend-mode: overlay;
         }
 
-        /* ─── كارت مخملي ─── */
         .fw-velvet-card {
           transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease;
           will-change: transform;
         }
         .fw-velvet-card:hover {
-          transform: translateY(-12px) rotate(-.6deg);
-          box-shadow: 0 30px 60px -22px rgba(61,42,95,.35), 0 8px 24px -12px rgba(61,42,95,.2), inset 0 2px 0 rgba(255,255,255,.95), inset 0 -3px 16px rgba(0,0,0,.05);
+          transform: translateY(-8px) rotate(-.4deg);
+          box-shadow: 0 26px 54px -22px rgba(61,42,95,.32), 0 6px 20px -10px rgba(61,42,95,.18), inset 0 2px 0 rgba(255,255,255,.95), inset 0 -3px 16px rgba(0,0,0,.05);
         }
         .fw-velvet-card:hover .fw-velvet-img {
           transform: scale(1.06);
@@ -416,7 +419,6 @@ function WinterHomePage() {
           will-change: transform;
         }
 
-        /* ═══════════ SLIDER — الحل النهائي للمشكلة البيضاء ═══════════ */
         .fw-range-wrap {
           position: relative;
           width: 100%;
@@ -486,7 +488,15 @@ function WinterHomePage() {
           background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,255,255,.35) 10px, rgba(255,255,255,.35) 20px);
         }
 
-        /* ═══════════ MOBILE OPTIMIZATIONS ═══════════ */
+        /* ✅ Grid الأقسام — كارتين على الموبايل */
+        .fw-categories-grid {
+        display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  max-width: 820px;        /* ✅ يمنع الكروت إنها تتمدد */
+  margin-inline: auto;     /* ✅ يوسّط الـ grid */
+        }
+
         @media (max-width: 760px) {
           .fw-hero-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
           .fw-collage { height: 340px !important; }
@@ -495,19 +505,28 @@ function WinterHomePage() {
           .fw-promo-img { min-height: 220px !important; }
           .fw-promo-content { padding: 28px 22px !important; }
 
-          /* إخفاء الطبقة الزغبية على الموبايل (أداء أفضل) */
           .fw-velvet-page::before { display: none; }
 
-          /* تعطيل الظلال الثقيلة */
           .fw-velvet-card {
             box-shadow: 0 12px 30px -18px rgba(61,42,95,.25) !important;
           }
 
-          /* إيقاف الأنيميشن الطويل */
           .fw-track { animation-duration: 30s; }
 
-          /* منع hover transforms على الموبايل */
           .fw-velvet-card:hover { transform: none; }
+
+          /* ✅ كارتين في كل سطر */
+          .fw-categories-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .fw-categories-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+          }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -516,7 +535,7 @@ function WinterHomePage() {
         }
       `}</style>
 
-      {/* ───────── كرات ثلج (ديسكتوب فقط) ───────── */}
+      {/* كرات ثلج (ديسكتوب فقط) */}
       {showSnow && (
         <div aria-hidden style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 60 }}>
           {snowBalls.map((s, i) => (
@@ -549,10 +568,10 @@ function WinterHomePage() {
         </div>
       )}
 
-      {/* المحتوى الرئيسي */}
+      {/* المحتوى */}
       <div className="fw-velvet-page" style={{ position: 'relative', zIndex: 2 }}>
 
-        {/* ───────── HERO ───────── */}
+        {/* HERO */}
         <section className="relative overflow-hidden">
           <div className="relative z-[1] max-w-[1180px] mx-auto px-5 pt-12 pb-14">
 
@@ -603,10 +622,10 @@ function WinterHomePage() {
                   className="max-w-[440px] text-[15.5px] leading-[1.9] mb-[30px] m-0"
                   style={{ color: tokens.inkMuted }}
                 >
-                  ليجينز · كولونات مبطنة · تربونات — دفا ناعم وألوان بتفرّح قلب بنوتتك، عشان الشتا يبقى أحلى فصل في السنة 🌸
+                  كولونات مبطنة · كولونات فرو — دفا ناعم وألوان بتفرّح قلب بنوتتك، عشان الشتا يبقى أحلى فصل في السنة 🌸
                 </p>
                 <button
-                  onClick={() => goTo(categories[0].path)}
+                  onClick={() => goTo(printedColon.path)}
                   className="fw-btn inline-flex items-center gap-2.5 text-white border-0 px-8 py-[15px] rounded-full text-[15px] font-extrabold cursor-pointer mb-8 font-[inherit]"
                   style={{
                     background: `linear-gradient(135deg, ${tokens.bubblegum}, ${tokens.bubblegumDeep})`,
@@ -692,8 +711,8 @@ function WinterHomePage() {
                   }}
                 >
                   <img
-                    src={categories[1].img}
-                    alt={categories[1].title}
+                    src={printedColon.img}
+                    alt={printedColon.title}
                     className="w-full h-full object-cover object-top block"
                   />
                 </div>
@@ -710,8 +729,8 @@ function WinterHomePage() {
                   }}
                 >
                   <img
-                    src={categories[2].img}
-                    alt={categories[2].title}
+                    src={colon.img}
+                    alt={colon.title}
                     className="w-full h-full object-cover object-top block"
                   />
                 </div>
@@ -748,7 +767,7 @@ function WinterHomePage() {
                 </motion.span>
               </motion.div>
 
-              {/* ── الشريط المتحرك ── */}
+              {/* الشريط المتحرك */}
               <div
                 className="order-2 md:order-none md:col-span-2 md:mt-2 overflow-hidden text-white -mx-2.5 -rotate-[1.2deg]"
                 style={{
@@ -779,7 +798,7 @@ function WinterHomePage() {
         </section>
 
         <div style={{ maxWidth: '1180px', margin: '0 auto', padding: '70px 20px 60px' }}>
-          {/* ───────── اختاري حسب الطقس ───────── */}
+          {/* اختاري حسب الطقس */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -813,7 +832,6 @@ function WinterHomePage() {
                 حركي السلايدر على درجة حرارة النهاردة 🌡️
               </h2>
 
-              {/* ═══ SLIDER الجديد ═══ */}
               <div className="fw-range-wrap">
                 <div className="fw-range-bg" />
                 <input
@@ -896,7 +914,7 @@ function WinterHomePage() {
             </motion.div>
           </motion.div>
 
-          {/* ───────── الأقسام ───────── */}
+          {/* الأقسام */}
           <div style={{ marginTop: '80px', marginBottom: '24px' }}>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -925,19 +943,15 @@ function WinterHomePage() {
               </p>
             </motion.div>
 
-            <div
-              style={{
-                display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
-                gap: '32px',
-              }}
-            >
+            {/* ✅ Grid — كارتين على الموبايل */}
+            <div className="fw-categories-grid">
               {categories.map((c, i) => (
                 <CategoryCard key={c.id} category={c} index={i} />
               ))}
             </div>
           </div>
 
-          {/* ───────── البانر الترويجي ───────── */}
+          {/* البانر الترويجي */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1010,7 +1024,7 @@ function WinterHomePage() {
             </div>
 
             <div className="fw-promo-img" style={{ position: 'relative', minHeight: '260px' }}>
-              <img src={categories[2].img} alt={categories[2].title}
+              <img src={colon.img} alt={colon.title}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to left, transparent 25%, ${tokens.ink} 100%)` }} />
               <motion.div
@@ -1032,7 +1046,7 @@ function WinterHomePage() {
             </div>
           </motion.div>
 
-          {/* ───────── Footer ───────── */}
+          {/* Footer */}
           <div style={{ marginTop: '48px', textAlign: 'center', fontSize: '12.5px', color: tokens.inkMuted }}>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '14px' }}>
               {[Heart, Star, Snowflake, Sparkles, Candy].map((Icon, i) => (

@@ -129,6 +129,7 @@ const SEASONS = {
     softLight: "#EFF6FF",
     tagline: "دفء وأناقة بأجواء دافئة وإطلالة ناعمة",
     categories: [
+
       {
         id: 4,
         name: "كولونات رسومات شتوية",
@@ -149,16 +150,25 @@ const SEASONS = {
         items: "14+ منتج",
         badge: "جودة عالية",
       },
-      // {
-      //   id: 6,
-      //   name: "بناطيل دافئة",
-      //   nameEn: "Warm Pants",
-      //   path: "/WinterPants",
-      //   image:
-      //     "https://res.cloudinary.com/dxenvgjv5/image/upload/v1776012196/WhatsApp_Image_2026-04-08_at_5.55.41_PM_sjakzv.jpg",
-      //   items: "9+ منتج",
-      //   badge: "تشكيلة جديدة",
-      // },
+      {
+    id: 6,
+    name: 'ليجينز',
+     nameEn: "Leggings",
+    subtitle: 'مرن ومريح زي الحرير',
+    description: 'قصة مريحة بتخلي بنوتتك تلعب وتجري من غير ما تحس بأي ضيق',
+    count: '٢٤',
+    countLabel: 'منتج',
+    note: 'الأكثر مبيعاً',
+    warmth: 3,
+    tint: '#EDE4FF',
+    accent: '#9B7BE8',
+    accentLight: '#F5EEFF',
+    emoji: '🎀',
+     items: "14+ منتج",
+        badge: "مستوي جديد من الراحة",
+    image: 'https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/photo_1_2026-09-03_01-04-55.jpg',
+    path: '/clothes/legging',
+  },
     ],
   },
 };

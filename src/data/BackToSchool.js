@@ -378,7 +378,7 @@ export const BackToSchoolData = [
         img: "https://res.cloudinary.com/xvhexfbn/image/upload/v1792680542/WhatsApp_Image_2026-09-11_at_7.07.20_AM.jpg",
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
-          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          // { size: "1-2", age: "من 9 شهور لسنه ونص" },
           //  { size: "4-2", age: "من سنة ونص ل 3 سنين" },
 
         ],
@@ -389,7 +389,7 @@ export const BackToSchoolData = [
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
-           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          //  { size: "4-2", age: "من سنة ونص ل 3 سنين" },
 
         ],
       },
@@ -408,8 +408,8 @@ export const BackToSchoolData = [
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
-           { size: "4-2", age: "من سنة ونص ل 3 سنين" },
-{ size: "8-6", age: "من 5 ل 7 سنين" },
+          //  { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+// { size: "8-6", age: "من 5 ل 7 سنين" },
          { size: "14-12", age: "من 12 ل 14 سنة" },
         ],
       },
