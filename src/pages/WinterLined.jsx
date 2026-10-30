@@ -24,7 +24,7 @@ const CATEGORY_LABEL = {
 
 const DEFAULT_IMAGES = CATEGORY_IMAGES.lined;
 
-/* ✅ تحسين رابط الصورة حسب حجم العرض */
+/* ✅ تحسين رابط الصورة */
 const optimizeImage = (url, width = 600) => {
   if (!url) return "";
   if (url.includes("cloudinary.com")) {
@@ -47,16 +47,30 @@ const CATEGORY_CONTENT = {
       { icon: "🦋", title: "حرية الحركة", text: "مرن يسمح لها تلعب براحتها", rotate: "3deg", color: "#DFF7EA" },
     ],
   },
-  fur: {
-    heroTitle: "كولون مبطن فرو",
-    heroSubtitle: "فرو ناعم من الداخل — دفء مضاعف للشتا القارس",
-    features: [
-      { icon: "❄️", title: "دفء مضاعف", text: "فرو كامل يديها دفء استثنائي", rotate: "-3deg", color: "#E5F1FF" },
-      { icon: "☁️", title: "نعومة فائقة", text: "فرو ناعم جدًا على البشرة", rotate: "2deg", color: "#FFE7F1" },
-      { icon: "💫", title: "شيك وأنيق", text: "شكل فخم يليق ببنوتك", rotate: "-2deg", color: "#F0E7FF" },
-      { icon: "🔥", title: "أدفأ اختيار", text: "مثالي لأبرد أيام الشتا", rotate: "3deg", color: "#DFF7EA" },
-    ],
-  },
+fur: {
+  heroTitle: "كولونات شتوية لبنوتك",
+  heroSubtitle: "اختاري موديلك المفضل 🎀",
+  features: [
+    {
+      icon: "❄️",
+      title: "كولون سادة مبطن فرو",
+      text: "دفء خالص من غير أي زيادة — فرو ناعم جوّه، شكل بسيط وأنيق برّه، مثالي لكل يوم شتوي",
+      rotate: "-3deg",
+      color: "#E5F1FF",
+    },
+    {
+      icon: "🎀",
+      title: "كولون فيونكة مبطن فرو",
+      text: "لمسة أنثوية ساحرة — فيونكة كيوت على كولون دافي، يخلي بنوتك أميرة الشتا بجد 👑",
+      rotate: "2deg",
+      color: "#FFE7F1",
+    },
+     { icon: "🌈", title: "ألوان كيوت", text: "درجات حلوة تختاري اللي يعجبك", rotate: "-2deg", color: "#F0E7FF" },
+      { icon: "🦋", title: "حرية الحركة", text: "مرن يسمح لها تلعب براحتها", rotate: "3deg", color: "#DFF7EA" },
+   
+  ],
+
+},
 };
 
 const FAQS = [
@@ -84,7 +98,6 @@ function useReveal() {
   }, []);
   return [ref, visible];
 }
-// ddddddddddddddddddddddddddddd
 
 function Reveal({ children, delay = 0, className = "", as: Tag = "div", ...rest }) {
   const [ref, visible] = useReveal();
@@ -146,7 +159,7 @@ const IMG_LIFESTYLE = [
 ].join(" ");
 
 /* ─────────────────────────────────────────────
-   🎨 بلوك ألوان مستقل لكل منتج (محسّن)
+   🎨 بلوك ألوان (لما يكون منتج واحد بس)
    ───────────────────────────────────────────── */
 function ProductColorsBlock({ product }) {
   const [colorIdx, setColorIdx] = useState(0);
@@ -157,7 +170,12 @@ function ProductColorsBlock({ product }) {
     <div className="wl-product-block">
       <h3
         className="wl-panel-title"
-        style={{ textAlign: "center", marginTop: 40, marginBottom: 24, fontSize: 26 }}
+        style={{
+          textAlign: "center",
+          marginTop: 40,
+          marginBottom: 24,
+          fontSize: 26,
+        }}
       >
         {product.name}
       </h3>
@@ -168,10 +186,14 @@ function ProductColorsBlock({ product }) {
             <span className="wl-tape wl-tape-tl" />
             <span className="wl-tape wl-tape-tr" />
 
-            <div className="wl-img-wrapper" style={{ position: "relative", width: "100%", aspectRatio: "4/5" }}>
-              {!loadedImages[current.img] && (
-                <div className="wl-shimmer" />
-              )}
+            <div
+              style={{
+                position: "relative",
+                width: "100%",
+                aspectRatio: "4/5",
+              }}
+            >
+              {!loadedImages[current.img] && <div className="wl-shimmer" />}
               <img
                 key={current.color}
                 src={optimizeImage(current.img, 700)}
@@ -179,7 +201,10 @@ function ProductColorsBlock({ product }) {
                 loading="eager"
                 decoding="async"
                 onLoad={() =>
-                  setLoadedImages((prev) => ({ ...prev, [current.img]: true }))
+                  setLoadedImages((prev) => ({
+                    ...prev,
+                    [current.img]: true,
+                  }))
                 }
                 style={{
                   width: "100%",
@@ -240,6 +265,162 @@ function ProductColorsBlock({ product }) {
 }
 
 /* ─────────────────────────────────────────────
+   🎴 كارت منتج (لما يكون أكتر من منتج)
+   ───────────────────────────────────────────── */
+function ProductColorCard({ product, onOpen }) {
+  const [loaded, setLoaded] = useState(false);
+  const firstColor = product.productColors?.[0];
+  const displayImg = firstColor?.img;
+
+  return (
+    <button
+      type="button"
+      className="wl-pcard"
+      onClick={() => onOpen(product)}
+    >
+      <div className="wl-pcard-img">
+        {!loaded && <div className="wl-shimmer" />}
+        <img
+          src={optimizeImage(displayImg, 400)}
+          alt={product.name}
+          loading="lazy"
+          decoding="async"
+          onLoad={() => setLoaded(true)}
+          style={{
+            opacity: loaded ? 1 : 0,
+            transition: "opacity 0.4s ease",
+          }}
+        />
+        <span className="wl-pcard-badge">
+          {product.productColors.length} ألوان
+        </span>
+      </div>
+      <div className="wl-pcard-body">
+        <h4 className="wl-pcard-name">{product.name}</h4>
+        <span className="wl-pcard-cta">
+          اختاري اللون <span>←</span>
+        </span>
+      </div>
+    </button>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   🪟 Modal اختيار اللون
+   ───────────────────────────────────────────── */
+function ProductColorModal({ product, onClose }) {
+  const [colorIdx, setColorIdx] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+  const current = product.productColors[colorIdx];
+
+  useEffect(() => {
+    setColorIdx(0);
+    setLoaded(false);
+  }, [product]);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  if (!product) return null;
+
+  return (
+    <div className="wl-modal" onClick={onClose}>
+      <div className="wl-modal-inner" onClick={(e) => e.stopPropagation()}>
+        <button className="wl-modal-close" onClick={onClose} aria-label="إغلاق">
+          ✕
+        </button>
+
+        <h3 className="wl-modal-title">{product.name}</h3>
+
+        <div className="wl-colors-grid">
+          <div className="wl-color-stage">
+            <div className="wl-polaroid">
+              <span className="wl-tape wl-tape-tl" />
+              <span className="wl-tape wl-tape-tr" />
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  aspectRatio: "4/5",
+                }}
+              >
+                {!loaded && <div className="wl-shimmer" />}
+                <img
+                  key={current.color}
+                  src={optimizeImage(current.img, 700)}
+                  alt={current.color}
+                  loading="eager"
+                  decoding="async"
+                  onLoad={() => setLoaded(true)}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    opacity: loaded ? 1 : 0,
+                    transition: "opacity 0.4s ease",
+                    display: "block",
+                  }}
+                />
+              </div>
+              <span className="wl-polaroid-caption">{current.color}</span>
+            </div>
+          </div>
+
+          <div className="wl-colors-panel">
+            <h3 className="wl-panel-title">الدرجات المتوفرة</h3>
+            <div className="wl-swatches">
+              {product.productColors.map((c, i) => (
+                <button
+                  key={c.color}
+                  className={`wl-swatch ${i === colorIdx ? "active" : ""}`}
+                  onClick={() => {
+                    setColorIdx(i);
+                    setLoaded(false);
+                  }}
+                >
+                  <span
+                    className="wl-dot"
+                    style={{ background: COLOR_HEX[c.color] || "#ddd" }}
+                  />
+                  <span className="wl-swatch-name">{c.color}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="wl-thumbs">
+              {product.productColors.map((c, i) => (
+                <button
+                  key={c.color}
+                  className={`wl-thumb ${i === colorIdx ? "active" : ""}`}
+                  onClick={() => {
+                    setColorIdx(i);
+                    setLoaded(false);
+                  }}
+                >
+                  <img
+                    src={optimizeImage(c.img, 150)}
+                    alt={c.color}
+                    loading="lazy"
+                    decoding="async"
+                    width={88}
+                    height={88}
+                  />
+                  <span>{c.color}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
    الكومبوننت الرئيسي
    ───────────────────────────────────────────── */
 function WinterLined() {
@@ -256,11 +437,13 @@ function WinterLined() {
   const [openFaq, setOpenFaq] = useState(0);
   const [selectedOffer, setSelectedOffer] = useState(null);
   const [heroLoaded, setHeroLoaded] = useState(false);
+  const [openProduct, setOpenProduct] = useState(null);
   const orderCollectionRef = useRef(null);
 
   useEffect(() => {
     setSelectedOffer(null);
     setOpenFaq(0);
+    setOpenProduct(null);
   }, [category]);
 
   const scrollToOrderCollection = () =>
@@ -299,7 +482,13 @@ function WinterLined() {
               <span className="wl-tape wl-tape-tl" />
               <span className="wl-tape wl-tape-br" />
 
-              <div style={{ position: "relative", width: "100%", aspectRatio: "4/5" }}>
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  aspectRatio: "4/5",
+                }}
+              >
                 {!heroLoaded && <div className="wl-shimmer" />}
                 <img
                   src={optimizeImage(IMAGES.hero, 800)}
@@ -428,8 +617,47 @@ function WinterLined() {
         scrollToOrderCollection={scrollToOrderCollection}
         category={category}
       />
+     
+       {/* COLORS */}
+      <section className="wl-section wl-section-colors" id="wl-colors">
+        <Reveal className="wl-head">
+          <span className="wl-pill">🎨 الألوان</span>
+          <h2>
+            {safeProducts.length === 1 ? (
+              <>
+                اختاري اللون اللي <em>يحبه قلبها</em>
+              </>
+            ) : (
+              <>
+                اختاري المنتج <em>واللون</em>
+              </>
+            )}
+          </h2>
+          <Squiggle className="wl-squiggle" />
+        </Reveal>
 
-      <div ref={orderCollectionRef}>
+        {/* ✅ منتج واحد → العرض القديم */}
+        {safeProducts.length === 1 ? (
+          <ProductColorsBlock product={safeProducts[0]} />
+        ) : (
+          /* ✅ أكتر من منتج → كروت + Modal */
+          <div className="wl-products-grid">
+            {safeProducts.map((product, i) => (
+              <Reveal key={product.id} delay={i * 80}>
+                <ProductColorCard
+                  product={product}
+                  onOpen={(p) => setOpenProduct(p)}
+                />
+              </Reveal>
+            ))}
+          </div>
+        )}
+      </section>
+
+
+{/* الاوردر كولكشن */}
+
+ <div ref={orderCollectionRef}>
         <LinedOrderCollection
           selectedOffer={selectedOffer}
           scrollToOffers={scrollToOffers}
@@ -466,7 +694,9 @@ function WinterLined() {
           </Reveal>
           <Reveal className="wl-split-text" delay={120}>
             <span className="wl-pill">🧵 الخامة</span>
-            <h2>نعومة <span className="wl-underline">تحسّيها</span> من أول لمسة</h2>
+            <h2>
+              نعومة <span className="wl-underline">تحسّيها</span> من أول لمسة
+            </h2>
             <p>
               {category === "fur"
                 ? "فرو ناعم من الداخل + خامة خارجية أنيقة. دفء مضاعف للشتا القارس."
@@ -477,25 +707,18 @@ function WinterLined() {
                 <span className="wl-bullet">1</span>
                 {category === "fur" ? "فرو ناعم من الداخل ☁️" : "بطانة فوطه ناعمة 🧸"}
               </li>
-              <li><span className="wl-bullet">2</span> قطن مرن يسمح بالحركة 🌈</li>
-              <li><span className="wl-bullet">3</span> خياطة دقيقة وتشطيب نظيف ✨</li>
+              <li>
+                <span className="wl-bullet">2</span> قطن مرن يسمح بالحركة 🌈
+              </li>
+              <li>
+                <span className="wl-bullet">3</span> خياطة دقيقة وتشطيب نظيف ✨
+              </li>
             </ul>
           </Reveal>
         </div>
       </section>
 
-      {/* COLORS */}
-      <section className="wl-section wl-section-colors" id="wl-colors">
-        <Reveal className="wl-head">
-          <span className="wl-pill">🎨 الألوان</span>
-          <h2>اختاري اللون اللي <em>يحبه قلبها</em></h2>
-          <Squiggle className="wl-squiggle" />
-        </Reveal>
-
-        {safeProducts.map((product) => (
-          <ProductColorsBlock key={product.id} product={product} />
-        ))}
-      </section>
+     
 
       {/* LIFESTYLE */}
       <section className="wl-lifestyle">
@@ -521,7 +744,9 @@ function WinterLined() {
       <section className="wl-section wl-section-faq">
         <Reveal className="wl-head">
           <span className="wl-pill">❓ أسئلة شائعة</span>
-          <h2>كل اللي محتاجة <em>تعرفيه</em></h2>
+          <h2>
+            كل اللي محتاجة <em>تعرفيه</em>
+          </h2>
           <Squiggle className="wl-squiggle" />
         </Reveal>
         <div className="wl-faqs">
@@ -561,6 +786,14 @@ function WinterLined() {
           </button>
         </Reveal>
       </section>
+
+      {/* ✅ Modal */}
+      {openProduct && (
+        <ProductColorModal
+          product={openProduct}
+          onClose={() => setOpenProduct(null)}
+        />
+      )}
     </div>
   );
 }
@@ -620,7 +853,6 @@ const css = `
 @keyframes wlFloat{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-16px) rotate(4deg)}}
 @keyframes wlSpin{to{transform:rotate(360deg)}}
 
-/* ✅ Shimmer placeholder */
 @keyframes wlShimmer {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -867,6 +1099,118 @@ const css = `
   font-weight:800;font-size:14px;
 }
 
+/* ✅ كروت المنتجات */
+.wl-products-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:24px;
+  max-width:900px;
+  margin:0 auto;
+}
+.wl-pcard{
+  display:block;width:100%;
+  background:#fff;
+  border:2.5px solid var(--ink);
+  box-shadow:6px 6px 0 rgba(58,46,69,.15);
+  padding:0;
+  overflow:hidden;
+  text-align:right;
+  transition:.3s cubic-bezier(.2,.7,.2,1);
+  cursor:pointer;
+}
+.wl-pcard:hover{
+  transform:translate(-3px,-3px);
+  box-shadow:10px 10px 0 var(--pink);
+}
+.wl-pcard-img{
+  position:relative;
+  width:100%;
+  aspect-ratio:4/5;
+  overflow:hidden;
+  background:#f7f2ee;
+}
+.wl-pcard-img img{
+  width:100%;height:100%;object-fit:cover;object-position:top;
+}
+.wl-pcard-badge{
+  position:absolute;
+  top:10px;left:10px;
+  background:rgba(58,46,69,.9);
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  padding:4px 10px;
+  border-radius:999px;
+  backdrop-filter:blur(4px);
+}
+.wl-pcard-body{
+  padding:14px 16px 18px;
+}
+.wl-pcard-name{
+  font-family:'Lalezar',sans-serif;
+  font-size:17px;
+  font-weight:400;
+  margin:0 0 10px;
+  color:var(--ink);
+  line-height:1.3;
+}
+.wl-pcard-cta{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:10px;
+  border-top:2px dashed var(--line);
+  font-size:13px;font-weight:800;
+  color:var(--pink-d);
+}
+.wl-pcard-cta span{transition:transform .3s}
+.wl-pcard:hover .wl-pcard-cta span{transform:translateX(-4px)}
+
+/* ✅ Modal */
+.wl-modal{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(20,14,25,.85);
+  backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  animation:wlFade .25s ease;
+  overflow-y:auto;
+}
+@keyframes wlFade{from{opacity:0}to{opacity:1}}
+.wl-modal-inner{
+  position:relative;
+  background:var(--paper);
+  border:3px solid var(--ink);
+  box-shadow:12px 12px 0 var(--pink);
+  max-width:900px;
+  width:100%;
+  max-height:90vh;
+  overflow-y:auto;
+  padding:40px 30px 30px;
+  border-radius:8px;
+}
+.wl-modal-close{
+  position:absolute;top:12px;left:12px;
+  width:38px;height:38px;
+  border-radius:50%;
+  background:#fff;
+  border:2.5px solid var(--ink);
+  color:var(--ink);
+  font-size:18px;font-weight:900;
+  display:grid;place-items:center;
+  cursor:pointer;
+  transition:.2s ease;
+  z-index:5;
+}
+.wl-modal-close:hover{background:var(--pink-d);color:#fff;border-color:var(--pink-d)}
+.wl-modal-title{
+  font-family:'Lalezar',sans-serif;
+  font-size:clamp(22px,3vw,30px);
+  font-weight:400;
+  text-align:center;
+  margin:0 0 24px;
+  color:var(--ink);
+}
+
+/* Colors */
 .wl-colors-grid{
   display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;
 }
@@ -904,6 +1248,13 @@ const css = `
 .wl-thumb span{display:block;font-size:12px;font-weight:700;margin-top:6px;color:var(--ink-soft);text-align:center}
 .wl-thumb:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 rgba(58,46,69,.25)}
 .wl-thumb.active{background:var(--sun)}
+
+/* ✅ فاصل بين بلوكات المنتجات */
+.wl-product-block + .wl-product-block {
+  margin-top: 70px;
+  padding-top: 50px;
+  border-top: 3px dashed var(--line);
+}
 
 .wl-lifestyle{position:relative;min-height:520px;display:grid;place-items:center;overflow:hidden}
 .wl-lifestyle::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(58,46,69,.35),rgba(240,98,146,.45))}
@@ -969,25 +1320,9 @@ const css = `
   margin:0 0 30px;line-height:1.25;color:#fff;
 }
 
-/* ✅ فاصل بين بلوكات المنتجات */
-.wl-product-block + .wl-product-block {
-  margin-top: 70px;
-  padding-top: 50px;
-  border-top: 3px dashed var(--line);
-}
-
-/* ✅ تحسين أداء الصور */
-.wl img {
-  content-visibility: auto;
-}
-
-.wl-thumb img {
-  background: #f7f2ee;
-}
-
-.wl-polaroid img {
-  background: #f7f2ee;
-}
+.wl img {content-visibility: auto;}
+.wl-thumb img {background:#f7f2ee;}
+.wl-polaroid img {background:#f7f2ee;}
 
 @media(max-width:900px){
   .wl-features-layout{grid-template-columns:1fr;gap:36px}
@@ -1012,6 +1347,11 @@ const css = `
   .wl-feature h3{font-size:15px;margin-bottom:6px}
   .wl-feature p{font-size:12px;line-height:1.65}
   .wl-tape-sm{width:50px;height:16px}
+  .wl-products-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .wl-pcard-body{padding:10px 12px 14px}
+  .wl-pcard-name{font-size:14px}
+  .wl-pcard-cta{font-size:11px}
+  .wl-modal-inner{padding:40px 16px 20px}
 }
 
 @media(max-width:520px){

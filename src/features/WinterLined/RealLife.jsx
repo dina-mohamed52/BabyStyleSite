@@ -13,9 +13,11 @@ const CATEGORY_IMAGES = {
     "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B3%D8%A7%D8%AF%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%D9%87/%D8%B7%D8%A8%D9%8A%D8%B9%D9%87%20%D9%85%D8%A8%D8%B7%D9%86%204.jpeg",
   ],
   fur: [
-    "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/%D8%B71.jpeg",
+    "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/%D8%B75.jpeg",
     "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/%D8%B72.jpeg",
     "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/%D8%B73.jpeg",
+    "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/%D8%B76.jpeg",
+    "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/%D8%B77.jpeg",
   ],
 };
 

@@ -13,7 +13,7 @@ const CATEGORY_LABEL = {
 
 /* ✅ helper: صورة المنتج مع fallback */
 const getProductImage = (product) =>
-  product?.image || product?.productColors?.[0]?.img || "";
+   product?.productColors?.[0]?.img || product?.image || "";
 
 function LinedOrderCollection({
   selectedOffer,
@@ -53,7 +53,20 @@ function LinedOrderCollection({
 
   const getColors = (productId) => getProduct(productId)?.productColors || [];
 
-  const getSizes = (productId) => getProduct(productId)?.sizes || [];
+  /* ✅ مقاسات اللون المختار (لو موجودة) — وإلا المقاسات العامة */
+  const getSizes = (productId, colorName) => {
+    const product = getProduct(productId);
+    if (!product) return [];
+
+    if (colorName) {
+      const colorObj = product.productColors?.find(
+        (c) => c.color === colorName
+      );
+      if (colorObj?.sizes?.length) return colorObj.sizes;
+    }
+
+    return product.sizes || [];
+  };
 
   const handleChange = (id, field, value) => {
     setPieces((prev) =>
@@ -62,10 +75,16 @@ function LinedOrderCollection({
         if (field === "productId") {
           return { ...pc, productId: value, color: "", category: "" };
         }
+        if (field === "color") {
+          // ✅ لما اللون يتغير، نمسح التصنيف (لأن المقاسات ممكن تختلف)
+          return { ...pc, color: value, category: "" };
+        }
         return { ...pc, [field]: value };
       })
     );
-    if (field === "productId") {
+
+    // ✅ نمسح المقاس المختار عند تغيير المنتج أو اللون
+    if (field === "productId" || field === "color") {
       setSelectedSizes((prev) => {
         const next = { ...prev };
         delete next[id];
@@ -140,8 +159,7 @@ function LinedOrderCollection({
       const colorObj = product?.productColors?.find(
         (c) => c.color === piece.color
       );
-      const image =
-        colorObj?.img || product?.productColors?.[0]?.img || "";
+      const image = colorObj?.img || product?.productColors?.[0]?.img || "";
 
       return {
         id: piece.id,
@@ -237,10 +255,7 @@ function LinedOrderCollection({
           <div className="wlo-empty-icon">🎁</div>
           <h3>اختاري عرضك الأول</h3>
           <p>برجاء اختيار عرض مناسب من الأعلى</p>
-          <button
-            className="wlo-btn wlo-btn-primary"
-            onClick={scrollToOffers}
-          >
+          <button className="wlo-btn wlo-btn-primary" onClick={scrollToOffers}>
             🛍️ اختاري عرضك المناسب
           </button>
         </div>
@@ -258,9 +273,7 @@ function LinedOrderCollection({
         <h2>
           اختاري تفاصيل <em>الكولونات</em>
         </h2>
-        <p className="wlo-sub">
-          حدّدي المنتج واللون والمقاس لكل كولون 🎀
-        </p>
+        <p className="wlo-sub">حدّدي المنتج واللون والمقاس لكل كولون 🎀</p>
 
         <div className="wlo-selected">
           <span>
@@ -289,9 +302,7 @@ function LinedOrderCollection({
             />
           </div>
           {progress === 100 && (
-            <p className="wlo-progress-done">
-              ✨ جميع الكولونات مكتملة!
-            </p>
+            <p className="wlo-progress-done">✨ جميع الكولونات مكتملة!</p>
           )}
         </div>
       </div>
@@ -301,7 +312,8 @@ function LinedOrderCollection({
         {pieces.map((piece) => {
           const product = getProduct(piece.productId);
           const colors = getColors(piece.productId);
-          const sizes = getSizes(piece.productId);
+          // ✅ بنمرر اللون عشان نجيب مقاساته الخاصة
+          const sizes = getSizes(piece.productId, piece.color);
           const isDone = completedPieces[piece.id];
 
           return (
@@ -317,21 +329,17 @@ function LinedOrderCollection({
                   <p className="wlo-num-label">الكولون</p>
                   <p className="wlo-num-value">#{piece.id}</p>
                 </div>
-                {product && (
-                  <span className="wlo-tag">{product.name}</span>
-                )}
+                {product && <span className="wlo-tag">{product.name}</span>}
               </div>
 
-              {/* Product — ✅ مع صورة + fallback */}
+              {/* Product */}
               <div className="wlo-field">
                 <label className="wlo-label">🧵 الكولون</label>
                 <Dropdown
                   open={openDropdown === `p-${piece.id}`}
                   onToggle={() =>
                     setOpenDropdown(
-                      openDropdown === `p-${piece.id}`
-                        ? null
-                        : `p-${piece.id}`
+                      openDropdown === `p-${piece.id}` ? null : `p-${piece.id}`
                     )
                   }
                   placeholder="اختاري الكولون"
@@ -363,9 +371,7 @@ function LinedOrderCollection({
                   open={openDropdown === `c-${piece.id}`}
                   onToggle={() =>
                     setOpenDropdown(
-                      openDropdown === `c-${piece.id}`
-                        ? null
-                        : `c-${piece.id}`
+                      openDropdown === `c-${piece.id}` ? null : `c-${piece.id}`
                     )
                   }
                   placeholder="اختاري اللون"
@@ -373,9 +379,7 @@ function LinedOrderCollection({
                     piece.color
                       ? {
                           label: piece.color,
-                          img: colors.find(
-                            (c) => c.color === piece.color
-                          )?.img,
+                          img: colors.find((c) => c.color === piece.color)?.img,
                         }
                       : null
                   }
@@ -399,19 +403,20 @@ function LinedOrderCollection({
                   open={openDropdown === `s-${piece.id}`}
                   onToggle={() =>
                     setOpenDropdown(
-                      openDropdown === `s-${piece.id}`
-                        ? null
-                        : `s-${piece.id}`
+                      openDropdown === `s-${piece.id}` ? null : `s-${piece.id}`
                     )
                   }
-                  placeholder="اختاري المقاس"
+                  placeholder={
+                    piece.color && sizes.length === 0
+                      ? "لا توجد مقاسات لهذا اللون"
+                      : "اختاري المقاس"
+                  }
                   value={
                     selectedSizes[piece.id]
                       ? {
                           label: `${selectedSizes[piece.id]} - ${
                             sizes.find(
-                              (s) =>
-                                s.size === selectedSizes[piece.id]
+                              (s) => s.size === selectedSizes[piece.id]
                             )?.age || ""
                           }`,
                         }
@@ -420,8 +425,7 @@ function LinedOrderCollection({
                   options={sizes.map((s) => ({
                     value: s.size,
                     label: `${s.size} — ${s.age}`,
-                    badge:
-                      CATEGORY_LABEL[s.category] || s.category,
+                    badge: CATEGORY_LABEL[s.category] || s.category,
                     category: s.category,
                   }))}
                   onSelect={(opt) =>
@@ -526,9 +530,7 @@ function Dropdown({
       >
         <span className="wlo-dd-arrow">{open ? "▲" : "▼"}</span>
         <span className="wlo-dd-value">
-          {showThumb && value && (
-            <Thumb src={value.img} alt={value.label} />
-          )}
+          {showThumb && value && <Thumb src={value.img} alt={value.label} />}
           <span className={value ? "" : "wlo-dd-placeholder"}>
             {value?.label || placeholder}
           </span>
@@ -548,28 +550,18 @@ function Dropdown({
                   type="button"
                   role="option"
                   aria-selected={selected}
-                  className={`wlo-dd-item ${
-                    selected ? "selected" : ""
-                  }`}
+                  className={`wlo-dd-item ${selected ? "selected" : ""}`}
                   onClick={() => onSelect(opt)}
                   onKeyDown={(e) => handleKeyDown(e, opt)}
                 >
                   <span className="wlo-dd-item-left">
-                    {showThumb && (
-                      <Thumb src={opt.img} alt={opt.label} />
-                    )}
-                    <span className="wlo-dd-item-label">
-                      {opt.label}
-                    </span>
+                    {showThumb && <Thumb src={opt.img} alt={opt.label} />}
+                    <span className="wlo-dd-item-label">{opt.label}</span>
                     {opt.badge && (
-                      <span className="wlo-dd-badge">
-                        {opt.badge}
-                      </span>
+                      <span className="wlo-dd-badge">{opt.badge}</span>
                     )}
                   </span>
-                  {selected && (
-                    <span className="wlo-dd-check">✓</span>
-                  )}
+                  {selected && <span className="wlo-dd-check">✓</span>}
                 </button>
               );
             })

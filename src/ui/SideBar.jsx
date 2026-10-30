@@ -153,9 +153,15 @@ const NAV_TREE = [
       },
       {
         key: "winter.lined",
-        to: "/winter/WinerLined",
+        to: "/winter/Lined",
         label: { ar: "كولونات شتوية مبطنة", en: "Winter Lined" },
         badge: { ar: "الأكثر طلباً", en: "Most Wanted" },
+      },
+      {
+        key: "winter.fur",
+        to: "/winter/fur",
+        label: { ar: " كولونات شتوية مبطنة فرو", en: "Winter fur" },
+        badge: { ar: "جديد", en: "Most Wanted" },
       },
     ],
   },

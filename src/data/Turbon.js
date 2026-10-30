@@ -113,7 +113,7 @@ export const BandanaTurbonData = [
       "لافندر ورده",
     ],
     image:
-      "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572664/photo_6_2026-09-13_16-19-41.jpg",
+      "https://res.cloudinary.com/cj2kp1ke/image/upload/v1792603130/WhatsApp_Image_2026-10-17_at_2.17.46_AM_1.jpg",
     sizes: [{ size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" }],
   },
   {
@@ -137,6 +137,10 @@ export const BandanaTurbonData = [
         color: "بينك فيونكه",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/photo_17_2026-06-21_01-43-51.jpg",
       },
+      {
+        color: "بيج فيونكه",
+        img: "https://images.baby-style-store.com/%D8%AA%D8%B1%D8%A8%D9%88%D9%86%D8%A7%D8%AA/%D9%81%D9%8A%D9%88%D9%86%D9%83%D9%87%20%D8%A8%D9%8A%D8%AC.jpeg",
+      },
       // {
       //   color: "كافيه فيونكه",
       //   img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/WhatsApp_Image_2025-12-17_at_12.25.23_AM.jpg",
@@ -151,6 +155,7 @@ export const BandanaTurbonData = [
       "أحمر فيونكه",
       "بينك فيونكه",
       // "كافيه فيونكه",
+      " بيج فيونكه" ,
       "أوف وايت فيونكه"
     ],
     image:
@@ -245,6 +250,9 @@ export const BandanaTurbonData = [
       {
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720346/WhatsApp_Image_2026-09-16_at_1.19.08_PM_2.jpg",
       },
+      {
+        img: "https://images.baby-style-store.com/%D8%AA%D8%B1%D8%A8%D9%88%D9%86%D8%A7%D8%AA/%D8%B7%20%D9%81%D9%8A%D9%88%D9%86%D9%83%D9%87%20%D8%A8%D9%8A%D8%AC%20%D9%87%D8%A7%D9%81%20%D8%A7%D8%B3%D9%88%D8%AF.jpeg",
+      },
       // {
       //   img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720348/WhatsApp_Image_2026-09-16_at_1.22.47_PM.jpg",
       // },
@@ -268,6 +276,7 @@ export const BandanaTurbonData = [
       " فيونكه أحمر",
       " فيونكه أسود",
       " فيونكه بينك",
+      " فيونكه بيج + هاف اسود",
       // " فيونكه كافية + هاف اسود",
       // "تربون ورده بينك + هاف بينك",
       " ورده أصفر",
