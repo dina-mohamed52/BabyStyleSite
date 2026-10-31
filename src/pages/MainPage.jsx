@@ -63,6 +63,17 @@ function Reveal({ children, delay = 0, className = "" }) {
   );
 }
 
+/* ---------- helper: Cloudinary optimization ---------- */
+// بيضيف تحويلات Cloudinary لو الرابط من cloudinary ومفيهوش تحويلات أصلاً
+function optimizeImage(url, width = 500, height = 625) {
+  if (!url || !url.includes("res.cloudinary.com")) return url;
+  if (url.includes("/upload/w_") || url.includes("/upload/c_")) return url;
+  return url.replace(
+    "/upload/",
+    `/upload/w_${width},h_${height},c_fill,q_auto,f_auto/`,
+  );
+}
+
 /* ---------- content ---------- */
 const SEASONS = {
   summer: {
@@ -129,7 +140,6 @@ const SEASONS = {
     softLight: "#EFF6FF",
     tagline: "دفء وأناقة بأجواء دافئة وإطلالة ناعمة",
     categories: [
-
       {
         id: 4,
         name: "كولونات رسومات شتوية",
@@ -151,24 +161,26 @@ const SEASONS = {
         badge: "جودة عالية",
       },
       {
-    id: 6,
-    name: 'ليجينز',
-     nameEn: "Leggings",
-    subtitle: 'مرن ومريح زي الحرير',
-    description: 'قصة مريحة بتخلي بنوتتك تلعب وتجري من غير ما تحس بأي ضيق',
-    count: '٢٤',
-    countLabel: 'منتج',
-    note: 'الأكثر مبيعاً',
-    warmth: 3,
-    tint: '#EDE4FF',
-    accent: '#9B7BE8',
-    accentLight: '#F5EEFF',
-    emoji: '🎀',
-     items: "14+ منتج",
+        id: 6,
+        name: "ليجينز",
+        nameEn: "Leggings",
+        subtitle: "مرن ومريح زي الحرير",
+        description:
+          "قصة مريحة بتخلي بنوتتك تلعب وتجري من غير ما تحس بأي ضيق",
+        count: "٢٤",
+        countLabel: "منتج",
+        note: "الأكثر مبيعاً",
+        warmth: 3,
+        tint: "#EDE4FF",
+        accent: "#9B7BE8",
+        accentLight: "#F5EEFF",
+        emoji: "🎀",
+        items: "14+ منتج",
         badge: "مستوي جديد من الراحة",
-    image: 'https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/photo_1_2026-09-03_01-04-55.jpg',
-    path: '/clothes/legging',
-  },
+        image:
+          "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/photo_1_2026-09-03_01-04-55.jpg",
+        path: "/clothes/legging",
+      },
     ],
   },
 };
@@ -235,22 +247,22 @@ export default function MainPage() {
 
         .mp-toggle-thumb { transition: transform .35s cubic-bezier(.65,0,.35,1); }
 
-        /* FIX: Image container to prevent cropping + content-visibility */
+        /* ✅ FIX: بطاقة صورة بدون content-visibility / contain-intrinsic-size */
         .mp-card-img-wrapper {
           border-radius: 26px 26px 26px 64px;
           position: relative;
           aspect-ratio: 4 / 5;
           overflow: hidden;
-          content-visibility: auto;
-          contain-intrinsic-size: 300px 375px;
+          background: var(--paper-deep);
         }
         .mp-card-img-wrapper img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           object-position: center;
+          display: block;
         }
-        
+
         .mp-card { transition: transform .45s ease, box-shadow .45s ease; }
         .mp-card:hover { transform: translateY(-6px); }
 
@@ -328,6 +340,8 @@ export default function MainPage() {
             width: 14px;
             height: 14px;
           }
+          /* ✅ خفف الأنيميشن على الموبايل */
+          .mp-drift, .mp-tag { animation: none !important; }
         }
 
         /* Small mobile: keep 2 columns but smaller */
@@ -373,6 +387,7 @@ export default function MainPage() {
           pointerEvents: "none",
           transform: toast ? "translate(-50%, 0)" : "translate(-50%, -12px)",
         }}
+        aria-hidden={!toast}
       >
         <div className="bg-[var(--ink)] text-white text-sm px-5 py-2.5 rounded-full shadow-xl">
           {toast}
@@ -537,15 +552,16 @@ export default function MainPage() {
                   {/* Image container with proper sizing */}
                   <div className="mp-card-img-wrapper">
                     <img
-                      src={cat.image}
+                      src={optimizeImage(cat.image, 500, 625)}
                       alt={cat.name}
-                      loading={i === 0 ? "eager" : "lazy"}
-                      fetchpriority={i === 0 ? "high" : "auto"}
+                      width={500}
+                      height={625}
+                      loading={i < 2 ? "eager" : "lazy"}
                       decoding="async"
                       onError={(e) => {
                         e.currentTarget.onerror = null;
                         e.currentTarget.src =
-                          "https://via.placeholder.com/400x300/FCE7F3/EC4899?text=صورة+غير+متاحة";
+                          "https://via.placeholder.com/400x500/FCE7F3/EC4899?text=صورة+غير+متاحة";
                       }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -660,20 +676,21 @@ export default function MainPage() {
           }}
         />
         <div className="absolute inset-0">
+          {/* ✅ استبدلنا blur(100px) بـ radial-gradient أخف على الـ GPU */}
           <div
             className="absolute top-0 right-0 w-96 h-96 rounded-full"
             style={{
-              background: "var(--summer-light)",
-              filter: "blur(100px)",
-              opacity: 0.3,
+              background:
+                "radial-gradient(circle, var(--summer-light) 0%, transparent 70%)",
+              opacity: 0.6,
             }}
           />
           <div
             className="absolute bottom-0 left-0 w-96 h-96 rounded-full"
             style={{
-              background: "var(--winter-light)",
-              filter: "blur(100px)",
-              opacity: 0.3,
+              background:
+                "radial-gradient(circle, var(--winter-light) 0%, transparent 70%)",
+              opacity: 0.6,
             }}
           />
         </div>

@@ -1,12 +1,26 @@
-import { useState, useEffect, useRef } from "react";
+import {
+  memo,
+  lazy,
+  Suspense,
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
 import { useParams } from "react-router-dom";
 import { winterLined } from "../data/WinterLined";
 import OfferesSec from "../features/WinterLined/OfferesSec";
-import SizesSec from "../features/WinterLined/SizesSec";
 import LinedOrderCollection from "../features/WinterLined/LinedOrderCollection";
-import RealLife from "../features/WinterLined/RealLife";
 import { CATEGORY_IMAGES } from "../features/WinterLined/CategoryHeroSecImages";
 
+/* ⚡ أقسام تحت الشاشة → تتحمل بعد الأساسي */
+const SizesSec = lazy(() => import("../features/WinterLined/SizesSec"));
+const RealLife = lazy(() => import("../features/WinterLined/RealLife"));
+
+/* ─────────────────────────────────────────────
+   ثوابت
+   ───────────────────────────────────────────── */
 const COLOR_HEX = {
   أبيض: "#ffffff",
   أسود: "#2b2b2b",
@@ -24,18 +38,6 @@ const CATEGORY_LABEL = {
 
 const DEFAULT_IMAGES = CATEGORY_IMAGES.lined;
 
-/* ✅ تحسين رابط الصورة */
-const optimizeImage = (url, width = 600) => {
-  if (!url) return "";
-  if (url.includes("cloudinary.com")) {
-    return url.replace("/upload/", `/upload/w_${width},q_auto,f_auto/`);
-  }
-  if (url.includes("images.baby-style-store.com")) {
-    return `${url}${url.includes("?") ? "&" : "?"}w=${width}&q=80&auto=format`;
-  }
-  return url;
-};
-
 const CATEGORY_CONTENT = {
   lined: {
     heroTitle: "كولون مبطن",
@@ -47,30 +49,28 @@ const CATEGORY_CONTENT = {
       { icon: "🦋", title: "حرية الحركة", text: "مرن يسمح لها تلعب براحتها", rotate: "3deg", color: "#DFF7EA" },
     ],
   },
-fur: {
-  heroTitle: "كولونات شتوية لبنوتك",
-  heroSubtitle: "اختاري موديلك المفضل 🎀",
-  features: [
-    {
-      icon: "❄️",
-      title: "كولون سادة مبطن فرو",
-      text: "دفء خالص من غير أي زيادة — فرو ناعم جوّه، شكل بسيط وأنيق برّه، مثالي لكل يوم شتوي",
-      rotate: "-3deg",
-      color: "#E5F1FF",
-    },
-    {
-      icon: "🎀",
-      title: "كولون فيونكة مبطن فرو",
-      text: "لمسة أنثوية ساحرة — فيونكة كيوت على كولون دافي، يخلي بنوتك أميرة الشتا بجد 👑",
-      rotate: "2deg",
-      color: "#FFE7F1",
-    },
-     { icon: "🌈", title: "ألوان كيوت", text: "درجات حلوة تختاري اللي يعجبك", rotate: "-2deg", color: "#F0E7FF" },
+  fur: {
+    heroTitle: "كولونات شتوية لبنوتك",
+    heroSubtitle: "اختاري موديلك المفضل 🎀",
+    features: [
+      {
+        icon: "❄️",
+        title: "كولون سادة مبطن فرو",
+        text: "دفء خالص من غير أي زيادة — فرو ناعم جوّه، شكل بسيط وأنيق برّه، مثالي لكل يوم شتوي",
+        rotate: "-3deg",
+        color: "#E5F1FF",
+      },
+      {
+        icon: "🎀",
+        title: "كولون فيونكة مبطن فوطة",
+        text: "لمسة أنثوية ساحرة — فيونكة كيوت على كولون دافي، يخلي بنوتك أميرة الشتا بجد 👑",
+        rotate: "2deg",
+        color: "#FFE7F1",
+      },
+      { icon: "🌈", title: "ألوان كيوت", text: "درجات حلوة تختاري اللي يعجبك", rotate: "-2deg", color: "#F0E7FF" },
       { icon: "🦋", title: "حرية الحركة", text: "مرن يسمح لها تلعب براحتها", rotate: "3deg", color: "#DFF7EA" },
-   
-  ],
-
-},
+    ],
+  },
 };
 
 const FAQS = [
@@ -82,68 +82,6 @@ const FAQS = [
   { q: "هل يوجد استرجاع أو استبدال؟", a: "خلال 14 يوم من الاستلام، بشرط المنتج ما اتلبسش 🔄" },
   { q: "متى يوصل وهل الشحن لكل المحافظات؟", a: "لكل المحافظات 🚚 والتوصيل من 3 لـ 5 أيام عمل" },
 ];
-
-function useReveal() {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => e.isIntersecting && setVisible(true),
-      { threshold: 0.12 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return [ref, visible];
-}
-
-function Reveal({ children, delay = 0, className = "", as: Tag = "div", ...rest }) {
-  const [ref, visible] = useReveal();
-  return (
-    <Tag
-      ref={ref}
-      className={`reveal ${visible ? "in" : ""} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-      {...rest}
-    >
-      {children}
-    </Tag>
-  );
-}
-
-const Cloud = ({ className = "", style }) => (
-  <svg className={className} style={style} viewBox="0 0 120 60" fill="none">
-    <path d="M15 45 Q5 45 5 33 Q5 22 18 22 Q20 8 35 8 Q50 8 55 20 Q60 12 72 12 Q88 12 90 26 Q102 26 105 38 Q107 45 100 45 Z"
-      stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-  </svg>
-);
-const Star = ({ className = "", style }) => (
-  <svg className={className} style={style} viewBox="0 0 40 40" fill="none">
-    <path d="M20 4 L24 16 L36 20 L24 24 L20 36 L16 24 L4 20 L16 16 Z"
-      stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
-  </svg>
-);
-const Heart = ({ className = "", style }) => (
-  <svg className={className} style={style} viewBox="0 0 40 40" fill="none">
-    <path d="M20 34 C20 34 6 25 6 15 C6 9 11 5 16 5 C19 5 20 7 20 9 C20 7 21 5 24 5 C29 5 34 9 34 15 C34 25 20 34 20 34 Z"
-      stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
-  </svg>
-);
-const Squiggle = ({ className = "", style }) => (
-  <svg className={className} style={style} viewBox="0 0 200 20" fill="none" preserveAspectRatio="none">
-    <path d="M2 12 Q20 2 40 12 T80 12 T120 12 T160 12 T198 12"
-      stroke="currentColor" strokeWidth="3" strokeLinecap="round" fill="none"/>
-  </svg>
-);
-
-const IMG_POLAROID = [
-  "w-full h-auto",
-  "max-h-[60vh] object-contain object-center",
-  "sm:max-h-none sm:aspect-[4/5] sm:object-cover sm:object-top",
-  "rounded-sm block",
-].join(" ");
 
 const IMG_DUO = [
   "w-full h-auto",
@@ -159,137 +97,426 @@ const IMG_LIFESTYLE = [
 ].join(" ");
 
 /* ─────────────────────────────────────────────
-   🎨 بلوك ألوان (لما يكون منتج واحد بس)
+   ⚡ نظام الصور
    ───────────────────────────────────────────── */
-function ProductColorsBlock({ product }) {
-  const [colorIdx, setColorIdx] = useState(0);
-  const [loadedImages, setLoadedImages] = useState({});
-  const current = product.productColors[colorIdx];
 
+/*
+  1) مقاسات ثابتة بس (بدل 150/500/600/700... كل واحد منهم بيتولّد من الصفر على Cloudinary
+     وأول تحميل بيبقى بطيء). كل ما قلّ عدد المقاسات، زاد الكاش وسرعت الصفحة.
+*/
+const STEPS = [200, 400, 600, 800, 1200, 1600];
+const snap = (w) => STEPS.find((s) => s >= w) || STEPS[STEPS.length - 1];
+
+/* إعدادات srcSet + sizes لكل مكان: الموبايل بيحمّل صورة أصغر بكتير */
+const IMG = {
+  hero: { widths: [400, 600, 800, 1200], sizes: "(max-width:900px) 80vw, 490px", width: 800 },
+  stage: { widths: [400, 600, 800, 1200], sizes: "(max-width:900px) 88vw, 490px", width: 800 },
+  card: { widths: [200, 400, 600], sizes: "(max-width:700px) 46vw, 280px", width: 400 },
+  feature: { widths: [200, 400, 600], sizes: "(max-width:900px) 42vw, 230px", width: 400 },
+  material: { widths: [200, 400, 600], sizes: "(max-width:900px) 42vw, 230px", width: 400 },
+  lifestyle: { widths: [600, 800, 1200, 1600], sizes: "100vw", width: 1200 },
+};
+
+const urlCache = new Map();
+
+const optimizeImage = (url, width = 600) => {
+  if (!url) return "";
+  const w = snap(width);
+  const key = `${url}|${w}`;
+  const cached = urlCache.get(key);
+  if (cached !== undefined) return cached;
+
+  let out = url;
+  if (url.includes("cloudinary.com")) {
+    // c_limit: ميكبّرش الصورة | eco للصور الصغيرة
+    const q = w <= 400 ? "q_auto:eco" : "q_auto";
+    out = url.replace("/upload/", `/upload/c_limit,w_${w},${q},f_auto/`);
+  } else if (url.includes("images.baby-style-store.com")) {
+    out = `${url}${url.includes("?") ? "&" : "?"}w=${w}&q=80&auto=format`;
+  }
+  urlCache.set(key, out);
+  return out;
+};
+
+/* نسخة صغيرة جدًا ومبلّرة (≈1KB) بتظهر فورًا لحد ما الصورة الحقيقية توصل */
+const getLqip = (url) =>
+  url && url.includes("cloudinary.com")
+    ? url.replace("/upload/", "/upload/c_limit,w_32,q_20,e_blur:200,f_auto/")
+    : "";
+
+const responsive = (url, cfg = {}) => {
+  const { widths, sizes, width = 600 } = cfg;
+  const src = optimizeImage(url, width);
+  if (!widths || !src || src === url) return { src: src || undefined };
+  return {
+    src,
+    srcSet: widths.map((w) => `${optimizeImage(url, w)} ${snap(w)}w`).join(", "),
+    sizes,
+  };
+};
+
+/* تحميل مسبق بنفس srcSet/sizes → المتصفح بيختار نفس الملف اللي هيتعرض */
+const preloaded = new Set();
+const preloadImage = (url, cfg) => {
+  if (!url || typeof Image === "undefined") return;
+  const p = responsive(url, cfg);
+  const key = `${p.src}|${p.sizes || ""}`;
+  if (!p.src || preloaded.has(key)) return;
+  preloaded.add(key);
+  const img = new Image();
+  img.decoding = "async";
+  if (p.srcSet) {
+    img.sizes = p.sizes;
+    img.srcset = p.srcSet;
+  }
+  img.src = p.src;
+};
+
+/* مانحمّلش مسبقًا لو النت ضعيف أو موفّر بيانات */
+const canPrefetch = () => {
+  const c = typeof navigator !== "undefined" ? navigator.connection : null;
+  if (!c) return true;
+  if (c.saveData) return false;
+  return !/2g|3g/.test(c.effectiveType || "");
+};
+
+const whenIdle = (fn) =>
+  typeof requestIdleCallback === "function"
+    ? requestIdleCallback(fn, { timeout: 3000 })
+    : setTimeout(fn, 1500);
+
+/* ─────────────────────────────────────────────
+   ⚡ الخطوط + preconnect لسيرفرات الصور (تتضاف مرة واحدة)
+   الأفضل تحطيهم في index.html
+   ───────────────────────────────────────────── */
+const FONTS_HREF =
+  "https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@400;600;700;900&family=Caveat:wght@500;700&display=swap";
+
+const PRECONNECT = [
+  "https://res.cloudinary.com",
+  "https://images.baby-style-store.com",
+  "https://fonts.googleapis.com",
+  "https://fonts.gstatic.com",
+];
+
+function useWinterHead() {
+  useEffect(() => {
+    if (document.getElementById("wl-fonts")) return;
+    const add = (attrs) => {
+      const l = document.createElement("link");
+      Object.entries(attrs).forEach(([k, v]) => l.setAttribute(k, v));
+      document.head.appendChild(l);
+    };
+    PRECONNECT.forEach((href) =>
+      add({
+        rel: "preconnect",
+        href,
+        ...(href.includes("gstatic") ? { crossorigin: "" } : {}),
+      }),
+    );
+    add({ id: "wl-fonts", rel: "stylesheet", href: FONTS_HREF });
+  }, []);
+}
+
+/* ─────────────────────────────────────────────
+   ⚡ Reveal: Observer واحد مشترك
+   ───────────────────────────────────────────── */
+let sharedIO = null;
+const revealCallbacks = new WeakMap();
+
+function getIO() {
+  if (typeof IntersectionObserver === "undefined") return null;
+  if (!sharedIO) {
+    sharedIO = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          revealCallbacks.get(e.target)?.();
+          revealCallbacks.delete(e.target);
+          sharedIO.unobserve(e.target);
+        }
+      },
+      { threshold: 0.12 },
+    );
+  }
+  return sharedIO;
+}
+
+function useReveal(immediate) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    if (immediate) {
+      const id = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(id);
+    }
+
+    const io = getIO();
+    if (!io) {
+      setVisible(true);
+      return;
+    }
+    revealCallbacks.set(el, () => setVisible(true));
+    io.observe(el);
+    return () => {
+      revealCallbacks.delete(el);
+      io.unobserve(el);
+    };
+  }, [immediate]);
+
+  return [ref, visible];
+}
+
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
+  as: Tag = "div",
+  immediate = false,
+  style,
+  ...rest
+}) {
+  const [ref, visible] = useReveal(immediate);
   return (
-    <div className="wl-product-block">
-      <h3
-        className="wl-panel-title"
-        style={{
-          textAlign: "center",
-          marginTop: 40,
-          marginBottom: 24,
-          fontSize: 26,
-        }}
-      >
-        {product.name}
-      </h3>
-
-      <div className="wl-colors-grid">
-        <Reveal className="wl-color-stage" delay={100}>
-          <div className="wl-polaroid">
-            <span className="wl-tape wl-tape-tl" />
-            <span className="wl-tape wl-tape-tr" />
-
-            <div
-              style={{
-                position: "relative",
-                width: "100%",
-                aspectRatio: "4/5",
-              }}
-            >
-              {!loadedImages[current.img] && <div className="wl-shimmer" />}
-              <img
-                key={current.color}
-                src={optimizeImage(current.img, 700)}
-                alt={current.color}
-                loading="eager"
-                decoding="async"
-                onLoad={() =>
-                  setLoadedImages((prev) => ({
-                    ...prev,
-                    [current.img]: true,
-                  }))
-                }
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  opacity: loadedImages[current.img] ? 1 : 0,
-                  transition: "opacity 0.4s ease",
-                  display: "block",
-                }}
-              />
-            </div>
-
-            <span className="wl-polaroid-caption">{current.color}</span>
-          </div>
-        </Reveal>
-
-        <Reveal className="wl-colors-panel" delay={150}>
-          <h3 className="wl-panel-title">الدرجات المتوفرة</h3>
-          <div className="wl-swatches">
-            {product.productColors.map((c, i) => (
-              <button
-                key={c.color}
-                className={`wl-swatch ${i === colorIdx ? "active" : ""}`}
-                onClick={() => setColorIdx(i)}
-              >
-                <span
-                  className="wl-dot"
-                  style={{ background: COLOR_HEX[c.color] || "#ddd" }}
-                />
-                <span className="wl-swatch-name">{c.color}</span>
-              </button>
-            ))}
-          </div>
-
-          <div className="wl-thumbs">
-            {product.productColors.map((c, i) => (
-              <button
-                key={c.color}
-                className={`wl-thumb ${i === colorIdx ? "active" : ""}`}
-                onClick={() => setColorIdx(i)}
-              >
-                <img
-                  src={optimizeImage(c.img, 150)}
-                  alt={c.color}
-                  loading="lazy"
-                  decoding="async"
-                  width={88}
-                  height={88}
-                />
-                <span>{c.color}</span>
-              </button>
-            ))}
-          </div>
-        </Reveal>
-      </div>
-    </div>
+    <Tag
+      ref={ref}
+      className={`reveal ${visible ? "in" : ""} ${className}`}
+      style={{ transitionDelay: `${delay}ms`, ...style }}
+      {...rest}
+    >
+      {children}
+    </Tag>
   );
 }
 
 /* ─────────────────────────────────────────────
-   🎴 كارت منتج (لما يكون أكتر من منتج)
+   الزخارف
    ───────────────────────────────────────────── */
-function ProductColorCard({ product, onOpen }) {
+const Cloud = memo(function Cloud({ className = "" }) {
+  return (
+    <svg className={className} viewBox="0 0 120 60" fill="none" aria-hidden="true">
+      <path d="M15 45 Q5 45 5 33 Q5 22 18 22 Q20 8 35 8 Q50 8 55 20 Q60 12 72 12 Q88 12 90 26 Q102 26 105 38 Q107 45 100 45 Z"
+        stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    </svg>
+  );
+});
+const Star = memo(function Star({ className = "" }) {
+  return (
+    <svg className={className} viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <path d="M20 4 L24 16 L36 20 L24 24 L20 36 L16 24 L4 20 L16 16 Z"
+        stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
+    </svg>
+  );
+});
+const Heart = memo(function Heart({ className = "" }) {
+  return (
+    <svg className={className} viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <path d="M20 34 C20 34 6 25 6 15 C6 9 11 5 16 5 C19 5 20 7 20 9 C20 7 21 5 24 5 C29 5 34 9 34 15 C34 25 20 34 20 34 Z"
+        stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
+    </svg>
+  );
+});
+const Squiggle = memo(function Squiggle({ className = "" }) {
+  return (
+    <svg className={className} viewBox="0 0 200 20" fill="none" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M2 12 Q20 2 40 12 T80 12 T120 12 T160 12 T198 12"
+        stroke="currentColor" strokeWidth="3" strokeLinecap="round" fill="none"/>
+    </svg>
+  );
+});
+
+/* ─────────────────────────────────────────────
+   🖼️ صورة ذكية: srcSet + blur placeholder + fade
+   ───────────────────────────────────────────── */
+const FadeImg = memo(function FadeImg({
+  url,
+  alt,
+  cfg,
+  eager = false,
+  priority = false,
+  ratio = "4/5",
+  position = "center",
+  onLoaded,
+}) {
   const [loaded, setLoaded] = useState(false);
-  const firstColor = product.productColors?.[0];
-  const displayImg = firstColor?.img;
+  const imgRef = useRef(null);
+
+  const handleLoaded = useCallback(() => {
+    setLoaded(true);
+    onLoaded?.();
+  }, [onLoaded]);
+
+  // لو الصورة جاية من الكاش وخلصت قبل ما React يربط onLoad
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete && img.naturalWidth > 0) handleLoaded();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const p = responsive(url, cfg);
+  const lqip = getLqip(url);
+
+  return (
+    <div
+      className="wl-imgbox"
+      style={{
+        aspectRatio: ratio,
+        ...(lqip && !loaded
+          ? {
+              backgroundImage: `url(${lqip})`,
+              backgroundSize: "cover",
+              backgroundPosition: position,
+            }
+          : null),
+      }}
+    >
+      {!loaded && !lqip && <div className="wl-shimmer" />}
+      <img
+        ref={imgRef}
+        src={p.src}
+        srcSet={p.srcSet}
+        sizes={p.sizes}
+        alt={alt}
+        loading={eager ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : undefined}
+        decoding="async"
+        onLoad={handleLoaded}
+        onError={() => setLoaded(true)}
+        style={{ objectPosition: position, opacity: loaded ? 1 : 0 }}
+      />
+    </div>
+  );
+});
+
+/* ─────────────────────────────────────────────
+   🎨 اختيار اللون (العرض العادي + الـ Modal)
+   ───────────────────────────────────────────── */
+const ColorPicker = memo(function ColorPicker({
+  product,
+  title = false,
+  animate = false,
+  eager = false,
+}) {
+  const [colorIdx, setColorIdx] = useState(0);
+  const current = product.productColors[colorIdx];
+  const warmedRef = useRef(false);
+
+  /* بعد ما أول صورة تخلص: حمّلي باقي الألوان في الخلفية → التبديل بين الألوان يبقى فوري */
+  const warmOthers = useCallback(() => {
+    if (warmedRef.current || !canPrefetch()) return;
+    warmedRef.current = true;
+    whenIdle(() => {
+      product.productColors.forEach((c) => preloadImage(c.img, IMG.stage));
+    });
+  }, [product]);
+
+  const stage = (
+    <div className="wl-polaroid">
+      <span className="wl-tape wl-tape-tl" />
+      <span className="wl-tape wl-tape-tr" />
+      <FadeImg
+        key={current.img}
+        url={current.img}
+        alt={current.color}
+        cfg={IMG.stage}
+        eager={eager}
+        onLoaded={warmOthers}
+      />
+      <span className="wl-polaroid-caption">{current.color}</span>
+    </div>
+  );
+
+  const panel = (
+    <>
+      <h3 className="wl-panel-title">الدرجات المتوفرة</h3>
+      <div className="wl-swatches">
+        {product.productColors.map((c, i) => (
+          <button
+            type="button"
+            key={c.color}
+            className={`wl-swatch ${i === colorIdx ? "active" : ""}`}
+            aria-pressed={i === colorIdx}
+            onClick={() => setColorIdx(i)}
+            onPointerEnter={() => preloadImage(c.img, IMG.stage)}
+          >
+            <span
+              className="wl-dot"
+              style={{ background: COLOR_HEX[c.color] || "#ddd" }}
+            />
+            <span className="wl-swatch-name">{c.color}</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="wl-thumbs">
+        {product.productColors.map((c, i) => (
+          <button
+            type="button"
+            key={c.color}
+            className={`wl-thumb ${i === colorIdx ? "active" : ""}`}
+            aria-pressed={i === colorIdx}
+            onClick={() => setColorIdx(i)}
+            onPointerEnter={() => preloadImage(c.img, IMG.stage)}
+          >
+            <img
+              src={optimizeImage(c.img, 200)}
+              alt={c.color}
+              loading="lazy"
+              decoding="async"
+              width={88}
+              height={88}
+            />
+            <span>{c.color}</span>
+          </button>
+        ))}
+      </div>
+    </>
+  );
+
+  return (
+    <div className="wl-product-block">
+      {title && (
+        <h3 className="wl-panel-title wl-product-title">{product.name}</h3>
+      )}
+      <div className="wl-colors-grid">
+        {animate ? (
+          <Reveal className="wl-color-stage" delay={100}>{stage}</Reveal>
+        ) : (
+          <div className="wl-color-stage">{stage}</div>
+        )}
+        {animate ? (
+          <Reveal className="wl-colors-panel" delay={150}>{panel}</Reveal>
+        ) : (
+          <div className="wl-colors-panel">{panel}</div>
+        )}
+      </div>
+    </div>
+  );
+});
+
+/* ─────────────────────────────────────────────
+   🎴 كارت منتج
+   ───────────────────────────────────────────── */
+const ProductColorCard = memo(function ProductColorCard({ product, onOpen }) {
+  const firstImg = product.productColors?.[0]?.img;
 
   return (
     <button
       type="button"
       className="wl-pcard"
       onClick={() => onOpen(product)}
+      onPointerEnter={() => preloadImage(firstImg, IMG.stage)}
     >
       <div className="wl-pcard-img">
-        {!loaded && <div className="wl-shimmer" />}
-        <img
-          src={optimizeImage(displayImg, 400)}
+        <FadeImg
+          url={firstImg}
           alt={product.name}
-          loading="lazy"
-          decoding="async"
-          onLoad={() => setLoaded(true)}
-          style={{
-            opacity: loaded ? 1 : 0,
-            transition: "opacity 0.4s ease",
-          }}
+          cfg={IMG.card}
+          position="top"
         />
         <span className="wl-pcard-badge">
           {product.productColors.length} ألوان
@@ -303,327 +530,206 @@ function ProductColorCard({ product, onOpen }) {
       </div>
     </button>
   );
-}
+});
 
 /* ─────────────────────────────────────────────
    🪟 Modal اختيار اللون
    ───────────────────────────────────────────── */
-function ProductColorModal({ product, onClose }) {
-  const [colorIdx, setColorIdx] = useState(0);
-  const [loaded, setLoaded] = useState(false);
-  const current = product.productColors[colorIdx];
-
+const ProductColorModal = memo(function ProductColorModal({ product, onClose }) {
   useEffect(() => {
-    setColorIdx(0);
-    setLoaded(false);
-  }, [product]);
-
-  useEffect(() => {
+    const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
     };
-  }, []);
-
-  if (!product) return null;
+  }, [onClose]);
 
   return (
-    <div className="wl-modal" onClick={onClose}>
+    <div
+      className="wl-modal"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={product.name}
+    >
       <div className="wl-modal-inner" onClick={(e) => e.stopPropagation()}>
-        <button className="wl-modal-close" onClick={onClose} aria-label="إغلاق">
+        <button
+          type="button"
+          className="wl-modal-close"
+          onClick={onClose}
+          aria-label="إغلاق"
+        >
           ✕
         </button>
-
         <h3 className="wl-modal-title">{product.name}</h3>
-
-        <div className="wl-colors-grid">
-          <div className="wl-color-stage">
-            <div className="wl-polaroid">
-              <span className="wl-tape wl-tape-tl" />
-              <span className="wl-tape wl-tape-tr" />
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  aspectRatio: "4/5",
-                }}
-              >
-                {!loaded && <div className="wl-shimmer" />}
-                <img
-                  key={current.color}
-                  src={optimizeImage(current.img, 700)}
-                  alt={current.color}
-                  loading="eager"
-                  decoding="async"
-                  onLoad={() => setLoaded(true)}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    opacity: loaded ? 1 : 0,
-                    transition: "opacity 0.4s ease",
-                    display: "block",
-                  }}
-                />
-              </div>
-              <span className="wl-polaroid-caption">{current.color}</span>
-            </div>
-          </div>
-
-          <div className="wl-colors-panel">
-            <h3 className="wl-panel-title">الدرجات المتوفرة</h3>
-            <div className="wl-swatches">
-              {product.productColors.map((c, i) => (
-                <button
-                  key={c.color}
-                  className={`wl-swatch ${i === colorIdx ? "active" : ""}`}
-                  onClick={() => {
-                    setColorIdx(i);
-                    setLoaded(false);
-                  }}
-                >
-                  <span
-                    className="wl-dot"
-                    style={{ background: COLOR_HEX[c.color] || "#ddd" }}
-                  />
-                  <span className="wl-swatch-name">{c.color}</span>
-                </button>
-              ))}
-            </div>
-
-            <div className="wl-thumbs">
-              {product.productColors.map((c, i) => (
-                <button
-                  key={c.color}
-                  className={`wl-thumb ${i === colorIdx ? "active" : ""}`}
-                  onClick={() => {
-                    setColorIdx(i);
-                    setLoaded(false);
-                  }}
-                >
-                  <img
-                    src={optimizeImage(c.img, 150)}
-                    alt={c.color}
-                    loading="lazy"
-                    decoding="async"
-                    width={88}
-                    height={88}
-                  />
-                  <span>{c.color}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+        <ColorPicker key={product.id} product={product} eager />
       </div>
     </div>
   );
-}
+});
 
 /* ─────────────────────────────────────────────
-   الكومبوننت الرئيسي
+   الأقسام
    ───────────────────────────────────────────── */
-function WinterLined() {
-  const { category = "lined" } = useParams();
+const Hero = memo(function Hero({ heroImg, name, content, categoryLabel, onColors }) {
+  return (
+    <section className="wl-hero">
+      <div className="wl-paper-bg" />
+      <Cloud className="wl-doodle wl-doodle-c1" />
+      <Cloud className="wl-doodle wl-doodle-c2" />
+      <Star className="wl-doodle wl-doodle-s1" />
+      <Star className="wl-doodle wl-doodle-s2" />
+      <Star className="wl-doodle wl-doodle-s3" />
+      <Heart className="wl-doodle wl-doodle-h1" />
+      <Heart className="wl-doodle wl-doodle-h2" />
 
-  const products = winterLined.filter((p) => p.category === category);
-  const safeProducts = products.length ? products : [winterLined[0]];
-  const heroProduct = safeProducts[0];
+      <div className="wl-hero-inner">
+        <Reveal className="wl-hero-img" delay={150} immediate>
+          <div className="wl-polaroid wl-polaroid-hero">
+            <span className="wl-tape wl-tape-tl" />
+            <span className="wl-tape wl-tape-br" />
+            <FadeImg
+              url={heroImg}
+              alt={name}
+              cfg={IMG.hero}
+              eager
+              priority
+              position="top"
+            />
+            <span className="wl-polaroid-caption">— دفء الشتا ❄️ —</span>
+          </div>
+          <svg className="wl-arrow" viewBox="0 0 120 100" fill="none" aria-hidden="true">
+            <path d="M8 12 Q40 40 90 78" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="6 6" fill="none"/>
+            <path d="M78 68 L90 78 L80 88" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+          </svg>
+          <span className="wl-hand-note">جديد ✨</span>
+        </Reveal>
 
-  const IMAGES = CATEGORY_IMAGES[category] || DEFAULT_IMAGES;
-  const content = CATEGORY_CONTENT[category] || CATEGORY_CONTENT.lined;
-  const categoryLabel = CATEGORY_LABEL[category] || "🧸";
+        <Reveal className="wl-hero-text" immediate>
+          <div className="wl-tape-label">
+            <span className="wl-tape" />
+            <span className="wl-label">
+              {categoryLabel} Winter Collection 2026 ✨
+            </span>
+          </div>
+          <h1>
+            حكاية <span className="wl-hl">دفء</span>
+            <br />
+            {content.heroTitle}
+          </h1>
+          <p className="wl-lead">
+            {content.heroSubtitle}
+            <br />
+            مريح، كيوت، ومناسب للبيت والخروج 🎀
+          </p>
+          <div className="wl-cta">
+            <button type="button" className="wl-btn" onClick={onColors}>
+              <span>🎨</span> اختاري اللون
+            </button>
+            <button type="button" className="wl-btn-ghost" onClick={onColors}>
+              <span>📏</span> المقاسات
+            </button>
+          </div>
+          <div className="wl-trust">
+            <span>🚚 شحن لكل المحافظات</span>
+            <span>•</span>
+            <span>👀 معاينة قبل الدفع</span>
+            <span>•</span>
+            <span>✅ ضمان 30 يوم</span>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+});
 
-  const [openFaq, setOpenFaq] = useState(0);
-  const [selectedOffer, setSelectedOffer] = useState(null);
-  const [heroLoaded, setHeroLoaded] = useState(false);
-  const [openProduct, setOpenProduct] = useState(null);
-  const orderCollectionRef = useRef(null);
+const Marquee = memo(function Marquee() {
+  return (
+    <div className="wl-strip">
+      <div className="wl-strip-track">
+        {[0, 1].map((k) => (
+          <div className="wl-strip-group" key={k}>
+            <span>🧸 دفء</span><i>✦</i>
+            <span>🌈 نعومة</span><i>✦</i>
+            <span>🎀 كيوت</span><i>✦</i>
+            <span>💗 مريح</span><i>✦</i>
+            <span>✨ أنيق</span><i>✦</i>
+            <span>🧦 كولون كامل</span><i>✦</i>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+});
 
-  useEffect(() => {
-    setSelectedOffer(null);
-    setOpenFaq(0);
-    setOpenProduct(null);
-  }, [category]);
-
-  const scrollToOrderCollection = () =>
-    orderCollectionRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-
-  const scrollToOffers = () => {
-    document
-      .getElementById("offersSection")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  const goToColors = () =>
-    document.getElementById("wl-colors")?.scrollIntoView({ behavior: "smooth" });
+const FeaturesSection = memo(function FeaturesSection({ content, img }) {
+  /* IMAGES.features ممكن تبقى صورة واحدة أو Array */
+  const featureImgs = useMemo(() => [].concat(img || []), [img]);
 
   return (
-    <div className="wl" dir="rtl">
-      <style>{css}</style>
+    <section className="wl-section wl-section-features">
+      <Reveal className="wl-head">
+        <span className="wl-pill">💭 ليه هي مميزة؟</span>
+        <h2>
+          حاجات صغيرة <em>تخليها أحلى</em>
+        </h2>
+        <Squiggle className="wl-squiggle" />
+      </Reveal>
 
-      {/* HERO */}
-      <section className="wl-hero">
-        <div className="wl-paper-bg" />
-        <Cloud className="wl-doodle wl-doodle-c1" />
-        <Cloud className="wl-doodle wl-doodle-c2" />
-        <Star className="wl-doodle wl-doodle-s1" />
-        <Star className="wl-doodle wl-doodle-s2" />
-        <Star className="wl-doodle wl-doodle-s3" />
-        <Heart className="wl-doodle wl-doodle-h1" />
-        <Heart className="wl-doodle wl-doodle-h2" />
-
-        <div className="wl-hero-inner">
-          <Reveal className="wl-hero-img" delay={150}>
-            <div className="wl-polaroid wl-polaroid-hero">
-              <span className="wl-tape wl-tape-tl" />
-              <span className="wl-tape wl-tape-br" />
-
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  aspectRatio: "4/5",
-                }}
-              >
-                {!heroLoaded && <div className="wl-shimmer" />}
-                <img
-                  src={optimizeImage(IMAGES.hero, 800)}
-                  alt={heroProduct.name}
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                  onLoad={() => setHeroLoaded(true)}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "top",
-                    opacity: heroLoaded ? 1 : 0,
-                    transition: "opacity 0.4s ease",
-                    display: "block",
-                  }}
+      <div className="wl-features-layout">
+        <Reveal className="wl-features-img" delay={80}>
+          <div className="wl-polaroid wl-polaroid-tilt-left wl-polaroid-collage">
+            <span className="wl-tape wl-tape-tl" />
+            {featureImgs.map((src, i) => (
+              <div className="wl-collage-item" key={`${src}-${i}`}>
+                <FadeImg
+                  url={src}
+                  alt="تفاصيل المنتج"
+                  cfg={IMG.feature}
+                  ratio={featureImgs.length > 1 ? "3/4" : "4/5"}
+                  position="top"
                 />
               </div>
+            ))}
+            <span className="wl-polaroid-caption">تفاصيل كيوت 🎀</span>
+          </div>
+        </Reveal>
 
-              <span className="wl-polaroid-caption">— دفء الشتا ❄️ —</span>
-            </div>
-            <svg className="wl-arrow" viewBox="0 0 120 100" fill="none">
-              <path d="M8 12 Q40 40 90 78" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="6 6" fill="none"/>
-              <path d="M78 68 L90 78 L80 88" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-            </svg>
-            <span className="wl-hand-note">جديد ✨</span>
-          </Reveal>
-
-          <Reveal className="wl-hero-text">
-            <div className="wl-tape-label">
-              <span className="wl-tape" />
-              <span className="wl-label">
-                {categoryLabel} Winter Collection 2026 ✨
-              </span>
-            </div>
-            <h1>
-              حكاية <span className="wl-hl">دفء</span>
-              <br />
-              {content.heroTitle}
-            </h1>
-            <p className="wl-lead">
-              {content.heroSubtitle}
-              <br />
-              مريح، كيوت، ومناسب للبيت والخروج 🎀
-            </p>
-            <div className="wl-cta">
-              <button className="wl-btn" onClick={goToColors}>
-                <span>🎨</span> اختاري اللون
-              </button>
-              <button className="wl-btn-ghost" onClick={goToColors}>
-                <span>📏</span> المقاسات
-              </button>
-            </div>
-            <div className="wl-trust">
-              <span>🚚 شحن لكل المحافظات</span>
-              <span>•</span>
-              <span>👀 معاينة قبل الدفع</span>
-              <span>•</span>
-              <span>✅ ضمان 30 يوم</span>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Marquee */}
-      <div className="wl-strip">
-        <div className="wl-strip-track">
-          {Array.from({ length: 2 }).map((_, k) => (
-            <div className="wl-strip-group" key={k}>
-              <span>🧸 دفء</span><i>✦</i>
-              <span>🌈 نعومة</span><i>✦</i>
-              <span>🎀 كيوت</span><i>✦</i>
-              <span>💗 مريح</span><i>✦</i>
-              <span>✨ أنيق</span><i>✦</i>
-              <span>🧦 كولون كامل</span><i>✦</i>
-            </div>
+        <div className="wl-features">
+          {content.features.map((f, i) => (
+            <Reveal
+              key={f.title}
+              className="wl-feature"
+              delay={i * 80}
+              style={{ background: f.color, "--rot": f.rotate }}
+            >
+              <span className="wl-tape wl-tape-sm" />
+              <div className="wl-feature-icon">{f.icon}</div>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </Reveal>
           ))}
         </div>
       </div>
+    </section>
+  );
+});
 
-      {/* FEATURES */}
-      <section className="wl-section wl-section-features">
-        <Reveal className="wl-head">
-          <span className="wl-pill">💭 ليه هي مميزة؟</span>
-          <h2>حاجات صغيرة <em>تخليها أحلى</em></h2>
-          <Squiggle className="wl-squiggle" />
-        </Reveal>
+const ColorsSection = memo(function ColorsSection({ products }) {
+  const [openProduct, setOpenProduct] = useState(null);
+  const closeModal = useCallback(() => setOpenProduct(null), []);
+  const single = products.length === 1;
 
-        <div className="wl-features-layout">
-          <Reveal className="wl-features-img" delay={80}>
-            <div className="wl-polaroid wl-polaroid-tilt-left">
-              <span className="wl-tape wl-tape-tl" />
-              <img
-                src={optimizeImage(IMAGES.features, 600)}
-                alt="تفاصيل المنتج"
-                loading="lazy"
-                decoding="async"
-                className={IMG_POLAROID}
-              />
-              <span className="wl-polaroid-caption">تفاصيل كيوت 🎀</span>
-            </div>
-          </Reveal>
-
-          <div className="wl-features">
-            {content.features.map((f, i) => (
-              <Reveal
-                key={f.title}
-                className="wl-feature"
-                delay={i * 80}
-                style={{ background: f.color, "--rot": f.rotate }}
-              >
-                <span className="wl-tape wl-tape-sm" />
-                <div className="wl-feature-icon">{f.icon}</div>
-                <h3>{f.title}</h3>
-                <p>{f.text}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* OFFERS */}
-      <OfferesSec
-        setSelectedOffer={setSelectedOffer}
-        scrollToOrderCollection={scrollToOrderCollection}
-        category={category}
-      />
-     
-       {/* COLORS */}
+  return (
+    <>
       <section className="wl-section wl-section-colors" id="wl-colors">
         <Reveal className="wl-head">
           <span className="wl-pill">🎨 الألوان</span>
           <h2>
-            {safeProducts.length === 1 ? (
+            {single ? (
               <>
                 اختاري اللون اللي <em>يحبه قلبها</em>
               </>
@@ -636,28 +742,240 @@ function WinterLined() {
           <Squiggle className="wl-squiggle" />
         </Reveal>
 
-        {/* ✅ منتج واحد → العرض القديم */}
-        {safeProducts.length === 1 ? (
-          <ProductColorsBlock product={safeProducts[0]} />
+        {single ? (
+          <ColorPicker product={products[0]} title animate />
         ) : (
-          /* ✅ أكتر من منتج → كروت + Modal */
           <div className="wl-products-grid">
-            {safeProducts.map((product, i) => (
+            {products.map((product, i) => (
               <Reveal key={product.id} delay={i * 80}>
-                <ProductColorCard
-                  product={product}
-                  onOpen={(p) => setOpenProduct(p)}
-                />
+                <ProductColorCard product={product} onOpen={setOpenProduct} />
               </Reveal>
             ))}
           </div>
         )}
       </section>
 
+      {openProduct && (
+        <ProductColorModal product={openProduct} onClose={closeModal} />
+      )}
+    </>
+  );
+});
 
-{/* الاوردر كولكشن */}
+const MaterialSection = memo(function MaterialSection({ category, img1, img2 }) {
+  const isFur = category === "fur";
+  const m1 = responsive(img1, IMG.material);
+  const m2 = responsive(img2, IMG.material);
 
- <div ref={orderCollectionRef}>
+  return (
+    <section className="wl-section wl-section-material">
+      <div className="wl-split">
+        <Reveal className="wl-split-imgs">
+          <div className="wl-imgs-duo">
+            <div className="wl-polaroid wl-polaroid-tilt">
+              <span className="wl-tape wl-tape-tl" />
+              <img
+                src={m1.src}
+                srcSet={m1.srcSet}
+                sizes={m1.sizes}
+                alt="خامة الكولون 1"
+                loading="lazy"
+                decoding="async"
+                className={IMG_DUO}
+              />
+            </div>
+            <div className="wl-polaroid wl-polaroid-tilt-r">
+              <span className="wl-tape wl-tape-tr" />
+              <img
+                src={m2.src}
+                srcSet={m2.srcSet}
+                sizes={m2.sizes}
+                alt="خامة الكولون 2"
+                loading="lazy"
+                decoding="async"
+                className={IMG_DUO}
+              />
+            </div>
+          </div>
+        </Reveal>
+        <Reveal className="wl-split-text" delay={120}>
+          <span className="wl-pill">🧵 الخامة</span>
+          <h2>
+            نعومة <span className="wl-underline">تحسّيها</span> من أول لمسة
+          </h2>
+          <p>
+            {isFur
+              ? "فرو ناعم من الداخل + خامة خارجية أنيقة. دفء مضاعف للشتا القارس."
+              : "بطانة فوطه دافئة من الداخل + تصميم خطوط أنيقة. توازن مثالي بين الدفء والشكل."}
+          </p>
+          <ul className="wl-list">
+            <li>
+              <span className="wl-bullet">1</span>
+              {isFur ? "فرو ناعم من الداخل ☁️" : "بطانة فوطه ناعمة 🧸"}
+            </li>
+            <li>
+              <span className="wl-bullet">2</span> قطن مرن يسمح بالحركة 🌈
+            </li>
+            <li>
+              <span className="wl-bullet">3</span> خياطة دقيقة وتشطيب نظيف ✨
+            </li>
+          </ul>
+        </Reveal>
+      </div>
+    </section>
+  );
+});
+
+const LifestyleSection = memo(function LifestyleSection({ img }) {
+  const p = responsive(img, IMG.lifestyle);
+  return (
+    <section className="wl-lifestyle">
+      <img
+        src={p.src}
+        srcSet={p.srcSet}
+        sizes={p.sizes}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className={IMG_LIFESTYLE}
+      />
+      <div className="wl-lifestyle-overlay">
+        <span className="wl-pill wl-pill-light">✨ لحظاتها اليومية</span>
+        <h2>تتحرك براحتها... وإنتِ مطمنة 🤍</h2>
+        <p>للعب، للمشي، وللجلوس في البيت — تصميم مرن يخليها حرة وتدفي.</p>
+      </div>
+    </section>
+  );
+});
+
+const FaqSection = memo(function FaqSection() {
+  const [openFaq, setOpenFaq] = useState(0);
+
+  return (
+    <section className="wl-section wl-section-faq">
+      <Reveal className="wl-head">
+        <span className="wl-pill">❓ أسئلة شائعة</span>
+        <h2>
+          كل اللي محتاجة <em>تعرفيه</em>
+        </h2>
+        <Squiggle className="wl-squiggle" />
+      </Reveal>
+      <div className="wl-faqs">
+        {FAQS.map((f, i) => (
+          <Reveal
+            className={`wl-faq ${openFaq === i ? "open" : ""}`}
+            key={f.q}
+            delay={i * 50}
+          >
+            <button
+              type="button"
+              aria-expanded={openFaq === i}
+              onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
+            >
+              <span className="wl-faq-q">
+                <span className="wl-faq-num">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {f.q}
+              </span>
+              <span className="wl-faq-icon">{openFaq === i ? "−" : "+"}</span>
+            </button>
+            <div className="wl-faq-body">
+              <p>{f.a}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+});
+
+const FinalSection = memo(function FinalSection({ onOrder }) {
+  return (
+    <section className="wl-final">
+      <Cloud className="wl-doodle wl-doodle-c3" />
+      <Star className="wl-doodle wl-doodle-s4" />
+      <Heart className="wl-doodle wl-doodle-h3" />
+      <Reveal className="wl-final-inner">
+        <span className="wl-pill wl-pill-light">🎀 الشتا أحلى معاها</span>
+        <h2>خلّي بنوتك دافية الشتا ده 🌸</h2>
+        <button type="button" className="wl-btn wl-btn-light" onClick={onOrder}>
+          🛍️ اطلبي دلوقتي
+        </button>
+      </Reveal>
+    </section>
+  );
+});
+
+/* ─────────────────────────────────────────────
+   الكومبوننت الرئيسي
+   ───────────────────────────────────────────── */
+function WinterLined() {
+  const { category = "lined" } = useParams();
+  useWinterHead();
+
+  const products = useMemo(() => {
+    const list = winterLined.filter((p) => p.category === category);
+    return list.length ? list : [winterLined[0]];
+  }, [category]);
+  const heroProduct = products[0];
+
+  const IMAGES = CATEGORY_IMAGES[category] || DEFAULT_IMAGES;
+  const content = CATEGORY_CONTENT[category] || CATEGORY_CONTENT.lined;
+  const categoryLabel = CATEGORY_LABEL[category] || "🧸";
+
+  const [selectedOffer, setSelectedOffer] = useState(null);
+  const orderCollectionRef = useRef(null);
+
+  useEffect(() => {
+    setSelectedOffer(null);
+  }, [category]);
+
+  const scrollToOrderCollection = useCallback(() => {
+    orderCollectionRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, []);
+
+  const scrollToOffers = useCallback(() => {
+    document
+      .getElementById("offersSection")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
+  const goToColors = useCallback(() => {
+    document
+      .getElementById("wl-colors")
+      ?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
+  return (
+    <div className="wl" dir="rtl">
+      {styleEl}
+
+      <Hero
+        heroImg={IMAGES.hero}
+        name={heroProduct.name}
+        content={content}
+        categoryLabel={categoryLabel}
+        onColors={goToColors}
+      />
+
+      <Marquee />
+
+      <FeaturesSection content={content} img={IMAGES.features} />
+
+      <OfferesSec
+        setSelectedOffer={setSelectedOffer}
+        scrollToOrderCollection={scrollToOrderCollection}
+        category={category}
+      />
+
+      {/* key=category → الـ state بيتصفّر لوحده عند تغيير القسم */}
+      <ColorsSection key={category} products={products} />
+
+      <div ref={orderCollectionRef}>
         <LinedOrderCollection
           selectedOffer={selectedOffer}
           scrollToOffers={scrollToOffers}
@@ -665,135 +983,22 @@ function WinterLined() {
         />
       </div>
 
-      {/* MATERIAL */}
-      <section className="wl-section wl-section-material">
-        <div className="wl-split">
-          <Reveal className="wl-split-imgs">
-            <div className="wl-imgs-duo">
-              <div className="wl-polaroid wl-polaroid-tilt">
-                <span className="wl-tape wl-tape-tl" />
-                <img
-                  src={optimizeImage(IMAGES.material1, 500)}
-                  alt="خامة الكولون 1"
-                  loading="lazy"
-                  decoding="async"
-                  className={IMG_DUO}
-                />
-              </div>
-              <div className="wl-polaroid wl-polaroid-tilt-r">
-                <span className="wl-tape wl-tape-tr" />
-                <img
-                  src={optimizeImage(IMAGES.material2, 500)}
-                  alt="خامة الكولون 2"
-                  loading="lazy"
-                  decoding="async"
-                  className={IMG_DUO}
-                />
-              </div>
-            </div>
-          </Reveal>
-          <Reveal className="wl-split-text" delay={120}>
-            <span className="wl-pill">🧵 الخامة</span>
-            <h2>
-              نعومة <span className="wl-underline">تحسّيها</span> من أول لمسة
-            </h2>
-            <p>
-              {category === "fur"
-                ? "فرو ناعم من الداخل + خامة خارجية أنيقة. دفء مضاعف للشتا القارس."
-                : "بطانة فوطه دافئة من الداخل + تصميم خطوط أنيقة. توازن مثالي بين الدفء والشكل."}
-            </p>
-            <ul className="wl-list">
-              <li>
-                <span className="wl-bullet">1</span>
-                {category === "fur" ? "فرو ناعم من الداخل ☁️" : "بطانة فوطه ناعمة 🧸"}
-              </li>
-              <li>
-                <span className="wl-bullet">2</span> قطن مرن يسمح بالحركة 🌈
-              </li>
-              <li>
-                <span className="wl-bullet">3</span> خياطة دقيقة وتشطيب نظيف ✨
-              </li>
-            </ul>
-          </Reveal>
-        </div>
-      </section>
+      <MaterialSection
+        category={category}
+        img1={IMAGES.material1}
+        img2={IMAGES.material2}
+      />
 
-     
+      <LifestyleSection img={IMAGES.lifestyle} />
 
-      {/* LIFESTYLE */}
-      <section className="wl-lifestyle">
-        <img
-          src={optimizeImage(IMAGES.lifestyle, 1200)}
-          alt=""
-          loading="lazy"
-          decoding="async"
-          className={IMG_LIFESTYLE}
-        />
-        <div className="wl-lifestyle-overlay">
-          <span className="wl-pill wl-pill-light">✨ لحظاتها اليومية</span>
-          <h2>تتحرك براحتها... وإنتِ مطمنة 🤍</h2>
-          <p>للعب، للمشي، وللجلوس في البيت — تصميم مرن يخليها حرة وتدفي.</p>
-        </div>
-      </section>
+      <Suspense fallback={<div style={{ minHeight: 400 }} />}>
+        <SizesSec product={heroProduct} category={category} />
+        <RealLife category={category} />
+      </Suspense>
 
-      {/* SIZES */}
-      <SizesSec product={heroProduct} category={category} />
-      <RealLife category={category} />
+      <FaqSection key={`faq-${category}`} />
 
-      {/* FAQ */}
-      <section className="wl-section wl-section-faq">
-        <Reveal className="wl-head">
-          <span className="wl-pill">❓ أسئلة شائعة</span>
-          <h2>
-            كل اللي محتاجة <em>تعرفيه</em>
-          </h2>
-          <Squiggle className="wl-squiggle" />
-        </Reveal>
-        <div className="wl-faqs">
-          {FAQS.map((f, i) => (
-            <Reveal
-              className={`wl-faq ${openFaq === i ? "open" : ""}`}
-              key={f.q}
-              delay={i * 50}
-            >
-              <button onClick={() => setOpenFaq(openFaq === i ? -1 : i)}>
-                <span className="wl-faq-q">
-                  <span className="wl-faq-num">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  {f.q}
-                </span>
-                <span className="wl-faq-icon">{openFaq === i ? "−" : "+"}</span>
-              </button>
-              <div className="wl-faq-body">
-                <p>{f.a}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* FINAL */}
-      <section className="wl-final">
-        <Cloud className="wl-doodle wl-doodle-c3" />
-        <Star className="wl-doodle wl-doodle-s4" />
-        <Heart className="wl-doodle wl-doodle-h3" />
-        <Reveal className="wl-final-inner">
-          <span className="wl-pill wl-pill-light">🎀 الشتا أحلى معاها</span>
-          <h2>خلّي بنوتك دافية الشتا ده 🌸</h2>
-          <button className="wl-btn wl-btn-light" onClick={goToColors}>
-            🛍️ اطلبي دلوقتي
-          </button>
-        </Reveal>
-      </section>
-
-      {/* ✅ Modal */}
-      {openProduct && (
-        <ProductColorModal
-          product={openProduct}
-          onClose={() => setOpenProduct(null)}
-        />
-      )}
+      <FinalSection onOrder={goToColors} />
     </div>
   );
 }
@@ -802,8 +1007,6 @@ function WinterLined() {
    CSS
    ───────────────────────────────────────────── */
 const css = `
-@import url('https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@400;600;700;900&family=Caveat:wght@500;700&display=swap');
-
 .wl{
   --paper:#FFFDF7;
   --paper-2:#FFF7EE;
@@ -853,17 +1056,19 @@ const css = `
 @keyframes wlFloat{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-16px) rotate(4deg)}}
 @keyframes wlSpin{to{transform:rotate(360deg)}}
 
-@keyframes wlShimmer {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+/* ⚡ Shimmer خفيف (opacity بس) */
+@keyframes wlPulse{0%,100%{opacity:.55}50%{opacity:1}}
 .wl-shimmer{
   position:absolute;inset:0;
-  background:linear-gradient(135deg,#f0e6e0 0%,#e8d8d0 50%,#f0e6e0 100%);
-  background-size:200% 200%;
-  animation:wlShimmer 1.5s ease-in-out infinite;
-  border-radius:4px;
+  background:#efe4de;
+  animation:wlPulse 1.4s ease-in-out infinite;
+}
+
+/* صندوق الصورة: المساحة محجوزة + blur placeholder */
+.wl-imgbox{position:relative;width:100%;overflow:hidden;background:#f7f2ee;border-radius:4px}
+.wl-imgbox img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:opacity .4s ease;
 }
 
 .wl-pill,.wl-pill-light{
@@ -871,7 +1076,7 @@ const css = `
   font-weight:700;font-size:13px;padding:8px 20px;border-radius:999px;margin-bottom:18px;
 }
 .wl-pill{background:var(--paper);color:var(--ink);border:2px solid var(--ink)}
-.wl-pill-light{background:rgba(255,255,255,.25);color:#fff;border:2px solid rgba(255,255,255,.5);backdrop-filter:blur(6px)}
+.wl-pill-light{background:rgba(255,255,255,.25);color:#fff;border:2px solid rgba(255,255,255,.5)}
 
 .wl-tape{
   position:absolute;
@@ -881,6 +1086,7 @@ const css = `
   box-shadow:0 2px 6px rgba(0,0,0,.08);
   transform:rotate(-3deg);
   pointer-events:none;
+  z-index:2;
 }
 .wl-tape-sm{width:60px;height:20px;top:-8px;left:50%;transform:translateX(-50%) rotate(-4deg)}
 .wl-tape-tl{top:-12px;left:14px;transform:rotate(-6deg)}
@@ -935,7 +1141,7 @@ const css = `
   background:var(--ink);color:#fff;
   border:3px solid var(--ink);
   box-shadow:6px 6px 0 var(--pink);
-  transition:.2s ease;
+  transition:transform .2s ease, box-shadow .2s ease;
 }
 .wl-btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--pink-d)}
 .wl-btn-ghost{
@@ -945,7 +1151,7 @@ const css = `
   background:#fff;color:var(--ink);
   border:3px solid var(--ink);
   box-shadow:6px 6px 0 var(--lav);
-  transition:.2s ease;
+  transition:transform .2s ease, box-shadow .2s ease;
 }
 .wl-btn-ghost:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--lav)}
 .wl-btn-light{
@@ -1002,11 +1208,15 @@ const css = `
   font-family:'Caveat','Cairo',cursive;
   font-size:22px;font-weight:700;color:var(--ink-soft);
 }
-.wl-polaroid-hero{transform:rotate(-3deg);transition:.4s ease}
+.wl-polaroid-hero{transform:rotate(-3deg);transition:transform .4s ease}
 .wl-polaroid-hero:hover{transform:rotate(0) translateY(-6px)}
 .wl-polaroid-tilt{transform:rotate(2.5deg)}
 .wl-polaroid-tilt-r{transform:rotate(-2.5deg)}
 .wl-polaroid-tilt-left{transform:rotate(-2deg)}
+
+/* كولاج صور الـ features (صورة أو اتنين جنب بعض) */
+.wl-polaroid-collage{display:flex;flex-direction:row;gap:10px;align-items:stretch}
+.wl-collage-item{flex:1;min-width:0;border-radius:4px;overflow:hidden}
 
 .wl-hero-img{position:relative}
 .wl-arrow{
@@ -1022,7 +1232,7 @@ const css = `
 }
 
 .wl-strip{background:var(--ink);color:var(--paper);padding:18px 0;overflow:hidden;position:relative;z-index:2}
-.wl-strip-track{display:flex;gap:56px;white-space:nowrap;animation:wlSlide 16s linear infinite}
+.wl-strip-track{display:flex;gap:56px;white-space:nowrap;animation:wlSlide 16s linear infinite;will-change:transform}
 .wl-strip-group{display:flex;gap:56px;align-items:center}
 .wl-strip-group span{font-family:'Lalezar',sans-serif;font-size:20px;letter-spacing:.02em}
 .wl-strip-group i{color:var(--pink);font-style:normal;font-size:14px}
@@ -1045,9 +1255,8 @@ const css = `
   text-align:center;
   border:2.5px solid var(--ink);
   box-shadow:6px 6px 0 rgba(58,46,69,.15);
-  transition:.3s cubic-bezier(.2,.7,.2,1);
+  transition:transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s cubic-bezier(.2,.7,.2,1);
   transform: rotate(var(--rot, 0deg));
-  will-change: transform;
 }
 .wl-feature:hover{
   transform: rotate(0deg) translate(-3px,-3px);
@@ -1099,7 +1308,7 @@ const css = `
   font-weight:800;font-size:14px;
 }
 
-/* ✅ كروت المنتجات */
+/* كروت المنتجات */
 .wl-products-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -1115,23 +1324,15 @@ const css = `
   padding:0;
   overflow:hidden;
   text-align:right;
-  transition:.3s cubic-bezier(.2,.7,.2,1);
+  transition:transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s cubic-bezier(.2,.7,.2,1);
   cursor:pointer;
 }
 .wl-pcard:hover{
   transform:translate(-3px,-3px);
   box-shadow:10px 10px 0 var(--pink);
 }
-.wl-pcard-img{
-  position:relative;
-  width:100%;
-  aspect-ratio:4/5;
-  overflow:hidden;
-  background:#f7f2ee;
-}
-.wl-pcard-img img{
-  width:100%;height:100%;object-fit:cover;object-position:top;
-}
+.wl-pcard-img{position:relative;width:100%;background:#f7f2ee}
+.wl-pcard-img .wl-imgbox{border-radius:0}
 .wl-pcard-badge{
   position:absolute;
   top:10px;left:10px;
@@ -1141,11 +1342,9 @@ const css = `
   font-weight:800;
   padding:4px 10px;
   border-radius:999px;
-  backdrop-filter:blur(4px);
+  z-index:2;
 }
-.wl-pcard-body{
-  padding:14px 16px 18px;
-}
+.wl-pcard-body{padding:14px 16px 18px}
 .wl-pcard-name{
   font-family:'Lalezar',sans-serif;
   font-size:17px;
@@ -1164,11 +1363,10 @@ const css = `
 .wl-pcard-cta span{transition:transform .3s}
 .wl-pcard:hover .wl-pcard-cta span{transform:translateX(-4px)}
 
-/* ✅ Modal */
+/* Modal */
 .wl-modal{
   position:fixed;inset:0;z-index:200;
-  background:rgba(20,14,25,.85);
-  backdrop-filter:blur(6px);
+  background:rgba(20,14,25,.88);
   display:flex;align-items:center;justify-content:center;
   padding:20px;
   animation:wlFade .25s ease;
@@ -1197,7 +1395,7 @@ const css = `
   font-size:18px;font-weight:900;
   display:grid;place-items:center;
   cursor:pointer;
-  transition:.2s ease;
+  transition:background .2s ease, color .2s ease, border-color .2s ease;
   z-index:5;
 }
 .wl-modal-close:hover{background:var(--pink-d);color:#fff;border-color:var(--pink-d)}
@@ -1223,6 +1421,7 @@ const css = `
   padding-bottom:10px;
   border-bottom:2px dashed var(--line);
 }
+.wl-product-title{text-align:center;margin:40px 0 24px;font-size:26px}
 .wl-swatches{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
 .wl-swatch{
   display:inline-flex;align-items:center;gap:10px;
@@ -1230,7 +1429,7 @@ const css = `
   background:#fff;font-size:13.5px;font-weight:700;
   border:2.5px solid var(--ink);
   box-shadow:3px 3px 0 rgba(58,46,69,.15);
-  transition:.2s ease;
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
 }
 .wl-swatch:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 rgba(58,46,69,.25)}
 .wl-swatch.active{background:var(--ink);color:#fff;transform:translate(-1px,-1px)}
@@ -1242,21 +1441,14 @@ const css = `
   background:#fff;padding:6px;
   border:2.5px solid var(--ink);
   box-shadow:3px 3px 0 rgba(58,46,69,.15);
-  transition:.2s ease;
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
 }
-.wl-thumb img{aspect-ratio:1;object-fit:cover;width:100%}
+.wl-thumb img{aspect-ratio:1;object-fit:cover;width:100%;background:#f7f2ee}
 .wl-thumb span{display:block;font-size:12px;font-weight:700;margin-top:6px;color:var(--ink-soft);text-align:center}
 .wl-thumb:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 rgba(58,46,69,.25)}
 .wl-thumb.active{background:var(--sun)}
 
-/* ✅ فاصل بين بلوكات المنتجات */
-.wl-product-block + .wl-product-block {
-  margin-top: 70px;
-  padding-top: 50px;
-  border-top: 3px dashed var(--line);
-}
-
-.wl-lifestyle{position:relative;min-height:520px;display:grid;place-items:center;overflow:hidden}
+.wl-lifestyle{position:relative;min-height:520px;display:grid;place-items:center;overflow:hidden;background:#e9dde4}
 .wl-lifestyle::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(58,46,69,.35),rgba(240,98,146,.45))}
 .wl-lifestyle-overlay{
   position:relative;z-index:1;text-align:center;color:#fff;
@@ -1279,7 +1471,7 @@ const css = `
   border:2.5px solid var(--ink);
   box-shadow:5px 5px 0 rgba(58,46,69,.15);
   overflow:hidden;
-  transition:.25s ease;
+  transition:box-shadow .25s ease;
 }
 .wl-faq.open{box-shadow:8px 8px 0 var(--pink)}
 .wl-faq button{
@@ -1298,7 +1490,7 @@ const css = `
   border:2.5px solid var(--ink);
   display:grid;place-items:center;
   font-size:20px;font-weight:400;
-  transition:.3s ease;
+  transition:transform .3s ease, background .3s ease, color .3s ease, border-color .3s ease;
 }
 .wl-faq.open .wl-faq-icon{transform:rotate(180deg);background:var(--pink);color:#fff;border-color:var(--pink)}
 .wl-faq-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
@@ -1320,9 +1512,7 @@ const css = `
   margin:0 0 30px;line-height:1.25;color:#fff;
 }
 
-.wl img {content-visibility: auto;}
-.wl-thumb img {background:#f7f2ee;}
-.wl-polaroid img {background:#f7f2ee;}
+.wl-polaroid img{background:#f7f2ee}
 
 @media(max-width:900px){
   .wl-features-layout{grid-template-columns:1fr;gap:36px}
@@ -1341,6 +1531,8 @@ const css = `
 }
 
 @media(max-width:700px){
+  .wl-doodle-c2,.wl-doodle-s2,.wl-doodle-s3,.wl-doodle-h2{display:none}
+
   .wl-features{grid-template-columns:repeat(2,1fr);gap:14px;padding-top:10px}
   .wl-feature{padding:28px 12px 20px;box-shadow:5px 5px 0 rgba(58,46,69,.15)}
   .wl-feature-icon{font-size:32px;width:60px;height:60px;margin-bottom:12px;border-width:2px}
@@ -1373,6 +1565,14 @@ const css = `
   .wl-imgs-duo .wl-polaroid{padding:8px 8px 40px}
   .wl-imgs-duo .wl-polaroid:nth-child(1){margin-top:16px}
 }
+
+@media (prefers-reduced-motion: reduce){
+  .wl *,.wl *::before,.wl *::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
 `;
+
+/* عنصر <style> ثابت: React مبيعيدش تحليل الـ CSS في كل رندر */
+const styleEl = <style>{css}</style>;
 
 export default WinterLined;

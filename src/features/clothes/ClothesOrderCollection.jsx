@@ -10,20 +10,68 @@ import {
   Shirt,
   Layers,
   Lock,
-  TrendingUp,
   Sparkles,
   Tag,
   ShoppingCart,
   X,
   ChevronDown,
-  Zap,
-  Flame,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "../cart/CartContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useCartActions } from "../cart/AddAndBuyTOCart";
+
+// ---------------------------------------------------------------
+// 🚫 Sold out helpers
+//   - اللون كله خلصان:      { color: "أسود", soldOut: true, ... }
+//   - مقاس واحد خلصان:      { size: "S", age: "...", soldOut: true }
+//   - لو كل مقاسات اللون soldOut → اللون يعتبر soldOut تلقائيًا
+//   - لو كل ألوان المنتج soldOut → المنتج يعتبر soldOut تلقائيًا
+// ---------------------------------------------------------------
+const isSizeSoldOut = (size) => !!size?.soldOut;
+
+const isColorSoldOut = (colorData) => {
+  if (!colorData) return false;
+  if (colorData.soldOut) return true;
+  const sizes = colorData.sizes || [];
+  return sizes.length > 0 && sizes.every(isSizeSoldOut);
+};
+
+const isProductSoldOut = (product) => {
+  if (!product) return false;
+  if (product.soldOut) return true;
+  const colors = product.productColors || [];
+  return colors.length > 0 && colors.every(isColorSoldOut);
+};
+
+const getProductById = (id) => Clothes.find((p) => p.id === id);
+
+const getColorData = (productId, colorName) =>
+  getProductById(productId)?.productColors?.find((c) => c.color === colorName);
+
+// Sizes for a specific color (fallback to product default sizes)
+const getSizesForColor = (productId, colorName) => {
+  const product = getProductById(productId);
+  if (!product) return [];
+  const colorData = product.productColors?.find((c) => c.color === colorName);
+  if (colorData && colorData.sizes) return colorData.sizes;
+  return product.sizes || [];
+};
+
+// ---------------------------------------------------------------
+// Sold out badge
+// ---------------------------------------------------------------
+function SoldOutBadge() {
+  return (
+    <span
+      className="shrink-0 text-[10px] font-bold text-red-500 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full"
+      style={{ fontFamily: "'Cairo', sans-serif" }}
+    >
+      نفذ
+    </span>
+  );
+}
 
 // ---------------------------------------------------------------
 // Bottom Sheet ()
@@ -154,43 +202,57 @@ function MobileSelect({
               <button
                 type="button"
                 key={option.value}
+                disabled={option.disabled}
+                aria-disabled={option.disabled}
                 onClick={() => {
+                  if (option.disabled) return;
                   onChange(option.value);
                   setOpen(false);
                 }}
                 className={`
-                  w-full px-4 py-3 text-right transition-all duration-150 active:bg-amber-50
-                  flex items-center justify-between
-                  ${value === option.value ? "bg-amber-50" : "hover:bg-gray-50"}
+                  w-full px-4 py-3 text-right transition-all duration-150
+                  flex items-center justify-between gap-2
+                  ${
+                    option.disabled
+                      ? "cursor-not-allowed bg-gray-50/60"
+                      : `active:bg-amber-50 ${value === option.value ? "bg-amber-50" : "hover:bg-gray-50"}`
+                  }
                 `}
               >
-                {renderOption ? (
-                  renderOption(option)
-                ) : (
-                  <div className="flex items-center gap-3">
-                    {option.color && (
-                      <div
-                        className="w-6 h-6 rounded-full shadow-inner"
-                        style={{
-                          backgroundColor: option.color,
-                          border:
-                            option.color === "#FFFFFF"
-                              ? "1px solid #E5E7EB"
-                              : "none",
-                        }}
-                      />
-                    )}
-                    <span
-                      className="text-sm text-gray-800"
-                      style={{ fontFamily: "'Cairo', sans-serif" }}
-                    >
-                      {option.label}
-                    </span>
-                  </div>
-                )}
-                {value === option.value && (
-                  <CheckCircle className="w-5 h-5 text-amber-500" />
-                )}
+                <div
+                  className={`flex-1 min-w-0 ${option.disabled ? "opacity-50" : ""}`}
+                >
+                  {renderOption ? (
+                    renderOption(option)
+                  ) : (
+                    <div className="flex items-center gap-3">
+                      {option.color && (
+                        <div
+                          className="w-6 h-6 rounded-full shadow-inner"
+                          style={{
+                            backgroundColor: option.color,
+                            border:
+                              option.color === "#FFFFFF"
+                                ? "1px solid #E5E7EB"
+                                : "none",
+                          }}
+                        />
+                      )}
+                      <span
+                        className="text-sm text-gray-800"
+                        style={{ fontFamily: "'Cairo', sans-serif" }}
+                      >
+                        {option.label}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  {option.soldOut && <SoldOutBadge />}
+                  {value === option.value && !option.disabled && (
+                    <CheckCircle className="w-5 h-5 text-amber-500" />
+                  )}
+                </div>
               </button>
             ))
           )}
@@ -299,17 +361,28 @@ function DesktopSelect({
                   <button
                     type="button"
                     key={option.value}
+                    disabled={option.disabled}
+                    aria-disabled={option.disabled}
                     onClick={() => {
+                      if (option.disabled) return;
                       onChange(option.value);
                       setOpen(false);
                     }}
                     className={`
                       w-full px-3 py-2 text-right transition-colors duration-150
                       flex items-center justify-between gap-2
-                      ${isSelected ? "bg-amber-50" : "hover:bg-gray-50"}
+                      ${
+                        option.disabled
+                          ? "cursor-not-allowed bg-gray-50/60"
+                          : isSelected
+                            ? "bg-amber-50"
+                            : "hover:bg-gray-50"
+                      }
                     `}
                   >
-                    <div className="flex-1 min-w-0">
+                    <div
+                      className={`flex-1 min-w-0 ${option.disabled ? "opacity-50" : ""}`}
+                    >
                       {renderOption ? (
                         renderOption(option)
                       ) : (
@@ -321,9 +394,12 @@ function DesktopSelect({
                         </span>
                       )}
                     </div>
-                    {isSelected && (
-                      <CheckCircle className="w-4 h-4 text-amber-500 shrink-0" />
-                    )}
+                    <div className="flex items-center gap-2 shrink-0">
+                      {option.soldOut && <SoldOutBadge />}
+                      {isSelected && !option.disabled && (
+                        <CheckCircle className="w-4 h-4 text-amber-500" />
+                      )}
+                    </div>
                   </button>
                 );
               })
@@ -411,14 +487,13 @@ function ClothesOrderCollection({
   const [activeTab, setActiveTab] = useState("all");
   const [selectedSizes, setSelectedSizes] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState(null);
   const [completedCards, setCompletedCards] = useState({});
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [pendingNavigation, setPendingNavigation] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
-  const { cartItems, addToCart } = useCart();
+  const { addToCart } = useCart();
 
   const navigate = useNavigate();
 
@@ -451,6 +526,7 @@ function ClothesOrderCollection({
 
   const products = useMemo(
     () => getFilteredProducts(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [activeTab, selectedOffer],
   );
 
@@ -459,7 +535,9 @@ function ClothesOrderCollection({
       id: i + 1,
       productId:
         disableProductSelection && defaultProductName
-          ? products.find((p) => p.name === defaultProductName)?.id || null
+          ? products.find(
+              (p) => p.name === defaultProductName && !isProductSoldOut(p),
+            )?.id || null
           : null,
       color: "",
     })),
@@ -472,7 +550,9 @@ function ClothesOrderCollection({
         id: i + 1,
         productId:
           disableProductSelection && defaultProductName
-            ? products.find((p) => p.name === defaultProductName)?.id || null
+            ? products.find(
+                (p) => p.name === defaultProductName && !isProductSoldOut(p),
+              )?.id || null
             : null,
         color: "",
       })),
@@ -488,41 +568,40 @@ function ClothesOrderCollection({
     }
   }, [selectedOffer]);
 
+  // ✅ القطعة مكتملة = منتج + لون + مقاس، ومفيش أي حاجة منهم soldOut
+  const isPieceComplete = (piece) => {
+    const size = selectedSizes[piece.id];
+    if (!piece.productId || !piece.color || !size) return false;
+
+    const product = getProductById(piece.productId);
+    if (isProductSoldOut(product)) return false;
+
+    const colorData = getColorData(piece.productId, piece.color);
+    if (isColorSoldOut(colorData)) return false;
+
+    const sizeObj = getSizesForColor(piece.productId, piece.color).find(
+      (s) => s.size === size,
+    );
+    if (isSizeSoldOut(sizeObj)) return false;
+
+    return true;
+  };
+
   // Check completion for each card
   useEffect(() => {
     const completed = {};
     pieces.forEach((piece) => {
-      completed[piece.id] = !!(
-        piece.productId &&
-        piece.color &&
-        selectedSizes[piece.id]
-      );
+      completed[piece.id] = isPieceComplete(piece);
     });
     setCompletedCards(completed);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pieces, selectedSizes]);
-
-  const getProductById = (id) => Clothes.find((p) => p.id === id);
 
   // Get product colors with their sizes
   const getProductColorsWithSizes = (productId) => {
     const product = getProductById(productId);
     if (!product) return [];
     return product.productColors || [];
-  };
-
-  // Get sizes for a specific color
-  const getSizesForColor = (productId, colorName) => {
-    const product = getProductById(productId);
-    if (!product) return [];
-
-    const colorData = product.productColors?.find((c) => c.color === colorName);
-
-    if (colorData && colorData.sizes) {
-      return colorData.sizes;
-    }
-
-    // Fallback to product default sizes
-    return product.sizes || [];
   };
 
   // Get available colors (for dropdown)
@@ -650,9 +729,7 @@ function ClothesOrderCollection({
     };
   };
 
-  const isFormValid = pieces.every((piece) => {
-    return !!(piece.productId && piece.color && selectedSizes[piece.id]);
-  });
+  const isFormValid = pieces.every(isPieceComplete);
 
   const { handleAddOnly, handleBuyNow } = useCartActions({
     prepareCartItem,
@@ -890,31 +967,50 @@ function ClothesOrderCollection({
 
           const isCompleted = completedCards[piece.id];
 
-          const productOptions = products.map((p) => ({
-            value: p.id,
-            label: p.name,
-            category: p.category,
-          }));
+          // 🚫 المنتجات (soldOut لو كل ألوانه خلصانة)
+          const productOptions = products.map((p) => {
+            const soldOut = isProductSoldOut(p);
+            return {
+              value: p.id,
+              label: p.name,
+              category: p.category,
+              soldOut,
+              disabled: soldOut,
+            };
+          });
 
+          // 🚫 الألوان (soldOut لو اللون نفسه أو كل مقاساته خلصانة)
           const colorOptions = availableColors.map((c) => {
             const colorData = productColorsWithSizes.find(
               (pc) => pc.color === c,
             );
+            const colorSizes = colorData?.sizes || product?.sizes || [];
+            const soldOut = isColorSoldOut(colorData);
             return {
               value: c,
               label: c,
               color: getColorCode(c),
-              sizes: colorData?.sizes || product?.sizes || [],
+              sizes: colorSizes,
+              availableSizesCount: colorSizes.filter((s) => !isSizeSoldOut(s))
+                .length,
               hasColorSizes: !!colorData?.sizes,
+              soldOut,
+              disabled: soldOut,
             };
           });
 
-          const sizeOptions = sizes.map((s) => ({
-            value: s.size,
-            label: `${s.size} - ${s.age}`,
-            size: s.size,
-            age: s.age,
-          }));
+          // 🚫 المقاسات
+          const sizeOptions = sizes.map((s) => {
+            const soldOut = isSizeSoldOut(s);
+            return {
+              value: s.size,
+              label: `${s.size} - ${s.age}`,
+              size: s.size,
+              age: s.age,
+              soldOut,
+              disabled: soldOut,
+            };
+          });
 
           return (
             <motion.div
@@ -1144,9 +1240,9 @@ function ClothesOrderCollection({
                                 style={{ fontFamily: "'Cairo', sans-serif" }}
                               >
                                 {option.label}
-                                {option.hasColorSizes && (
+                                {option.hasColorSizes && !option.soldOut && (
                                   <span className="text-xs text-gray-400 mr-2">
-                                    ({option.sizes.length} مقاسات)
+                                    ({option.availableSizesCount} مقاسات)
                                   </span>
                                 )}
                               </span>
