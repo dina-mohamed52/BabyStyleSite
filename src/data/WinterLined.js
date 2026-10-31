@@ -163,7 +163,7 @@ export const winterLined = [
   },
   {
     id: 'furBowWinerLined',
-    name: "كولون فوطة فيونكة مبطن ",
+    name: "  كولون  فيونكة مبطن  فوطة",
     category: "fur",
     productColors: [
       {
@@ -227,7 +227,7 @@ export const winterLined = [
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بينك", "بيج"],
-    image: "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/WhatsApp%20Image%202026-10-21%20at%204.15.36%20PM%20(1).jpeg",
+    image: "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/WhatsApp%20Image%202026-10-21%20at%204.15.37%20PM%20(1).jpeg",
     sizes: [
       { size: "0",   age: "من زيرو ل9 شهور",   category: "baby" },
       { size: "2",   age: "من سنة ل سنتين",    category: "girl" },
@@ -235,7 +235,7 @@ export const winterLined = [
       { size: "6",   age: "من 5 ل 6 سنين",     category: "girl" },
       { size: "8",   age: "من 7 ل 8 سنين",     category: "girl" },
       { size: "10",  age: "من 9 ل 10 سنة",     category: "girl" },
-      { size: "12",  age: "من 11 ل 12 سنة",    category: "girl" },
+      { size: "12",  age: "من 11 ل 12 سنة",    caظtegory: "girl" },
     ],
   },
 ];
