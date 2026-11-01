@@ -575,7 +575,7 @@ export const Clothes = [
         color: "رصاصي",
         img: "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/ChatGPT%20Image%203%20%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1%202026%D8%8C%2002_29_20%20%D8%B5.png",
         sizes: [
-          { size: "S", age: "من 2 إلى 4 سنوات" },
+          { size: "S", age: "من 2 إلى 4 سنوات" , soldOut: true},
           { size: "M", age: "من 4 إلى 6 سنوات" },
           { size: "L", age: "من 6 إلى 8 سنوات" },
           { size: "XL", age: "من 9 إلى 12 سنوات" },
@@ -585,9 +585,9 @@ export const Clothes = [
         color: "أسود",
         img: "https://images.baby-style-store.com/%D9%84%D9%8A%D8%AC%D9%86%20%D8%B1%D9%8A%D8%A8/ChatGPT%20Image%203%20%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1%202026%D8%8C%2002_30_49%20%D8%B5.png",
         sizes: [
-          // { size: "S", age: "من 2 إلى 4 سنوات" },
-          // { size: "M", age: "من 4 إلى 6 سنوات" },
-          { size: "L", age: "من 6 إلى 8 سنوات" },
+          { size: "S", age: "من 2 إلى 4 سنوات",soldOut: true },
+          { size: "M", age: "من 4 إلى 6 سنوات",soldOut: true },
+          { size: "L", age: "من 6 إلى 8 سنوات",soldOut: true },
           { size: "XL", age: "من 9 إلى 12 سنوات" },
         ]
       },

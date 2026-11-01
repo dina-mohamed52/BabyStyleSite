@@ -40,9 +40,11 @@ const linedOffers = [
    ❄️ عروض الفرو (سعر واحد — مفيش بيبي/بناتي)
    ───────────────────────────────────────────── */
 const furOffers = [
-  { name: "ال3 كولون", count: 3, prices: { single: 390 } },
-  { name: "ال4 كولون", count: 4, prices: { single: 480 } },
-  { name: "ال6 كولون", count: 6, prices: { single: 660 } },
+  { name: "ال2 كولون", count:2, prices: { single: 320 } },
+  { name: "ال3 كولون", count: 3, prices: { single: 420 } },
+  { name: "ال4 كولون", count: 4, prices: { single: 540 } },
+  { name: "ال 5 كولون", count:5, prices: { single: 650 } },
+  { name: "ال6 كولون", count: 6, prices: { single: 750 } },
   { name: "ال8 كولون", count: 8, prices: { single: 800 } },
   { name: "ال10 كولون", count: 10, prices: { single: 950 } },
   { name: "ال12 كولون", count: 12, prices: { single: 1080 } },

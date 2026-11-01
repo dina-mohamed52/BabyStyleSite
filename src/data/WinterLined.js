@@ -163,7 +163,7 @@ export const winterLined = [
   },
   {
     id: 'furBowWinerLined',
-    name: "كولون فيونكة مبطن ",
+    name: "كولون فوطة فيونكة مبطن ",
     category: "fur",
     productColors: [
       {
