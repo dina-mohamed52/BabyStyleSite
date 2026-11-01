@@ -60,9 +60,8 @@ export const BandanaTurbonData = [
       {
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_24_2026-04-26_00-17-35.jpg",
       },
-      {
-        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_30_2026-04-26_00-17-35.jpg",
-      },
+      
+  
       {
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_29_2026-04-26_00-17-35.jpg",
       },
@@ -73,7 +72,7 @@ export const BandanaTurbonData = [
       "بينك",
       "أحمر",
       "أصفر",
-      "موف",
+    
       "بيج",
     ],
     image:
