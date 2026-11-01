@@ -163,7 +163,7 @@ export const winterLined = [
   },
   {
     id: 'furBowWinerLined',
-    name: "كولون فوطة فيونكة مبطن ",
+    name: "  كولون  فيونكة مبطن  فوطة",
     category: "fur",
     productColors: [
       {
@@ -235,7 +235,7 @@ export const winterLined = [
       { size: "6",   age: "من 5 ل 6 سنين",     category: "girl" },
       { size: "8",   age: "من 7 ل 8 سنين",     category: "girl" },
       { size: "10",  age: "من 9 ل 10 سنة",     category: "girl" },
-      { size: "12",  age: "من 11 ل 12 سنة",    category: "girl" },
+      { size: "12",  age: "من 11 ل 12 سنة",    caظtegory: "girl" },
     ],
   },
 ];

@@ -502,7 +502,7 @@ const ColorPicker = memo(function ColorPicker({
    🎴 كارت منتج
    ───────────────────────────────────────────── */
 const ProductColorCard = memo(function ProductColorCard({ product, onOpen }) {
-  const firstImg = product.productColors?.[0]?.img;
+  const firstImg = product.image;
 
   return (
     <button
