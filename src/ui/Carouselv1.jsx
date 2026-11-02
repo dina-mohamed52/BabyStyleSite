@@ -1,7 +1,7 @@
 import { ShoppingBag, Shirt } from "lucide-react";
 import { BackToSchoolData } from "../data/BackToSchool";
 
-const FEATURED_IDS = [6, 3, 9, 4, 11, 2];
+const FEATURED_IDS = [6, 3, 9, 4, 11, 2,8,5];
 
 const ProductHero = () => {
   const featured = FEATURED_IDS.map((id) =>

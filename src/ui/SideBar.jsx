@@ -143,7 +143,7 @@ const NAV_TREE = [
     icon: <Snowflake size={18} strokeWidth={1.5} />,
     label: { ar: "شتوي", en: "Winter" },
     accent: COLORS.secondary,
-    mainPage: "/winterHomePage",
+    mainPage: "/",
     children: [
       {
         key: "winter.collection",
