@@ -189,14 +189,14 @@ export const BandanaTurbonData = [
           { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" },
         ]
       },
-      {
+    //  {
         // يييييييييي
-        color: "كافيه فيونكه",
-        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/WhatsApp_Image_2025-12-17_at_12.25.23_AM.jpg",
-        sizes: [
-          { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" , soldOut: true },
-        ]
-      },
+      //  color: "كافيه فيونكه",
+      //  img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/WhatsApp_Image_2025-12-17_at_12.25.23_AM.jpg",
+      //  sizes: [
+      //    { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" , soldOut: true },
+  //   ]
+   //   },
       {
         color: "أوف وايت فيونكه",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/photo_16_2026-06-21_01-43-51.jpg",
@@ -209,7 +209,7 @@ export const BandanaTurbonData = [
       "أسود فيونكه",
       "أحمر فيونكه",
       "بينك فيونكه",
-      "كافيه فيونكه",
+   //   "كافيه فيونكه",
       " بيج فيونكه" ,
       "أوف وايت فيونكه"
     ],
