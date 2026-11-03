@@ -166,9 +166,10 @@ function Offers({ setSelectedOffer, scrollToOrderCollection, type = "colon" }) {
             className="text-xl sm:text-2xl font-bold"
             style={{ color: GRAY_800 }}
           >
-            {activeTab === "colon"
-              ? "🎨 عروض الكولون "
-              : "🌾 عروض الهاف "}
+            {/* {activeTab === "colon" */}
+              {/* ? */}
+               🎨 عروض الكولون 
+              {/* : "🌾 عروض الهاف "} */}
           </h2>
           <Sparkles className="w-5 h-5" style={{ color: primaryColor }} />
         </div>
@@ -178,7 +179,7 @@ function Offers({ setSelectedOffer, scrollToOrderCollection, type = "colon" }) {
       </div>
 
       {/* Tabs */}
-      <div className="flex justify-center gap-3 mb-8">
+      {/* <div className="flex justify-center gap-3 mb-8">
         <button
           onClick={() => setActiveTab("colon")}
           className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 flex items-center gap-2 ${
@@ -232,7 +233,7 @@ function Offers({ setSelectedOffer, scrollToOrderCollection, type = "colon" }) {
             3
           </span>
         </button>
-      </div>
+      </div> */}
 
       {/* Offers Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">

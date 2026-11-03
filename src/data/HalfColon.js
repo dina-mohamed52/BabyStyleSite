@@ -7,18 +7,18 @@ export const HalfColoneData = [
     tabType: "half",
     productColors: [
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258868/IMG-20230824-WA0052.jpg",
+        img: "https://images.baby-style-store.com/%D9%87%D8%A7%D9%81%20%D9%83%D9%88%D9%84%D9%88%D9%86/%D9%87%D8%A7%D9%81%20%D8%B4%D8%A8%D9%83/IMG-20230824-WA0052.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258851/IMG-20230824-WA0053.jpg",
+        img: "https://images.baby-style-store.com/%D9%87%D8%A7%D9%81%20%D9%83%D9%88%D9%84%D9%88%D9%86/%D9%87%D8%A7%D9%81%20%D8%B4%D8%A8%D9%83/IMG-20230824-WA0053.jpg",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258858/photo_13_2026-04-12_02-24-54.jpg",
+        img: "https://images.baby-style-store.com/%D9%87%D8%A7%D9%81%20%D9%83%D9%88%D9%84%D9%88%D9%86/%D9%87%D8%A7%D9%81%20%D8%B4%D8%A8%D9%83/photo_13_2026-04-12_02-24-54.jpg",
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بينك"],
     image:
-      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258851/IMG-20230824-WA0053.jpg",
+      "https://images.baby-style-store.com/%D9%87%D8%A7%D9%81%20%D9%83%D9%88%D9%84%D9%88%D9%86/%D9%87%D8%A7%D9%81%20%D8%B4%D8%A8%D9%83/IMG-20230824-WA0053.jpg",
     sizes: [
       { size: "0-2", age: "من زيرو لسنه" },
       { size: "2-4", age: "من سنه لسنتين" },
@@ -33,27 +33,27 @@ export const HalfColoneData = [
     tabType: "half",
     productColors: [
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257286/WhatsApp_Image_2026-08-25_at_1.23.10_PM_1.jpg",
+        img: "https://images.baby-style-store.com/%D9%87%D8%A7%D9%81%20%D9%83%D9%88%D9%84%D9%88%D9%86/%D9%87%D8%A7%D9%81%20%D9%81%D9%8A%D9%88%D9%86%D9%83%D8%A9/ChatGPT%20Image%2023%20%D9%8A%D9%88%D9%86%D9%8A%D9%88%202026%D8%8C%2009_49_20%20%D8%B5.png",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257370/WhatsApp_Image_2026-08-25_at_1.23.10_PM_2.jpg",
+        img: "https://images.baby-style-store.com/%D9%87%D8%A7%D9%81%20%D9%83%D9%88%D9%84%D9%88%D9%86/%D9%87%D8%A7%D9%81%20%D9%81%D9%8A%D9%88%D9%86%D9%83%D8%A9/ChatGPT%20Image%2023%20%D9%8A%D9%88%D9%86%D9%8A%D9%88%202026%D8%8C%2009_48_56%20%D8%B5.png",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257327/WhatsApp_Image_2026-08-25_at_1.23.10_PM_3.jpg",
+        img: "https://images.baby-style-store.com/%D9%87%D8%A7%D9%81%20%D9%83%D9%88%D9%84%D9%88%D9%86/%D9%87%D8%A7%D9%81%20%D9%81%D9%8A%D9%88%D9%86%D9%83%D8%A9/ChatGPT%20Image%2023%20%D9%8A%D9%88%D9%86%D9%8A%D9%88%202026%D8%8C%2009_47_07%20%D8%B5.png",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257287/WhatsApp_Image_2026-08-25_at_1.23.10_PM.jpg",
+        img: "https://images.baby-style-store.com/%D9%87%D8%A7%D9%81%20%D9%83%D9%88%D9%84%D9%88%D9%86/%D9%87%D8%A7%D9%81%20%D9%81%D9%8A%D9%88%D9%86%D9%83%D8%A9/ChatGPT%20Image%2023%20%D9%8A%D9%88%D9%86%D9%8A%D9%88%202026%D8%8C%2009_53_50%20%D8%B5.png",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257489/WhatsApp_Image_2026-08-25_at_1.23.10_PM_4.jpg",
+        img: "https://images.baby-style-store.com/%D9%87%D8%A7%D9%81%20%D9%83%D9%88%D9%84%D9%88%D9%86/%D9%87%D8%A7%D9%81%20%D9%81%D9%8A%D9%88%D9%86%D9%83%D8%A9/ChatGPT%20Image%2023%20%D9%8A%D9%88%D9%86%D9%8A%D9%88%202026%D8%8C%2009_47_19%20%D8%B5.png",
       },
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257288/WhatsApp_Image_2026-08-25_at_1.23.10_PM_5.jpg",
+        img: "https://images.baby-style-store.com/%D9%87%D8%A7%D9%81%20%D9%83%D9%88%D9%84%D9%88%D9%86/%D9%87%D8%A7%D9%81%20%D9%81%D9%8A%D9%88%D9%86%D9%83%D8%A9/ChatGPT%20Image%2023%20%D9%8A%D9%88%D9%86%D9%8A%D9%88%202026%D8%8C%2009_46_50%20%D8%B5.png",
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بينك", "أحمر", "أصفر", "لافندر"],
     image:
-      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257286/WhatsApp_Image_2026-08-25_at_1.23.10_PM_1.jpg",
+      "https://images.baby-style-store.com/%D9%87%D8%A7%D9%81%20%D9%83%D9%88%D9%84%D9%88%D9%86/%D9%87%D8%A7%D9%81%20%D9%81%D9%8A%D9%88%D9%86%D9%83%D8%A9/ChatGPT%20Image%2023%20%D9%8A%D9%88%D9%86%D9%8A%D9%88%202026%D8%8C%2009_53_50%20%D8%B5.png",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },
@@ -71,7 +71,7 @@ export const HalfColoneData = [
     tabType: "half",
     productColors: [
       {
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258947/WhatsApp_Image_2026-04-28_at_4.10.24_AM.jpg",
+        img: "https://images.baby-style-store.com/%D9%87%D8%A7%D9%81%20%D9%83%D9%88%D9%84%D9%88%D9%86/%D8%B4%D8%B1%D8%A7%D8%A8%20%D8%AF%D8%A7%D9%86%D8%AA%D9%8A%D9%84/WhatsApp%20Image%202026-04-28%20at%204.10.24%20AM.jpeg",
       },
       // {
       //   img: "https://aluqpzbvietniebtddis.supabase.co/storage/v1/object/public/BackToSchool/HalfColon/WhatsApp%20Image%202026-04-28%20at%204.11.02%20AM.jpeg",
@@ -79,7 +79,7 @@ export const HalfColoneData = [
     ],
     avalibeColors: ["أبيض"],
     image:
-      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790258947/WhatsApp_Image_2026-04-28_at_4.10.24_AM.jpg",
+      "https://images.baby-style-store.com/%D9%87%D8%A7%D9%81%20%D9%83%D9%88%D9%84%D9%88%D9%86/%D8%B4%D8%B1%D8%A7%D8%A8%20%D8%AF%D8%A7%D9%86%D8%AA%D9%8A%D9%84/WhatsApp%20Image%202026-04-28%20at%204.10.24%20AM.jpeg",
     sizes: [
       { size: "0-1", age: "من زيرو ل9 شهور" },
       { size: "1-2", age: "من 9 شهور لسنه ونص" },

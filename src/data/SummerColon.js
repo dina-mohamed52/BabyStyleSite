@@ -168,7 +168,7 @@ export const SummerColonData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257673/WhatsApp_Image_2026-09-14_at_9.04.16_AM_1.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B5%D9%8A%D9%81%D9%8A/WhatsApp%20Image%202026-09-14%20at%209.04.16%20AM%20(1).jpeg",
         sizes: [
           { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
           { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
@@ -182,7 +182,7 @@ export const SummerColonData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257682/WhatsApp_Image_2026-09-14_at_9.04.15_AM.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B5%D9%8A%D9%81%D9%8A/WhatsApp%20Image%202026-09-14%20at%209.04.15%20AM.jpeg",
         sizes: [
           { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
           { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
@@ -197,7 +197,7 @@ export const SummerColonData = [
     ],
     avalibeColors: ["أبيض", "أسود"],
     image:
-      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257674/WhatsApp_Image_2026-09-14_at_9.04.16_AM.jpg",
+      "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B5%D9%8A%D9%81%D9%8A/WhatsApp%20Image%202026-09-14%20at%209.04.16%20AM.jpeg",
 
     sizes: [
       { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
@@ -226,7 +226,7 @@ export const SummerColonData = [
     productColors: [
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257711/WhatsApp_Image_2026-09-14_at_9.01.28_AM_1.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B5%D9%8A%D9%81%D9%8A/WhatsApp%20Image%202026-09-14%20at%209.01.28%20AM%20(1).jpeg",
         sizes: [
           { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
           { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
@@ -240,7 +240,7 @@ export const SummerColonData = [
       },
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257610/WhatsApp_Image_2026-09-14_at_9.00.00_AM_1.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B5%D9%8A%D9%81%D9%8A/WhatsApp%20Image%202026-09-14%20at%209.00.00%20AM%20(1).jpeg",
         sizes: [
           { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
           { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
@@ -254,7 +254,7 @@ export const SummerColonData = [
       },
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257590/WhatsApp_Image_2026-09-14_at_9.00.00_AM.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B5%D9%8A%D9%81%D9%8A/WhatsApp%20Image%202026-09-14%20at%209.00.00%20AM.jpeg",
         sizes: [
           { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
           { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
@@ -268,7 +268,7 @@ export const SummerColonData = [
       },
       {
         color: "بيج",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257587/WhatsApp_Image_2026-09-14_at_9.01.28_AM.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B5%D9%8A%D9%81%D9%8A/WhatsApp%20Image%202026-09-14%20at%209.01.28%20AM.jpeg",
         sizes: [
           { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
           // { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
@@ -283,7 +283,7 @@ export const SummerColonData = [
     ],
     avalibeColors: ["أسود", "أبيض", "بينك","بيج"],
     image:
-      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257610/WhatsApp_Image_2026-09-14_at_9.00.00_AM_1.jpg",
+      "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B5%D9%8A%D9%81%D9%8A/WhatsApp%20Image%202026-09-14%20at%209.00.00%20AM%20(1).jpeg",
 
     sizes: [
       { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
@@ -313,7 +313,7 @@ export const SummerColonData = [
     productColors: [
       {
         color: "أبيض",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257590/WhatsApp_Image_2026-09-14_at_8.59.04_AM_2.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B5%D9%8A%D9%81%D9%8A/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM%20(2).jpeg",
         sizes: [
           { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
           { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
@@ -327,7 +327,7 @@ export const SummerColonData = [
       },
       {
         color: "أسود",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257591/WhatsApp_Image_2026-09-14_at_8.59.04_AM_1.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B5%D9%8A%D9%81%D9%8A/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM%20(1).jpeg",
         sizes: [
           { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
           { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
@@ -341,7 +341,7 @@ export const SummerColonData = [
       },
       {
         color: "بينك",
-        img: "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257593/WhatsApp_Image_2026-09-14_at_8.59.04_AM.jpg",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B5%D9%8A%D9%81%D9%8A/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM.jpeg",
         sizes: [
           { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },
           { size: "2-1", age: "من 9 شهور لحد سنة ونص" },
@@ -356,7 +356,7 @@ export const SummerColonData = [
     ],
     avalibeColors: ["أبيض", "أسود", "بينك"],
     image:
-      "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257590/WhatsApp_Image_2026-09-14_at_8.59.04_AM_2.jpg",
+      "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B5%D9%8A%D9%81%D9%8A/WhatsApp%20Image%202026-09-14%20at%208.59.04%20AM%20(2).jpeg",
 
     sizes: [
       { size: "1-0", age: "من حديث الولادة لحد 6 شهور" },

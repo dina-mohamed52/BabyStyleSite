@@ -46,24 +46,52 @@ export const BandanaTurbonData = [
     tabType: "bandana",
     productColors: [
       {
+        color: "أبيض",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_28_2026-04-26_00-17-35.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو لسنة" },
+          { size: "1-3", age: "من سنه ل 3 سنين" },
+        ]
       },
       {
+        color: "أسود",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_27_2026-04-26_00-17-35.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو لسنة" },
+          { size: "1-3", age: "من سنه ل 3 سنين" },
+        ]
       },
       {
+        color: "بينك",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_25_2026-04-26_00-17-35.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو لسنة" },
+          { size: "1-3", age: "من سنه ل 3 سنين" },
+        ]
       },
       {
+        color: "أحمر",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_26_2026-04-26_00-17-35.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو لسنة" },
+          { size: "1-3", age: "من سنه ل 3 سنين" },
+        ]
       },
       {
+        color: "أصفر",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_24_2026-04-26_00-17-35.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو لسنة" },
+          { size: "1-3", age: "من سنه ل 3 سنين" },
+        ]
       },
-      
-  
       {
+        color: "بيج",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_29_2026-04-26_00-17-35.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو لسنة" },
+          { size: "1-3", age: "من سنه ل 3 سنين" },
+        ]
       },
     ],
     avalibeColors: [
@@ -95,15 +123,24 @@ export const BandanaTurbonData = [
       {
         color: "أصفر ورده",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1792603039/WhatsApp_Image_2026-10-17_at_2.17.46_AM_2.jpg",
+        sizes: [
+          { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" },
+        ]
       },
       {
         color: "بيج ورده",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1792603130/WhatsApp_Image_2026-10-17_at_2.17.46_AM_1.jpg",
+        sizes: [
+          { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" },
+        ]
       },
 
       {
         color: "لافندر ورده",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1792602957/WhatsApp_Image_2026-10-17_at_2.17.46_AM.jpg",
+        sizes: [
+          { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" },
+        ]
       },
     ],
     avalibeColors: [
@@ -127,33 +164,52 @@ export const BandanaTurbonData = [
       {
         color: "أسود فيونكه",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572680/photo_11_2026-09-13_16-19-41.jpg",
+        sizes: [
+          { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" },
+        ]
       },
       {
         color: "أحمر فيونكه",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572681/photo_7_2026-09-13_16-19-41.jpg",
+        sizes: [
+          { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" },
+        ]
       },
       {
         color: "بينك فيونكه",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/photo_17_2026-06-21_01-43-51.jpg",
+        sizes: [
+          { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" },
+        ]
       },
       {
         color: "بيج فيونكه",
         img: "https://images.baby-style-store.com/%D8%AA%D8%B1%D8%A8%D9%88%D9%86%D8%A7%D8%AA/%D9%81%D9%8A%D9%88%D9%86%D9%83%D9%87%20%D8%A8%D9%8A%D8%AC.jpeg",
+        sizes: [
+          { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" },
+        ]
       },
-      // {
-      //   color: "كافيه فيونكه",
-      //   img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/WhatsApp_Image_2025-12-17_at_12.25.23_AM.jpg",
-      // },
+      {
+        // يييييييييي
+        color: "كافيه فيونكه",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/WhatsApp_Image_2025-12-17_at_12.25.23_AM.jpg",
+        sizes: [
+          { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" , soldOut: true },
+        ]
+      },
       {
         color: "أوف وايت فيونكه",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/photo_16_2026-06-21_01-43-51.jpg",
+        sizes: [
+          { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" },
+        ]
       },
     ],
     avalibeColors: [
       "أسود فيونكه",
       "أحمر فيونكه",
       "بينك فيونكه",
-      // "كافيه فيونكه",
+      "كافيه فيونكه",
       " بيج فيونكه" ,
       "أوف وايت فيونكه"
     ],
@@ -171,25 +227,74 @@ export const BandanaTurbonData = [
      category: 'bandana-set',
     productColors: [
       {
+        color: "أبيض",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_15_2026-04-26_00-17-35.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          { size: "2-4", age: "من سنه ونص ل3 سنين" },
+          { size: "4-6", age: "من 3 ل5 سنين" },
+        ]
       },
       {
+        color: "أسود",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_14_2026-04-26_00-17-35.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          { size: "2-4", age: "من سنه ونص ل3 سنين" },
+          { size: "4-6", age: "من 3 ل5 سنين" },
+        ]
       },
       {
+        color: "بينك",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_13_2026-04-26_00-17-35.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          { size: "2-4", age: "من سنه ونص ل3 سنين" },
+          { size: "4-6", age: "من 3 ل5 سنين" },
+        ]
       },
       {
+        color: "لافندر",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_12_2026-04-26_00-17-35.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          { size: "2-4", age: "من سنه ونص ل3 سنين" },
+          { size: "4-6", age: "من 3 ل5 سنين" },
+        ]
       },
       {
+        color: "أحمر",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_11_2026-04-26_00-17-35.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          { size: "2-4", age: "من سنه ونص ل3 سنين" },
+          { size: "4-6", age: "من 3 ل5 سنين" },
+        ]
       },
       {
+        color: "أصفر",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_16_2026-04-26_00-17-35.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          { size: "2-4", age: "من سنه ونص ل3 سنين" },
+          { size: "4-6", age: "من 3 ل5 سنين" },
+        ]
       },
       {
+        color: "بيج",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_1_2026-09-13_16-03-13.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          { size: "2-4", age: "من سنه ونص ل3 سنين" },
+          { size: "4-6", age: "من 3 ل5 سنين" },
+        ]
       },
     
     ],
@@ -213,13 +318,31 @@ export const BandanaTurbonData = [
      category: 'bandana-set',
     productColors: [
       {
+        color: "أبيض",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_10_2026-04-12_02-24-54.jpg",
+        sizes: [
+          { size: "0-2", age: "من زيرو لسنه" },
+          { size: "2-4", age: "من سنه ونص ل3 سنتين" },
+          { size: "4-6", age: "من  3 سنتين ل5 سنين" },
+        ]
       },
       {
+        color: "أسود",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_11_2026-04-12_02-24-54.jpg",
+        sizes: [
+          { size: "0-2", age: "من زيرو لسنه" },
+          { size: "2-4", age: "من سنه ونص ل3 سنتين" },
+          { size: "4-6", age: "من  3 سنتين ل5 سنين" },
+        ]
       },
       {
+        color: "بينك",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_12_2026-04-12_02-24-54.jpg",
+        sizes: [
+          { size: "0-2", age: "من زيرو لسنه" },
+          { size: "2-4", age: "من سنه ونص ل3 سنتين" },
+          { size: "4-6", age: "من  3 سنتين ل5 سنين" },
+        ]
       },
     ],
     avalibeColors: ["أبيض", "أسود", "بينك"],
@@ -241,16 +364,40 @@ export const BandanaTurbonData = [
      category: 'turbon-set',
     productColors: [
       {
+        color: "فيونكه أحمر",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720346/WhatsApp_Image_2026-09-16_at_1.19.08_PM_1.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          { size: "2-4", age: "من سنه ونص ل3 سنين" },
+        ]
       },
       {
+        color: "فيونكه أسود",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720346/WhatsApp_Image_2026-09-16_at_1.19.08_PM_3.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          { size: "2-4", age: "من سنه ونص ل3 سنين" },
+        ]
       },
       {
+        color: "فيونكه بينك",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720346/WhatsApp_Image_2026-09-16_at_1.19.08_PM_2.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          { size: "2-4", age: "من سنه ونص ل3 سنين" },
+        ]
       },
       {
+        color: "فيونكه بيج + هاف اسود",
         img: "https://images.baby-style-store.com/%D8%AA%D8%B1%D8%A8%D9%88%D9%86%D8%A7%D8%AA/%D8%B7%20%D9%81%D9%8A%D9%88%D9%86%D9%83%D9%87%20%D8%A8%D9%8A%D8%AC%20%D9%87%D8%A7%D9%81%20%D8%A7%D8%B3%D9%88%D8%AF.jpeg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          { size: "2-4", age: "من سنه ونص ل3 سنين" },
+        ]
       },
       // {
       //   img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720348/WhatsApp_Image_2026-09-16_at_1.22.47_PM.jpg",
@@ -259,13 +406,31 @@ export const BandanaTurbonData = [
       //   img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1777556398/WhatsApp_Image_2026-04-29_at_11.12.03_AM_akjru5.jpg",
       // },
       {
+        color: "ورده أصفر",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720418/WhatsApp_Image_2026-09-16_at_1.30.01_PM.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" , soldOut: true},
+          { size: "2-4", age: "من سنه ونص ل3 سنين", soldOut: true },
+        ]
       },
       {
-         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720346/WhatsApp_Image_2026-09-16_at_1.19.08_PM.jpg",
+        color: "فيونكه أوف وايت",
+        img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720346/WhatsApp_Image_2026-09-16_at_1.19.08_PM.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          { size: "2-4", age: "من سنه ونص ل3 سنين" },
+        ]
       },
       {
+        color: "ورده بيج + هاف أسود",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720346/WhatsApp_Image_2026-09-16_at_1.30.02_PM.jpg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص", soldOut: true },
+          { size: "2-4", age: "من سنه ونص ل3 سنين", soldOut: true },
+        ]
       },
       // {
       //   img: "https://res.cloudinary.com/dxenvgjv5/image/upload/v1778153099/WhatsApp_Image_2026-05-06_at_2.22.23_AM_jk80cs.jpg",
@@ -292,4 +457,4 @@ export const BandanaTurbonData = [
       // { size: "4-6", age: "من 3 ل5 سنين" },
     ],
   },
-];  
+];

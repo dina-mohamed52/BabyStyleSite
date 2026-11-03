@@ -16,6 +16,7 @@ import {
   ArrowRight,
   X,
   ChevronDown,
+  Ban,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -102,7 +103,9 @@ function MobileSelect({
             filteredOptions.map((option) => (
               <button
                 key={option.value}
+                disabled={option.disabled}
                 onClick={() => {
+                  if (option.disabled) return;
                   onChange(option.value);
                   setOpen(false);
                   setSearchTerm("");
@@ -110,6 +113,7 @@ function MobileSelect({
                 className={`
                   w-full px-4 py-3 text-right transition-all duration-150 active:bg-purple-50
                   flex items-center justify-between
+                  ${option.disabled ? "opacity-50 cursor-not-allowed" : ""}
                   ${value === option.value ? "bg-purple-50" : "hover:bg-gray-50"}
                 `}
               >
@@ -129,6 +133,11 @@ function MobileSelect({
                 )}
                 {value === option.value && (
                   <CheckCircle className="w-5 h-5 text-purple-500" />
+                )}
+                {option.disabled && (
+                  <span className="text-[10px] text-red-500 bg-red-50 px-2 py-0.5 rounded-full">
+                    نفد
+                  </span>
                 )}
               </button>
             ))
@@ -289,30 +298,54 @@ function TurbonOrderCollection({
   useEffect(() => {
     const completed = {};
     pieces.forEach((piece) => {
-      const isOneSize = isOneSizeProduct(piece.productId);
-      
-      if (isOneSize) {
-        completed[piece.id] = !!(piece.productId && piece.color);
-      } else {
+      const colorSizes = getColorSizes(piece.productId, piece.color);
+      const needsSize = colorSizes.length > 0;
+
+      if (needsSize) {
         completed[piece.id] = !!(piece.productId && piece.color && selectedSizes[piece.id]);
+      } else {
+        // منتج بدون مقاسات (نادراً) أو one size مدمج
+        completed[piece.id] = !!(piece.productId && piece.color);
       }
     });
     setCompletedCards(completed);
   }, [pieces, selectedSizes]);
 
   const getProductById = (id) => BandanaTurbonData.find((p) => p.id === id);
+
+  // ⭐ جديد: الألوان بقت من productColors (اللي جواها sizes) بدل avalibeColors
   const getProductColors = (productId) => {
     const product = getProductById(productId);
-    return product?.avalibeColors || [];
-  };
-  const getProductSizes = (productId) => {
-    const product = getProductById(productId);
-    return product?.sizes || [];
+    if (!product) return [];
+    // نرجع الألوان اللي ليها صور/مقاسات من productColors
+    return (product.productColors || [])
+      .map((pc) => pc.color)
+      .filter(Boolean);
   };
 
-  const isOneSizeProduct = (productId) => {
+  // ⭐ جديد: المقاسات بقت بتتحدد حسب اللون المختار
+  const getColorSizes = (productId, colorName) => {
     const product = getProductById(productId);
-    return product?.tabType === "turbon" && product?.type !== "set-turbon";
+    if (!product || !colorName) return [];
+    const colorEntry = (product.productColors || []).find(
+      (pc) => pc.color === colorName
+    );
+    // لو اللون مالوش مقاسات محددة، نرجع لمقاسات المنتج العامة
+    return colorEntry?.sizes || product.sizes || [];
+  };
+
+  // ⭐ جديد: هل اللون ده كله sold out؟
+  const isColorSoldOut = (productId, colorName) => {
+    const sizes = getColorSizes(productId, colorName);
+    if (sizes.length === 0) return false;
+    return sizes.every((s) => s.soldOut === true);
+  };
+
+  // ⭐ جديد: هل المنتج بالكامل sold out (كل الألوان)؟
+  const isProductSoldOut = (productId) => {
+    const colors = getProductColors(productId);
+    if (colors.length === 0) return false;
+    return colors.every((c) => isColorSoldOut(productId, c));
   };
 
   const handleGoToOffers = () => {
@@ -348,6 +381,7 @@ function TurbonOrderCollection({
       "بيبي بلو": "#87CEEB",
       "كافيه فيونكه": "#6F4E37",
       "أوف وايت فيونكه": "#FDF5E6",
+      "سكري": "#F5F5DC",
       default: "#CCCCCC"
     };
     const extractedColor =
@@ -366,16 +400,29 @@ function TurbonOrderCollection({
     });
   };
 
+  // ⭐ جديد: لما اللون يتغير، نصفر المقاس المختار لأن المقاسات بقت مرتبطة باللون
   const handleColorChange = (id, color) => {
     setPieces((prev) => prev.map((p) => (p.id === id ? { ...p, color } : p)));
+    setSelectedSizes((prev) => {
+      const newSizes = { ...prev };
+      delete newSizes[id];
+      return newSizes;
+    });
   };
 
   const handleSizeChange = (id, size) => {
     setSelectedSizes((prev) => ({ ...prev, [id]: size }));
   };
 
+  // ⭐ جديد: الصورة بقت تتناسب مع اللون من productColors
   const getProductImage = (product, colorName) => {
     if (!product) return "";
+    const colorEntry = (product.productColors || []).find(
+      (pc) => pc.color === colorName
+    );
+    if (colorEntry?.img) return colorEntry.img;
+
+    // fallback: لو مفيش color مطابق، نرجع للـ index من avalibeColors
     const colorIndex = product.avalibeColors?.findIndex((c) => c === colorName);
     if (
       colorIndex !== -1 &&
@@ -390,14 +437,15 @@ function TurbonOrderCollection({
   const prepareCartItem = () => {
     const orderWithDetails = pieces.map((piece) => {
       const product = getProductById(piece.productId);
-      const isOneSize = isOneSizeProduct(piece.productId);
-      
+      const colorSizes = getColorSizes(piece.productId, piece.color);
+      const needsSize = colorSizes.length > 0;
+
       return {
         id: piece.id,
         productId: piece.productId,
         name: product?.name,
         color: piece.color,
-        ...(isOneSize ? {} : { size: selectedSizes[piece.id] }),
+        ...(needsSize ? { size: selectedSizes[piece.id] } : {}),
         image: getProductImage(product, piece.color),
       };
     });
@@ -422,12 +470,13 @@ function TurbonOrderCollection({
 
   // Form validation
   const isFormValid = pieces.every((piece) => {
-    const isOneSize = isOneSizeProduct(piece.productId);
-    
-    if (isOneSize) {
-      return !!(piece.productId && piece.color);
-    } else {
+    const colorSizes = getColorSizes(piece.productId, piece.color);
+    const needsSize = colorSizes.length > 0;
+
+    if (needsSize) {
       return !!(piece.productId && piece.color && selectedSizes[piece.id]);
+    } else {
+      return !!(piece.productId && piece.color);
     }
   });
 
@@ -606,9 +655,7 @@ function TurbonOrderCollection({
         </p>
 
         <p className="text-gray-400 text-xs md:text-sm px-4">
-          قم بتخصيص كل قطعة بالمنتج واللون
-          {selectedOffer?.selectedTabType !== "turbon" && selectedOffer?.type !== "set-turbon" && " والمقاس"} 
-          المناسب
+          قم بتخصيص كل قطعة بالمنتج واللون والمقاس المناسب
         </p>
 
         {/* Premium Progress Bar */}
@@ -664,27 +711,33 @@ function TurbonOrderCollection({
         {pieces.map((piece, idx) => {
           const product = getProductById(piece.productId);
           const colors = getProductColors(piece.productId);
-          const sizes = getProductSizes(piece.productId);
+          // ⭐ المقاسات بقت حسب اللون
+          const sizes = getColorSizes(piece.productId, piece.color);
           const isCompleted = completedCards[piece.id];
           const isHovered = hoveredCard === piece.id;
-          const isOneSize = isOneSizeProduct(piece.productId);
+          const needsSize = sizes.length > 0;
 
           const productOptions = products.map((p) => ({
             value: p.id,
             label: p.name,
+            disabled: isProductSoldOut(p.id),
           }));
 
+          // ⭐ الألوان اللي كلها sold out تتعلم disabled
           const colorOptions = colors.map((c) => ({
             value: c,
             label: c,
             color: getColorCode(c),
+            disabled: isColorSoldOut(piece.productId, c),
           }));
 
+          // ⭐ المقاسات اللي soldOut تتعلم disabled
           const sizeOptions = sizes.map((s) => ({
             value: s.size,
             label: `${s.size} - ${s.age}`,
             size: s.size,
             age: s.age,
+            disabled: s.soldOut === true,
           }));
 
           return (
@@ -799,7 +852,7 @@ function TurbonOrderCollection({
                         dropdownStyle={{ borderRadius: 12 }}
                       >
                         {products.map((p) => (
-                          <Select.Option key={p.id} value={p.id}>
+                          <Select.Option key={p.id} value={p.id} disabled={isProductSoldOut(p.id)}>
                             <div className="flex items-center gap-3 py-1">
                               <div className="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
                                 {p.type === "flower" ? (
@@ -814,6 +867,9 @@ function TurbonOrderCollection({
                                 <p className="font-medium text-gray-800 text-sm">
                                   {p.name}
                                 </p>
+                                {isProductSoldOut(p.id) && (
+                                  <p className="text-[10px] text-red-500">نفد المخزون</p>
+                                )}
                               </div>
                             </div>
                           </Select.Option>
@@ -862,7 +918,11 @@ function TurbonOrderCollection({
                           dropdownStyle={{ borderRadius: 12 }}
                         >
                           {colors.map((c) => (
-                            <Select.Option key={c} value={c}>
+                            <Select.Option
+                              key={c}
+                              value={c}
+                              disabled={isColorSoldOut(piece.productId, c)}
+                            >
                               <div className="flex items-center gap-2">
                                 <div
                                   className="w-5 h-5 rounded-full shadow-inner"
@@ -872,6 +932,11 @@ function TurbonOrderCollection({
                                   }}
                                 />
                                 <span>{c}</span>
+                                {isColorSoldOut(piece.productId, c) && (
+                                  <span className="text-[10px] text-red-500 bg-red-50 px-2 py-0.5 rounded-full">
+                                    نفد
+                                  </span>
+                                )}
                               </div>
                             </Select.Option>
                           ))}
@@ -879,8 +944,8 @@ function TurbonOrderCollection({
                       </div>
                     )}
 
-                    {/* Size Selection */}
-                    {!isOneSize && piece.productId && (
+                    {/* Size Selection - بقت حسب اللون */}
+                    {needsSize && piece.productId && piece.color && (
                       <>
                         {isMobile ? (
                           <MobileSelect
@@ -899,6 +964,11 @@ function TurbonOrderCollection({
                                 <span className="font-medium text-gray-800">
                                   {option.size}
                                 </span>
+                                {option.disabled && (
+                                  <span className="text-[10px] text-red-500 bg-red-50 px-2 py-0.5 rounded-full">
+                                    نفد
+                                  </span>
+                                )}
                               </div>
                             )}
                           />
@@ -918,7 +988,11 @@ function TurbonOrderCollection({
                               dropdownStyle={{ borderRadius: 12 }}
                             >
                               {sizes.map((s) => (
-                                <Select.Option key={s.size} value={s.size}>
+                                <Select.Option
+                                  key={s.size}
+                                  value={s.size}
+                                  disabled={s.soldOut === true}
+                                >
                                   <div className="flex items-center justify-between">
                                     <span className="font-medium text-gray-800">
                                       {s.size}
@@ -926,6 +1000,11 @@ function TurbonOrderCollection({
                                     <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">
                                       {s.age}
                                     </span>
+                                    {s.soldOut && (
+                                      <span className="text-[10px] text-red-500 bg-red-50 px-2 py-0.5 rounded-full">
+                                        نفد
+                                      </span>
+                                    )}
                                   </div>
                                 </Select.Option>
                               ))}
@@ -935,8 +1014,8 @@ function TurbonOrderCollection({
                       </>
                     )}
 
-                    {/* One Size Badge */}
-                    {isOneSize && piece.productId && (
+                    {/* One Size Badge - لو اللون ملهوش مقاسات متعددة */}
+                    {!needsSize && piece.productId && piece.color && (
                       <div className="space-y-2">
                         <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
                           <Ruler className="w-4 h-4 text-purple-500" />
@@ -944,7 +1023,7 @@ function TurbonOrderCollection({
                         </label>
                         <div className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-right">
                           <span className="text-sm text-gray-600 font-medium">
-                            One Size (مناسب من 0 ل 4 سنين)
+                            One Size
                           </span>
                         </div>
                       </div>

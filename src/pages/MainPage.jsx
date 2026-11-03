@@ -103,7 +103,7 @@ const SEASONS = {
         nameEn: "بندانات وتربونات واطقم صيفية",
         path: "/Turbon",
         image:
-          "https://res.cloudinary.com/sauyrrk8/image/upload/v1790089045/photo_5_2026-09-13_16-19-41.jpg",
+          "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_5_2026-09-13_16-19-41.jpg",
         items: "7+ منتج",
         badge: "الأكثر مبيعاً",
       },
@@ -113,7 +113,7 @@ const SEASONS = {
         nameEn: " هاف كولونات صيفي شيك",
         path: "/SummerHalfColon",
         image:
-          "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257286/WhatsApp_Image_2026-08-25_at_1.23.10_PM_1.jpg",
+          "https://images.baby-style-store.com/%D9%87%D8%A7%D9%81%20%D9%83%D9%88%D9%84%D9%88%D9%86/%D9%87%D8%A7%D9%81%20%D9%81%D9%8A%D9%88%D9%86%D9%83%D8%A9/ChatGPT%20Image%2023%20%D9%8A%D9%88%D9%86%D9%8A%D9%88%202026%D8%8C%2009_53_50%20%D8%B5.png",
         items: "3+ منتج",
         badge: "جديد",
       },
@@ -123,7 +123,7 @@ const SEASONS = {
         nameEn: " كولونات وليجن صيفي شيك",
         path: "/SummerColon",
         image:
-          "https://res.cloudinary.com/sauyrrk8/image/upload/v1790257610/WhatsApp_Image_2026-09-14_at_9.00.00_AM_1.jpg",
+          "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%D8%A7%D8%AA%20%D8%B5%D9%8A%D9%81%D9%8A/WhatsApp%20Image%202026-09-14%20at%209.00.00%20AM%20(1).jpeg",
         items: "8+ منتج",
         badge: "تخفيضات",
       },

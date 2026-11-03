@@ -499,7 +499,7 @@ function CHeadSection({ scrollToProductList ,category }) {
           >
             لبس يفرح قلبها،
             <br />
-            وفيونكة تكمّل الطلة
+            وستايل يكمّل الطلة
           </h1>
 
           {/* Description */}
@@ -514,7 +514,7 @@ function CHeadSection({ scrollToProductList ,category }) {
               animationDelay: ".18s",
             }}
           >
-            {`${shirts.length} تصاميم توب بقطن ريب مضلع ناعم ومرن، بفيونكات بأشكال مختلفة وألوان زاهية، لكل بنت طلتها الخاصة.`}
+            {`${shirts.length} تصاميم بقطن ريب مضلع ناعم ومرن،  بأشكال مختلفة وألوان زاهية، لكل بنت طلتها الخاصة.`}
           </p>
 
           {/* Color Swatches */}
