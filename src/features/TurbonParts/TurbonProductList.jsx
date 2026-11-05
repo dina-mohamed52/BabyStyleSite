@@ -1,6 +1,6 @@
 import { BandanaTurbonData } from "../../data/Turbon";
 import { useTranslation } from "react-i18next";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Ban } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "../../features/products/ProductCard";
 
@@ -34,7 +34,36 @@ function TurbonProductList({ category }) {
 
   const turbonProducts = getFilteredProducts();
 
+  // ⭐ جديد: هل اللون ده كله sold out (كل مقاساته)؟
+  const isColorSoldOut = (product, colorName) => {
+    const colorEntry = (product.productColors || []).find(
+      (pc) => pc.color === colorName
+    );
+    if (!colorEntry) return false;
+    if (colorEntry.soldOut === true) return true;
+    const sizes = colorEntry.sizes || [];
+    if (sizes.length === 0) return false;
+    return sizes.every((s) => s.soldOut === true);
+  };
+
+  // ⭐ جديد: هل اللون ده sold out باستخدام index (لما مفيش colorName)؟
+  const isColorSoldOutByIndex = (product, index) => {
+    const colorEntry = product.productColors?.[index];
+    if (!colorEntry) return false;
+    const sizes = colorEntry.sizes || [];
+    if (sizes.length === 0) return false;
+    return sizes.every((s) => s.soldOut === true);
+  };
+
+  // ⭐ جديد: هل المنتج كله sold out (كل الألوان)؟
+  const isProductSoldOut = (product) => {
+    const colors = product.avalibeColors || [];
+    if (colors.length === 0) return false;
+    return colors.every((c) => isColorSoldOut(product, c));
+  };
+
   const handleProductClick = (product) => {
+    if (isProductSoldOut(product)) return; // ⭐ منع فتح المنتج لو كله خلص
     navigate(`/product/${product.id}`);
   };
 
@@ -155,39 +184,79 @@ function TurbonProductList({ category }) {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {turbonProducts[0].productColors?.map((colorItem, index) => {
                 const colorName = getColorName(turbonProducts[0], index);
-                
+                const colorSoldOut =
+                  colorName
+                    ? isColorSoldOut(turbonProducts[0], colorName)
+                    : isColorSoldOutByIndex(turbonProducts[0], index); // ⭐ جديد
+
                 return (
-                  <div 
+                  <div
                     key={index}
-                    className="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 cursor-pointer"
-                    onClick={() => handleProductClick(turbonProducts[0])}
+                    onClick={() => !colorSoldOut && handleProductClick(turbonProducts[0])} // ⭐ منع الفتح لو اللون خلص
+                    className={`group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 ${
+                      colorSoldOut
+                        ? "cursor-not-allowed opacity-90"
+                        : "cursor-pointer hover:-translate-y-1"
+                    }`}
                   >
-                    <div className="aspect-square overflow-hidden bg-gray-100">
+                    <div className="aspect-square overflow-hidden bg-gray-100 relative">
                       <img
                         src={colorItem.img}
                         alt={`${turbonProducts[0].name} - ${colorName || `صورة ${index + 1}`}`}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                        className={`w-full h-full object-contain transition-transform duration-500 ${
+                          colorSoldOut
+                            ? "grayscale opacity-60"
+                            : "group-hover:scale-105"
+                        }`}
                         loading="lazy"
                       />
+
+                      {/* ⭐ Overlay "نفد المخزون" على اللون ده */}
+                      {colorSoldOut && (
+                        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/20 backdrop-blur-[1px]">
+                          <div className="flex flex-col items-center gap-1.5 bg-white/95 px-4 py-2.5 rounded-xl shadow-xl border border-red-100 transform -rotate-6">
+                            <Ban className="w-5 h-5 text-red-500" />
+                            <span
+                              className="text-red-500 font-extrabold text-xs tracking-wider"
+                              style={{ fontFamily: "'Cairo', sans-serif" }}
+                            >
+                              نفد المخزون
+                            </span>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                    
+
                     {/* ✅ بادج اسم اللون في أسفل الصورة */}
                     {colorName && (
-                      <div className="absolute bottom-3 left-3 right-3">
-                        <span className="inline-block bg-black/70 backdrop-blur-sm text-white text-xs sm:text-sm px-3 py-1.5 rounded-full font-medium shadow-lg">
+                      <div className="absolute bottom-3 left-3 right-3 z-30">
+                        <span
+                          className={`inline-block text-xs sm:text-sm px-3 py-1.5 rounded-full font-medium shadow-lg ${
+                            colorSoldOut
+                              ? "bg-red-500/85 text-white line-through decoration-white/70 decoration-[1.5px]"
+                              : "bg-black/70 backdrop-blur-sm text-white"
+                          }`}
+                        >
                           {colorName}
+                          {colorSoldOut && (
+                            <span className="mr-1 text-[10px] font-bold">
+                              — نفد
+                            </span>
+                          )}
                         </span>
                       </div>
                     )}
-                    
+
                     {/* ✅ أيقونة تكبير عند الهوفر */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
-                      <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 bg-white/90 rounded-full p-2 shadow-lg">
-                        <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                      </span>
-                    </div>
+                    {!colorSoldOut && (
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
+                        <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 bg-white/90 rounded-full p-2 shadow-lg">
+                          <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                          </svg>
+                        </span>
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -198,14 +267,26 @@ function TurbonProductList({ category }) {
               <div className="mt-10 text-center">
                 <h3 className="text-sm font-medium text-gray-600 mb-3">المقاسات المتاحة:</h3>
                 <div className="flex flex-wrap justify-center gap-2">
-                  {turbonProducts[0].sizes.map((size, index) => (
-                    <span 
-                      key={index}
-                      className="bg-pink-50 text-pink-600 px-4 py-2 rounded-full text-sm border border-pink-200 font-medium"
-                    >
-                      {size.size} - {size.age}
-                    </span>
-                  ))}
+                  {turbonProducts[0].sizes.map((size, index) => {
+                    const sizeSoldOut = size.soldOut === true; // ⭐ جديد
+                    return (
+                      <span
+                        key={index}
+                        className={`px-4 py-2 rounded-full text-sm border font-medium transition-all duration-200 ${
+                          sizeSoldOut
+                            ? "bg-red-50 text-gray-400 border-red-100 line-through decoration-red-400/70"
+                            : "bg-pink-50 text-pink-600 border-pink-200"
+                        }`}
+                      >
+                        {size.size} - {size.age}
+                        {sizeSoldOut && (
+                          <span className="mr-1 text-[10px] font-bold text-red-500 no-underline inline-block">
+                            — نفد
+                          </span>
+                        )}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -218,6 +299,7 @@ function TurbonProductList({ category }) {
                 key={product.id}
                 product={product}
                 onPreview={() => handleProductClick(product)}
+                onClick={() => handleProductClick(product)}
               />
             ))}
           </div>
