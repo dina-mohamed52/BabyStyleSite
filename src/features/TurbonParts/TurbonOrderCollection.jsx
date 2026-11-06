@@ -20,7 +20,6 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-
 import Select from "../../ui/Select";
 import Drawer from "../../ui/Drawer";
 
@@ -28,6 +27,13 @@ import { useCart } from "../cart/CartContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useCartActions } from "../cart/AddAndBuyTOCart";
+
+// ✅ دالة مساعدة على مستوى الملف (برّه أي كومبوننت)
+// بتعتبر المنتج "One Size" لو مفيش مقاسات أو المقاس الوحيد هو One Size
+const isOneSize = (sizes) =>
+  !sizes ||
+  sizes.length === 0 ||
+  (sizes.length === 1 && /one\s*size/i.test(sizes[0].size || ""));
 
 // Mobile Dropdown Component
 function MobileSelect({
@@ -244,19 +250,19 @@ function TurbonOrderCollection({
     const type = selectedOffer?.selectedType;
 
     if (type === "set-bandana") {
-      return BandanaTurbonData.filter(p => p.type === "set-bandana");
+      return BandanaTurbonData.filter((p) => p.type === "set-bandana");
     }
 
     if (type === "set-turbon") {
-      return BandanaTurbonData.filter(p => p.type === "set-turbon");
+      return BandanaTurbonData.filter((p) => p.type === "set-turbon");
     }
 
     if (tabType === "bandana") {
-      return BandanaTurbonData.filter(p => p.tabType === "bandana");
+      return BandanaTurbonData.filter((p) => p.tabType === "bandana");
     }
 
     if (tabType === "turbon") {
-      return BandanaTurbonData.filter(p => p.tabType === "turbon");
+      return BandanaTurbonData.filter((p) => p.tabType === "turbon");
     }
 
     return [];
@@ -264,9 +270,10 @@ function TurbonOrderCollection({
 
   const products = useMemo(
     () => getFilteredProducts(),
-    [selectedOffer?.selectedTabType, selectedOffer?.type]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [selectedOffer?.selectedTabType, selectedOffer?.selectedType, selectedOffer?.type]
   );
-  
+
   const [pieces, setPieces] = useState(() =>
     Array.from({ length: count }, (_, i) => ({
       id: i + 1,
@@ -304,44 +311,62 @@ function TurbonOrderCollection({
       if (needsSize) {
         completed[piece.id] = !!(piece.productId && piece.color && selectedSizes[piece.id]);
       } else {
-        // منتج بدون مقاسات (نادراً) أو one size مدمج
+        // منتج One Size أو بدون مقاسات: يكفي المنتج واللون
         completed[piece.id] = !!(piece.productId && piece.color);
       }
     });
     setCompletedCards(completed);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pieces, selectedSizes]);
 
   const getProductById = (id) => BandanaTurbonData.find((p) => p.id === id);
 
-  // ⭐ جديد: الألوان بقت من productColors (اللي جواها sizes) بدل avalibeColors
+  // الألوان من productColors
   const getProductColors = (productId) => {
     const product = getProductById(productId);
     if (!product) return [];
-    // نرجع الألوان اللي ليها صور/مقاسات من productColors
     return (product.productColors || [])
       .map((pc) => pc.color)
       .filter(Boolean);
   };
 
-  // ⭐ جديد: المقاسات بقت بتتحدد حسب اللون المختار
-  const getColorSizes = (productId, colorName) => {
+  // ✅ المقاسات الخام (زي ما هي في الداتا، بما فيها One Size و soldOut)
+  const getRawColorSizes = (productId, colorName) => {
     const product = getProductById(productId);
     if (!product || !colorName) return [];
     const colorEntry = (product.productColors || []).find(
       (pc) => pc.color === colorName
     );
-    // لو اللون مالوش مقاسات محددة، نرجع لمقاسات المنتج العامة
     return colorEntry?.sizes || product.sizes || [];
   };
 
-  // ⭐ جديد: هل اللون ده كله sold out؟
-  const isColorSoldOut = (productId, colorName) => {
-    const sizes = getColorSizes(productId, colorName);
-    if (sizes.length === 0) return false;
-    return sizes.every((s) => s.soldOut === true);
+  // ✅ المقاسات اللي بتتعرض/بتتحفظ: لو One Size يرجّع مصفوفة فاضية
+  const getColorSizes = (productId, colorName) => {
+    const sizes = getRawColorSizes(productId, colorName);
+    return isOneSize(sizes) ? [] : sizes;
   };
 
-  // ⭐ جديد: هل المنتج بالكامل sold out (كل الألوان)؟
+  // ✅ هل اللون ده sold out؟ (بيقرأ من الداتا الخام عشان One Size يتحسب صح)
+  const isColorSoldOut = (productId, colorName) => {
+  const product = getProductById(productId);
+  if (!product || !colorName) return false;
+  const colorEntry = (product.productColors || []).find(
+    (pc) => pc.color === colorName
+  );
+  if (!colorEntry) return false;
+
+  // ⭐ الحالة 1: اللون نفسه معلم soldOut
+  if (colorEntry.soldOut === true) return true;
+
+  // ⭐ الحالة 2: كل مقاسات اللون soldOut
+  const sizes = colorEntry.sizes || [];
+  return sizes.length > 0 && sizes.every((s) => s.soldOut === true);
+};
+
+
+
+
+  // هل المنتج بالكامل sold out (كل الألوان)؟
   const isProductSoldOut = (productId) => {
     const colors = getProductColors(productId);
     if (colors.length === 0) return false;
@@ -382,7 +407,7 @@ function TurbonOrderCollection({
       "كافيه فيونكه": "#6F4E37",
       "أوف وايت فيونكه": "#FDF5E6",
       "سكري": "#F5F5DC",
-      default: "#CCCCCC"
+      default: "#CCCCCC",
     };
     const extractedColor =
       Object.keys(colorMap).find((c) => colorName?.includes(c)) || "default";
@@ -400,7 +425,7 @@ function TurbonOrderCollection({
     });
   };
 
-  // ⭐ جديد: لما اللون يتغير، نصفر المقاس المختار لأن المقاسات بقت مرتبطة باللون
+  // لما اللون يتغير، نصفر المقاس المختار لأن المقاسات مرتبطة باللون
   const handleColorChange = (id, color) => {
     setPieces((prev) => prev.map((p) => (p.id === id ? { ...p, color } : p)));
     setSelectedSizes((prev) => {
@@ -414,7 +439,7 @@ function TurbonOrderCollection({
     setSelectedSizes((prev) => ({ ...prev, [id]: size }));
   };
 
-  // ⭐ جديد: الصورة بقت تتناسب مع اللون من productColors
+  // الصورة حسب اللون من productColors
   const getProductImage = (product, colorName) => {
     if (!product) return "";
     const colorEntry = (product.productColors || []).find(
@@ -445,6 +470,7 @@ function TurbonOrderCollection({
         productId: piece.productId,
         name: product?.name,
         color: piece.color,
+        // ✅ المقاس بيتضاف بس لو المنتج ليه مقاسات حقيقية (مش One Size)
         ...(needsSize ? { size: selectedSizes[piece.id] } : {}),
         image: getProductImage(product, piece.color),
       };
@@ -563,18 +589,20 @@ function TurbonOrderCollection({
   const completedCount = Object.values(completedCards).filter(Boolean).length;
   const completionPercentage = (completedCount / pieces.length) * 100 || 0;
 
-  // ⭐⭐⭐ LABEL FUNCTION - ده اللي هيعرض للمستخدم هو فين ⭐⭐⭐
+  // LABEL FUNCTION
   const getOfferTypeLabel = () => {
     const tabType = selectedOffer?.selectedTabType;
     const offerType = selectedOffer?.type;
-    
+
     // عرض بندانه فردي
     if (tabType === "bandana" && !offerType?.includes("set")) {
       return "📌 بندانات فردية";
     }
     // عرض طقم بندانه
-    if ((tabType === "bandana" && offerType === "set-bandana") || 
-        (tabType === "set" && offerType === "set-bandana")) {
+    if (
+      (tabType === "bandana" && offerType === "set-bandana") ||
+      (tabType === "set" && offerType === "set-bandana")
+    ) {
       return "📌 أطقم بندانات";
     }
     // عرض تربون فردي
@@ -582,11 +610,13 @@ function TurbonOrderCollection({
       return "📌 تربونات فردية";
     }
     // عرض طقم تربون
-    if ((tabType === "turbon" && offerType === "set-turbon") || 
-        (tabType === "set" && offerType === "set-turbon")) {
+    if (
+      (tabType === "turbon" && offerType === "set-turbon") ||
+      (tabType === "set" && offerType === "set-turbon")
+    ) {
       return "📌 أطقم تربونات";
     }
-    
+
     return "📌 المنتجات";
   };
 
@@ -644,7 +674,7 @@ function TurbonOrderCollection({
             {selectedOffer.name}
           </span>
         </h2>
-        
+
         <p className="text-gray-500 text-xs md:text-sm px-4 mt-1">
           {selectedOffer?.selectedTabType === "bandana" && !selectedOffer?.type?.includes("set") && "🟣 اختر البندانات الفردية المناسبة لك"}
           {selectedOffer?.selectedTabType === "bandana" && selectedOffer?.type === "set-bandana" && "🟣 اختر أطقم البندانات المناسبة لك"}
@@ -711,10 +741,9 @@ function TurbonOrderCollection({
         {pieces.map((piece, idx) => {
           const product = getProductById(piece.productId);
           const colors = getProductColors(piece.productId);
-          // ⭐ المقاسات بقت حسب اللون
+          // المقاسات حسب اللون (فاضية لو One Size)
           const sizes = getColorSizes(piece.productId, piece.color);
           const isCompleted = completedCards[piece.id];
-          const isHovered = hoveredCard === piece.id;
           const needsSize = sizes.length > 0;
 
           const productOptions = products.map((p) => ({
@@ -723,15 +752,16 @@ function TurbonOrderCollection({
             disabled: isProductSoldOut(p.id),
           }));
 
-          // ⭐ الألوان اللي كلها sold out تتعلم disabled
+          // الألوان اللي كلها sold out تتعلم disabled
           const colorOptions = colors.map((c) => ({
             value: c,
             label: c,
             color: getColorCode(c),
+            img: getProductImage(product, c),
             disabled: isColorSoldOut(piece.productId, c),
           }));
 
-          // ⭐ المقاسات اللي soldOut تتعلم disabled
+          // المقاسات اللي soldOut تتعلم disabled
           const sizeOptions = sizes.map((s) => ({
             value: s.size,
             label: `${s.size} - ${s.age}`,
@@ -891,8 +921,21 @@ function TurbonOrderCollection({
                         disabled={!piece.productId}
                         renderOption={(option) => (
                           <div className="flex items-center gap-3">
+                            {option.img ? (
+                              <img
+                                src={option.img}
+                                alt={option.label}
+                                loading="lazy"
+                                className="w-12 h-12 rounded-lg object-cover border border-gray-100 shrink-0"
+                              />
+                            ) : (
+                              <div
+                                className="w-12 h-12 rounded-lg border border-gray-100 shrink-0"
+                                style={{ backgroundColor: option.color }}
+                              />
+                            )}
                             <div
-                              className="w-6 h-6 rounded-full shadow-inner"
+                              className="w-4 h-4 rounded-full shadow-inner shrink-0"
                               style={{
                                 backgroundColor: option.color,
                                 border: option.color === "#FFFFFF" ? "1px solid #E5E7EB" : "none",
@@ -924,6 +967,14 @@ function TurbonOrderCollection({
                               disabled={isColorSoldOut(piece.productId, c)}
                             >
                               <div className="flex items-center gap-2">
+                                {getProductImage(product, c) ? (
+                                  <img
+                                    src={getProductImage(product, c)}
+                                    alt={c}
+                                    loading="lazy"
+                                    className="w-10 h-10 rounded-lg object-cover border border-gray-100 shrink-0"
+                                  />
+                                ) : null}
                                 <div
                                   className="w-5 h-5 rounded-full shadow-inner"
                                   style={{
@@ -944,7 +995,7 @@ function TurbonOrderCollection({
                       </div>
                     )}
 
-                    {/* Size Selection - بقت حسب اللون */}
+                    {/* Size Selection - حسب اللون (بيظهر بس لو فيه مقاسات حقيقية) */}
                     {needsSize && piece.productId && piece.color && (
                       <>
                         {isMobile ? (
@@ -1014,7 +1065,7 @@ function TurbonOrderCollection({
                       </>
                     )}
 
-                    {/* One Size Badge - لو اللون ملهوش مقاسات متعددة */}
+                    {/* One Size Badge - بيظهر في الفورم بس، ومش بيتحفظ في بيانات الأوردر */}
                     {!needsSize && piece.productId && piece.color && (
                       <div className="space-y-2">
                         <label className="flex items-center gap-2 text-sm font-medium text-gray-700">

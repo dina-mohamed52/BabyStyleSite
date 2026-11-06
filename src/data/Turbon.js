@@ -189,14 +189,16 @@ export const BandanaTurbonData = [
           { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" },
         ]
       },
-    //  {
+     {
         // يييييييييي
-      //  color: "كافيه فيونكه",
-      //  img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/WhatsApp_Image_2025-12-17_at_12.25.23_AM.jpg",
-      //  sizes: [
-      //    { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" , soldOut: true },
-  //   ]
-   //   },
+       color: "كافيه فيونكه",
+       img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/WhatsApp_Image_2025-12-17_at_12.25.23_AM.jpg",
+       sizes: [
+         { size: "One Size", age: "مناسب من 0 ل 4 سنين (مطاطي)" },
+    ],
+    soldOut: true 
+
+     },
       {
         color: "أوف وايت فيونكه",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789572671/photo_16_2026-06-21_01-43-51.jpg",
@@ -264,7 +266,8 @@ export const BandanaTurbonData = [
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
           { size: "2-4", age: "من سنه ونص ل3 سنين" },
           { size: "4-6", age: "من 3 ل5 سنين" },
-        ]
+        ],
+        soldOut:true
       },
       {
         color: "أحمر",
@@ -363,6 +366,18 @@ export const BandanaTurbonData = [
     type: "set-turbon",
      category: 'turbon-set',
     productColors: [
+
+
+ {
+        color: "ورده لافندر + هاف أبيض",
+        img: "https://images.baby-style-store.com/%D8%AA%D8%B1%D8%A8%D9%88%D9%86%D8%A7%D8%AA/%D8%B7%D9%82%D9%85%20%D8%AA%D8%B1%D8%A8%D9%88%D9%86%20%D9%84%D8%A7%D9%81%D9%86%D8%AF%D8%B1.jpeg",
+        sizes: [
+          { size: "0-1", age: "من زيرو ل9 شهور" },
+          { size: "1-2", age: "من 9 شهور لسنه ونص" },
+          { size: "2-4", age: "من سنه ونص ل3 سنين"  ,soldOut: true  },
+        ]
+      },
+
       {
         color: "فيونكه أحمر",
         img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720346/WhatsApp_Image_2026-09-16_at_1.19.08_PM_1.jpg",
@@ -399,6 +414,7 @@ export const BandanaTurbonData = [
           { size: "2-4", age: "من سنه ونص ل3 سنين" },
         ]
       },
+     
       // {
       //   img: "https://res.cloudinary.com/cj2kp1ke/image/upload/v1789720348/WhatsApp_Image_2026-09-16_at_1.22.47_PM.jpg",
       // },
@@ -437,10 +453,12 @@ export const BandanaTurbonData = [
       // },
     ],
     avalibeColors: [
+      "ورده لافندر + هاف أبيض",
       " فيونكه أحمر",
       " فيونكه أسود",
       " فيونكه بينك",
       " فيونكه بيج + هاف اسود",
+
       // " فيونكه كافية + هاف اسود",
       // "تربون ورده بينك + هاف بينك",
       " ورده أصفر",
