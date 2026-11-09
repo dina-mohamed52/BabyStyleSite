@@ -144,12 +144,12 @@ export const halfOffersData = [
   { 
     name: "3 تربون",
     quantity: 3  , 
-    price: 270, 
+    price: 285, 
     badge: "عرض خاص",
     badgeColor: "from-[#ff8c93] to-[#e13485]",
     icon: <Shirt className="w-4 h-4" />,
     savings: 80,
-    originalPrice: 350,
+    originalPrice: 365,
     unit: "تربون",
     popular: false,
     tabType: "turbon"
@@ -157,12 +157,12 @@ export const halfOffersData = [
   { 
     name: "4 تربون",
     quantity: 4, 
-    price: 340, 
+    price: 360, 
     badge: "عرض خاص",
     badgeColor: "from-[#ff8c93] to-[#e13485]",
     icon: <Shirt className="w-4 h-4" />,
     savings: 80,
-    originalPrice: 420,
+    originalPrice: 440,
     unit: "تربون",
     popular: false,
     tabType: "turbon"
@@ -170,12 +170,12 @@ export const halfOffersData = [
   { 
     name: "6 تربون",
     quantity: 6, 
-    price: 480, 
+    price: 510, 
     badge: "الأكثر طلباً",
     badgeColor: "from-[#ff8c93] to-[#e13485]",
     icon: <Shirt className="w-4 h-4" />,
     savings: 150,
-    originalPrice: 630,
+    originalPrice: 660,
     unit: "تربون",
     popular: true,
     tabType: "turbon"
