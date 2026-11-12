@@ -62,6 +62,14 @@ export const BandanaTurbonData = [
         ]
       },
       {
+        color: "لبني",
+        img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/%D9%84%D8%A8%D9%86%D9%8A.webp",
+        sizes: [
+          { size: "0-1", age: "من زيرو لسنة" },
+          { size: "1-3", age: "من سنه ل 3 سنين" ,soldOut: true},
+        ]
+      },
+      {
         color: "بينك",
         img: "https://images.baby-style-store.com/%D8%A8%D9%86%D8%AF%D9%86%D8%A7%D8%AA/photo_25_2026-04-26_00-17-35.jpg",
         sizes: [
@@ -97,6 +105,7 @@ export const BandanaTurbonData = [
     avalibeColors: [
       "أبيض",
       "أسود",
+      "لبني",
       "بينك",
       "أحمر",
       "أصفر",
