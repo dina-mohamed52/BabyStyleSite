@@ -1,6 +1,6 @@
 // 📁 SizesSec.jsx
 function SizesSec({ product }) {
-    // جدول المقاسات الثابت زي الصورة
+    // جدول المقاسات الثابت زي الصورة////
  const SIZES_TABLE = [
     { size: "0-1",   age: "من 0 إلى 9 شهور",       length: "40 سم" },
     { size: "1-2",   age: "من 9 شهور إلى سنة ونص",  length: "45 سم" },
