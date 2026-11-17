@@ -1,16 +1,16 @@
 // 📁 SizesSec.jsx
 function SizesSec({ product }) {
     // جدول المقاسات الثابت زي الصورة
-    const SIZES_TABLE = [
-        { size: "0",  age: "من 0 إلى 9 شهور",  length: "40 سم" },
-        { size: "2",  age: "من سنة إلى سنتين", length: "45 سم" },
-        { size: "4",  age: "من 2 إلى 4 سنوات", length: "50 سم" },
-        { size: "6",  age: "من 5 إلى 6 سنوات", length: "60 سم" },
-        { size: "8",  age: "من 7 إلى 8 سنوات", length: "70 سم" },
-        { size: "10", age: "من 9 إلى 10 سنوات", length: "80 سم" },
-        { size: "12", age: "من 11 إلى 12 سنة", length: "90 سم" },
-    ];
-
+ const SIZES_TABLE = [
+    { size: "0-1",   age: "من 0 إلى 9 شهور",       length: "40 سم" },
+    { size: "1-2",   age: "من 9 شهور إلى سنة ونص",  length: "45 سم" },
+    { size: "4-2",   age: "من سنة ونص إلى 3 سنوات", length: "50 سم" },
+    { size: "6-4",   age: "من 3 إلى 5 سنوات",       length: "60 سم" },
+    { size: "8-6",   age: "من 5 إلى 7 سنوات",       length: "70 سم" },
+    { size: "10-8",  age: "من 7 إلى 9 سنوات",       length: "80 سم" },
+    { size: "12-10", age: "من 9 إلى 11 سنة",        length: "90 سم" },
+    { size: "14-12", age: "من 12 إلى 14 سنة",       length: "100 سم" },
+];
     return (
         <section className="sz-section">
             <style>{szCss}</style>
