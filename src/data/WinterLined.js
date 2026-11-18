@@ -121,7 +121,7 @@ export const winterLined = [
           { size: "0-1", age: "من زيرو ل9 شهور", category: "baby" },
           { size: "1-2", age: "من 9 شهور لسنه ونص", category: "baby" },
           { size: "4-2", age: "من سنة ونص ل 3 سنين", category: "girl" },
-          { size: "6-4", age: "من 3 ل 5 سنين", category: "girl" },
+         // { size: "6-4", age: "من 3 ل 5 سنين", category: "girl" },
         ],
       },
       
