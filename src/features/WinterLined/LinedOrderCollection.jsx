@@ -13,7 +13,7 @@ const CATEGORY_LABEL = {
 
 /* ✅ helper: صورة المنتج مع fallback */
 const getProductImage = (product) =>
-   product?.productColors?.[0]?.img || product?.image || "";
+  product?.productColors?.[0]?.img || product?.image || "";
 
 function LinedOrderCollection({
   selectedOffer,
@@ -427,6 +427,7 @@ function LinedOrderCollection({
                     label: `${s.size} — ${s.age}`,
                     badge: CATEGORY_LABEL[s.category] || s.category,
                     category: s.category,
+                    soldOut: !!s.soldOut, // ✅ المقاس خلصان
                   }))}
                   onSelect={(opt) =>
                     handleSize(piece.id, opt.value, opt.category)
@@ -499,6 +500,7 @@ function Dropdown({
   showThumb,
 }) {
   const handleKeyDown = (e, opt) => {
+    if (opt.soldOut) return; // ✅ مينفعش اختيار سولد اوت
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       onSelect(opt);
@@ -544,21 +546,33 @@ function Dropdown({
           ) : (
             options.map((opt) => {
               const selected = value?.label === opt.label;
+              const isSoldOut = !!opt.soldOut;
+
               return (
                 <button
                   key={opt.value}
                   type="button"
                   role="option"
                   aria-selected={selected}
-                  className={`wlo-dd-item ${selected ? "selected" : ""}`}
-                  onClick={() => onSelect(opt)}
+                  aria-disabled={isSoldOut}
+                  disabled={isSoldOut}
+                  className={`wlo-dd-item ${selected ? "selected" : ""} ${
+                    isSoldOut ? "wlo-dd-item-soldout" : ""
+                  }`}
+                  onClick={() => !isSoldOut && onSelect(opt)}
                   onKeyDown={(e) => handleKeyDown(e, opt)}
                 >
                   <span className="wlo-dd-item-left">
                     {showThumb && <Thumb src={opt.img} alt={opt.label} />}
                     <span className="wlo-dd-item-label">{opt.label}</span>
-                    {opt.badge && (
-                      <span className="wlo-dd-badge">{opt.badge}</span>
+                    {isSoldOut ? (
+                      <span className="wlo-dd-badge wlo-dd-badge-soldout">
+                        نفدت الكمية
+                      </span>
+                    ) : (
+                      opt.badge && (
+                        <span className="wlo-dd-badge">{opt.badge}</span>
+                      )
                     )}
                   </span>
                   {selected && <span className="wlo-dd-check">✓</span>}
@@ -810,6 +824,24 @@ const wloCss = `
   background:var(--sun);color:var(--ink);
 }
 .wlo-dd-check{color:var(--pink-d);font-weight:900;font-size:15px}
+
+/* ✅ مقاس سولد اوت */
+.wlo-dd-item-soldout,
+.wlo-dd-item-soldout:hover{
+  opacity:.65;
+  cursor:not-allowed;
+  background:#FAF6F6;
+}
+.wlo-dd-item-soldout .wlo-dd-item-label{
+  text-decoration:line-through;
+  text-decoration-thickness:2px;
+  text-decoration-color:#C62828;
+  color:#9A8F96;
+}
+.wlo-dd-badge-soldout{
+  background:#FFD6D6;
+  color:#C62828;
+}
 
 .wlo-actions{
   display:flex;flex-wrap:wrap;gap:14px;justify-content:center;

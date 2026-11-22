@@ -99,7 +99,7 @@ export const BackToSchoolData = [
         sizes: [
   { size: "0-1", age: "من زيرو ل9 شهور" },
           { size: "1-2", age: "من 9 شهور لسنه ونص" },
-          { size: "4-2", age: "من سنة ونص ل 3 سنين" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين" , soldOut: true},
           { size: "6-4", age: "من 3 ل 5 سنين" },
           { size: "8-6", age: "من 5 ل 7 سنين" },
           { size: "10-8", age: "من 7 ل 9 سنين" },

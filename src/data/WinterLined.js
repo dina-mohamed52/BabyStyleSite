@@ -121,7 +121,7 @@ export const winterLined = [
           { size: "0-1", age: "من زيرو ل9 شهور", category: "baby" },
           { size: "1-2", age: "من 9 شهور لسنه ونص", category: "baby" },
           { size: "4-2", age: "من سنة ونص ل 3 سنين", category: "girl" },
-         // { size: "6-4", age: "من 3 ل 5 سنين", category: "girl" },
+          { size: "6-4", age: "من 3 ل 5 سنين", category: "girl" , soldOut: true },
         ],
       },
       
@@ -140,8 +140,11 @@ export const winterLined = [
         color: "بيج",
         img: "https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/WhatsApp%20Image%202026-10-21%20at%203.34.20%20PM.jpeg",
         sizes: [
+           { size: "0-1", age: "من زيرو ل9 شهور", category: "baby" ,soldOut: true},
+          { size: "1-2", age: "من 9 شهور لسنه ونص", category: "baby",soldOut: true },
+        
           { size: "4-2", age: "من سنة ونص ل 3 سنين", category: "girl" },
-          { size: "6-4", age: "من 3 ل 5 سنين", category: "girl" },
+          { size: "6-4", age: "من 3 ل 5 سنين", category: "girl", soldOut: true  },
         ],
       },
     ],
