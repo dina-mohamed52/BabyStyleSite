@@ -8,8 +8,8 @@ function SizesSec({ product }) {
     { size: "6-4",   age: "من 3 إلى 5 سنوات",       length: "60 سم" },
     { size: "8-6",   age: "من 5 إلى 7 سنوات",       length: "70 سم" },
     { size: "10-8",  age: "من 7 إلى 9 سنوات",       length: "80 سم" },
-    { size: "12-10", age: "من 9 إلى 11 سنة",        length: "90 سم" },
-    { size: "14-12", age: "من 12 إلى 14 سنة",       length: "100 سم" },
+    { size: "12-10", age: "من 9 إلى 11 سنة",        length: "85 سم" },
+    { size: "14-12", age: "من 12 إلى 14 سنة",       length: "90 سم" },
 ];
     return (
         <section className="sz-section">
