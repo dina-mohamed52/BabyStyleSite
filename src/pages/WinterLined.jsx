@@ -34,6 +34,7 @@ const COLOR_HEX = {
 const CATEGORY_LABEL = {
   lined: "🧸 مبطن",
   fur: "❄️ فرو",
+  magical: "✨ سحري",
 };
 
 const DEFAULT_IMAGES = CATEGORY_IMAGES.lined;
@@ -71,6 +72,42 @@ const CATEGORY_CONTENT = {
       { icon: "🦋", title: "حرية الحركة", text: "مرن يسمح لها تلعب براحتها", rotate: "3deg", color: "#DFF7EA" },
     ],
   },
+  magical: {
+    heroTitle: "كولون سحري",
+    heroSubtitle: "مبطن بتقنية السحر لتدفئة مضاعفة ✨",
+    subtitle: "ألوان بتفرّح القلب",
+    description: "كولونات ناعمة بألوان مبهجة — بتخلي كل يوم شتوي حكاية",
+    features: [
+      {
+        icon: "✨",
+        title: "سحر الدفء",
+        text: "بطانة سحرية بتحبس الحرارة وتحافظ على دفء بنوتك مهما كان الجو بارد",
+        rotate: "-3deg",
+        color: "#F0E7FF",
+      },
+      {
+        icon: "🖤",
+        title: "أناقة الأسود",
+        text: "لون أسود كلاسيكي وشيك بيكمل أي لوك، وسهل يتنسق مع أي هدوم",
+        rotate: "2deg",
+        color: "#E5F1FF",
+      },
+      {
+        icon: "🌬️",
+        title: "خفيف ومريح",
+        text: "رغم دفئه، خفيف جداً ومش بيخنق، بتتحرك فيه براحتها طول اليوم",
+        rotate: "-2deg",
+        color: "#FFE7F1",
+      },
+      {
+        icon: "🧶",
+        title: "مرونة عالية",
+        text: "بيتمدد مع الحركة وملمسه حريري ناعم على البشرة الحساسة",
+        rotate: "3deg",
+        color: "#DFF7EA",
+      },
+    ],
+  },
 };
 
 const FAQS = [
@@ -99,15 +136,9 @@ const IMG_LIFESTYLE = [
 /* ─────────────────────────────────────────────
    ⚡ نظام الصور
    ───────────────────────────────────────────── */
-
-/*
-  1) مقاسات ثابتة بس (بدل 150/500/600/700... كل واحد منهم بيتولّد من الصفر على Cloudinary
-     وأول تحميل بيبقى بطيء). كل ما قلّ عدد المقاسات، زاد الكاش وسرعت الصفحة.
-*/
 const STEPS = [200, 400, 600, 800, 1200, 1600];
 const snap = (w) => STEPS.find((s) => s >= w) || STEPS[STEPS.length - 1];
 
-/* إعدادات srcSet + sizes لكل مكان: الموبايل بيحمّل صورة أصغر بكتير */
 const IMG = {
   hero: { widths: [400, 600, 800, 1200], sizes: "(max-width:900px) 80vw, 490px", width: 800 },
   stage: { widths: [400, 600, 800, 1200], sizes: "(max-width:900px) 88vw, 490px", width: 800 },
@@ -128,7 +159,6 @@ const optimizeImage = (url, width = 600) => {
 
   let out = url;
   if (url.includes("cloudinary.com")) {
-    // c_limit: ميكبّرش الصورة | eco للصور الصغيرة
     const q = w <= 400 ? "q_auto:eco" : "q_auto";
     out = url.replace("/upload/", `/upload/c_limit,w_${w},${q},f_auto/`);
   } else if (url.includes("images.baby-style-store.com")) {
@@ -138,7 +168,6 @@ const optimizeImage = (url, width = 600) => {
   return out;
 };
 
-/* نسخة صغيرة جدًا ومبلّرة (≈1KB) بتظهر فورًا لحد ما الصورة الحقيقية توصل */
 const getLqip = (url) =>
   url && url.includes("cloudinary.com")
     ? url.replace("/upload/", "/upload/c_limit,w_32,q_20,e_blur:200,f_auto/")
@@ -155,7 +184,6 @@ const responsive = (url, cfg = {}) => {
   };
 };
 
-/* تحميل مسبق بنفس srcSet/sizes → المتصفح بيختار نفس الملف اللي هيتعرض */
 const preloaded = new Set();
 const preloadImage = (url, cfg) => {
   if (!url || typeof Image === "undefined") return;
@@ -172,7 +200,6 @@ const preloadImage = (url, cfg) => {
   img.src = p.src;
 };
 
-/* مانحمّلش مسبقًا لو النت ضعيف أو موفّر بيانات */
 const canPrefetch = () => {
   const c = typeof navigator !== "undefined" ? navigator.connection : null;
   if (!c) return true;
@@ -185,10 +212,6 @@ const whenIdle = (fn) =>
     ? requestIdleCallback(fn, { timeout: 3000 })
     : setTimeout(fn, 1500);
 
-/* ─────────────────────────────────────────────
-   ⚡ الخطوط + preconnect لسيرفرات الصور (تتضاف مرة واحدة)
-   الأفضل تحطيهم في index.html
-   ───────────────────────────────────────────── */
 const FONTS_HREF =
   "https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@400;600;700;900&family=Caveat:wght@500;700&display=swap";
 
@@ -218,9 +241,6 @@ function useWinterHead() {
   }, []);
 }
 
-/* ─────────────────────────────────────────────
-   ⚡ Reveal: Observer واحد مشترك
-   ───────────────────────────────────────────── */
 let sharedIO = null;
 const revealCallbacks = new WeakMap();
 
@@ -293,9 +313,6 @@ function Reveal({
   );
 }
 
-/* ─────────────────────────────────────────────
-   الزخارف
-   ───────────────────────────────────────────── */
 const Cloud = memo(function Cloud({ className = "" }) {
   return (
     <svg className={className} viewBox="0 0 120 60" fill="none" aria-hidden="true">
@@ -329,9 +346,6 @@ const Squiggle = memo(function Squiggle({ className = "" }) {
   );
 });
 
-/* ─────────────────────────────────────────────
-   🖼️ صورة ذكية: srcSet + blur placeholder + fade
-   ───────────────────────────────────────────── */
 const FadeImg = memo(function FadeImg({
   url,
   alt,
@@ -350,7 +364,6 @@ const FadeImg = memo(function FadeImg({
     onLoaded?.();
   }, [onLoaded]);
 
-  // لو الصورة جاية من الكاش وخلصت قبل ما React يربط onLoad
   useEffect(() => {
     const img = imgRef.current;
     if (img && img.complete && img.naturalWidth > 0) handleLoaded();
@@ -392,9 +405,6 @@ const FadeImg = memo(function FadeImg({
   );
 });
 
-/* ─────────────────────────────────────────────
-   🎨 اختيار اللون (العرض العادي + الـ Modal)
-   ───────────────────────────────────────────── */
 const ColorPicker = memo(function ColorPicker({
   product,
   title = false,
@@ -405,7 +415,6 @@ const ColorPicker = memo(function ColorPicker({
   const current = product.productColors[colorIdx];
   const warmedRef = useRef(false);
 
-  /* بعد ما أول صورة تخلص: حمّلي باقي الألوان في الخلفية → التبديل بين الألوان يبقى فوري */
   const warmOthers = useCallback(() => {
     if (warmedRef.current || !canPrefetch()) return;
     warmedRef.current = true;
@@ -419,9 +428,9 @@ const ColorPicker = memo(function ColorPicker({
       <span className="wl-tape wl-tape-tl" />
       <span className="wl-tape wl-tape-tr" />
       <FadeImg
-        key={current.img}
-        url={current.img}
-        alt={current.color}
+        key="main-hero"
+        url={product.image}
+        alt={product.name}
         cfg={IMG.stage}
         eager={eager}
         onLoaded={warmOthers}
@@ -498,9 +507,6 @@ const ColorPicker = memo(function ColorPicker({
   );
 });
 
-/* ─────────────────────────────────────────────
-   🎴 كارت منتج
-   ───────────────────────────────────────────── */
 const ProductColorCard = memo(function ProductColorCard({ product, onOpen }) {
   const firstImg = product.image;
 
@@ -532,9 +538,6 @@ const ProductColorCard = memo(function ProductColorCard({ product, onOpen }) {
   );
 });
 
-/* ─────────────────────────────────────────────
-   🪟 Modal اختيار اللون
-   ───────────────────────────────────────────── */
 const ProductColorModal = memo(function ProductColorModal({ product, onClose }) {
   useEffect(() => {
     const prevOverflow = document.body.style.overflow;
@@ -571,10 +574,10 @@ const ProductColorModal = memo(function ProductColorModal({ product, onClose }) 
   );
 });
 
-/* ─────────────────────────────────────────────
-   الأقسام
-   ───────────────────────────────────────────── */
 const Hero = memo(function Hero({ heroImg, name, content, categoryLabel, onColors }) {
+  const isArray = Array.isArray(heroImg);
+  const imgList = isArray ? heroImg : [heroImg];
+
   return (
     <section className="wl-hero">
       <div className="wl-paper-bg" />
@@ -591,14 +594,22 @@ const Hero = memo(function Hero({ heroImg, name, content, categoryLabel, onColor
           <div className="wl-polaroid wl-polaroid-hero">
             <span className="wl-tape wl-tape-tl" />
             <span className="wl-tape wl-tape-br" />
-            <FadeImg
-              url={heroImg}
-              alt={name}
-              cfg={IMG.hero}
-              eager
-              priority
-              position="top"
-            />
+
+            <div style={{ display: 'flex', gap: '10px' }}>
+              {imgList.map((img, idx) => (
+                <div key={idx} style={{ flex: 1 }}>
+                  <FadeImg
+                    url={img}
+                    alt={name}
+                    cfg={IMG.hero}
+                    eager
+                    priority={idx === 0}
+                    position="top"
+                  />
+                </div>
+              ))}
+            </div>
+
             <span className="wl-polaroid-caption">— دفء الشتا ❄️ —</span>
           </div>
           <svg className="wl-arrow" viewBox="0 0 120 100" fill="none" aria-hidden="true">
@@ -621,9 +632,9 @@ const Hero = memo(function Hero({ heroImg, name, content, categoryLabel, onColor
             {content.heroTitle}
           </h1>
           <p className="wl-lead">
-            {content.heroSubtitle}
+            {content.subtitle ? content.subtitle : content.heroSubtitle}
             <br />
-            مريح، كيوت، ومناسب للبيت والخروج 🎀
+            {content.description ? content.description : "مريح، كيوت، ومناسب للبيت والخروج 🎀"}
           </p>
           <div className="wl-cta">
             <button type="button" className="wl-btn" onClick={onColors}>
@@ -666,7 +677,6 @@ const Marquee = memo(function Marquee() {
 });
 
 const FeaturesSection = memo(function FeaturesSection({ content, img }) {
-  /* IMAGES.features ممكن تبقى صورة واحدة أو Array */
   const featureImgs = useMemo(() => [].concat(img || []), [img]);
 
   return (
@@ -764,6 +774,8 @@ const ColorsSection = memo(function ColorsSection({ products }) {
 
 const MaterialSection = memo(function MaterialSection({ category, img1, img2 }) {
   const isFur = category === "fur";
+  const isMagical = category === "magical";
+
   const m1 = responsive(img1, IMG.material);
   const m2 = responsive(img2, IMG.material);
 
@@ -804,14 +816,20 @@ const MaterialSection = memo(function MaterialSection({ category, img1, img2 }) 
             نعومة <span className="wl-underline">تحسّيها</span> من أول لمسة
           </h2>
           <p>
-            {isFur
+            {isMagical
+              ? "خامة سحرية بتحبس الحرارة وتدفي من غير ما تثقّل. أسود أنيق وشيك يناسب كل اللوكات."
+              : isFur
               ? "فرو ناعم من الداخل + خامة خارجية أنيقة. دفء مضاعف للشتا القارس."
               : "بطانة فوطه دافئة من الداخل + تصميم خطوط أنيقة. توازن مثالي بين الدفء والشكل."}
           </p>
           <ul className="wl-list">
             <li>
               <span className="wl-bullet">1</span>
-              {isFur ? "فرو ناعم من الداخل ☁️" : "بطانة فوطه ناعمة 🧸"}
+              {isMagical
+                ? "تقنية سحرية لتدفئة مضاعفة ✨"
+                : isFur
+                ? "فرو ناعم من الداخل ☁️"
+                : "بطانة فوطه ناعمة 🧸"}
             </li>
             <li>
               <span className="wl-bullet">2</span> قطن مرن يسمح بالحركة 🌈
@@ -907,9 +925,6 @@ const FinalSection = memo(function FinalSection({ onOrder }) {
   );
 });
 
-/* ─────────────────────────────────────────────
-   الكومبوننت الرئيسي
-   ───────────────────────────────────────────── */
 function WinterLined() {
   const { category = "lined" } = useParams();
   useWinterHead();
@@ -972,7 +987,6 @@ function WinterLined() {
         category={category}
       />
 
-      {/* key=category → الـ state بيتصفّر لوحده عند تغيير القسم */}
       <ColorsSection key={category} products={products} />
 
       <div ref={orderCollectionRef}>
@@ -1003,9 +1017,6 @@ function WinterLined() {
   );
 }
 
-/* ─────────────────────────────────────────────
-   CSS
-   ───────────────────────────────────────────── */
 const css = `
 .wl{
   --paper:#FFFDF7;
@@ -1056,7 +1067,6 @@ const css = `
 @keyframes wlFloat{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-16px) rotate(4deg)}}
 @keyframes wlSpin{to{transform:rotate(360deg)}}
 
-/* ⚡ Shimmer خفيف (opacity بس) */
 @keyframes wlPulse{0%,100%{opacity:.55}50%{opacity:1}}
 .wl-shimmer{
   position:absolute;inset:0;
@@ -1064,7 +1074,6 @@ const css = `
   animation:wlPulse 1.4s ease-in-out infinite;
 }
 
-/* صندوق الصورة: المساحة محجوزة + blur placeholder */
 .wl-imgbox{position:relative;width:100%;overflow:hidden;background:#f7f2ee;border-radius:4px}
 .wl-imgbox img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -1214,7 +1223,6 @@ const css = `
 .wl-polaroid-tilt-r{transform:rotate(-2.5deg)}
 .wl-polaroid-tilt-left{transform:rotate(-2deg)}
 
-/* كولاج صور الـ features (صورة أو اتنين جنب بعض) */
 .wl-polaroid-collage{display:flex;flex-direction:row;gap:10px;align-items:stretch}
 .wl-collage-item{flex:1;min-width:0;border-radius:4px;overflow:hidden}
 
@@ -1308,7 +1316,6 @@ const css = `
   font-weight:800;font-size:14px;
 }
 
-/* كروت المنتجات */
 .wl-products-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -1363,7 +1370,6 @@ const css = `
 .wl-pcard-cta span{transition:transform .3s}
 .wl-pcard:hover .wl-pcard-cta span{transform:translateX(-4px)}
 
-/* Modal */
 .wl-modal{
   position:fixed;inset:0;z-index:200;
   background:rgba(20,14,25,.88);
@@ -1408,7 +1414,6 @@ const css = `
   color:var(--ink);
 }
 
-/* Colors */
 .wl-colors-grid{
   display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;
 }
@@ -1572,7 +1577,6 @@ const css = `
 }
 `;
 
-/* عنصر <style> ثابت: React مبيعيدش تحليل الـ CSS في كل رندر */
 const styleEl = <style>{css}</style>;
 
 export default WinterLined;

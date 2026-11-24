@@ -40,19 +40,31 @@ const linedOffers = [
    ❄️ عروض الفرو (سعر واحد — مفيش بيبي/بناتي)
    ───────────────────────────────────────────── */
 const furOffers = [
-  { name: "ال2 كولون", count:2, prices: { single: 320 } },
+  { name: "ال2 كولون", count: 2, prices: { single: 320 } },
   { name: "ال3 كولون", count: 3, prices: { single: 420 } },
   { name: "ال4 كولون", count: 4, prices: { single: 540 } },
-  { name: "ال 5 كولون", count:5, prices: { single: 650 } },
+  { name: "ال 5 كولون", count: 5, prices: { single: 650 } },
   { name: "ال6 كولون", count: 6, prices: { single: 750 } },
   { name: "ال8 كولون", count: 8, prices: { single: 800 } },
   { name: "ال10 كولون", count: 10, prices: { single: 950 } },
   { name: "ال12 كولون", count: 12, prices: { single: 1080 } },
 ];
 
+/* ─────────────────────────────────────────────
+   ✨ عروض الكولون السحري (سعر واحد — مفيش بيبي/بناتي)
+   ───────────────────────────────────────────── */
+const magicalOffers = [
+  { name: "القطعة الواحدة", count: 1, prices: { single: 300 } },
+  { name: "القطعتين", count: 2, prices: { single: 580 } },
+  { name: "ال3 قطع", count: 3, prices: { single: 800 } },
+  { name: "عرض الشلة (4 قطع)", count: 4, prices: { single: 1000 } },
+];
+
 /* ✅ اختيار العروض حسب الكاتيجوري */
 export function getOffersByCategory(category) {
-  return category === "fur" ? furOffers : linedOffers;
+  if (category === "fur") return furOffers;
+  if (category === "magical") return magicalOffers;
+  return linedOffers;
 }
 
 /* ─────────────────────────────────────────────

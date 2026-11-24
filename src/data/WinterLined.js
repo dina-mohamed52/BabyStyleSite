@@ -131,7 +131,7 @@ export const winterLined = [
         sizes: [
           { size: "0-1", age: "من زيرو ل9 شهور", category: "baby" },
           { size: "1-2", age: "من 9 شهور لسنه ونص", category: "baby" },
-          { size: "4-2", age: "من سنة ونص ل 3 سنين", category: "girl" },
+          { size: "4-2", age: "من سنة ونص ل 3 سنين", category: "girl" , soldOut: true },
           { size: "6-4", age: "من 3 ل 5 سنين", category: "girl" },
         ],
       },
@@ -236,4 +236,56 @@ export const winterLined = [
       { size: "14-12", age: "من 12 ل 14 سنة", category: "girl" },
     ],
   },
+  // ******************* الكولون السحري *********************************//
+  {
+    id: 'magicWinerLined',
+    name: "كولون سحري مبطن ساده",
+    category: "magical",
+    productColors: [
+      {
+        color: " أسود ساده",
+        img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%20%D8%B3%D8%AD%D8%B1%D9%8A/%D8%B3%D8%AD%D8%B1%D9%8A1.webp",
+        sizes: [
+          { size: "S", age: "من 3 ل 6 سنين",  category: "girl" },
+          { size: "M", age: "من 6 ل 8 سنين",  category: "girl" },
+          { size: "L", age: "من 9 ل 12 سنة",  category: "girl" },
+        ],
+      },
+    ],
+    avalibeColors: ["أسود ساده"],
+    image: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%20%D8%B3%D8%AD%D8%B1%D9%8A/%D8%B3%D8%AD%D8%B1%D9%8A3.webp",
+    sizes: [
+      { size: "S", age: "من 3 ل 6 سنين",  category: "girl" },
+      { size: "M", age: "من 6 ل 8 سنين",  category: "girl" },
+      { size: "L", age: "من 9 ل 12 سنة",  category: "girl" },
+    ],
+ 
+  },
+  {
+    id: 'magicWinerLined2',
+    name: " كولون سحري مبطن قلوب",
+    category: "magical",
+    productColors: [
+        {
+      color: " أسود قلوب",
+      img: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%20%D8%B3%D8%AD%D8%B1%D9%8A/%D8%B3%D8%AD%D8%B1%D9%8A2.webp",
+      sizes: [
+        { size: "S", age: "من 3 ل 6 سنين",  category: "girl" },
+        { size: "M", age: "من 6 ل 8 سنين",  category: "girl" },
+        { size: "L", age: "من 9 ل 12 سنة",  category: "girl" },
+      ],
+    },
+    ],
+    avalibeColors: [" أسود قلوب"],
+    image: "https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%20%D8%B3%D8%AD%D8%B1%D9%8A/%D8%B3%D8%AD%D8%B1%D9%8A%20%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A.webp",
+    sizes: [
+      { size: "S", age: "من 3 ل 6 سنين",  category: "girl" },
+      { size: "M", age: "من 6 ل 8 سنين",  category: "girl" },
+      { size: "L", age: "من 9 ل 12 سنة",  category: "girl" },
+    ],
+   
+  },
+
+
+
 ];

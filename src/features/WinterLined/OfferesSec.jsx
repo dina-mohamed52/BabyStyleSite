@@ -3,7 +3,9 @@ import { getOffersByCategory, AGE_GROUPS } from "./OfferesData";
 
 function OfferCard({ offer, index, onSelect, category }) {
   const accent = index % 2 === 0 ? "pink" : "lav";
-  const isFur = category === "fur";
+  
+  // ✨ تعديل: الماجيكل والفرو ليهم سعر واحد، عكس المبطن العادي
+  const isSinglePrice = category === "fur" || category === "magical";
 
   return (
     <button
@@ -22,18 +24,24 @@ function OfferCard({ offer, index, onSelect, category }) {
         <span className="of-count">{offer.count} قطع</span>
       </div>
 
-      {/* ✅ الفرو: سعر واحد — المبطن: بيبي + بناتي */}
+      {/* ✅ الفرو والماجيكل: سعر واحد — المبطن العادي: بيبي + بناتي */}
       <div className="of-prices">
-        {isFur ? (
+        {isSinglePrice ? (
           <div className="of-price of-single">
             <div className="of-price-top">
-              <span className="of-price-label">❄️ مبطن فرو</span>
+              <span className="of-price-label">
+                {category === "fur" ? "❄️ مبطن فرو" : "✨ كولون سحري"}
+              </span>
               <span className="of-price-value">
                 {offer.prices.single}
                 <small>ج</small>
               </span>
             </div>
-            <p className="of-age">كل المقاسات بنفس السعر 🎀</p>
+            <p className="of-age">
+              {category === "fur"
+                ? "كل المقاسات بنفس السعر 🎀"
+                : "كل المقاسات بنفس السعر (من 3 لـ 12 سنة) 🎀"}
+            </p>
           </div>
         ) : (
           <>
@@ -97,6 +105,8 @@ function OfferesSec({ setSelectedOffer, scrollToOrderCollection, category = "lin
         <p className="of-sub">
           {category === "fur"
             ? "أسعار موحدة لكل المقاسات — اختاري العرض اللي يناسبك 💗"
+            : category === "magical"
+            ? "عروض خاصة للكولون السحري — أسعار موحدة لكل المقاسات ✨"
             : "أسعار خاصة لكل فئة — اختاري العرض اللي يناسب بنتك 💗"}
         </p>
         <svg
