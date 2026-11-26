@@ -36,7 +36,7 @@ const tokens = {
 const categories = [
   {
     id: 'printedColon',
-    title: 'كولونات مبطنه فرو',
+    title: 'كولونات فيونكة فوطة',
     subtitle: 'ألوان بتفرّح القلب',
     description: 'كولونات ناعمة بألوان مبهجة — بتخلي كل يوم شتوي حكاية',
     count: '١٢',
@@ -47,12 +47,12 @@ const categories = [
     accent: '#F5B800',
     accentLight: '#FFFAE0',
     emoji: '☃️',
-    img: 'https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/WhatsApp%20Image%202026-10-21%20at%203.34.19%20PM%20(3).jpeg',
+    img: 'https://images.baby-style-store.com/%D9%85%D8%A8%D8%B7%D9%86%20%D9%81%D8%B1%D9%88/WhatsApp%20Image%202026-10-21%20at%204.15.36%20PM.jpeg',
     path: '/winter/fur',
   },
   {
     id: 'magicWinerLined',
-    title: 'كولونات سحرية مبطنه',
+    title: 'كولون سحري ',
     subtitle: 'مبطن بتقنية السحر لتدفئة مضاعفة',
     description: 'بطانة سحرية بتحبس الحرارة وتحافظ على دفء بنوتك مهما كان الجو بارد',
     count: '١٢',
@@ -68,7 +68,7 @@ accentLight: '#FFDBC9',
   },
   {
     id: 'colon',
-    title: 'كولونات مبطنة',
+    title: ' كولونات مبطنة ساده',
     subtitle: 'دفا ناعم من جوه',
     description: 'بطانة قطنية بتدفّي من غير ما تتقل — مثالية لأبرد أيام الشتا',
     count: '١٨',
