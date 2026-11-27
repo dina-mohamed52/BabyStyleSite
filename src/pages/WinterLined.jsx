@@ -13,10 +13,193 @@ import { winterLined } from "../data/WinterLined";
 import OfferesSec from "../features/WinterLined/OfferesSec";
 import LinedOrderCollection from "../features/WinterLined/LinedOrderCollection";
 import { CATEGORY_IMAGES } from "../features/WinterLined/CategoryHeroSecImages";
+import "../features/WinterLined/WinterLined.css";
+
 
 /* ⚡ أقسام تحت الشاشة → تتحمل بعد الأساسي */
 const SizesSec = lazy(() => import("../features/WinterLined/SizesSec"));
 const RealLife = lazy(() => import("../features/WinterLined/RealLife"));
+
+/* ─────────────────────────────────────────────
+   ⚡ جدول المقاسات المخصص للكاتيجوري المبطن (Lined)
+   ───────────────────────────────────────────── */
+const PlainLinedSizeTable = memo(function PlainLinedSizeTable() {
+  const sizes = [
+    { size: '0', age: 'من 0 إلى 9 شهور', length: '40' },
+    { size: '2', age: 'من سنة إلى سنتين', length: '45' },
+    { size: '4', age: 'من 2 إلى 4 سنوات', length: '50' },
+    { size: '6', age: 'من 5 إلى 6 سنوات', length: '60' },
+    { size: '8', age: 'من 7 إلى 8 سنوات', length: '70' },
+    { size: '10', age: 'من 9 إلى 10 سنوات', length: '80' },
+    { size: '12', age: 'من 11 إلى 12 سنة', length: '90' },
+  ];
+
+  return (
+    <section className="wl-section wl-section-plain-sizes" style={{ padding: '60px 22px' }}>
+      <div style={{
+        maxWidth: '650px',
+        margin: '0 auto',
+        background: '#fff',
+        borderRadius: '24px',
+        boxShadow: '0 10px 40px -10px rgba(58,46,69,0.08)',
+        border: '2px solid var(--line)',
+        overflow: 'hidden'
+      }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center' }}>
+          <thead>
+            <tr style={{ background: 'var(--pink-d)', color: '#fff' }}>
+              <th style={{ padding: '16px 12px', fontWeight: 'bold', fontSize: '16px', width: '33.33%', borderLeft: '1px solid rgba(255,255,255,0.2)' }}>المقاس</th>
+              <th style={{ padding: '16px 12px', fontWeight: 'bold', fontSize: '16px', width: '33.33%', borderLeft: '1px solid rgba(255,255,255,0.2)' }}>العمر المناسب</th>
+              <th style={{ padding: '16px 12px', fontWeight: 'bold', fontSize: '16px', width: '33.33%' }}>طول الكولون</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sizes.map((item, index) => (
+              <tr
+                key={index}
+                style={{
+                  background: index % 2 === 0 ? '#fff' : '#FFF5F7',
+                  transition: 'background 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.background = '#FFEBEF'}
+                onMouseLeave={(e) => e.currentTarget.style.background = index % 2 === 0 ? '#fff' : '#FFF5F7'}
+              >
+                <td style={{ padding: '16px 12px', borderBottom: index === sizes.length - 1 ? 'none' : '1px solid var(--line)' }}>
+                  <span style={{ fontSize: '22px', fontWeight: 900, color: 'var(--ink)' }}>{item.size}</span>
+                </td>
+                <td style={{ padding: '16px 12px', borderBottom: index === sizes.length - 1 ? 'none' : '1px solid var(--line)' }}>
+                  <span style={{ fontSize: '15px', fontWeight: 700, color: 'var(--ink-soft)' }}>{item.age}</span>
+                </td>
+                <td style={{ padding: '16px 12px', borderBottom: index === sizes.length - 1 ? 'none' : '1px solid var(--line)' }}>
+                  <span style={{ fontSize: '20px', fontWeight: 800, color: 'var(--pink-d)' }}>{item.length}</span>
+                  <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink-soft)', marginRight: '4px' }}>سم</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p style={{ textAlign: 'center', fontSize: '13px', color: 'var(--ink-soft)', marginTop: '16px', fontWeight: 600 }}>
+        * المقاسات تقريبية وقد تختلف قليلاً حسب تصميم الموديل.
+      </p>
+    </section>
+  );
+});
+
+/* ─────────────────────────────────────────────
+   ⚡ مكون جدول المقاسات المخصص للكاتيجوري السحري
+   ───────────────────────────────────────────── */
+const MagicalSizeTable = memo(function MagicalSizeTable() {
+  const sizes = [
+    { label: "S", age: "من 3 لـ 6 سنين" },
+    { label: "M", age: "من 6 لـ 8 سنين" },
+    { label: "L", age: "من 8 لـ 12 سنة" },
+  ];
+
+  return (
+    <section className="wl-section wl-section-magical-sizes" style={{ padding: '60px 22px' }}>
+      <div style={{
+        maxWidth: '500px',
+        margin: '0 auto',
+        background: '#FFFDF7',
+        borderRadius: '24px',
+        padding: '32px 24px',
+        boxShadow: '0 20px 40px -15px rgba(58,46,69,0.1)',
+        border: '2.5px solid var(--ink)',
+        position: 'relative',
+        textAlign: 'center'
+      }}>
+        {/* العنوان */}
+        <div style={{ marginBottom: '30px' }}>
+          <h2 style={{
+            fontFamily: "'Lalezar', sans-serif",
+            fontSize: '32px',
+            fontWeight: 400,
+            color: 'var(--ink)',
+            margin: '0 0 10px'
+          }}>
+            اختاري مقاس بنتك صح
+          </h2>
+          <span style={{
+            fontSize: '14px',
+            fontWeight: 700,
+            color: 'var(--pink-d)',
+            background: '#FFF0F7',
+            padding: '6px 18px',
+            borderRadius: '999px',
+            border: '2px solid var(--pink)'
+          }}>
+            المقاسات
+          </span>
+        </div>
+
+        {/* البطاقات */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px' }}>
+          {sizes.map((item, index) => (
+            <div key={index} style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              background: '#fff',
+              padding: '16px 20px',
+              borderRadius: '16px',
+              border: '2.5px solid var(--ink)',
+              boxShadow: '4px 4px 0 rgba(58,46,69,0.08)',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translate(-2px, -2px)';
+              e.currentTarget.style.boxShadow = '6px 6px 0 var(--pink)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translate(0, 0)';
+              e.currentTarget.style.boxShadow = '4px 4px 0 rgba(58,46,69,0.08)';
+            }}
+            >
+              <div style={{
+                fontSize: '22px',
+                fontWeight: 900,
+                color: 'var(--pink-d)',
+                fontFamily: "'Cairo', sans-serif",
+                width: '40px',
+                textAlign: 'center'
+              }}>
+                {item.label}
+              </div>
+              <div style={{
+                fontSize: '18px',
+                fontWeight: 700,
+                color: 'var(--ink)',
+                flex: 1,
+                textAlign: 'right',
+                paddingRight: '16px'
+              }}>
+                {item.age}
+              </div>
+              <div style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                background: 'var(--line)'
+              }} />
+            </div>
+          ))}
+        </div>
+
+        {/* ملاحظة */}
+        <p style={{
+          fontSize: '13px',
+          color: 'var(--ink-soft)',
+          lineHeight: 1.8,
+          margin: 0
+        }}>
+          محتارة؟ ابعتيلنا سن ووزن بنتك على واتساب ونقولك المقاس.
+        </p>
+      </div>
+    </section>
+  );
+});
 
 /* ─────────────────────────────────────────────
    ثوابت
@@ -346,6 +529,10 @@ const Squiggle = memo(function Squiggle({ className = "" }) {
   );
 });
 
+/* ─────────────────────────────────────────────
+   ✅ FadeImg — مع fallback لو الصورة فشلت
+   failStage: 0 = الرابط المحسّن | 1 = الرابط الأصلي | 2 = فشل نهائي
+   ───────────────────────────────────────────── */
 const FadeImg = memo(function FadeImg({
   url,
   alt,
@@ -357,12 +544,21 @@ const FadeImg = memo(function FadeImg({
   onLoaded,
 }) {
   const [loaded, setLoaded] = useState(false);
+  const [failStage, setFailStage] = useState(0);
   const imgRef = useRef(null);
 
   const handleLoaded = useCallback(() => {
     setLoaded(true);
     onLoaded?.();
   }, [onLoaded]);
+
+  const handleError = useCallback(() => {
+    // أول فشل: جرّب الرابط الأصلي من غير تحويلات
+    setFailStage((s) => {
+      if (s === 0 && url) return 1;
+      return 2;
+    });
+  }, [url]);
 
   useEffect(() => {
     const img = imgRef.current;
@@ -371,7 +567,13 @@ const FadeImg = memo(function FadeImg({
   }, []);
 
   const p = responsive(url, cfg);
-  const lqip = getLqip(url);
+  const lqip = failStage === 0 ? getLqip(url) : "";
+  const failed = failStage === 2;
+
+  // المرحلة 1: الرابط الأصلي بدون srcSet
+  const imgSrc = failStage === 0 ? p.src : url;
+  const imgSrcSet = failStage === 0 ? p.srcSet : undefined;
+  const imgSizes = failStage === 0 ? p.sizes : undefined;
 
   return (
     <div
@@ -387,20 +589,40 @@ const FadeImg = memo(function FadeImg({
           : null),
       }}
     >
-      {!loaded && !lqip && <div className="wl-shimmer" />}
-      <img
-        ref={imgRef}
-        src={p.src}
-        srcSet={p.srcSet}
-        sizes={p.sizes}
-        alt={alt}
-        loading={eager ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : undefined}
-        decoding="async"
-        onLoad={handleLoaded}
-        onError={() => setLoaded(true)}
-        style={{ objectPosition: position, opacity: loaded ? 1 : 0 }}
-      />
+      {!loaded && !failed && !lqip && <div className="wl-shimmer" />}
+
+      {failed ? (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "grid",
+            placeItems: "center",
+            fontSize: 40,
+            color: "var(--ink-soft)",
+            background: "#f7f2ee",
+          }}
+          role="img"
+          aria-label={alt}
+        >
+          🧦
+        </div>
+      ) : (
+        <img
+          ref={imgRef}
+          key={failStage}
+          src={imgSrc}
+          srcSet={imgSrcSet}
+          sizes={imgSizes}
+          alt={alt}
+          loading={eager ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
+          decoding="async"
+          onLoad={handleLoaded}
+          onError={handleError}
+          style={{ objectPosition: position, opacity: loaded ? 1 : 0 }}
+        />
+      )}
     </div>
   );
 });
@@ -423,14 +645,17 @@ const ColorPicker = memo(function ColorPicker({
     });
   }, [product]);
 
+  /* ✅ الصورة الكبيرة بقت بتعرض صورة اللون المختار (مش product.image) */
+  const stageUrl = current.img || product.image;
+
   const stage = (
     <div className="wl-polaroid">
       <span className="wl-tape wl-tape-tl" />
       <span className="wl-tape wl-tape-tr" />
       <FadeImg
-        key="main-hero"
-        url={product.image}
-        alt={product.name}
+        key={stageUrl}
+        url={stageUrl}
+        alt={`${product.name} - ${current.color}`}
         cfg={IMG.stage}
         eager={eager}
         onLoaded={warmOthers}
@@ -728,10 +953,14 @@ const FeaturesSection = memo(function FeaturesSection({ content, img }) {
   );
 });
 
-const ColorsSection = memo(function ColorsSection({ products }) {
+/* ✅ تم تحديث ColorsSection لدعم الماجيكل */
+const ColorsSection = memo(function ColorsSection({ products, category }) {
   const [openProduct, setOpenProduct] = useState(null);
   const closeModal = useCallback(() => setOpenProduct(null), []);
   const single = products.length === 1;
+
+  // لو الكاتيجوري سحري وفيه أكتر من منتج (ساده وقلوب)
+  const isMagicalMultiple = category === "magical" && !single;
 
   return (
     <>
@@ -739,7 +968,11 @@ const ColorsSection = memo(function ColorsSection({ products }) {
         <Reveal className="wl-head">
           <span className="wl-pill">🎨 الألوان</span>
           <h2>
-            {single ? (
+            {isMagicalMultiple ? (
+              <>
+                بنتك بتحب <em>الساده</em> ولا <em>القلوب</em> أكتر؟
+              </>
+            ) : single ? (
               <>
                 اختاري اللون اللي <em>يحبه قلبها</em>
               </>
@@ -754,7 +987,42 @@ const ColorsSection = memo(function ColorsSection({ products }) {
 
         {single ? (
           <ColorPicker product={products[0]} title animate />
+        ) : isMagicalMultiple ? (
+          /* ✨ التصميم الجديد المخصص للماجيكل ✨ */
+          <div className="wl-magical-grid">
+            {products.map((product, i) => (
+              <Reveal key={product.id} delay={i * 80} className="wl-magical-card-wrapper">
+                <button
+                  type="button"
+                  className="wl-magical-card"
+                  onClick={() => setOpenProduct(product)}
+                  onPointerEnter={() => preloadImage(product.image, IMG.stage)}
+                >
+                  <div className="wl-magical-img-box">
+                    <FadeImg
+                      url={product.image}
+                      alt={product.name}
+                      cfg={IMG.stage}
+                      position="center"
+                    />
+                    <span className="wl-magical-badge">
+                      {product.productColors.length} ألوان متاحة
+                    </span>
+                  </div>
+                  <div className="wl-magical-body">
+                    <h4 className="wl-magical-title">
+                      {product.name.includes("قلوب") ? "موديل القلوب 🖤" : "موديل الساده ✨"}
+                    </h4>
+                    <span className="wl-magical-cta">
+                      اكتشفي الألوان <span>←</span>
+                    </span>
+                  </div>
+                </button>
+              </Reveal>
+            ))}
+          </div>
         ) : (
+          /* التصميم العادي لباقي الكاتيجوريز */
           <div className="wl-products-grid">
             {products.map((product, i) => (
               <Reveal key={product.id} delay={i * 80}>
@@ -967,7 +1235,7 @@ function WinterLined() {
 
   return (
     <div className="wl" dir="rtl">
-      {styleEl}
+      {/* {styleEl} */}
 
       <Hero
         heroImg={IMAGES.hero}
@@ -987,7 +1255,8 @@ function WinterLined() {
         category={category}
       />
 
-      <ColorsSection key={category} products={products} />
+      {/* ✅ تم تمرير category هنا */}
+      <ColorsSection key={category} products={products} category={category} />
 
       <div ref={orderCollectionRef}>
         <LinedOrderCollection
@@ -1006,7 +1275,14 @@ function WinterLined() {
       <LifestyleSection img={IMAGES.lifestyle} />
 
       <Suspense fallback={<div style={{ minHeight: 400 }} />}>
-        <SizesSec product={heroProduct} category={category} />
+        {/* ⚡ عرض جدول المقاسات المخصص لكل كاتيجوري */}
+        {category === "magical" ? (
+          <MagicalSizeTable />
+        ) : category === "lined" ? (
+          <PlainLinedSizeTable />
+        ) : (
+          <SizesSec product={heroProduct} category={category} />
+        )}
         <RealLife category={category} />
       </Suspense>
 
@@ -1016,567 +1292,5 @@ function WinterLined() {
     </div>
   );
 }
-
-const css = `
-.wl{
-  --paper:#FFFDF7;
-  --paper-2:#FFF7EE;
-  --line:#E8E0D4;
-  --ink:#3A2E45;
-  --ink-soft:#7C6E88;
-  --pink:#FF9EC4;
-  --pink-d:#F06292;
-  --lav:#B69CFF;
-  --sky:#7EB6FF;
-  --mint:#7BD9B0;
-  --sun:#FFD166;
-  --tape:#F4E4B8;
-  font-family:'Cairo','Tajawal',system-ui,sans-serif;
-  color:var(--ink);
-  background:var(--paper);
-  overflow-x:hidden;
-  line-height:1.75;
-  -webkit-font-smoothing:antialiased;
-}
-.wl *{box-sizing:border-box}
-.wl img{max-width:100%;display:block}
-.wl button{font-family:inherit;cursor:pointer;background:none;border:0;color:inherit}
-
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
-.reveal.in{opacity:1;transform:translateY(0)}
-
-.wl-paper-bg{
-  position:absolute;inset:0;pointer-events:none;
-  background-image:
-    repeating-linear-gradient(0deg, transparent 0, transparent 39px, rgba(126,182,255,.08) 39px, rgba(126,182,255,.08) 40px),
-    radial-gradient(circle at 15% 25%, rgba(255,158,196,.15), transparent 40%),
-    radial-gradient(circle at 85% 75%, rgba(182,156,255,.15), transparent 40%);
-}
-
-.wl-doodle{position:absolute;color:var(--ink-soft);opacity:.45;pointer-events:none}
-.wl-doodle-c1{width:110px;top:8%;right:6%;color:var(--sky);animation:wlFloat 6s ease-in-out infinite}
-.wl-doodle-c2{width:80px;top:22%;left:8%;color:var(--sky);animation:wlFloat 5s ease-in-out infinite .5s}
-.wl-doodle-c3{width:120px;top:15%;right:12%;color:#fff;opacity:.35;animation:wlFloat 6s ease-in-out infinite}
-.wl-doodle-s1{width:32px;top:14%;left:18%;color:var(--sun);animation:wlSpin 8s linear infinite}
-.wl-doodle-s2{width:24px;top:70%;right:10%;color:var(--pink);animation:wlSpin 6s linear infinite reverse}
-.wl-doodle-s3{width:28px;bottom:15%;left:10%;color:var(--lav);animation:wlSpin 10s linear infinite}
-.wl-doodle-s4{width:36px;bottom:20%;left:14%;color:#fff;opacity:.5;animation:wlSpin 9s linear infinite}
-.wl-doodle-h1{width:34px;top:60%;left:6%;color:var(--pink);animation:wlFloat 5s ease-in-out infinite 1s}
-.wl-doodle-h2{width:26px;bottom:22%;right:8%;color:var(--pink-d);animation:wlFloat 4.5s ease-in-out infinite}
-.wl-doodle-h3{width:30px;top:22%;left:22%;color:#fff;opacity:.45;animation:wlFloat 5s ease-in-out infinite}
-@keyframes wlFloat{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-16px) rotate(4deg)}}
-@keyframes wlSpin{to{transform:rotate(360deg)}}
-
-@keyframes wlPulse{0%,100%{opacity:.55}50%{opacity:1}}
-.wl-shimmer{
-  position:absolute;inset:0;
-  background:#efe4de;
-  animation:wlPulse 1.4s ease-in-out infinite;
-}
-
-.wl-imgbox{position:relative;width:100%;overflow:hidden;background:#f7f2ee;border-radius:4px}
-.wl-imgbox img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  transition:opacity .4s ease;
-}
-
-.wl-pill,.wl-pill-light{
-  display:inline-flex;align-items:center;gap:6px;
-  font-weight:700;font-size:13px;padding:8px 20px;border-radius:999px;margin-bottom:18px;
-}
-.wl-pill{background:var(--paper);color:var(--ink);border:2px solid var(--ink)}
-.wl-pill-light{background:rgba(255,255,255,.25);color:#fff;border:2px solid rgba(255,255,255,.5)}
-
-.wl-tape{
-  position:absolute;
-  width:80px;height:26px;
-  background:var(--tape);
-  opacity:.85;
-  box-shadow:0 2px 6px rgba(0,0,0,.08);
-  transform:rotate(-3deg);
-  pointer-events:none;
-  z-index:2;
-}
-.wl-tape-sm{width:60px;height:20px;top:-8px;left:50%;transform:translateX(-50%) rotate(-4deg)}
-.wl-tape-tl{top:-12px;left:14px;transform:rotate(-6deg)}
-.wl-tape-tr{top:-12px;right:14px;transform:rotate(6deg)}
-.wl-tape-br{bottom:-12px;right:20px;transform:rotate(-4deg)}
-
-.wl-tape-label{position:relative;display:inline-block;margin-bottom:22px}
-.wl-tape-label .wl-tape{top:-8px;left:-18px;width:70px}
-.wl-label{
-  display:inline-block;
-  font-family:'Caveat','Cairo',cursive;
-  font-size:22px;font-weight:700;
-  color:var(--pink-d);
-  padding:6px 20px;
-  background:#fff;
-  border:2px dashed var(--pink);
-  border-radius:20px;
-  transform:rotate(-2deg);
-}
-
-.wl-section{padding:90px 22px;max-width:1140px;margin:0 auto;position:relative}
-.wl-section-features{background:var(--paper-2);max-width:none;border-radius:60px;margin:0 12px}
-.wl-section-features>*{max-width:1140px;margin-inline:auto}
-.wl-section-colors{background:linear-gradient(180deg,transparent,#FFF0F7 40%,#FFF0F7 60%,transparent)}
-.wl-section-faq{max-width:900px}
-
-.wl-head{text-align:center;max-width:660px;margin:0 auto 46px;position:relative}
-.wl-head h2{
-  font-family:'Lalezar','Cairo',sans-serif;
-  font-size:clamp(30px,4.8vw,50px);
-  font-weight:400;line-height:1.25;margin:0;color:var(--ink);
-}
-.wl-head h2 em{
-  font-style:normal;
-  background:linear-gradient(120deg,var(--pink-d),var(--lav));
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;
-  padding:0 6px;
-}
-.wl-squiggle{display:block;margin:14px auto 0;width:160px;height:16px;color:var(--pink)}
-
-.wl-underline{
-  position:relative;display:inline-block;
-  background:linear-gradient(180deg,transparent 60%,var(--sun) 60% 92%,transparent 92%);
-  padding:0 4px;
-}
-
-.wl-btn{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:16px 34px;border-radius:999px;
-  font-size:16px;font-weight:800;
-  background:var(--ink);color:#fff;
-  border:3px solid var(--ink);
-  box-shadow:6px 6px 0 var(--pink);
-  transition:transform .2s ease, box-shadow .2s ease;
-}
-.wl-btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--pink-d)}
-.wl-btn-ghost{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:16px 34px;border-radius:999px;
-  font-size:16px;font-weight:800;
-  background:#fff;color:var(--ink);
-  border:3px solid var(--ink);
-  box-shadow:6px 6px 0 var(--lav);
-  transition:transform .2s ease, box-shadow .2s ease;
-}
-.wl-btn-ghost:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--lav)}
-.wl-btn-light{
-  background:#fff;color:var(--ink);
-  border-color:var(--ink);
-  box-shadow:6px 6px 0 rgba(0,0,0,.25);
-}
-
-.wl-hero{
-  position:relative;
-  padding:90px 22px 110px;
-  overflow:hidden;
-  background:linear-gradient(180deg,#FFF7EE 0%,#FFF0F7 100%);
-}
-.wl-hero-inner{
-  position:relative;max-width:1140px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;z-index:1;
-}
-.wl-hero-text h1{
-  font-family:'Lalezar','Cairo',sans-serif;
-  font-size:clamp(40px,6.5vw,72px);
-  line-height:1.15;margin:0 0 22px;font-weight:400;
-  color:var(--ink);
-}
-.wl-hl{position:relative;display:inline-block;color:var(--pink-d)}
-.wl-hl::after{
-  content:"";position:absolute;left:-4px;right:-4px;bottom:6px;height:14px;
-  background:var(--sun);opacity:.5;z-index:-1;border-radius:8px;transform:rotate(-1deg);
-}
-.wl-lead{
-  font-size:clamp(15px,1.6vw,18px);
-  color:var(--ink-soft);margin:0 0 32px;max-width:520px;
-  line-height:1.9;
-}
-.wl-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
-.wl-trust{
-  display:flex;flex-wrap:wrap;gap:12px;align-items:center;
-  font-size:13.5px;font-weight:700;color:var(--ink-soft);
-  padding-top:22px;border-top:2px dashed var(--line);
-}
-.wl-trust span:nth-child(even){color:var(--pink)}
-
-.wl-polaroid{
-  position:relative;
-  background:#fff;
-  padding:14px 14px 60px;
-  box-shadow:0 20px 50px -20px rgba(58,46,69,.3);
-  display:inline-block;
-  width:100%;
-}
-.wl-polaroid-caption{
-  position:absolute;bottom:16px;left:0;right:0;
-  text-align:center;
-  font-family:'Caveat','Cairo',cursive;
-  font-size:22px;font-weight:700;color:var(--ink-soft);
-}
-.wl-polaroid-hero{transform:rotate(-3deg);transition:transform .4s ease}
-.wl-polaroid-hero:hover{transform:rotate(0) translateY(-6px)}
-.wl-polaroid-tilt{transform:rotate(2.5deg)}
-.wl-polaroid-tilt-r{transform:rotate(-2.5deg)}
-.wl-polaroid-tilt-left{transform:rotate(-2deg)}
-
-.wl-polaroid-collage{display:flex;flex-direction:row;gap:10px;align-items:stretch}
-.wl-collage-item{flex:1;min-width:0;border-radius:4px;overflow:hidden}
-
-.wl-hero-img{position:relative}
-.wl-arrow{
-  position:absolute;bottom:-40px;left:20%;width:100px;color:var(--pink-d);
-  transform:rotate(-10deg);
-}
-.wl-hand-note{
-  position:absolute;top:-12px;left:-10px;
-  font-family:'Caveat','Cairo',cursive;
-  font-size:26px;font-weight:700;color:var(--pink-d);
-  transform:rotate(-12deg);
-  text-shadow:1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
-}
-
-.wl-strip{background:var(--ink);color:var(--paper);padding:18px 0;overflow:hidden;position:relative;z-index:2}
-.wl-strip-track{display:flex;gap:56px;white-space:nowrap;animation:wlSlide 16s linear infinite;will-change:transform}
-.wl-strip-group{display:flex;gap:56px;align-items:center}
-.wl-strip-group span{font-family:'Lalezar',sans-serif;font-size:20px;letter-spacing:.02em}
-.wl-strip-group i{color:var(--pink);font-style:normal;font-size:14px}
-@keyframes wlSlide{to{transform:translateX(50%)}}
-
-.wl-features-layout{
-  display:grid;
-  grid-template-columns:0.9fr 1.3fr;
-  gap:50px;
-  align-items:center;
-}
-.wl-features-img{position:relative}
-
-.wl-features{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:22px;
-}
-.wl-feature{
-  position:relative;
-  padding:38px 20px 26px;
-  text-align:center;
-  border:2.5px solid var(--ink);
-  box-shadow:6px 6px 0 rgba(58,46,69,.15);
-  transition:transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s cubic-bezier(.2,.7,.2,1);
-  transform: rotate(var(--rot, 0deg));
-}
-.wl-feature:hover{
-  transform: rotate(0deg) translate(-3px,-3px);
-  box-shadow:10px 10px 0 rgba(58,46,69,.2);
-}
-.wl-feature-icon{
-  font-size:38px;width:76px;height:76px;margin:0 auto 16px;
-  display:grid;place-items:center;
-  background:#fff;border-radius:50%;
-  border:2.5px solid var(--ink);
-}
-.wl-feature h3{
-  font-family:'Lalezar',sans-serif;font-size:20px;font-weight:400;
-  margin:0 0 8px;color:var(--ink);
-}
-.wl-feature p{margin:0;color:var(--ink-soft);font-size:13.5px;line-height:1.75}
-
-.wl-split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
-.wl-split-imgs{position:relative}
-.wl-imgs-duo{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-  align-items:start;
-}
-.wl-imgs-duo .wl-polaroid{padding:10px 10px 46px}
-.wl-imgs-duo .wl-polaroid-caption{font-size:18px;bottom:12px}
-.wl-imgs-duo .wl-polaroid:nth-child(1){margin-top:24px}
-.wl-imgs-duo .wl-polaroid:nth-child(2){margin-top:0}
-
-.wl-split-text h2{
-  font-family:'Lalezar',sans-serif;
-  font-size:clamp(28px,4vw,44px);font-weight:400;
-  line-height:1.25;margin:0 0 20px;
-}
-.wl-split-text p{color:var(--ink-soft);font-size:16px;margin:0 0 24px;max-width:480px;line-height:1.9}
-.wl-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
-.wl-list li{
-  display:flex;align-items:center;gap:14px;
-  padding:14px 20px;background:#fff;
-  border:2.5px solid var(--ink);
-  box-shadow:4px 4px 0 rgba(58,46,69,.1);
-  font-size:15px;font-weight:700;
-}
-.wl-bullet{
-  flex:none;width:30px;height:30px;border-radius:50%;
-  background:var(--pink);color:#fff;
-  display:grid;place-items:center;
-  font-weight:800;font-size:14px;
-}
-
-.wl-products-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:24px;
-  max-width:900px;
-  margin:0 auto;
-}
-.wl-pcard{
-  display:block;width:100%;
-  background:#fff;
-  border:2.5px solid var(--ink);
-  box-shadow:6px 6px 0 rgba(58,46,69,.15);
-  padding:0;
-  overflow:hidden;
-  text-align:right;
-  transition:transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s cubic-bezier(.2,.7,.2,1);
-  cursor:pointer;
-}
-.wl-pcard:hover{
-  transform:translate(-3px,-3px);
-  box-shadow:10px 10px 0 var(--pink);
-}
-.wl-pcard-img{position:relative;width:100%;background:#f7f2ee}
-.wl-pcard-img .wl-imgbox{border-radius:0}
-.wl-pcard-badge{
-  position:absolute;
-  top:10px;left:10px;
-  background:rgba(58,46,69,.9);
-  color:#fff;
-  font-size:11px;
-  font-weight:800;
-  padding:4px 10px;
-  border-radius:999px;
-  z-index:2;
-}
-.wl-pcard-body{padding:14px 16px 18px}
-.wl-pcard-name{
-  font-family:'Lalezar',sans-serif;
-  font-size:17px;
-  font-weight:400;
-  margin:0 0 10px;
-  color:var(--ink);
-  line-height:1.3;
-}
-.wl-pcard-cta{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-top:10px;
-  border-top:2px dashed var(--line);
-  font-size:13px;font-weight:800;
-  color:var(--pink-d);
-}
-.wl-pcard-cta span{transition:transform .3s}
-.wl-pcard:hover .wl-pcard-cta span{transform:translateX(-4px)}
-
-.wl-modal{
-  position:fixed;inset:0;z-index:200;
-  background:rgba(20,14,25,.88);
-  display:flex;align-items:center;justify-content:center;
-  padding:20px;
-  animation:wlFade .25s ease;
-  overflow-y:auto;
-}
-@keyframes wlFade{from{opacity:0}to{opacity:1}}
-.wl-modal-inner{
-  position:relative;
-  background:var(--paper);
-  border:3px solid var(--ink);
-  box-shadow:12px 12px 0 var(--pink);
-  max-width:900px;
-  width:100%;
-  max-height:90vh;
-  overflow-y:auto;
-  padding:40px 30px 30px;
-  border-radius:8px;
-}
-.wl-modal-close{
-  position:absolute;top:12px;left:12px;
-  width:38px;height:38px;
-  border-radius:50%;
-  background:#fff;
-  border:2.5px solid var(--ink);
-  color:var(--ink);
-  font-size:18px;font-weight:900;
-  display:grid;place-items:center;
-  cursor:pointer;
-  transition:background .2s ease, color .2s ease, border-color .2s ease;
-  z-index:5;
-}
-.wl-modal-close:hover{background:var(--pink-d);color:#fff;border-color:var(--pink-d)}
-.wl-modal-title{
-  font-family:'Lalezar',sans-serif;
-  font-size:clamp(22px,3vw,30px);
-  font-weight:400;
-  text-align:center;
-  margin:0 0 24px;
-  color:var(--ink);
-}
-
-.wl-colors-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;
-}
-.wl-color-stage{position:relative}
-.wl-colors-panel{position:relative}
-.wl-panel-title{
-  font-family:'Lalezar',sans-serif;
-  font-size:22px;font-weight:400;
-  margin:0 0 18px;color:var(--ink);
-  padding-bottom:10px;
-  border-bottom:2px dashed var(--line);
-}
-.wl-product-title{text-align:center;margin:40px 0 24px;font-size:26px}
-.wl-swatches{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
-.wl-swatch{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:9px 18px 9px 12px;
-  background:#fff;font-size:13.5px;font-weight:700;
-  border:2.5px solid var(--ink);
-  box-shadow:3px 3px 0 rgba(58,46,69,.15);
-  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
-}
-.wl-swatch:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 rgba(58,46,69,.25)}
-.wl-swatch.active{background:var(--ink);color:#fff;transform:translate(-1px,-1px)}
-.wl-dot{width:20px;height:20px;border-radius:50%;border:2px solid rgba(0,0,0,.1)}
-.wl-swatch.active .wl-dot{border-color:rgba(255,255,255,.4)}
-
-.wl-thumbs{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:12px}
-.wl-thumb{
-  background:#fff;padding:6px;
-  border:2.5px solid var(--ink);
-  box-shadow:3px 3px 0 rgba(58,46,69,.15);
-  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
-}
-.wl-thumb img{aspect-ratio:1;object-fit:cover;width:100%;background:#f7f2ee}
-.wl-thumb span{display:block;font-size:12px;font-weight:700;margin-top:6px;color:var(--ink-soft);text-align:center}
-.wl-thumb:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 rgba(58,46,69,.25)}
-.wl-thumb.active{background:var(--sun)}
-
-.wl-lifestyle{position:relative;min-height:520px;display:grid;place-items:center;overflow:hidden;background:#e9dde4}
-.wl-lifestyle::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(58,46,69,.35),rgba(240,98,146,.45))}
-.wl-lifestyle-overlay{
-  position:relative;z-index:1;text-align:center;color:#fff;
-  padding:50px 40px;max-width:640px;margin:60px 24px;
-  background:rgba(58,46,69,0.1);
-  backdrop-filter:blur(1.5px);
-  border:3px solid #fff;
-  box-shadow:10px 10px 0 rgba(0,0,0,.2);
-}
-.wl-lifestyle-overlay h2{
-  font-family:'Lalezar',sans-serif;
-  font-size:clamp(28px,4.5vw,46px);font-weight:400;margin:0 0 14px;
-  line-height:1.25;
-}
-.wl-lifestyle-overlay p{margin:0;font-size:16px;color:rgba(255,255,255,.95);max-width:460px;margin-inline:auto}
-
-.wl-faqs{display:flex;flex-direction:column;gap:16px}
-.wl-faq{
-  background:#fff;
-  border:2.5px solid var(--ink);
-  box-shadow:5px 5px 0 rgba(58,46,69,.15);
-  overflow:hidden;
-  transition:box-shadow .25s ease;
-}
-.wl-faq.open{box-shadow:8px 8px 0 var(--pink)}
-.wl-faq button{
-  width:100%;display:flex;justify-content:space-between;align-items:center;gap:14px;
-  padding:20px 24px;font-size:16px;font-weight:700;color:var(--ink);text-align:right;
-}
-.wl-faq-q{display:flex;align-items:center;gap:14px;flex:1}
-.wl-faq-num{
-  font-family:'Lalezar',sans-serif;
-  font-size:20px;color:var(--pink-d);
-  flex:none;min-width:32px;
-}
-.wl-faq-icon{
-  flex:none;width:34px;height:34px;
-  background:var(--sun);color:var(--ink);
-  border:2.5px solid var(--ink);
-  display:grid;place-items:center;
-  font-size:20px;font-weight:400;
-  transition:transform .3s ease, background .3s ease, color .3s ease, border-color .3s ease;
-}
-.wl-faq.open .wl-faq-icon{transform:rotate(180deg);background:var(--pink);color:#fff;border-color:var(--pink)}
-.wl-faq-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
-.wl-faq.open .wl-faq-body{max-height:280px}
-.wl-faq-body p{margin:0;padding:0 24px 22px 70px;color:var(--ink-soft);font-size:15px;line-height:1.85}
-
-.wl-final{
-  position:relative;
-  background:var(--ink);color:#fff;
-  text-align:center;padding:100px 22px;overflow:hidden;
-  background-image:
-    radial-gradient(circle at 20% 30%, rgba(255,158,196,.25), transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(182,156,255,.25), transparent 50%);
-}
-.wl-final-inner{position:relative;max-width:640px;margin:0 auto;z-index:1}
-.wl-final h2{
-  font-family:'Lalezar',sans-serif;
-  font-size:clamp(32px,5vw,54px);font-weight:400;
-  margin:0 0 30px;line-height:1.25;color:#fff;
-}
-
-.wl-polaroid img{background:#f7f2ee}
-
-@media(max-width:900px){
-  .wl-features-layout{grid-template-columns:1fr;gap:36px}
-  .wl-hero-inner{grid-template-columns:1fr;gap:44px;text-align:center}
-  .wl-hero-img{order:-1}
-  .wl-hero-text{order:1}
-  .wl-lead{margin-inline:auto}
-  .wl-cta,.wl-trust{justify-content:center}
-  .wl-list li{justify-content:flex-start}
-  .wl-doodle{opacity:.3}
-  .wl-section{padding:70px 18px}
-  .wl-hero{padding:60px 18px 90px}
-  .wl-lifestyle-overlay{padding:36px 24px;margin:40px 18px}
-  .wl-arrow,.wl-hand-note{display:none}
-  .wl-split,.wl-colors-grid{grid-template-columns:1fr;gap:44px;text-align:center}
-}
-
-@media(max-width:700px){
-  .wl-doodle-c2,.wl-doodle-s2,.wl-doodle-s3,.wl-doodle-h2{display:none}
-
-  .wl-features{grid-template-columns:repeat(2,1fr);gap:14px;padding-top:10px}
-  .wl-feature{padding:28px 12px 20px;box-shadow:5px 5px 0 rgba(58,46,69,.15)}
-  .wl-feature-icon{font-size:32px;width:60px;height:60px;margin-bottom:12px;border-width:2px}
-  .wl-feature h3{font-size:15px;margin-bottom:6px}
-  .wl-feature p{font-size:12px;line-height:1.65}
-  .wl-tape-sm{width:50px;height:16px}
-  .wl-products-grid{grid-template-columns:repeat(2,1fr);gap:14px}
-  .wl-pcard-body{padding:10px 12px 14px}
-  .wl-pcard-name{font-size:14px}
-  .wl-pcard-cta{font-size:11px}
-  .wl-modal-inner{padding:40px 16px 20px}
-}
-
-@media(max-width:520px){
-  .wl-hero-text h1{font-size:38px}
-  .wl-section{padding:56px 16px}
-  .wl-section-features{border-radius:40px;margin:0 8px}
-  .wl-btn,.wl-btn-ghost{padding:14px 26px;font-size:15px;box-shadow:4px 4px 0}
-  .wl-faq-body p{padding-left:24px}
-  .wl-faq-num{font-size:18px;min-width:26px}
-  .wl-strip-group span{font-size:16px}
-  .wl-strip-track{gap:36px}
-  .wl-strip-group{gap:36px}
-  .wl-features{gap:12px}
-  .wl-feature{padding:24px 10px 18px}
-  .wl-feature-icon{font-size:28px;width:52px;height:52px}
-  .wl-feature h3{font-size:14px}
-  .wl-feature p{font-size:11.5px}
-  .wl-imgs-duo{gap:12px}
-  .wl-imgs-duo .wl-polaroid{padding:8px 8px 40px}
-  .wl-imgs-duo .wl-polaroid:nth-child(1){margin-top:16px}
-}
-
-@media (prefers-reduced-motion: reduce){
-  .wl *,.wl *::before,.wl *::after{animation:none!important;transition:none!important}
-  .reveal{opacity:1;transform:none}
-}
-`;
-
-const styleEl = <style>{css}</style>;
 
 export default WinterLined;

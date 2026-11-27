@@ -6,10 +6,7 @@ import { winterLined } from "../../data/WinterLined";
 import { useCart } from "../cart/CartContext";
 import { useCartActions } from "../cart/AddAndBuyTOCart";
 
-const CATEGORY_LABEL = {
-  baby: "👶 بيبي",
-  girl: "🎀 بنوتة",
-};
+// تم إزالة CATEGORY_LABEL لأننا لم نعد بحاجة لتمييز بيبي/جيرل
 
 /* ✅ helper: صورة المنتج مع fallback */
 const getProductImage = (product) =>
@@ -41,7 +38,7 @@ function LinedOrderCollection({
         id: i + 1,
         productId: "",
         color: "",
-        category: "",
+        length: "", // ✅ بدلنا category بـ length
       }))
     );
     setSelectedSizes({});
@@ -73,11 +70,11 @@ function LinedOrderCollection({
       prev.map((pc) => {
         if (pc.id !== id) return pc;
         if (field === "productId") {
-          return { ...pc, productId: value, color: "", category: "" };
+          return { ...pc, productId: value, color: "", length: "" };
         }
         if (field === "color") {
-          // ✅ لما اللون يتغير، نمسح التصنيف (لأن المقاسات ممكن تختلف)
-          return { ...pc, color: value, category: "" };
+          // ✅ لما اللون يتغير، نمسح الطول (لأن المقاسات ممكن تختلف)
+          return { ...pc, color: value, length: "" };
         }
         return { ...pc, [field]: value };
       })
@@ -94,11 +91,12 @@ function LinedOrderCollection({
     setOpenDropdown(null);
   };
 
-  const handleSize = (id, size, sizeCategory) => {
+  // ✅ بنمرر الطول (length) بدل الكاتيجوري (sizeCategory)
+  const handleSize = (id, size, length) => {
     setSelectedSizes((prev) => ({ ...prev, [id]: size }));
     setPieces((prev) =>
       prev.map((pc) =>
-        pc.id === id ? { ...pc, category: sizeCategory || "" } : pc
+        pc.id === id ? { ...pc, length: length || "" } : pc
       )
     );
     setOpenDropdown(null);
@@ -126,11 +124,13 @@ function LinedOrderCollection({
     if (prices.single !== undefined) return prices.single;
 
     // ✅ مبطن → بيبي / بناتي / ميكس
-    const cats = pieces.map((p) => p.category).filter(Boolean);
+    const cats = pieces.map((p) => p.length).filter(Boolean);
     if (cats.length === 0) return prices.girls;
 
-    const allBaby = cats.every((c) => c === "baby");
-    const allGirls = cats.every((c) => c === "girl");
+    // ⚠️ هنا ممكن تحتاج تعدل المنطق لو عايز تحسب السعر بناءً على الطول
+    // حالياً هنخليها زي ما هي (بتعتمد على أسعار البيبيهات والبناتي)
+    const allBaby = cats.every((c) => Number(c) <= 45); // افتراض إن أقل من 45 يبقى بيبي
+    const allGirls = cats.every((c) => Number(c) > 45);
 
     if (allBaby) return prices.baby;
     if (allGirls) return prices.girls;
@@ -143,10 +143,12 @@ function LinedOrderCollection({
     const prices = selectedOffer?.prices;
     if (prices?.single !== undefined) return "فرو ❄️";
 
-    const cats = pieces.map((p) => p.category).filter(Boolean);
+    const cats = pieces.map((p) => p.length).filter(Boolean);
     if (cats.length === 0) return "";
-    const allBaby = cats.every((c) => c === "baby");
-    const allGirls = cats.every((c) => c === "girl");
+    
+    const allBaby = cats.every((c) => Number(c) <= 45);
+    const allGirls = cats.every((c) => Number(c) > 45);
+    
     if (allBaby) return "بيبي 👶";
     if (allGirls) return "بناتي 🎀";
     return "ميكس 👶🎀";
@@ -166,7 +168,7 @@ function LinedOrderCollection({
         name: product?.name,
         color: piece.color,
         size: selectedSizes[piece.id],
-        category: piece.category,
+        length: piece.length, // ✅ بنضيف الطول في تفاصيل السلة
         image,
       };
     });
@@ -424,13 +426,12 @@ function LinedOrderCollection({
                   }
                   options={sizes.map((s) => ({
                     value: s.size,
-                    label: `${s.size} — ${s.age}`,
-                    badge: CATEGORY_LABEL[s.category] || s.category,
-                    category: s.category,
-                    soldOut: !!s.soldOut, // ✅ المقاس خلصان
+                    label: `${s.size} — ${s.age}`, // بنعرض المقاس والعمر
+                    length: s.length, // ✅ بنبعت الطول
+                    soldOut: !!s.soldOut,
                   }))}
                   onSelect={(opt) =>
-                    handleSize(piece.id, opt.value, opt.category)
+                    handleSize(piece.id, opt.value, opt.length)
                   }
                 />
               </div>
@@ -565,13 +566,17 @@ function Dropdown({
                   <span className="wlo-dd-item-left">
                     {showThumb && <Thumb src={opt.img} alt={opt.label} />}
                     <span className="wlo-dd-item-label">{opt.label}</span>
+                    
+                    {/* ✅ عرض الطول بدل بيبي/جيرل */}
                     {isSoldOut ? (
                       <span className="wlo-dd-badge wlo-dd-badge-soldout">
                         نفدت الكمية
                       </span>
                     ) : (
-                      opt.badge && (
-                        <span className="wlo-dd-badge">{opt.badge}</span>
+                      opt.length && (
+                        <span className="wlo-dd-badge">
+                          {opt.length} سم
+                        </span>
                       )
                     )}
                   </span>
