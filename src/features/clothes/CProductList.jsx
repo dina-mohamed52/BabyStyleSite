@@ -129,22 +129,24 @@ function CProductList() {
           <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-purple-200/20 rounded-full blur-3xl" />
 
           <div className="relative text-center">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FBCB5C] to-[#F5A623] text-[#3B1F38] rounded-full px-5 py-2.5 text-sm font-bold mb-5 shadow-lg shadow-yellow-200/50">
-              <Sparkles className="w-4 h-4" />
-              <span>🎀 كوليكشن الصيف ٢٠٢٦</span>
+            <div className="inline-flex items-center text-lg
+             font-bold gap-2 bg-gradient-to-r from-[#FBCB5C] to-[#F5A623]
+              text-[#3B1F38] rounded-full px-5 py-2.5   mb-5 shadow-lg shadow-yellow-200/50">
+              <Sparkles className="w-4 h-4 " />
+              <span> ليجن خريفي بناتي من 2 ل 10 سنين 🎀 </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#3B1F38] mb-4 font-display">
+            {/* <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#3B1F38] mb-4 font-display">
               تصاميم{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F6A6C1] to-[#B65C7C]">
                 فيونكات
               </span>{" "}
               مميزة
-            </h1>
+            </h1> */}
 
-            <p className="text-[#5B4458] text-base sm:text-lg max-w-2xl mx-auto">
+            {/* <p className="text-[#5B4458] text-base sm:text-lg max-w-2xl mx-auto">
               {filteredProducts.length}+ تصاميم توب بقطن ريب مضلع ناعم ومرن، بفيونكات بأشكال مختلفة وألوان زاهية
-            </p>
+            </p> */}
           </div>
         </div>
 

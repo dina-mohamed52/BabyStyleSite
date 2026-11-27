@@ -59,9 +59,9 @@ const categories = [
     countLabel: 'منتج',
     note: 'جديد',
     warmth: 4,
-   tint: '#F5F3FF',     
-accent: '#4A148C',    
-accentLight: '#FFDBC9',
+    tint: '#F5F3FF',
+    accent: '#4A148C',
+    accentLight: '#FFDBC9',
     emoji: '☃️',
     img: 'https://images.baby-style-store.com/%D9%83%D9%88%D9%84%D9%88%D9%86%20%D8%B3%D8%AD%D8%B1%D9%8A/%D8%B3%D8%AD%D8%B1%D9%8A3.webp',
     path: '/winter/magical',
@@ -168,7 +168,7 @@ function CategoryCard({ category: c, index }) {
         cursor: 'pointer',
         borderRadius: '24px',
         background: `linear-gradient(160deg, ${c.tint}, ${c.accentLight})`,
-        padding: '14px 14px 16px',
+        padding: '12px 12px 14px',
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',
@@ -195,26 +195,26 @@ function CategoryCard({ category: c, index }) {
         animate={{ y: [0, -4, 0], rotate: [-8, 8, -8] }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         style={{
-          position: 'absolute', top: '14px', insetInlineEnd: '14px', zIndex: 4,
-          width: '34px', height: '34px', borderRadius: '50%',
+          position: 'absolute', top: '12px', insetInlineEnd: '12px', zIndex: 4,
+          width: '30px', height: '30px', borderRadius: '50%',
           backgroundColor: '#fff',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: '17px',
+          fontSize: '15px',
           boxShadow: `0 8px 18px -6px ${c.accent}88, 0 0 0 3px ${c.accentLight}`,
         }}
       >
         {c.emoji}
       </motion.div>
 
-      {/* الصورة */}
+      {/* ✅ الصورة — أكبر وأوضح */}
       <div
         className="fw-velvet-img-wrap"
         style={{
           position: 'relative',
           width: '100%',
-          aspectRatio: '1 / 1',
+          aspectRatio: '4 / 5',
           overflow: 'hidden',
-          borderRadius: '50% 50% 40% 40% / 60% 60% 40% 40%',
+          borderRadius: '18px',
           backgroundColor: '#fff',
           border: `3px solid #fff`,
           boxShadow: `0 10px 24px -12px ${c.accent}55, 0 0 0 1px ${c.accent}22`,
@@ -232,11 +232,6 @@ function CategoryCard({ category: c, index }) {
             display: 'block',
           }}
         />
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: `linear-gradient(to top, ${c.accent}55 0%, transparent 40%)`,
-          pointerEvents: 'none',
-        }} />
 
         <motion.span
           animate={{ rotate: [-2, 2, -2] }}
@@ -506,11 +501,11 @@ function WinterHomePage() {
 
         /* ✅ Grid الأقسام — كارتين على الموبايل */
         .fw-categories-grid {
-        display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 25px;
-  max-width: 820px;        /* ✅ يمنع الكروت إنها تتمدد */
-  margin-inline: auto;     /* ✅ يوسّط الـ grid */
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 25px;
+          max-width: 820px;
+          margin-inline: auto;
         }
 
         @media (max-width: 760px) {
@@ -535,6 +530,11 @@ function WinterHomePage() {
           .fw-categories-grid {
             grid-template-columns: repeat(2, 1fr) !important;
             gap: 12px !important;
+          }
+
+          /* ✅ الصورة أطول على الموبايل = أوضح وأكبر */
+          .fw-velvet-img-wrap {
+            aspect-ratio: 3 / 4 !important;
           }
         }
 
