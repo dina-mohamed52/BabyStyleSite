@@ -162,7 +162,7 @@ const SEASONS = {
       },
       {
         id: 6,
-        name: "ليجينز",
+        name: " ليجينز مضلع خريفي",
         nameEn: "Leggings",
         subtitle: "مرن ومريح زي الحرير",
         description:

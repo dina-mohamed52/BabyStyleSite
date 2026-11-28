@@ -6,6 +6,8 @@ import AppLayOut from "./ui/AppLayOut";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import WhatsAppButton from "./ui/WhatsAppButton";
+import LoadingSpinner from "./ui/LoadingSpinner";
+import LegginLinedGirlsHomePage from "./features/legginsLinedGirls/LegginLinedGirlsHomePage";
 
 // Create QueryClient outside the component
 const queryClient = new QueryClient();
@@ -42,7 +44,7 @@ function App() {
         toastClassName="wl-toast"
       />
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<LoadingSpinner/>}>
         <Routes>
           <Route path="/" element={<AppLayOut />}>
             <Route index element={<MainPage />} />
@@ -57,7 +59,9 @@ function App() {
             <Route path="clothes" element={<ClothesHomePage />} />
             <Route path="clothes/:category" element={<Clothes />} />
             <Route path="Turbon" element={<TurbonHomePage />} />
-            <Route path="turbon/:category" element={<Turbon />} />
+            <Route path="turbon/:category" element={<Turbon />} />\
+            <Route path="LegginsLinedGHome" element={<LegginLinedGirlsHomePage />} />
+            
           </Route>
         </Routes>
       </Suspense>

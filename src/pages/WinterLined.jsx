@@ -15,7 +15,6 @@ import LinedOrderCollection from "../features/WinterLined/LinedOrderCollection";
 import { CATEGORY_IMAGES } from "../features/WinterLined/CategoryHeroSecImages";
 import "../features/WinterLined/WinterLined.css";
 
-
 /* ⚡ أقسام تحت الشاشة → تتحمل بعد الأساسي */
 const SizesSec = lazy(() => import("../features/WinterLined/SizesSec"));
 const RealLife = lazy(() => import("../features/WinterLined/RealLife"));
@@ -25,32 +24,72 @@ const RealLife = lazy(() => import("../features/WinterLined/RealLife"));
    ───────────────────────────────────────────── */
 const PlainLinedSizeTable = memo(function PlainLinedSizeTable() {
   const sizes = [
-    { size: '0', age: 'من 0 إلى 9 شهور', length: '40' },
-    { size: '2', age: 'من سنة إلى سنتين', length: '45' },
-    { size: '4', age: 'من 2 إلى 4 سنوات', length: '50' },
-    { size: '6', age: 'من 5 إلى 6 سنوات', length: '60' },
-    { size: '8', age: 'من 7 إلى 8 سنوات', length: '70' },
-    { size: '10', age: 'من 9 إلى 10 سنوات', length: '80' },
-    { size: '12', age: 'من 11 إلى 12 سنة', length: '90' },
+    { size: "0", age: "من 0 إلى 9 شهور", length: "40" },
+    { size: "2", age: "من سنة إلى سنتين", length: "45" },
+    { size: "4", age: "من 2 إلى 4 سنوات", length: "50" },
+    { size: "6", age: "من 5 إلى 6 سنوات", length: "60" },
+    { size: "8", age: "من 7 إلى 8 سنوات", length: "70" },
+    { size: "10", age: "من 9 إلى 10 سنوات", length: "80" },
+    { size: "12", age: "من 11 إلى 12 سنة", length: "90" },
   ];
 
   return (
-    <section className="wl-section wl-section-plain-sizes" style={{ padding: '60px 22px' }}>
-      <div style={{
-        maxWidth: '650px',
-        margin: '0 auto',
-        background: '#fff',
-        borderRadius: '24px',
-        boxShadow: '0 10px 40px -10px rgba(58,46,69,0.08)',
-        border: '2px solid var(--line)',
-        overflow: 'hidden'
-      }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center' }}>
+    <section
+      className="wl-section wl-section-plain-sizes"
+      style={{ padding: "60px 22px" }}
+    >
+      <div
+        style={{
+          maxWidth: "650px",
+          margin: "0 auto",
+          background: "#fff",
+          borderRadius: "24px",
+          boxShadow: "0 10px 40px -10px rgba(58,46,69,0.08)",
+          border: "2px solid var(--line)",
+          overflow: "hidden",
+        }}
+      >
+        <table
+          style={{
+            width: "100%",
+            borderCollapse: "collapse",
+            textAlign: "center",
+          }}
+        >
           <thead>
-            <tr style={{ background: 'var(--pink-d)', color: '#fff' }}>
-              <th style={{ padding: '16px 12px', fontWeight: 'bold', fontSize: '16px', width: '33.33%', borderLeft: '1px solid rgba(255,255,255,0.2)' }}>المقاس</th>
-              <th style={{ padding: '16px 12px', fontWeight: 'bold', fontSize: '16px', width: '33.33%', borderLeft: '1px solid rgba(255,255,255,0.2)' }}>العمر المناسب</th>
-              <th style={{ padding: '16px 12px', fontWeight: 'bold', fontSize: '16px', width: '33.33%' }}>طول الكولون</th>
+            <tr style={{ background: "var(--pink-d)", color: "#fff" }}>
+              <th
+                style={{
+                  padding: "16px 12px",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                  width: "33.33%",
+                  borderLeft: "1px solid rgba(255,255,255,0.2)",
+                }}
+              >
+                المقاس
+              </th>
+              <th
+                style={{
+                  padding: "16px 12px",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                  width: "33.33%",
+                  borderLeft: "1px solid rgba(255,255,255,0.2)",
+                }}
+              >
+                العمر المناسب
+              </th>
+              <th
+                style={{
+                  padding: "16px 12px",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                  width: "33.33%",
+                }}
+              >
+                طول الكولون
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -58,28 +97,98 @@ const PlainLinedSizeTable = memo(function PlainLinedSizeTable() {
               <tr
                 key={index}
                 style={{
-                  background: index % 2 === 0 ? '#fff' : '#FFF5F7',
-                  transition: 'background 0.2s ease'
+                  background: index % 2 === 0 ? "#fff" : "#FFF5F7",
+                  transition: "background 0.2s ease",
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.background = '#FFEBEF'}
-                onMouseLeave={(e) => e.currentTarget.style.background = index % 2 === 0 ? '#fff' : '#FFF5F7'}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.background = "#FFEBEF")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.background =
+                    index % 2 === 0 ? "#fff" : "#FFF5F7")
+                }
               >
-                <td style={{ padding: '16px 12px', borderBottom: index === sizes.length - 1 ? 'none' : '1px solid var(--line)' }}>
-                  <span style={{ fontSize: '22px', fontWeight: 900, color: 'var(--ink)' }}>{item.size}</span>
+                <td
+                  style={{
+                    padding: "16px 12px",
+                    borderBottom:
+                      index === sizes.length - 1
+                        ? "none"
+                        : "1px solid var(--line)",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: "22px",
+                      fontWeight: 900,
+                      color: "var(--ink)",
+                    }}
+                  >
+                    {item.size}
+                  </span>
                 </td>
-                <td style={{ padding: '16px 12px', borderBottom: index === sizes.length - 1 ? 'none' : '1px solid var(--line)' }}>
-                  <span style={{ fontSize: '15px', fontWeight: 700, color: 'var(--ink-soft)' }}>{item.age}</span>
+                <td
+                  style={{
+                    padding: "16px 12px",
+                    borderBottom:
+                      index === sizes.length - 1
+                        ? "none"
+                        : "1px solid var(--line)",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: "15px",
+                      fontWeight: 700,
+                      color: "var(--ink-soft)",
+                    }}
+                  >
+                    {item.age}
+                  </span>
                 </td>
-                <td style={{ padding: '16px 12px', borderBottom: index === sizes.length - 1 ? 'none' : '1px solid var(--line)' }}>
-                  <span style={{ fontSize: '20px', fontWeight: 800, color: 'var(--pink-d)' }}>{item.length}</span>
-                  <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink-soft)', marginRight: '4px' }}>سم</span>
+                <td
+                  style={{
+                    padding: "16px 12px",
+                    borderBottom:
+                      index === sizes.length - 1
+                        ? "none"
+                        : "1px solid var(--line)",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: "20px",
+                      fontWeight: 800,
+                      color: "var(--pink-d)",
+                    }}
+                  >
+                    {item.length}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "13px",
+                      fontWeight: 600,
+                      color: "var(--ink-soft)",
+                      marginRight: "4px",
+                    }}
+                  >
+                    سم
+                  </span>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <p style={{ textAlign: 'center', fontSize: '13px', color: 'var(--ink-soft)', marginTop: '16px', fontWeight: 600 }}>
+      <p
+        style={{
+          textAlign: "center",
+          fontSize: "13px",
+          color: "var(--ink-soft)",
+          marginTop: "16px",
+          fontWeight: 600,
+        }}
+      >
         * المقاسات تقريبية وقد تختلف قليلاً حسب تصميم الموديل.
       </p>
     </section>
@@ -97,103 +206,130 @@ const MagicalSizeTable = memo(function MagicalSizeTable() {
   ];
 
   return (
-    <section className="wl-section wl-section-magical-sizes" style={{ padding: '60px 22px' }}>
-      <div style={{
-        maxWidth: '500px',
-        margin: '0 auto',
-        background: '#FFFDF7',
-        borderRadius: '24px',
-        padding: '32px 24px',
-        boxShadow: '0 20px 40px -15px rgba(58,46,69,0.1)',
-        border: '2.5px solid var(--ink)',
-        position: 'relative',
-        textAlign: 'center'
-      }}>
+    <section
+      className="wl-section wl-section-magical-sizes"
+      style={{ padding: "60px 22px" }}
+    >
+      <div
+        style={{
+          maxWidth: "500px",
+          margin: "0 auto",
+          background: "#FFFDF7",
+          borderRadius: "24px",
+          padding: "32px 24px",
+          boxShadow: "0 20px 40px -15px rgba(58,46,69,0.1)",
+          border: "2.5px solid var(--ink)",
+          position: "relative",
+          textAlign: "center",
+        }}
+      >
         {/* العنوان */}
-        <div style={{ marginBottom: '30px' }}>
-          <h2 style={{
-            fontFamily: "'Lalezar', sans-serif",
-            fontSize: '32px',
-            fontWeight: 400,
-            color: 'var(--ink)',
-            margin: '0 0 10px'
-          }}>
+        <div style={{ marginBottom: "30px" }}>
+          <h2
+            style={{
+              fontFamily: "'Lalezar', sans-serif",
+              fontSize: "32px",
+              fontWeight: 400,
+              color: "var(--ink)",
+              margin: "0 0 10px",
+            }}
+          >
             اختاري مقاس بنتك صح
           </h2>
-          <span style={{
-            fontSize: '14px',
-            fontWeight: 700,
-            color: 'var(--pink-d)',
-            background: '#FFF0F7',
-            padding: '6px 18px',
-            borderRadius: '999px',
-            border: '2px solid var(--pink)'
-          }}>
+          <span
+            style={{
+              fontSize: "14px",
+              fontWeight: 700,
+              color: "var(--pink-d)",
+              background: "#FFF0F7",
+              padding: "6px 18px",
+              borderRadius: "999px",
+              border: "2px solid var(--pink)",
+            }}
+          >
             المقاسات
           </span>
         </div>
 
         {/* البطاقات */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px' }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
+            marginBottom: "24px",
+          }}
+        >
           {sizes.map((item, index) => (
-            <div key={index} style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              background: '#fff',
-              padding: '16px 20px',
-              borderRadius: '16px',
-              border: '2.5px solid var(--ink)',
-              boxShadow: '4px 4px 0 rgba(58,46,69,0.08)',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translate(-2px, -2px)';
-              e.currentTarget.style.boxShadow = '6px 6px 0 var(--pink)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translate(0, 0)';
-              e.currentTarget.style.boxShadow = '4px 4px 0 rgba(58,46,69,0.08)';
-            }}
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                background: "#fff",
+                padding: "16px 20px",
+                borderRadius: "16px",
+                border: "2.5px solid var(--ink)",
+                boxShadow: "4px 4px 0 rgba(58,46,69,0.08)",
+                transition: "all 0.3s ease",
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translate(-2px, -2px)";
+                e.currentTarget.style.boxShadow = "6px 6px 0 var(--pink)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translate(0, 0)";
+                e.currentTarget.style.boxShadow =
+                  "4px 4px 0 rgba(58,46,69,0.08)";
+              }}
             >
-              <div style={{
-                fontSize: '22px',
-                fontWeight: 900,
-                color: 'var(--pink-d)',
-                fontFamily: "'Cairo', sans-serif",
-                width: '40px',
-                textAlign: 'center'
-              }}>
+              <div
+                style={{
+                  fontSize: "22px",
+                  fontWeight: 900,
+                  color: "var(--pink-d)",
+                  fontFamily: "'Cairo', sans-serif",
+                  width: "40px",
+                  textAlign: "center",
+                }}
+              >
                 {item.label}
               </div>
-              <div style={{
-                fontSize: '18px',
-                fontWeight: 700,
-                color: 'var(--ink)',
-                flex: 1,
-                textAlign: 'right',
-                paddingRight: '16px'
-              }}>
+              <div
+                style={{
+                  fontSize: "18px",
+                  fontWeight: 700,
+                  color: "var(--ink)",
+                  flex: 1,
+                  textAlign: "right",
+                  paddingRight: "16px",
+                }}
+              >
                 {item.age}
               </div>
-              <div style={{
-                width: '8px',
-                height: '8px',
-                borderRadius: '50%',
-                background: 'var(--line)'
-              }} />
+              <div
+                style={{
+                  width: "8px",
+                  height: "8px",
+                  borderRadius: "50%",
+                  background: "var(--line)",
+                }}
+              />
             </div>
           ))}
         </div>
 
         {/* ملاحظة */}
-        <p style={{
-          fontSize: '13px',
-          color: 'var(--ink-soft)',
-          lineHeight: 1.8,
-          margin: 0
-        }}>
+        <p
+          style={{
+            fontSize: "13px",
+            color: "var(--ink-soft)",
+            lineHeight: 1.8,
+            margin: 0,
+          }}
+        >
           محتارة؟ ابعتيلنا سن ووزن بنتك على واتساب ونقولك المقاس.
         </p>
       </div>
@@ -227,10 +363,34 @@ const CATEGORY_CONTENT = {
     heroTitle: "كولون مبطن",
     heroSubtitle: "بطانة فوطه ناعمة ودافئة — مثالي للشتا",
     features: [
-      { icon: "🧸", title: "بطانة فوطه", text: "دافية من الداخل ومريحة طول اليوم", rotate: "-3deg", color: "#FFE7F1" },
-      { icon: "🎀", title: "قطن ناعم", text: "مرن على بشرتها الحساسة", rotate: "2deg", color: "#E5F1FF" },
-      { icon: "🌈", title: "ألوان كيوت", text: "درجات حلوة تختاري اللي يعجبك", rotate: "-2deg", color: "#F0E7FF" },
-      { icon: "🦋", title: "حرية الحركة", text: "مرن يسمح لها تلعب براحتها", rotate: "3deg", color: "#DFF7EA" },
+      {
+        icon: "🧸",
+        title: "بطانة فوطه",
+        text: "دافية من الداخل ومريحة طول اليوم",
+        rotate: "-3deg",
+        color: "#FFE7F1",
+      },
+      {
+        icon: "🎀",
+        title: "قطن ناعم",
+        text: "مرن على بشرتها الحساسة",
+        rotate: "2deg",
+        color: "#E5F1FF",
+      },
+      {
+        icon: "🌈",
+        title: "ألوان كيوت",
+        text: "درجات حلوة تختاري اللي يعجبك",
+        rotate: "-2deg",
+        color: "#F0E7FF",
+      },
+      {
+        icon: "🦋",
+        title: "حرية الحركة",
+        text: "مرن يسمح لها تلعب براحتها",
+        rotate: "3deg",
+        color: "#DFF7EA",
+      },
     ],
   },
   fur: {
@@ -251,8 +411,20 @@ const CATEGORY_CONTENT = {
         rotate: "2deg",
         color: "#FFE7F1",
       },
-      { icon: "🌈", title: "ألوان كيوت", text: "درجات حلوة تختاري اللي يعجبك", rotate: "-2deg", color: "#F0E7FF" },
-      { icon: "🦋", title: "حرية الحركة", text: "مرن يسمح لها تلعب براحتها", rotate: "3deg", color: "#DFF7EA" },
+      {
+        icon: "🌈",
+        title: "ألوان كيوت",
+        text: "درجات حلوة تختاري اللي يعجبك",
+        rotate: "-2deg",
+        color: "#F0E7FF",
+      },
+      {
+        icon: "🦋",
+        title: "حرية الحركة",
+        text: "مرن يسمح لها تلعب براحتها",
+        rotate: "3deg",
+        color: "#DFF7EA",
+      },
     ],
   },
   magical: {
@@ -294,13 +466,31 @@ const CATEGORY_CONTENT = {
 };
 
 const FAQS = [
-  { q: "الكولون مبطن من الداخل؟", a: "أيوه، مبطن من الداخل بخامة ناعمة ودافئة ❄️" },
-  { q: "هل يوجد ضمان على المنتج؟", a: "طبعًا! ضمان ضد عيوب الصناعة لمدة 30 يوم ✅" },
+  {
+    q: "الكولون مبطن من الداخل؟",
+    a: "أيوه، مبطن من الداخل بخامة ناعمة ودافئة ❄️",
+  },
+  {
+    q: "هل يوجد ضمان على المنتج؟",
+    a: "طبعًا! ضمان ضد عيوب الصناعة لمدة 30 يوم ✅",
+  },
   { q: "المقاسات المتاحة إيه؟", a: "من حديثي الولادة لحد 12 سنة 👶👧" },
-  { q: "أختار المقاس إزاي؟", a: "شوفي جدول المقاسات، ولو محتارة اكتبي طول بنتك من الوسط للقدم 💌" },
-  { q: "هل يوجد معاينة عند الاستلام؟", a: "نعم، تعايني المنتج كامل قبل ما تدفعي 👀" },
-  { q: "هل يوجد استرجاع أو استبدال؟", a: "خلال 14 يوم من الاستلام، بشرط المنتج ما اتلبسش 🔄" },
-  { q: "متى يوصل وهل الشحن لكل المحافظات؟", a: "لكل المحافظات 🚚 والتوصيل من 3 لـ 5 أيام عمل" },
+  {
+    q: "أختار المقاس إزاي؟",
+    a: "شوفي جدول المقاسات، ولو محتارة اكتبي طول بنتك من الوسط للقدم 💌",
+  },
+  {
+    q: "هل يوجد معاينة عند الاستلام؟",
+    a: "نعم، تعايني المنتج كامل قبل ما تدفعي 👀",
+  },
+  {
+    q: "هل يوجد استرجاع أو استبدال؟",
+    a: "خلال 14 يوم من الاستلام، بشرط المنتج ما اتلبسش 🔄",
+  },
+  {
+    q: "متى يوصل وهل الشحن لكل المحافظات؟",
+    a: "لكل المحافظات 🚚 والتوصيل من 3 لـ 5 أيام عمل",
+  },
 ];
 
 const IMG_DUO = [
@@ -323,11 +513,31 @@ const STEPS = [200, 400, 600, 800, 1200, 1600];
 const snap = (w) => STEPS.find((s) => s >= w) || STEPS[STEPS.length - 1];
 
 const IMG = {
-  hero: { widths: [400, 600, 800, 1200], sizes: "(max-width:900px) 80vw, 490px", width: 800 },
-  stage: { widths: [400, 600, 800, 1200], sizes: "(max-width:900px) 88vw, 490px", width: 800 },
-  card: { widths: [200, 400, 600], sizes: "(max-width:700px) 46vw, 280px", width: 400 },
-  feature: { widths: [200, 400, 600], sizes: "(max-width:900px) 42vw, 230px", width: 400 },
-  material: { widths: [200, 400, 600], sizes: "(max-width:900px) 42vw, 230px", width: 400 },
+  hero: {
+    widths: [400, 600, 800, 1200],
+    sizes: "(max-width:900px) 80vw, 490px",
+    width: 800,
+  },
+  stage: {
+    widths: [400, 600, 800, 1200],
+    sizes: "(max-width:900px) 88vw, 490px",
+    width: 800,
+  },
+  card: {
+    widths: [200, 400, 600],
+    sizes: "(max-width:700px) 46vw, 280px",
+    width: 400,
+  },
+  feature: {
+    widths: [200, 400, 600],
+    sizes: "(max-width:900px) 42vw, 230px",
+    width: 400,
+  },
+  material: {
+    widths: [200, 400, 600],
+    sizes: "(max-width:900px) 42vw, 230px",
+    width: 400,
+  },
   lifestyle: { widths: [600, 800, 1200, 1600], sizes: "100vw", width: 1200 },
 };
 
@@ -362,7 +572,9 @@ const responsive = (url, cfg = {}) => {
   if (!widths || !src || src === url) return { src: src || undefined };
   return {
     src,
-    srcSet: widths.map((w) => `${optimizeImage(url, w)} ${snap(w)}w`).join(", "),
+    srcSet: widths
+      .map((w) => `${optimizeImage(url, w)} ${snap(w)}w`)
+      .join(", "),
     sizes,
   };
 };
@@ -498,33 +710,75 @@ function Reveal({
 
 const Cloud = memo(function Cloud({ className = "" }) {
   return (
-    <svg className={className} viewBox="0 0 120 60" fill="none" aria-hidden="true">
-      <path d="M15 45 Q5 45 5 33 Q5 22 18 22 Q20 8 35 8 Q50 8 55 20 Q60 12 72 12 Q88 12 90 26 Q102 26 105 38 Q107 45 100 45 Z"
-        stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    <svg
+      className={className}
+      viewBox="0 0 120 60"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M15 45 Q5 45 5 33 Q5 22 18 22 Q20 8 35 8 Q50 8 55 20 Q60 12 72 12 Q88 12 90 26 Q102 26 105 38 Q107 45 100 45 Z"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
     </svg>
   );
 });
 const Star = memo(function Star({ className = "" }) {
   return (
-    <svg className={className} viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <path d="M20 4 L24 16 L36 20 L24 24 L20 36 L16 24 L4 20 L16 16 Z"
-        stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
+    <svg
+      className={className}
+      viewBox="0 0 40 40"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M20 4 L24 16 L36 20 L24 24 L20 36 L16 24 L4 20 L16 16 Z"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinejoin="round"
+        fill="none"
+      />
     </svg>
   );
 });
 const Heart = memo(function Heart({ className = "" }) {
   return (
-    <svg className={className} viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <path d="M20 34 C20 34 6 25 6 15 C6 9 11 5 16 5 C19 5 20 7 20 9 C20 7 21 5 24 5 C29 5 34 9 34 15 C34 25 20 34 20 34 Z"
-        stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
+    <svg
+      className={className}
+      viewBox="0 0 40 40"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M20 34 C20 34 6 25 6 15 C6 9 11 5 16 5 C19 5 20 7 20 9 C20 7 21 5 24 5 C29 5 34 9 34 15 C34 25 20 34 20 34 Z"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinejoin="round"
+        fill="none"
+      />
     </svg>
   );
 });
 const Squiggle = memo(function Squiggle({ className = "" }) {
   return (
-    <svg className={className} viewBox="0 0 200 20" fill="none" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M2 12 Q20 2 40 12 T80 12 T120 12 T160 12 T198 12"
-        stroke="currentColor" strokeWidth="3" strokeLinecap="round" fill="none"/>
+    <svg
+      className={className}
+      viewBox="0 0 200 20"
+      fill="none"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M2 12 Q20 2 40 12 T80 12 T120 12 T160 12 T198 12"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        fill="none"
+      />
     </svg>
   );
 });
@@ -718,12 +972,16 @@ const ColorPicker = memo(function ColorPicker({
       )}
       <div className="wl-colors-grid">
         {animate ? (
-          <Reveal className="wl-color-stage" delay={100}>{stage}</Reveal>
+          <Reveal className="wl-color-stage" delay={100}>
+            {stage}
+          </Reveal>
         ) : (
           <div className="wl-color-stage">{stage}</div>
         )}
         {animate ? (
-          <Reveal className="wl-colors-panel" delay={150}>{panel}</Reveal>
+          <Reveal className="wl-colors-panel" delay={150}>
+            {panel}
+          </Reveal>
         ) : (
           <div className="wl-colors-panel">{panel}</div>
         )}
@@ -763,7 +1021,10 @@ const ProductColorCard = memo(function ProductColorCard({ product, onOpen }) {
   );
 });
 
-const ProductColorModal = memo(function ProductColorModal({ product, onClose }) {
+const ProductColorModal = memo(function ProductColorModal({
+  product,
+  onClose,
+}) {
   useEffect(() => {
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -799,7 +1060,13 @@ const ProductColorModal = memo(function ProductColorModal({ product, onClose }) 
   );
 });
 
-const Hero = memo(function Hero({ heroImg, name, content, categoryLabel, onColors }) {
+const Hero = memo(function Hero({
+  heroImg,
+  name,
+  content,
+  categoryLabel,
+  onColors,
+}) {
   const isArray = Array.isArray(heroImg);
   const imgList = isArray ? heroImg : [heroImg];
 
@@ -820,7 +1087,7 @@ const Hero = memo(function Hero({ heroImg, name, content, categoryLabel, onColor
             <span className="wl-tape wl-tape-tl" />
             <span className="wl-tape wl-tape-br" />
 
-            <div style={{ display: 'flex', gap: '10px' }}>
+            <div style={{ display: "flex", gap: "10px" }}>
               {imgList.map((img, idx) => (
                 <div key={idx} style={{ flex: 1 }}>
                   <FadeImg
@@ -837,9 +1104,28 @@ const Hero = memo(function Hero({ heroImg, name, content, categoryLabel, onColor
 
             <span className="wl-polaroid-caption">— دفء الشتا ❄️ —</span>
           </div>
-          <svg className="wl-arrow" viewBox="0 0 120 100" fill="none" aria-hidden="true">
-            <path d="M8 12 Q40 40 90 78" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="6 6" fill="none"/>
-            <path d="M78 68 L90 78 L80 88" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+          <svg
+            className="wl-arrow"
+            viewBox="0 0 120 100"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M8 12 Q40 40 90 78"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeDasharray="6 6"
+              fill="none"
+            />
+            <path
+              d="M78 68 L90 78 L80 88"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
           </svg>
           <span className="wl-hand-note">جديد ✨</span>
         </Reveal>
@@ -859,7 +1145,9 @@ const Hero = memo(function Hero({ heroImg, name, content, categoryLabel, onColor
           <p className="wl-lead">
             {content.subtitle ? content.subtitle : content.heroSubtitle}
             <br />
-            {content.description ? content.description : "مريح، كيوت، ومناسب للبيت والخروج 🎀"}
+            {content.description
+              ? content.description
+              : "مريح، كيوت، ومناسب للبيت والخروج 🎀"}
           </p>
           <div className="wl-cta">
             <button type="button" className="wl-btn" onClick={onColors}>
@@ -888,12 +1176,18 @@ const Marquee = memo(function Marquee() {
       <div className="wl-strip-track">
         {[0, 1].map((k) => (
           <div className="wl-strip-group" key={k}>
-            <span>🧸 دفء</span><i>✦</i>
-            <span>🌈 نعومة</span><i>✦</i>
-            <span>🎀 كيوت</span><i>✦</i>
-            <span>💗 مريح</span><i>✦</i>
-            <span>✨ أنيق</span><i>✦</i>
-            <span>🧦 كولون كامل</span><i>✦</i>
+            <span>🧸 دفء</span>
+            <i>✦</i>
+            <span>🌈 نعومة</span>
+            <i>✦</i>
+            <span>🎀 كيوت</span>
+            <i>✦</i>
+            <span>💗 مريح</span>
+            <i>✦</i>
+            <span>✨ أنيق</span>
+            <i>✦</i>
+            <span>🧦 كولون كامل</span>
+            <i>✦</i>
           </div>
         ))}
       </div>
@@ -991,7 +1285,11 @@ const ColorsSection = memo(function ColorsSection({ products, category }) {
           /* ✨ التصميم الجديد المخصص للماجيكل ✨ */
           <div className="wl-magical-grid">
             {products.map((product, i) => (
-              <Reveal key={product.id} delay={i * 80} className="wl-magical-card-wrapper">
+              <Reveal
+                key={product.id}
+                delay={i * 80}
+                className="wl-magical-card-wrapper"
+              >
                 <button
                   type="button"
                   className="wl-magical-card"
@@ -1011,7 +1309,9 @@ const ColorsSection = memo(function ColorsSection({ products, category }) {
                   </div>
                   <div className="wl-magical-body">
                     <h4 className="wl-magical-title">
-                      {product.name.includes("قلوب") ? "موديل القلوب 🖤" : "موديل الساده ✨"}
+                      {product.name.includes("قلوب")
+                        ? "موديل القلوب 🖤"
+                        : "موديل الساده ✨"}
                     </h4>
                     <span className="wl-magical-cta">
                       اكتشفي الألوان <span>←</span>
@@ -1040,7 +1340,11 @@ const ColorsSection = memo(function ColorsSection({ products, category }) {
   );
 });
 
-const MaterialSection = memo(function MaterialSection({ category, img1, img2 }) {
+const MaterialSection = memo(function MaterialSection({
+  category,
+  img1,
+  img2,
+}) {
   const isFur = category === "fur";
   const isMagical = category === "magical";
 
@@ -1087,8 +1391,8 @@ const MaterialSection = memo(function MaterialSection({ category, img1, img2 }) 
             {isMagical
               ? "خامة سحرية بتحبس الحرارة وتدفي من غير ما تثقّل. أسود أنيق وشيك يناسب كل اللوكات."
               : isFur
-              ? "فرو ناعم من الداخل + خامة خارجية أنيقة. دفء مضاعف للشتا القارس."
-              : "بطانة فوطه دافئة من الداخل + تصميم خطوط أنيقة. توازن مثالي بين الدفء والشكل."}
+                ? "فرو ناعم من الداخل + خامة خارجية أنيقة. دفء مضاعف للشتا القارس."
+                : "بطانة فوطه دافئة من الداخل + تصميم خطوط أنيقة. توازن مثالي بين الدفء والشكل."}
           </p>
           <ul className="wl-list">
             <li>
@@ -1096,8 +1400,8 @@ const MaterialSection = memo(function MaterialSection({ category, img1, img2 }) 
               {isMagical
                 ? "تقنية سحرية لتدفئة مضاعفة ✨"
                 : isFur
-                ? "فرو ناعم من الداخل ☁️"
-                : "بطانة فوطه ناعمة 🧸"}
+                  ? "فرو ناعم من الداخل ☁️"
+                  : "بطانة فوطه ناعمة 🧸"}
             </li>
             <li>
               <span className="wl-bullet">2</span> قطن مرن يسمح بالحركة 🌈
